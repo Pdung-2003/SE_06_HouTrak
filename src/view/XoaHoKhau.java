@@ -149,6 +149,20 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_XHK_02.add(panel_XHK_CotPhai, BorderLayout.CENTER);
 		
+		JPanel panel_XHK_Confirm = new JPanel();
+		panel_XHK_Confirm.setBackground(new Color(145, 224, 239));
+		panel_XHK_02.add(panel_XHK_Confirm, BorderLayout.SOUTH);
+		panel_XHK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+		
+		JButton btn_XHK_Yes = new JButton("Xóa\r\n");
+		btn_XHK_Yes.setMinimumSize(new Dimension(50, 23));
+		btn_XHK_Yes.setBackground(Color.GREEN);
+		panel_XHK_Confirm.add(btn_XHK_Yes);
+		
+		JButton btn_XHK_No = new JButton("Hủy\r\n");
+		btn_XHK_No.setBackground(Color.RED);
+		panel_XHK_Confirm.add(btn_XHK_No);
+		
 		JPanel panel_XHK_title = new JPanel();
 		panel_XHK_title.setBackground(new Color(202, 240, 248));
 		panel_XHK_title.setPreferredSize(new Dimension(100, 30));
