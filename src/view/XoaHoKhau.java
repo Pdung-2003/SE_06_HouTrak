@@ -95,7 +95,7 @@ public class XoaHoKhau extends JPanel {
 		panel_KhungNoiDungXHK.add(panel_XHK_02, BorderLayout.CENTER);
 		panel_XHK_02.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lbl_XHK_Subtitle = new JLabel("      Thông tin hộ khẩu muốn xóa");
+		JLabel lbl_XHK_Subtitle = new JLabel("      Thông tin hộ khẩu muốn xóa:");
 		lbl_XHK_Subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lbl_XHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
 		lbl_XHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
