@@ -105,7 +105,7 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotTrai.setSize(new Dimension(200, 100));
 		panel_XHK_CotTrai.setBackground(new Color(145, 224, 239));
 		panel_XHK_02.add(panel_XHK_CotTrai, BorderLayout.WEST);
-		panel_XHK_CotTrai.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_XHK_CotTrai.setLayout(new GridLayout(10, 1, 0, 0));
 		
 		JLabel lbl_XHK_CotTrai_1 = new JLabel("     Mã hộ khẩu");
 		lbl_XHK_CotTrai_1.setMaximumSize(new Dimension(100, 14));
