@@ -1,4 +1,4 @@
-package testjvsw;
+package view;
 
 import java.awt.*;
 
