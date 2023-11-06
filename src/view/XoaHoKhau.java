@@ -1,4 +1,4 @@
-package view;
+package testjvsw;
 
 import javax.swing.JPanel;
 import java.awt.CardLayout;
@@ -172,7 +172,7 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_02.add(panel_XHK_Title, BorderLayout.NORTH);
 		panel_XHK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
-		JLabel lbl_XHK_Subtitle = new JLabel("      Thông tin hộ khẩu muốn xóa:");
+		JLabel lbl_XHK_Subtitle = new JLabel("Thông tin hộ khẩu muốn xóa:");
 		panel_XHK_Title.add(lbl_XHK_Subtitle);
 		lbl_XHK_Subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lbl_XHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
@@ -180,11 +180,10 @@ public class XoaHoKhau extends JPanel {
 		
 		JPanel panel_XHK_title = new JPanel();
 		panel_XHK_title.setBackground(Colors.nen_Chung);
-		panel_XHK_title.setPreferredSize(new Dimension(100, 30));
 		panel_XoaHoKhau.add(panel_XHK_title, BorderLayout.NORTH);
-		panel_XHK_title.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_XHK_title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
-		JLabel lbl_Title_XoaHoKhau = new JLabel("   Xóa hộ khẩu");
+		JLabel lbl_Title_XoaHoKhau = new JLabel("Xóa hộ khẩu");
 		lbl_Title_XoaHoKhau.setBackground(Colors.nen_Chung);
 		lbl_Title_XoaHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_XHK_title.add(lbl_Title_XoaHoKhau);
