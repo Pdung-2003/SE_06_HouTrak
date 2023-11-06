@@ -32,7 +32,7 @@ import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import java.util.Calendar;
 
-public class ThemHoKhau extends JFrame {
+public class ThemHoKhau extends JPanel {
 	private JTextField textField_THK_CotPhai_02;
 	private JTextField textField_THK_CotPhai_01;
 	private JTextField textField_THK_CotPhai_03;
@@ -44,14 +44,12 @@ public class ThemHoKhau extends JFrame {
 	 * Create the panel.
 	 */
 	public ThemHoKhau() {
-		setTitle("Thêm hộ khẩu");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		getContentPane().setLayout(new CardLayout(10, 10));
+		setLayout(new CardLayout(10, 10));
 		
 		JPanel panel_ThemHoKhau = new JPanel();
-		getContentPane().add(panel_ThemHoKhau, "name_164133985078600");
+		add(panel_ThemHoKhau, "name_164133985078600");
 		panel_ThemHoKhau.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_KhungNoiDungTHK = new JPanel();
