@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 import java.awt.Point;
 import java.awt.Rectangle;
 import javax.swing.BoxLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class XoaHoKhau extends JPanel {
 	private JTextField txt_XHK_TImKiem;
@@ -85,10 +87,17 @@ public class XoaHoKhau extends JPanel {
 		txt_XHK_TImKiem.setColumns(10);
 		
 		JButton btn_XHK_01_TimKiem = new JButton("Tìm kiếm");
+		btn_XHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_XHK_01_TimKiem.setBackground(Colors.button_Chung);
+		btn_XHK_01_TimKiem.setForeground(Color.WHITE);
+		btn_XHK_01_TimKiem.setOpaque(true);
+		btn_XHK_01_TimKiem.setBorderPainted(false);
 		btn_XHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		panel_XHK_01_content.add(btn_XHK_01_TimKiem);
-		
+		btn_XHK_01_TimKiem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		JPanel panel_XHK_02 = new JPanel();
 		panel_XHK_02.setBorder(null);
 		panel_XHK_02.setBackground(Colors.khung_Noi_Dung);

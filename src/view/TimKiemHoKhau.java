@@ -95,6 +95,9 @@ public class TimKiemHoKhau extends JPanel {
 		JButton btn_TKHK_01_TimKiem = new JButton("Tìm kiếm");
 		btn_TKHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKHK_01_TimKiem.setBackground(Colors.button_Chung);
+		btn_TKHK_01_TimKiem.setForeground(Color.WHITE);
+		btn_TKHK_01_TimKiem.setOpaque(true);
+		btn_TKHK_01_TimKiem.setBorderPainted(false);
 		panel_TKHK_01_content.add(btn_TKHK_01_TimKiem);
 		
 		JPanel panel_TKHK_02 = new JPanel();

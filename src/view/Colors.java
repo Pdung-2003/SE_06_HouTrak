@@ -12,4 +12,6 @@ public class Colors {
     public static final Color input_Colors = new Color(217, 217, 217);
     public static final Color chu_Mo = new Color(103, 103, 103);
 
+    public static final Color button_XacNhan = new Color(0,128,0);
+    public static final Color button_Huy = new Color(178,34,34);
 }

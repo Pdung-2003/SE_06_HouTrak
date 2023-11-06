@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,13 +22,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 
 import java.awt.BorderLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
-import java.awt.GridBagLayout;
+import javax.swing.JFrame;
 
-public class ThemHoKhau extends JPanel {
+import java.awt.GridBagLayout;
+import java.util.Calendar;
+
+public class ThemHoKhau extends JFrame {
 	private JTextField textField_THK_CotPhai_02;
 	private JTextField textField_THK_CotPhai_01;
 	private JTextField textField_THK_CotPhai_03;
@@ -38,12 +44,14 @@ public class ThemHoKhau extends JPanel {
 	 * Create the panel.
 	 */
 	public ThemHoKhau() {
+		setTitle("Thêm hộ khẩu");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		getContentPane().setLayout(new CardLayout(10, 10));
 		
 		JPanel panel_ThemHoKhau = new JPanel();
-		add(panel_ThemHoKhau, "name_164133985078600");
+		getContentPane().add(panel_ThemHoKhau, "name_164133985078600");
 		panel_ThemHoKhau.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_KhungNoiDungTHK = new JPanel();
@@ -177,12 +185,15 @@ public class ThemHoKhau extends JPanel {
 		lbl_THK_CotPhai_ChuHo_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		JComboBox comboBox_THK_CotPhai_ChuHo_Nam = new JComboBox();
+		populateYears(comboBox_THK_CotPhai_ChuHo_Nam);
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Nam);
 		
 		JLabel lbl_THK_CotPhai_ChuHo_Thang = new JLabel("     Tháng:        ");
+		
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(lbl_THK_CotPhai_ChuHo_Thang);
 		
 		JComboBox comboBox_THK_CotPhai_ChuHo_Thang = new JComboBox();
+		populateMonths(comboBox_THK_CotPhai_ChuHo_Thang);
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Thang);
 		
 		JLabel lbl_THK_CotPhai_ChuHo_Ngay = new JLabel("     Ngày:        \r\n");
@@ -190,6 +201,11 @@ public class ThemHoKhau extends JPanel {
 		
 		JComboBox comboBox_THK_CotPhai_ChuHo_Ngay = new JComboBox();
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Ngay);
+		comboBox_THK_CotPhai_ChuHo_Thang.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
+        comboBox_THK_CotPhai_ChuHo_Nam.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
+
+        // Initial population of days
+        updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
 		
 		JPanel panel_THK_CotPhai_ChuHo_05 = new JPanel();
 		panel_THK_CotPhai_ChuHo_05.setBackground(Colors.khung_Chung);
@@ -207,6 +223,13 @@ public class ThemHoKhau extends JPanel {
 		textField_THK_CotPhai_05.setColumns(10);
 		textField_THK_CotPhai_05.setBackground(Colors.input_Colors);
 		
+		textField_THK_CotPhai_06 = new JTextField();
+		panel_THK_CotPhai.add(textField_THK_CotPhai_06);
+		textField_THK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_THK_CotPhai_06.setText("     Nhập quê quán chủ hộ");
+		textField_THK_CotPhai_06.setBackground(Colors.input_Colors);
+		textField_THK_CotPhai_06.setColumns(10);
+		
 		JPanel panel_THK_CotPhai_ChuHo_06 = new JPanel();
 		panel_THK_CotPhai_ChuHo_06.setBackground(Colors.khung_Chung);
 		panel_THK_CotPhai.add(panel_THK_CotPhai_ChuHo_06);
@@ -215,13 +238,6 @@ public class ThemHoKhau extends JPanel {
 		JLabel lbl_THK_CotPhai_06 = new JLabel("   Quê quán             ");
 		lbl_THK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_THK_CotPhai_ChuHo_06.add(lbl_THK_CotPhai_06, BorderLayout.WEST);
-		
-		textField_THK_CotPhai_06 = new JTextField();
-		textField_THK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_THK_CotPhai_06.setText("     Nhập quê quán chủ hộ");
-		textField_THK_CotPhai_06.setBackground(Colors.input_Colors);
-		panel_THK_CotPhai_ChuHo_06.add(textField_THK_CotPhai_06, BorderLayout.CENTER);
-		textField_THK_CotPhai_06.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Colors.khung_Chung);
@@ -233,11 +249,29 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JButton btn_THK_Yes = new JButton("Thêm");
+		btn_THK_Yes.setToolTipText("");
+        btn_THK_Yes.setBackground(Colors.button_XacNhan);
+        btn_THK_Yes.setForeground(Color.WHITE);
+        btn_THK_Yes.setOpaque(true);
+        btn_THK_Yes.setBorderPainted(false);
+        btn_THK_Yes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
 		panel_THK_confirm.add(btn_THK_Yes);
 		
 		JButton btn_THK_No = new JButton("Hủy");
-		panel_THK_confirm.add(btn_THK_No);
-		
+		btn_THK_No.setToolTipText("");
+        btn_THK_No.setBackground(Colors.button_Huy);
+        btn_THK_No.setForeground(Color.WHITE);
+        btn_THK_No.setOpaque(true);
+        btn_THK_No.setBorderPainted(false);
+        btn_THK_No.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel_THK_confirm.add(btn_THK_No);
+        
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTHK.add(panel_1, BorderLayout.NORTH);
@@ -251,7 +285,39 @@ public class ThemHoKhau extends JPanel {
 		lbl_Title_ThemHoKhau.setBackground(Colors.nen_Chung);
 		lbl_Title_ThemHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_THK_title.add(lbl_Title_ThemHoKhau);
-
+		
+		setVisible(true);
+		
+		
 	}
 
+	private void populateYears(JComboBox comboBox) {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int year = 1900; year <= currentYear; year++) {
+            comboBox.addItem(year);
+        }
+    }
+
+    private void populateMonths(JComboBox comboBox) {
+        for (int month = 1; month <= 12; month++) {
+            comboBox.addItem(month);
+        }
+    }
+
+    private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+        int year = (int) yearComboBox.getSelectedItem();
+        int month = (int) monthComboBox.getSelectedItem();
+        int daysInMonth = getDaysInMonth(year, month);
+        
+        dayComboBox.setModel(new DefaultComboBoxModel());
+        for (int day = 1; day <= daysInMonth; day++) {
+            dayComboBox.addItem(day);
+        }
+    }
+
+    private int getDaysInMonth(int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, 1);
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
 }
