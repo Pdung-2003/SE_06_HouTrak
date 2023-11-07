@@ -77,7 +77,8 @@ public class ThemHoKhau extends JPanel {
 		lbl_THK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_THK_CotTrai.add(lbl_THK_CotTrai_2);
 		
-		JLabel lbl_THK_CotTrai_3 = new JLabel("     Chủ hộ");
+		JLabel lbl_THK_CotTrai_3 = new JLabel("     Thông tin chủ hộ         ");
+		lbl_THK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_THK_CotTrai.add(lbl_THK_CotTrai_3);
 		
 		JPanel panel_THK_CotPhai = new JPanel();
@@ -171,11 +172,11 @@ public class ThemHoKhau extends JPanel {
 		JPanel panel_THK_CotPhai_ChuHo_NgaySinh = new JPanel();
 		panel_THK_CotPhai_ChuHo_NgaySinh.setBackground(Colors.khung_Chung);
 		panel_THK_CotPhai_ChuHo_04.add(panel_THK_CotPhai_ChuHo_NgaySinh, BorderLayout.CENTER);
-		panel_THK_CotPhai_ChuHo_NgaySinh.setLayout(new BorderLayout(0, 0));
+		panel_THK_CotPhai_ChuHo_NgaySinh.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JPanel panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung = new JPanel();
+		panel_THK_CotPhai_ChuHo_NgaySinh.add(panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung);
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.setBackground(Colors.khung_Chung);
-		panel_THK_CotPhai_ChuHo_NgaySinh.add(panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung, BorderLayout.WEST);
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.setLayout(new BoxLayout(panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung, BoxLayout.X_AXIS));
 		
 		JLabel lbl_THK_CotPhai_ChuHo_Nam = new JLabel("Năm:        ");
@@ -200,10 +201,14 @@ public class ThemHoKhau extends JPanel {
 		JComboBox comboBox_THK_CotPhai_ChuHo_Ngay = new JComboBox();
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Ngay);
 		comboBox_THK_CotPhai_ChuHo_Thang.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
-        comboBox_THK_CotPhai_ChuHo_Nam.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
-
-        // Initial population of days
-        updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
+		comboBox_THK_CotPhai_ChuHo_Nam.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
+		
+		// Initial population of days
+		updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
+		        
+		JPanel panel_THK_CotPhai_ChuHo_NgaySinh_Dem = new JPanel();
+		panel_THK_CotPhai_ChuHo_NgaySinh_Dem.setBackground(Colors.khung_Chung);
+		panel_THK_CotPhai_ChuHo_NgaySinh.add(panel_THK_CotPhai_ChuHo_NgaySinh_Dem);
 		
 		JPanel panel_THK_CotPhai_ChuHo_05 = new JPanel();
 		panel_THK_CotPhai_ChuHo_05.setBackground(Colors.khung_Chung);
@@ -270,9 +275,9 @@ public class ThemHoKhau extends JPanel {
         });
         panel_THK_confirm.add(btn_THK_No);
         
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTHK.add(panel_1, BorderLayout.NORTH);
+		JPanel panel_THK_Dem = new JPanel();
+		panel_THK_Dem.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTHK.add(panel_THK_Dem, BorderLayout.NORTH);
 		
 		JPanel panel_THK_title = new JPanel();
 		panel_THK_title.setBackground(Colors.nen_Chung);
