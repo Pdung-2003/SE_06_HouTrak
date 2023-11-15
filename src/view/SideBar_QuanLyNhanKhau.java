@@ -74,14 +74,16 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		btn_SB_QLNK_LSTDNK.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_SB_QLNK.add(btn_SB_QLNK_LSTDNK);
 		
-		JPanel panel_SB_QLNK_dem = new JPanel();
-		panel_SB_QLNK_dem.setBackground(Colors.menu_Trai);
-		panel_SB_QLNK.add(panel_SB_QLNK_dem);
+		JButton btn_SB_QLNK_CHK = new JButton("Chuyển hộ khẩu");
+		btn_SB_QLNK_CHK.setForeground(Colors.White);
+		btn_SB_QLNK_CHK.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLNK_CHK.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_SB_QLNK.add(btn_SB_QLNK_CHK);
 		
-		JButton btnNewButton_8 = new JButton("Quay lại");
-		btnNewButton_8.setForeground(Colors.White);
-		btnNewButton_8.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_SB_QLNK.add(btnNewButton_8);
+		JButton btn_SB_QLNK_Back = new JButton("Quay lại");
+		btn_SB_QLNK_Back.setForeground(Colors.White);
+		btn_SB_QLNK_Back.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_SB_QLNK.add(btn_SB_QLNK_Back);
 
 	}
 
