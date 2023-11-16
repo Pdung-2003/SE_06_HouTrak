@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SideBar_QuanLyNhanKhau extends JPanel {
 
@@ -81,6 +83,11 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		panel_SB_QLNK.add(btn_SB_QLNK_CHK);
 		
 		JButton btn_SB_QLNK_Back = new JButton("Quay lại");
+		btn_SB_QLNK_Back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_SB_QLNK.setVisible(false);
+			}
+		});
 		btn_SB_QLNK_Back.setForeground(Colors.White);
 		btn_SB_QLNK_Back.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_SB_QLNK.add(btn_SB_QLNK_Back);
