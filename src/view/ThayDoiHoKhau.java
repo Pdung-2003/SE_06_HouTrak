@@ -33,17 +33,17 @@ public class ThayDoiHoKhau extends JPanel {
 	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD;
 	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao;
 	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan;
-	/**
-	 * Create the panel.
-	 */
+	private ManHinhChinh mainFrame;
+	
 	public ThayDoiHoKhau() {
+		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
 		
 		JPanel panel_ThayDoiHoKhau = new JPanel();
 		add(panel_ThayDoiHoKhau, "name_366988370123500");
-panel_ThayDoiHoKhau.setLayout(new BorderLayout(0, 0));
+		panel_ThayDoiHoKhau.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_TDHK_Title = new JPanel();
 		panel_TDHK_Title.setBackground(Colors.nen_Chung);

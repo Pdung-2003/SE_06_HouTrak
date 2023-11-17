@@ -49,7 +49,10 @@ public class SideBar_QuanLyHoKhau extends JPanel {
         btn_SB_QLHK_THK.setForeground(Color.WHITE);
         btn_SB_QLHK_THK.setOpaque(true);
 		btn_SB_QLHK_THK.setBorder(matteBorder);
-		btn_SB_QLHK_THK.addActionListener(e -> showThemHoKhauPanel());
+		btn_SB_QLHK_THK.addActionListener(e -> {
+		    ThemHoKhau themHoKhauPanel = new ThemHoKhau();
+		    mainFrame.switchToMainPanel(themHoKhauPanel);
+		});
 		panel_SB_QLHK.add(btn_SB_QLHK_THK);
 		
 		JButton btn_SB_QLHK_TDHK = new JButton("Thay đổi hộ khẩu");
@@ -59,6 +62,11 @@ public class SideBar_QuanLyHoKhau extends JPanel {
         btn_SB_QLHK_TDHK.setForeground(Color.WHITE);
         btn_SB_QLHK_TDHK.setOpaque(true);
 		btn_SB_QLHK_TDHK.setBorder(matteBorder);
+		btn_SB_QLHK_TDHK.addActionListener(e -> {
+			ThayDoiHoKhau thayDoiHoKhauPanel = new ThayDoiHoKhau();
+	        mainFrame.switchToMainPanel(thayDoiHoKhauPanel);
+		});
+		
 		panel_SB_QLHK.add(btn_SB_QLHK_TDHK);
 		
 		JButton btn_SB_QLHK_TachHK = new JButton("Tách hộ khẩu");
@@ -78,6 +86,10 @@ public class SideBar_QuanLyHoKhau extends JPanel {
         btn_SB_QLHK_TKHK.setForeground(Color.WHITE);
         btn_SB_QLHK_TKHK.setOpaque(true);
 		btn_SB_QLHK_TKHK.setBorder(matteBorder);
+		btn_SB_QLHK_TKHK.addActionListener(e -> {
+			TimKiemHoKhau timKiemHoKhauPanel = new TimKiemHoKhau();
+			mainFrame.switchToMainPanel(timKiemHoKhauPanel);
+		});	
 		panel_SB_QLHK.add(btn_SB_QLHK_TKHK);
 		
 		JButton btn_SB_QLHK_XHK = new JButton("Xóa hộ khẩu");
@@ -87,6 +99,10 @@ public class SideBar_QuanLyHoKhau extends JPanel {
         btn_SB_QLHK_XHK.setForeground(Color.WHITE);
         btn_SB_QLHK_XHK.setOpaque(true);
 		btn_SB_QLHK_XHK.setBorder(matteBorder);
+		btn_SB_QLHK_XHK.addActionListener(e -> {
+			XoaHoKhau xoaHoKhauPanel = new XoaHoKhau();
+			mainFrame.switchToMainPanel(xoaHoKhauPanel);
+		});
 		panel_SB_QLHK.add(btn_SB_QLHK_XHK);
 		
 		JButton btn_SB_QLHK_LSTDHK = new JButton("Lịch sử thay đổi hộ khẩu");
@@ -96,6 +112,10 @@ public class SideBar_QuanLyHoKhau extends JPanel {
         btn_SB_QLHK_LSTDHK.setForeground(Color.WHITE);
         btn_SB_QLHK_LSTDHK.setOpaque(true);
 		btn_SB_QLHK_LSTDHK.setBorder(matteBorder);
+		btn_SB_QLHK_LSTDHK.addActionListener(e -> {
+			LichSuThayDoiHoKhau lichSuThayDoiHoKhauPanel = new LichSuThayDoiHoKhau();
+			mainFrame.switchToMainPanel(lichSuThayDoiHoKhauPanel);
+		});
 		panel_SB_QLHK.add(btn_SB_QLHK_LSTDHK);
 		
 		JPanel panel_SB_QLHK_dem = new JPanel();
@@ -125,10 +145,5 @@ public class SideBar_QuanLyHoKhau extends JPanel {
 		
 
 	}
-	private void showThemHoKhauPanel() {
-        ThemHoKhau themHoKhauPanel = new ThemHoKhau();
-        mainFrame.switchToMainPanel(themHoKhauPanel);
-    }
-	
 
 }

@@ -17,8 +17,14 @@ public class ManHinhChinh extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout cardLayout;
-	 private JPanel cardPanel; // Panel to hold the CardLayout
-	 private JPanel panel_trung_tam; // Main panel in the center
+	private JPanel cardPanel; // Panel to hold the CardLayout
+	private JPanel panel_trung_tam; // Main panel in the center
+	 
+	 
+	private SideBar_QuanLyHoKhau quanLyHoKhauPanel;
+	private QuanLyHoKhau quanLyHoKhauMainPanel;
+	private SideBar_QuanLyNhanKhau quanLyNhanKhauPanel;
+	private QuanLyNhanKhau quanLyNhanKhauMainPanel;
 	
 	public ManHinhChinh() {
 		setTitle("Phần mềm quản lí dân cư HouTrak");
@@ -50,8 +56,10 @@ public class ManHinhChinh extends JFrame {
         contentPane.add(panel_trung_tam, BorderLayout.CENTER);
         
         // Cách nhảy sang Jpanel chính
-        SideBar_QuanLyHoKhau quanLyHoKhauPanel = new SideBar_QuanLyHoKhau(this);
-        SideBar_QuanLyNhanKhau quanLyNhanKhauPanel = new SideBar_QuanLyNhanKhau(this);
+        quanLyHoKhauPanel = new SideBar_QuanLyHoKhau(this);
+        quanLyHoKhauMainPanel = new QuanLyHoKhau();
+        quanLyNhanKhauPanel = new SideBar_QuanLyNhanKhau(this);
+        quanLyNhanKhauMainPanel = new QuanLyNhanKhau();
         
         cardPanel.add(buttonsPanel, "ButtonsPanel");
         cardPanel.add(quanLyHoKhauPanel, "QuanLyHoKhau");
@@ -59,6 +67,7 @@ public class ManHinhChinh extends JFrame {
         
   
         contentPane.add(cardPanel, BorderLayout.WEST);
+       
         setVisible(true);
     }
 		
@@ -80,7 +89,10 @@ public class ManHinhChinh extends JFrame {
 	            topBottomBorderSize, 0, topBottomBorderSize, 0, Color.BLACK);
 
 	        button_QLHK.setBorder(matteBorder);
-	        button_QLHK.addActionListener(e -> cardLayout.show(cardPanel, "QuanLyHoKhau"));
+	        button_QLHK.addActionListener(e -> {
+	            switchPanel("QuanLyHoKhau");
+	            switchToMainPanel(quanLyHoKhauMainPanel);
+	        });
 	        buttonsPanel.add(button_QLHK);
 	        
 	        JButton button_QLNK = new JButton("  Quản lí nhân khẩu");
@@ -90,7 +102,10 @@ public class ManHinhChinh extends JFrame {
 	        button_QLNK.setForeground(Color.WHITE);
 	        button_QLNK.setOpaque(true);
 	        button_QLNK.setBorder(matteBorder);
-	        button_QLNK.addActionListener(e -> cardLayout.show(cardPanel, "QuanLyNhanKhau"));
+	        button_QLNK.addActionListener(e -> {
+	            switchPanel("QuanLyNhanKhau");
+	            switchToMainPanel(quanLyNhanKhauMainPanel);
+	        });
 	        buttonsPanel.add(button_QLNK);
 	        
 	        JButton button_QLTC = new JButton("  Quản lí thu chi");
@@ -122,6 +137,7 @@ public class ManHinhChinh extends JFrame {
 	        
 	        return buttonsPanel;
 	 }
+	 
 	 public void switchPanel(String panelName) {
 	        CardLayout cl = (CardLayout)(cardPanel.getLayout());
 	        cl.show(cardPanel, panelName);

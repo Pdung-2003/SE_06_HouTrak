@@ -55,6 +55,10 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
         btn_SB_QLNK_TNK.setForeground(Color.WHITE);
         btn_SB_QLNK_TNK.setOpaque(true);
 		btn_SB_QLNK_TNK.setBorder(matteBorder);
+		btn_SB_QLNK_TNK.addActionListener(e -> {
+		    ThemNhanKhau themNhanKhauPanel = new ThemNhanKhau();
+		    mainFrame.switchToMainPanel(themNhanKhauPanel);
+		});
 		panel_SB_QLNK.add(btn_SB_QLNK_TNK);
 		
 		JButton btn_SB_QLNK_TDNK = new JButton("Thay đổi nhân khẩu");
@@ -109,6 +113,10 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
         btn_SB_QLNK_LSTDNK.setForeground(Color.WHITE);
         btn_SB_QLNK_LSTDNK.setOpaque(true);
 		btn_SB_QLNK_LSTDNK.setBorder(matteBorder);
+		btn_SB_QLNK_LSTDNK.addActionListener(e -> {
+			LichSuThayDoiNhanKhau lichSuThayDoiNhanKhauPanel = new LichSuThayDoiNhanKhau();
+		    mainFrame.switchToMainPanel(lichSuThayDoiNhanKhauPanel);
+		});
 		panel_SB_QLNK.add(btn_SB_QLNK_LSTDNK);
 		
 		JButton btn_SB_QLNK_CHK = new JButton("Chuyển hộ khẩu");
@@ -135,5 +143,6 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		panel_SB_QLNK.add(btn_SB_QLNK_Back);
 
 	}
+	
 
 }
