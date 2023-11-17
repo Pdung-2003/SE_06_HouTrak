@@ -70,3 +70,4 @@ public class QuanLyNhanKhau extends JPanel {
 	}
 
 }
+

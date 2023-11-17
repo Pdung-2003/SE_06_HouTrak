@@ -63,8 +63,18 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_01.add(panel_TKHK_KhoangTrang2, BorderLayout.NORTH);
 		
 		JPanel panel_TKHK_KhoangTrang1 = new JPanel();
-		panel_TKHK_KhoangTrang1.setBackground(Colors.input_Colors);
+		panel_TKHK_KhoangTrang1.setBackground(Colors.khung_Chung);
 		panel_TKHK_01.add(panel_TKHK_KhoangTrang1, BorderLayout.WEST);
+		panel_TKHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lbl_TKHK_01 = new JLabel("   Nhập địa chỉ hộ khẩu: ");
+		lbl_TKHK_01.setBackground(Colors.khung_Chung);
+		lbl_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKHK_KhoangTrang1.add(lbl_TKHK_01, BorderLayout.CENTER);
+		
+		JPanel panel_TKHK_01_dem = new JPanel();
+		panel_TKHK_01_dem.setBackground(Colors.input_Colors);
+		panel_TKHK_KhoangTrang1.add(panel_TKHK_01_dem, BorderLayout.EAST);
 		
 		JPanel panel_TKHK_KhoangTrang4 = new JPanel();
 		panel_TKHK_KhoangTrang4.setBackground(Colors.input_Colors);
@@ -80,8 +90,8 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_01_content.setLayout(new BoxLayout(panel_TKHK_01_content, BoxLayout.X_AXIS));
 		
 		text_TKHK_01 = new JTextField();
-		text_TKHK_01.setText("Nhập địa chỉ hộ khẩu muốn tìm");
-		text_TKHK_01.setPreferredSize(new Dimension(1389, 68));
+//		text_TKHK_01.setText("Nhập địa chỉ hộ khẩu muốn tìm");
+		text_TKHK_01.setPreferredSize(new Dimension(1389, 48));
 		text_TKHK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TKHK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKHK_01.setForeground(Color.BLACK);
