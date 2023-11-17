@@ -69,8 +69,4 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 		panel_LSTDNK_SubTitle.add(comboBox_LSTDNK_Sort);
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7b4a8868cfb2835e4e5463f1b7c018e4aa8961f2
