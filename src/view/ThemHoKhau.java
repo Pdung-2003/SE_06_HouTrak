@@ -39,9 +39,9 @@ public class ThemHoKhau extends JPanel {
 	private JTextField textField_THK_CotPhai_04;
 	private JTextField textField_THK_CotPhai_05;
 	private JTextField textField_THK_CotPhai_06;
-
-	 private ManHinhChinh mainFrame;
-	public ThemHoKhau(ManHinhChinh mainFrame) {
+	private ManHinhChinh mainFrame;
+	 
+	public ThemHoKhau() {
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
@@ -268,7 +268,6 @@ public class ThemHoKhau extends JPanel {
         btn_THK_No.setForeground(Color.WHITE);
         btn_THK_No.setOpaque(true);
         btn_THK_No.setBorderPainted(false);
-        btn_THK_No.addActionListener(e -> mainFrame.showQuanLyHoKhauPanel());
         panel_THK_confirm.add(btn_THK_No);
         
 		JPanel panel_THK_Dem = new JPanel();

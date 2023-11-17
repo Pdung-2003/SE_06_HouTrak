@@ -18,6 +18,7 @@ public class ManHinhChinh extends JFrame {
 	private JPanel contentPane;
 	private CardLayout cardLayout;
 	 private JPanel cardPanel; // Panel to hold the CardLayout
+	 private JPanel panel_trung_tam; // Main panel in the center
 	
 	public ManHinhChinh() {
 		setTitle("Phần mềm quản lí dân cư HouTrak");
@@ -39,20 +40,24 @@ public class ManHinhChinh extends JFrame {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		panel_Header.add(lblNewLabel, BorderLayout.WEST);	
 		
+
 		cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-        JPanel buttonsPanel = createButtonsPanel();
+        JPanel buttonsPanel = createButtonsPanel();	
+        
+
+        panel_trung_tam = new JPanel(cardLayout);
+        contentPane.add(panel_trung_tam, BorderLayout.CENTER);
+        
         // Cách nhảy sang Jpanel chính
         SideBar_QuanLyHoKhau quanLyHoKhauPanel = new SideBar_QuanLyHoKhau(this);
         SideBar_QuanLyNhanKhau quanLyNhanKhauPanel = new SideBar_QuanLyNhanKhau(this);
+        
         cardPanel.add(buttonsPanel, "ButtonsPanel");
         cardPanel.add(quanLyHoKhauPanel, "QuanLyHoKhau");
         cardPanel.add(quanLyNhanKhauPanel,"QuanLyNhanKhau");
         
-     // Cach nhay sang JPanel phụ trong 1 JPanel
-        ThemHoKhau themHoKhauPanel = new ThemHoKhau(this);
-        cardPanel.add(themHoKhauPanel, "ThemHoKhau");
-        
+  
         contentPane.add(cardPanel, BorderLayout.WEST);
         setVisible(true);
     }
@@ -117,18 +122,25 @@ public class ManHinhChinh extends JFrame {
 	        
 	        return buttonsPanel;
 	 }
-	 public void showMainPanel() {
-	        cardLayout.show(cardPanel, "ButtonsPanel");
+	 public void switchPanel(String panelName) {
+	        CardLayout cl = (CardLayout)(cardPanel.getLayout());
+	        cl.show(cardPanel, panelName);
 	    }
-        
-	 public void showThemHoKhauPanel() {
-	        cardLayout.show(cardPanel, "ThemHoKhau");
-	    }    
-	 public void showQuanLyHoKhauPanel() {
-	        cardLayout.show(cardPanel, "QuanLyHoKhau");
-	    }	
-        
 
+	    public void switchToMainPanel(JPanel panel) {
+	        panel_trung_tam.removeAll();
+	        panel_trung_tam.add(panel);
+	        panel_trung_tam.revalidate();
+	        panel_trung_tam.repaint();
+	    }
+	    public void resetMainPanel() {
+	        panel_trung_tam.removeAll();
+	        JPanel emptyPanel = new JPanel(); // Tạo một JPanel trống
+	        panel_trung_tam.add(emptyPanel, "EmptyPanel");
+	        cardLayout.show(panel_trung_tam, "EmptyPanel");
+	        panel_trung_tam.revalidate();
+	        panel_trung_tam.repaint();
+	    }
       
 	
 

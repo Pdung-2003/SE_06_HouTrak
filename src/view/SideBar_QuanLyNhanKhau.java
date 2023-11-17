@@ -127,7 +127,11 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
         btn_SB_QLNK_Back.setForeground(Color.WHITE);
         btn_SB_QLNK_Back.setOpaque(true);
 		btn_SB_QLNK_Back.setBorder(matteBorder);
-		btn_SB_QLNK_Back.addActionListener(e -> this.mainFrame.showMainPanel());
+		btn_SB_QLNK_Back.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            mainFrame.switchPanel("ButtonsPanel");
+	        }
+	    });
 		panel_SB_QLNK.add(btn_SB_QLNK_Back);
 
 	}

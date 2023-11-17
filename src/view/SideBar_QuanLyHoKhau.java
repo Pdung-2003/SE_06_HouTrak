@@ -10,14 +10,14 @@ import javax.swing.border.Border;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import view.*;
 
 public class SideBar_QuanLyHoKhau extends JPanel {
 	private ManHinhChinh mainFrame;
-	/**
-	 * Create the panel.
-	 */
+
 	public SideBar_QuanLyHoKhau(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
+		
 		setBackground(Colors.menu_Trai);
 		setPreferredSize(new Dimension(339, 920));
 		setLayout(new CardLayout(0, 0));
@@ -49,7 +49,7 @@ public class SideBar_QuanLyHoKhau extends JPanel {
         btn_SB_QLHK_THK.setForeground(Color.WHITE);
         btn_SB_QLHK_THK.setOpaque(true);
 		btn_SB_QLHK_THK.setBorder(matteBorder);
-		btn_SB_QLHK_THK.addActionListener(e -> mainFrame.showThemHoKhauPanel());
+		btn_SB_QLHK_THK.addActionListener(e -> showThemHoKhauPanel());
 		panel_SB_QLHK.add(btn_SB_QLHK_THK);
 		
 		JButton btn_SB_QLHK_TDHK = new JButton("Thay đổi hộ khẩu");
@@ -107,18 +107,28 @@ public class SideBar_QuanLyHoKhau extends JPanel {
 		panel_SB_QLHK.add(panel_SB_QLHK_dem_2);
 		
 		JButton btn_SB_QLHK_Back = new JButton("Quay lại");
-		btn_SB_QLHK_Back.addActionListener(e -> this.mainFrame.showMainPanel());
+
         btn_SB_QLHK_Back.setHorizontalAlignment(SwingConstants.LEFT);
         btn_SB_QLHK_Back.setFont(new Font("Arial", Font.BOLD, 25));
         btn_SB_QLHK_Back.setBackground(Colors.menu_Trai);
         btn_SB_QLHK_Back.setForeground(Color.WHITE);
         btn_SB_QLHK_Back.setOpaque(true);
 		btn_SB_QLHK_Back.setBorder(matteBorder);
+		btn_SB_QLHK_Back.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            mainFrame.switchPanel("ButtonsPanel");
+	        }
+	    });
 		panel_SB_QLHK.add(btn_SB_QLHK_Back);
 		
 
 		
 
 	}
+	private void showThemHoKhauPanel() {
+        ThemHoKhau themHoKhauPanel = new ThemHoKhau();
+        mainFrame.switchToMainPanel(themHoKhauPanel);
+    }
+	
 
 }
