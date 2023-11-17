@@ -73,8 +73,17 @@ public class ThayDoiHoKhau extends JPanel {
 		panel_TDHK_01.add(panel_TDHK_KhoangTrang2, BorderLayout.NORTH);
 
 		JPanel panel_TDHK_KhoangTrang1 = new JPanel();
-		panel_TDHK_KhoangTrang1.setBackground(Colors.input_Colors);
+		panel_TDHK_KhoangTrang1.setBackground(Colors.khung_Chung);
 		panel_TDHK_01.add(panel_TDHK_KhoangTrang1, BorderLayout.WEST);
+		panel_TDHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
+
+		JLabel lblNewLabel_9 = new JLabel("   Nhập mã số hộ khẩu: ");
+		lblNewLabel_9.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TDHK_KhoangTrang1.add(lblNewLabel_9, BorderLayout.CENTER);
+
+		JPanel panel_TDHK_01_dem = new JPanel();
+		panel_TDHK_01_dem.setBackground(Colors.input_Colors);
+		panel_TDHK_KhoangTrang1.add(panel_TDHK_01_dem, BorderLayout.EAST);
 
 		JPanel panel_TDHK_KhoangTrang4 = new JPanel();
 		panel_TDHK_KhoangTrang4.setBackground(Colors.input_Colors);
@@ -90,7 +99,6 @@ public class ThayDoiHoKhau extends JPanel {
 		panel_TDHK_01_content.setLayout(new BoxLayout(panel_TDHK_01_content, BoxLayout.X_AXIS));
 
 		text_TDHK_01 = new JTextField();
-		text_TDHK_01.setText("Nhập mã số hộ khẩu muốn thay đổi");
 		text_TDHK_01.setPreferredSize(new Dimension(1389, 48));
 		text_TDHK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TDHK_01.setHorizontalAlignment(SwingConstants.LEFT);
@@ -163,7 +171,6 @@ public class ThayDoiHoKhau extends JPanel {
 
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi = new JTextField();
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setBackground(Colors.input_Colors);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setText("   Nhập địa chỉ cần thay đổi");
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setColumns(10);
@@ -179,7 +186,6 @@ public class ThayDoiHoKhau extends JPanel {
 
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen = new JTextField();
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setBackground(Colors.input_Colors);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setText("   Nhập họ và tên chủ hộ cần thay đổi");
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen, BorderLayout.CENTER);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setColumns(10);
@@ -195,7 +201,6 @@ public class ThayDoiHoKhau extends JPanel {
 
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD = new JTextField();
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD.setBackground(Colors.input_Colors);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD.setText("   Nhập CCCD/CMND chủ hộ cần thay đổi");
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_04.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD, BorderLayout.CENTER);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD.setColumns(10);
@@ -313,7 +318,6 @@ public class ThayDoiHoKhau extends JPanel {
 
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao = new JTextField();
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao.setBackground(Colors.input_Colors);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao.setText("   Nhập tôn giáo của chủ hộ cần thay đổi");
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_07.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao, BorderLayout.CENTER);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao.setColumns(10);
@@ -329,7 +333,6 @@ public class ThayDoiHoKhau extends JPanel {
 
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan = new JTextField();
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan.setBackground(Colors.input_Colors);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan.setText("   Nhập quê quán chủ hộ cần thay đổi");
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_08.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan, BorderLayout.CENTER);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan.setColumns(10);
@@ -366,42 +369,14 @@ public class ThayDoiHoKhau extends JPanel {
 		JPanel panel_TDHK_Confirm = new JPanel();
 		panel_TDHK_Confirm.setBackground(Colors.khung_Chung);
 		panel_TDHK_02.add(panel_TDHK_Confirm, BorderLayout.SOUTH);
-		panel_TDHK_Confirm.setLayout(new GridLayout(1, 10, 5, 0));
-
-		JPanel panel_Dem_11 = new JPanel();
-		panel_Dem_11.setBackground(Colors.khung_Chung);
-		panel_TDHK_Confirm.add(panel_Dem_11);
-
-		JPanel panel_Dem_11_1 = new JPanel();
-		panel_Dem_11_1.setBackground(new Color(144, 224, 239));
-		panel_TDHK_Confirm.add(panel_Dem_11_1);
-
-		JPanel panel_Dem_11_2 = new JPanel();
-		panel_Dem_11_2.setBackground(new Color(144, 224, 239));
-		panel_TDHK_Confirm.add(panel_Dem_11_2);
-
-		JPanel panel_Dem_11_3 = new JPanel();
-		panel_Dem_11_3.setBackground(new Color(144, 224, 239));
-		panel_TDHK_Confirm.add(panel_Dem_11_3);
-
-		JPanel panel_Dem_11_4 = new JPanel();
-		panel_Dem_11_4.setBackground(new Color(144, 224, 239));
-		panel_TDHK_Confirm.add(panel_Dem_11_4);
-
-		JPanel panel_Dem_11_5 = new JPanel();
-		panel_Dem_11_5.setBackground(new Color(144, 224, 239));
-		panel_TDHK_Confirm.add(panel_Dem_11_5);
-
-		JPanel panel_Dem_11_6 = new JPanel();
-		panel_Dem_11_6.setBackground(new Color(144, 224, 239));
-		panel_TDHK_Confirm.add(panel_Dem_11_6);
+		panel_TDHK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		JButton btn_TDHK_Yes = new JButton("Thay đổi");
-		btn_TDHK_Yes.setFont(new Font("Arial", Font.PLAIN, 12));
+		btn_TDHK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TDHK_Confirm.add(btn_TDHK_Yes);
 
 		JButton btn_TDHK_No = new JButton("Hủy");
-		btn_TDHK_No.setFont(new Font("Arial", Font.PLAIN, 12));
+		btn_TDHK_No.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TDHK_Confirm.add(btn_TDHK_No);
 	}
 	private void populateYears(JComboBox comboBox) {
