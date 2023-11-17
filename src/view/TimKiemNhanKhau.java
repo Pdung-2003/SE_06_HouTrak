@@ -64,11 +64,15 @@ public class TimKiemNhanKhau extends JPanel {
 		JPanel panel_TKNK_KhoangTrang1 = new JPanel();
 		panel_TKNK_KhoangTrang1.setBackground(Colors.khung_Chung);
 		panel_TKNK_01.add(panel_TKNK_KhoangTrang1, BorderLayout.WEST);
-		panel_TKNK_KhoangTrang1.setLayout(new BoxLayout(panel_TKNK_KhoangTrang1, BoxLayout.X_AXIS));
+		panel_TKNK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("   Nhập tên nhân khẩu muốn tìm:   ");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKNK_KhoangTrang1.add(lblNewLabel);
+		JLabel lbl_TKNK_01 = new JLabel("   Nhập tên nhân khẩu muốn tìm:   ");
+		lbl_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKNK_KhoangTrang1.add(lbl_TKNK_01);
+		
+		JPanel panel_TKNK_01_dem = new JPanel();
+		panel_TKNK_01_dem.setBackground(Colors.input_Colors);
+		panel_TKNK_KhoangTrang1.add(panel_TKNK_01_dem, BorderLayout.EAST);
 		
 		JPanel panel_TKNK_KhoangTrang4 = new JPanel();
 		panel_TKNK_KhoangTrang4.setBackground(Colors.input_Colors);
