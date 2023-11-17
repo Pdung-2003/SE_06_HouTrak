@@ -81,7 +81,7 @@ public class TimKiemHoKhau extends JPanel {
 		
 		text_TKHK_01 = new JTextField();
 		text_TKHK_01.setText("Nhập địa chỉ hộ khẩu muốn tìm");
-		text_TKHK_01.setPreferredSize(new Dimension(1389, 68));
+		text_TKHK_01.setPreferredSize(new Dimension(1389, 48));
 		text_TKHK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TKHK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKHK_01.setForeground(Color.BLACK);
