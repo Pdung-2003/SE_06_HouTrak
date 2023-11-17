@@ -18,6 +18,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import javax.swing.JComboBox;
 
 public class TimKiemNhanKhau extends JPanel {
 	private JTextField text_TKNK_01;
@@ -61,8 +62,13 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_01.add(panel_TKNK_KhoangTrang2, BorderLayout.NORTH);
 		
 		JPanel panel_TKNK_KhoangTrang1 = new JPanel();
-		panel_TKNK_KhoangTrang1.setBackground(Colors.input_Colors);
+		panel_TKNK_KhoangTrang1.setBackground(Colors.khung_Chung);
 		panel_TKNK_01.add(panel_TKNK_KhoangTrang1, BorderLayout.WEST);
+		panel_TKNK_KhoangTrang1.setLayout(new BoxLayout(panel_TKNK_KhoangTrang1, BoxLayout.X_AXIS));
+		
+		JLabel lblNewLabel = new JLabel("   Nhập tên nhân khẩu muốn tìm:   ");
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKNK_KhoangTrang1.add(lblNewLabel);
 		
 		JPanel panel_TKNK_KhoangTrang4 = new JPanel();
 		panel_TKNK_KhoangTrang4.setBackground(Colors.input_Colors);
@@ -78,12 +84,11 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_01_content.setLayout(new BoxLayout(panel_TKNK_01_content, BoxLayout.X_AXIS));
 		
 		text_TKNK_01 = new JTextField();
-		text_TKNK_01.setText("Nhập tên nhân khẩu muốn tìm");
-		text_TKNK_01.setPreferredSize(new Dimension(1389, 68));
+		text_TKNK_01.setPreferredSize(new Dimension(1389, 48));
 		text_TKNK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TKNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKNK_01.setForeground(Color.BLACK);
-		text_TKNK_01.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		text_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		text_TKNK_01.setColumns(10);
 		text_TKNK_01.setCaretColor(new Color(103, 103, 103));
 		text_TKNK_01.setBorder(null);
@@ -118,6 +123,16 @@ public class TimKiemNhanKhau extends JPanel {
 		lbl_TKNK_Subtitle.setMaximumSize(new Dimension(1000, 14));
 		lbl_TKNK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_TKNK_Subtitle.setAlignmentX(0.5f);
+		
+		JLabel lbl_TKNK_Sort = new JLabel("Sắp xếp theo: ");
+		lbl_TKNK_Sort.setMaximumSize(new Dimension(1000, 14));
+		lbl_TKNK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKNK_Sort.setAlignmentX(0.5f);
+		panel_TKNK_SubTitle.add(lbl_TKNK_Sort);
+		
+		JComboBox comboBox_TKNK_Sort = new JComboBox();
+		comboBox_TKNK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TKNK_SubTitle.add(comboBox_TKNK_Sort);
 	}
 
 }
