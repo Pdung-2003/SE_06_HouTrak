@@ -4,12 +4,15 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import test.DatabaseConnector;
 import view.Colors;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import static test.DatabaseConnector.checkLogin;
 
-public class LoginView extends JFrame {
+
+ public class LoginView extends JFrame {
 
     private JPanel contentPane;
     private JTextField textField_TenDangNhap;
@@ -114,6 +117,17 @@ public class LoginView extends JFrame {
         btnButton_DangNhap.setBorderPainted(false);
         btnButton_DangNhap.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String username = textField_TenDangNhap.getText();
+                String password = textField_MatKhau.getText();
+                boolean isValidLogin = checkLogin(username, password);
+                if (isValidLogin) {
+                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+                    dispose();
+                    ManHinhChinh manHinhChinh = new ManHinhChinh();
+                    manHinhChinh.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không đúng!");
+                }
             }
         });
         btnButton_DangNhap.setToolTipText("");
