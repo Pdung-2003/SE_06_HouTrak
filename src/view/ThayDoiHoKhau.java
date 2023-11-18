@@ -35,7 +35,7 @@ public class ThayDoiHoKhau extends JPanel {
 	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan;
 	private ManHinhChinh mainFrame;
 
-	public ThayDoiHoKhau() {
+	public ThayDoiHoKhau(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
@@ -373,11 +373,37 @@ public class ThayDoiHoKhau extends JPanel {
 
 		JButton btn_TDHK_Yes = new JButton("Thay đổi");
 		btn_TDHK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		
+		JButton btn_THK_Yes = new JButton("Thêm");
+		btn_THK_Yes.setMinimumSize(new Dimension(50, 23));
+		btn_TDHK_Yes.setToolTipText("");
+		btn_TDHK_Yes.setBackground(Colors.button_XacNhan);
+		btn_TDHK_Yes.setForeground(Color.WHITE);
+		btn_TDHK_Yes.setOpaque(true);
+		btn_TDHK_Yes.setBorderPainted(false);
+		btn_TDHK_Yes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_TDHK_Confirm.add(btn_TDHK_Yes);
+		
 
 		JButton btn_TDHK_No = new JButton("Hủy");
-		btn_TDHK_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TDHK_No.setMinimumSize(new Dimension(50, 23));
+		btn_TDHK_No.setToolTipText("");
+		btn_TDHK_No.setBackground(Colors.button_Huy);
+		btn_TDHK_No.setForeground(Color.WHITE);
+		btn_TDHK_No.setOpaque(true);
+		btn_TDHK_No.setBorderPainted(false);
+		btn_TDHK_No.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
+		        mainFrame.switchToMainPanel(quanLyHoKhauPanel);
+		    }
+		});
 		panel_TDHK_Confirm.add(btn_TDHK_No);
+		
+		
 	}
 	private void populateYears(JComboBox comboBox) {
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);

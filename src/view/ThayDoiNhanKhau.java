@@ -1,7 +1,9 @@
 package view;
 
 import javax.swing.BoxLayout;
+import view.*;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,6 +23,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 public class ThayDoiNhanKhau extends JPanel {
 	private JTextField text_TDNK_01;
@@ -29,10 +34,10 @@ public class ThayDoiNhanKhau extends JPanel {
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD;
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao;
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan;
-	/**
-	 * Create the panel.
-	 */
-	public ThayDoiNhanKhau() {
+	private ManHinhChinh mainFrame;
+
+	public ThayDoiNhanKhau(ManHinhChinh mainFrame) {
+		 this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -271,21 +276,27 @@ public class ThayDoiNhanKhau extends JPanel {
 		lbl_TDNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(lbl_TDNK_CotPhai_NhanKhau_Nam);
 
-		JComboBox comboBox = new JComboBox();
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox);
+		JComboBox comboBox_Nam = new JComboBox();
+		populateYears(comboBox_Nam);
+		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_Nam);
 
 		JLabel lblNewLabel_10 = new JLabel("Tháng:");
 		lblNewLabel_10.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(lblNewLabel_10);
 
-		JComboBox comboBox_1 = new JComboBox();
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_1);
+		JComboBox comboBox_Thang = new JComboBox();
+		populateMonths(comboBox_Thang);
+		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_Thang);
 
 		JLabel lblNewLabel_11 = new JLabel("Ngày:");
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(lblNewLabel_11);
 
-		JComboBox comboBox_2 = new JComboBox();
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_2);
+		JComboBox comboBox_Ngay = new JComboBox();
+		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_Ngay);
+
+		comboBox_Thang.addActionListener(e -> updateDays(comboBox_Nam, comboBox_Thang, comboBox_Ngay));
+		comboBox_Nam.addActionListener(e -> updateDays(comboBox_Nam, comboBox_Thang, comboBox_Ngay));
+		updateDays(comboBox_Nam, comboBox_Thang, comboBox_Ngay);
 
 		JPanel panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_07 = new JPanel();
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_07.setBackground(Colors.khung_Chung);
@@ -380,12 +391,62 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_Confirm.add(panel_Dem_11_6);
 
 		JButton btn_TDNK_Yes = new JButton("Thay đổi");
-		btn_TDNK_Yes.setFont(new Font("Arial", Font.PLAIN, 12));
+		btn_TDNK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TDNK_Yes.setToolTipText("");
+		btn_TDNK_Yes.setBackground(Colors.button_XacNhan);
+		btn_TDNK_Yes.setForeground(Color.WHITE);
+		btn_TDNK_Yes.setOpaque(true);
+		btn_TDNK_Yes.setBorderPainted(false);
+		btn_TDNK_Yes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_TDNK_Confirm.add(btn_TDNK_Yes);
 
 		JButton btn_TDNK_No = new JButton("Hủy");
-		btn_TDNK_No.setFont(new Font("Arial", Font.PLAIN, 12));
+		btn_TDNK_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TDNK_No.setToolTipText("");
+		btn_TDNK_No.setBackground(Colors.button_Huy);
+		btn_TDNK_No.setForeground(Color.WHITE);
+		btn_TDNK_No.setOpaque(true);
+		btn_TDNK_No.setBorderPainted(false);
+		btn_TDNK_No.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+		    }
+		});
 		panel_TDNK_Confirm.add(btn_TDNK_No);
+	
+	}
+	private void populateYears(JComboBox comboBox) {
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int year = 1900; year <= currentYear; year++) {
+			comboBox.addItem(year);
+		}
 	}
 
+	private void populateMonths(JComboBox comboBox) {
+		for (int month = 1; month <= 12; month++) {
+			comboBox.addItem(month);
+		}
+	}
+
+	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
+		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
+		for (int day = 1; day <= daysInMonth; day++) {
+			dayComboBox.addItem(day);
+		}
+	}
+
+	private int getDaysInMonth(int year, int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month - 1, 1);
+		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+	}
+	
 }

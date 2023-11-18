@@ -26,10 +26,12 @@ import java.awt.event.ActionEvent;
 public class XoaHoKhau extends JPanel {
 	private JTextField txt_XHK_TImKiem;
 
+	private ManHinhChinh mainFrame;
 	/**
 	 * Create the panel.
 	 */
-	public XoaHoKhau() {
+	public XoaHoKhau(ManHinhChinh mainFrame) {
+		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -177,12 +179,32 @@ public class XoaHoKhau extends JPanel {
 
 		JButton btn_XHK_Yes = new JButton("Xóa\r\n");
 		btn_XHK_Yes.setMinimumSize(new Dimension(50, 23));
-		btn_XHK_Yes.setBackground(Color.GREEN);
+		btn_XHK_Yes.setToolTipText("");
+		btn_XHK_Yes.setBackground(Colors.button_XacNhan);
+		btn_XHK_Yes.setForeground(Color.WHITE);
+		btn_XHK_Yes.setOpaque(true);
+		btn_XHK_Yes.setBorderPainted(false);
+		btn_XHK_Yes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_XHK_Confirm.add(btn_XHK_Yes);
 
 		JButton btn_XHK_No = new JButton("Hủy\r\n");
-		btn_XHK_No.setBackground(Color.RED);
+		btn_XHK_No.setMinimumSize(new Dimension(50, 23));
+		btn_XHK_No.setToolTipText("");
+		btn_XHK_No.setBackground(Colors.button_Huy);
+		btn_XHK_No.setForeground(Color.WHITE);
+		btn_XHK_No.setOpaque(true);
+		btn_XHK_No.setBorderPainted(false);
+		btn_XHK_No.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
+		        mainFrame.switchToMainPanel(quanLyHoKhauPanel);
+		    }
+		});
 		panel_XHK_Confirm.add(btn_XHK_No);
+		
 
 		JPanel panel_XHK_Title = new JPanel();
 		panel_XHK_Title.setBackground(Colors.khung_Chung);

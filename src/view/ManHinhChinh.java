@@ -79,7 +79,7 @@ public class ManHinhChinh extends JFrame {
 	     
 	     JButton button_QLHK = new JButton("  Quản lí hộ khẩu");
 	        button_QLHK.setHorizontalAlignment(SwingConstants.LEFT);
-	        button_QLHK.setFont(new Font("Arial", Font.BOLD, 25));
+	        button_QLHK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLHK.setBackground(Colors.menu_Trai);
 	        button_QLHK.setForeground(Color.WHITE);
 	        button_QLHK.setOpaque(true);
@@ -97,7 +97,7 @@ public class ManHinhChinh extends JFrame {
 	        
 	        JButton button_QLNK = new JButton("  Quản lí nhân khẩu");
 	        button_QLNK.setHorizontalAlignment(SwingConstants.LEFT);
-	        button_QLNK.setFont(new Font("Arial", Font.BOLD, 25));
+	        button_QLNK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLNK.setBackground(Colors.menu_Trai);
 	        button_QLNK.setForeground(Color.WHITE);
 	        button_QLNK.setOpaque(true);
@@ -110,7 +110,7 @@ public class ManHinhChinh extends JFrame {
 	        
 	        JButton button_QLTC = new JButton("  Quản lí thu chi");
 	        button_QLTC.setHorizontalAlignment(SwingConstants.LEFT);
-	        button_QLTC.setFont(new Font("Arial", Font.BOLD, 25));
+	        button_QLTC.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLTC.setBackground(Colors.menu_Trai);
 	        button_QLTC.setForeground(Color.WHITE);
 	        button_QLTC.setOpaque(true);
@@ -119,7 +119,7 @@ public class ManHinhChinh extends JFrame {
 	        
 	        JButton button_QLPT = new JButton("  Quản lí phát thưởng");
 	        button_QLPT.setHorizontalAlignment(SwingConstants.LEFT);
-	        button_QLPT.setFont(new Font("Arial", Font.BOLD, 25));
+	        button_QLPT.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLPT.setBackground(Colors.menu_Trai);
 	        button_QLPT.setForeground(Color.WHITE);
 	        button_QLPT.setOpaque(true);
@@ -128,7 +128,7 @@ public class ManHinhChinh extends JFrame {
 	        
 	        JButton button_QLTK = new JButton("  Quản lí tài khoản");
 	        button_QLTK.setHorizontalAlignment(SwingConstants.LEFT);
-	        button_QLTK.setFont(new Font("Arial", Font.BOLD, 25));
+	        button_QLTK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLTK.setBackground(Colors.menu_Trai);
 	        button_QLTK.setForeground(Color.WHITE);
 	        button_QLTK.setOpaque(true);
@@ -157,7 +157,7 @@ public class ManHinhChinh extends JFrame {
 	        panel_trung_tam.revalidate();
 	        panel_trung_tam.repaint();
 	    }
-      
+	  
 	
 
 	

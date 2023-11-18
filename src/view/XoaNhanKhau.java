@@ -22,13 +22,15 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class XoaNhanKhau extends JPanel {
 	private JTextField txt_XNK_TImKiem;
-	/**
-	 * Create the panel.
-	 */
-	public XoaNhanKhau() {
+	private ManHinhChinh mainFrame;
+
+	public XoaNhanKhau(ManHinhChinh mainFrame) {
+		 this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -168,12 +170,31 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		JButton btn_XNK_Yes = new JButton("Xóa\r\n");
-		btn_XNK_Yes.setMinimumSize(new Dimension(50, 23));
-		btn_XNK_Yes.setBackground(Color.GREEN);
+		btn_XNK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_Yes.setToolTipText("");
+		btn_XNK_Yes.setBackground(Colors.button_XacNhan);
+		btn_XNK_Yes.setForeground(Color.WHITE);
+		btn_XNK_Yes.setOpaque(true);
+		btn_XNK_Yes.setBorderPainted(false);
+		btn_XNK_Yes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_XNK_Confirm.add(btn_XNK_Yes);
 
 		JButton btn_XNK_No = new JButton("Hủy\r\n");
-		btn_XNK_No.setBackground(Color.RED);
+		btn_XNK_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_No.setToolTipText("");
+		btn_XNK_No.setBackground(Colors.button_Huy);
+		btn_XNK_No.setForeground(Color.WHITE);
+		btn_XNK_No.setOpaque(true);
+		btn_XNK_No.setBorderPainted(false);
+		btn_XNK_No.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+		    }
+		});
 		panel_XNK_Confirm.add(btn_XNK_No);
 
 		JPanel panel_XNK_Title = new JPanel();

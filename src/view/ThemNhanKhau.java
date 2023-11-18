@@ -29,10 +29,10 @@ public class ThemNhanKhau extends JPanel {
 	private JTextField textField_TNK_CotPhai_05;
 	private JTextField textField_TNK_CotPhai_06;
 
-	/**
-	 * Create the panel.
-	 */
-	public ThemNhanKhau() {
+	private ManHinhChinh mainFrame;
+
+	public ThemNhanKhau(ManHinhChinh mainFrame) {
+		 this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -240,8 +240,10 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_No.setOpaque(true);
 		btn_TNK_No.setBorderPainted(false);
 		btn_TNK_No.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+		    }
 		});
 		panel_TNK_confirm.add(btn_TNK_No);
 

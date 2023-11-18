@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,16 +18,20 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import javax.swing.JTextPane;
 
 public class ThongBaoTamVang extends JPanel {
 	private JTextField text_TBTV_01;
-	/**
-	 * Create the panel.
-	 */
-	public ThongBaoTamVang() {
+	private ManHinhChinh mainFrame;
+
+	public ThongBaoTamVang(ManHinhChinh mainFrame) {
+		 this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -180,12 +185,14 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_02_CotPhai_05_NoiDung.add(lbl_TBTV_02_CotPhai_05_NoiDung_Nam);
 		
 		JComboBox comboBox_TBTV_02_CotPhai_05_NoiDung_Nam = new JComboBox();
+		populateYears(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam);
 		panel_TBTV_02_CotPhai_05_NoiDung.add(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam);
 		
 		JLabel lbl_TBTV_02_CotPhai_05_NoiDung_Thang = new JLabel("   Tháng:  ");
 		panel_TBTV_02_CotPhai_05_NoiDung.add(lbl_TBTV_02_CotPhai_05_NoiDung_Thang);
 		
 		JComboBox comboBox_TBTV_02_CotPhai_05_NoiDung_Thang = new JComboBox();
+		populateMonths(comboBox_TBTV_02_CotPhai_05_NoiDung_Thang);
 		panel_TBTV_02_CotPhai_05_NoiDung.add(comboBox_TBTV_02_CotPhai_05_NoiDung_Thang);
 		
 		JLabel lbl_TBTV_02_CotPhai_05_NoiDung_Ngay = new JLabel("   Ngày:  ");
@@ -193,6 +200,11 @@ public class ThongBaoTamVang extends JPanel {
 		
 		JComboBox comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay = new JComboBox();
 		panel_TBTV_02_CotPhai_05_NoiDung.add(comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay);
+		comboBox_TBTV_02_CotPhai_05_NoiDung_Thang.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam, comboBox_TBTV_02_CotPhai_05_NoiDung_Thang, comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay));
+		comboBox_TBTV_02_CotPhai_05_NoiDung_Nam.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam, comboBox_TBTV_02_CotPhai_05_NoiDung_Thang, comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay));
+		updateDays(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam, comboBox_TBTV_02_CotPhai_05_NoiDung_Thang, comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay);
+		
+		
 		
 		JPanel panel_TBTV_02_CotPhai_06 = new JPanel();
 		panel_TBTV_02_CotPhai_06.setBackground(Colors.khung_Chung);
@@ -208,12 +220,14 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_02_CotPhai_06_NoiDung.add(lbl_TBTV_02_CotPhai_06_NoiDung_Nam);
 		
 		JComboBox comboBox_TBTV_02_CotPhai_06_NoiDung_Nam = new JComboBox();
+		populateYears(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam);
 		panel_TBTV_02_CotPhai_06_NoiDung.add(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam);
 		
 		JLabel lbl_TBTV_02_CotPhai_06_NoiDung_Thang = new JLabel("   Tháng:  ");
 		panel_TBTV_02_CotPhai_06_NoiDung.add(lbl_TBTV_02_CotPhai_06_NoiDung_Thang);
 		
 		JComboBox comboBox_TBTV_02_CotPhai_06_NoiDung_Thang = new JComboBox();
+		populateMonths(comboBox_TBTV_02_CotPhai_06_NoiDung_Thang);
 		panel_TBTV_02_CotPhai_06_NoiDung.add(comboBox_TBTV_02_CotPhai_06_NoiDung_Thang);
 		
 		JLabel lbl_TBTV_02_CotPhai_06_NoiDung_Ngay = new JLabel("   Ngày:  ");
@@ -221,6 +235,10 @@ public class ThongBaoTamVang extends JPanel {
 		
 		JComboBox comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay = new JComboBox();
 		panel_TBTV_02_CotPhai_06_NoiDung.add(comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay);
+		
+		comboBox_TBTV_02_CotPhai_06_NoiDung_Thang.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam, comboBox_TBTV_02_CotPhai_06_NoiDung_Thang, comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay));
+		comboBox_TBTV_02_CotPhai_06_NoiDung_Nam.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam, comboBox_TBTV_02_CotPhai_06_NoiDung_Thang, comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay));
+		updateDays(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam, comboBox_TBTV_02_CotPhai_06_NoiDung_Thang, comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay);
 		
 		JPanel panel_TBTV_02_BangThongTin_Title = new JPanel();
 		panel_TBTV_02_BangThongTin_Title.setBackground(Colors.khung_Chung);
@@ -277,11 +295,60 @@ public class ThongBaoTamVang extends JPanel {
 		
 		JButton btnNewButton_1 = new JButton("Xác Nhận");
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnNewButton_1.setToolTipText("");
+		btnNewButton_1.setBackground(Colors.button_XacNhan);
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setOpaque(true);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_TBTV_confirm.add(btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("Hủy");
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TBTV_confirm.add(btnNewButton);
+		JButton btn_TBTV_No = new JButton("Hủy");
+		btn_TBTV_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTV_No.setToolTipText("");
+		btn_TBTV_No.setBackground(Colors.button_Huy);
+		btn_TBTV_No.setForeground(Color.WHITE);
+		btn_TBTV_No.setOpaque(true);
+		btn_TBTV_No.setBorderPainted(false);
+		btn_TBTV_No.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+		    }
+		});
+		panel_TBTV_confirm.add(btn_TBTV_No);
+	}
+	private void populateYears(JComboBox comboBox) {
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int year = 1900; year <= currentYear; year++) {
+			comboBox.addItem(year);
+		}
+	}
+
+	private void populateMonths(JComboBox comboBox) {
+		for (int month = 1; month <= 12; month++) {
+			comboBox.addItem(month);
+		}
+	}
+
+	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
+		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
+		for (int day = 1; day <= daysInMonth; day++) {
+			dayComboBox.addItem(day);
+		}
+	}
+
+	private int getDaysInMonth(int year, int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month - 1, 1);
+		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
 }

@@ -40,8 +40,8 @@ public class ThemHoKhau extends JPanel {
 	private JTextField textField_THK_CotPhai_06;
 	private ManHinhChinh mainFrame;
 
-	public ThemHoKhau() {
-		this.mainFrame = mainFrame;
+	public ThemHoKhau(ManHinhChinh mainFrame) {
+		 this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -236,6 +236,7 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
 		JButton btn_THK_Yes = new JButton("Thêm");
+		btn_THK_Yes.setMinimumSize(new Dimension(50, 23));
 		btn_THK_Yes.setToolTipText("");
 		btn_THK_Yes.setBackground(Colors.button_XacNhan);
 		btn_THK_Yes.setForeground(Color.WHITE);
@@ -248,12 +249,21 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_confirm.add(btn_THK_Yes);
 
 		JButton btn_THK_No = new JButton("Hủy");
+		btn_THK_No.setMinimumSize(new Dimension(50, 23));
 		btn_THK_No.setToolTipText("");
 		btn_THK_No.setBackground(Colors.button_Huy);
 		btn_THK_No.setForeground(Color.WHITE);
 		btn_THK_No.setOpaque(true);
 		btn_THK_No.setBorderPainted(false);
+		btn_THK_No.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
+		        mainFrame.switchToMainPanel(quanLyHoKhauPanel);
+		    }
+		});
 		panel_THK_confirm.add(btn_THK_No);
+		
+		
 
 		JPanel panel_THK_Dem = new JPanel();
 		panel_THK_Dem.setBackground(Colors.khung_Chung);

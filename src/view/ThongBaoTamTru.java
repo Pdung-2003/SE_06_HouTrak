@@ -29,10 +29,10 @@ public class ThongBaoTamTru extends JPanel {
 	private JTextField textField_TBTT_CotPhai_05;
 	private JTextField textField_TBTT_CotPhai_06;
 
-	/**
-	 * Create the panel.
-	 */
-	public ThongBaoTamTru() {
+	private ManHinhChinh mainFrame;
+
+	public ThongBaoTamTru(ManHinhChinh mainFrame) {
+		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -225,11 +225,12 @@ public class ThongBaoTamTru extends JPanel {
 		panel_TBTT_CotPhai_NhanKhau_07.setBackground(Colors.khung_Chung);
 		panel_TBTT_CotPhai_NhanKhau_07.add(panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau, BorderLayout.CENTER);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau.setLayout(new GridLayout(1, 2, 0, 0));
-
+		
 		JPanel panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung = new JPanel();
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.setBackground(Colors.khung_Chung);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau.add(panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.setLayout(new BoxLayout(panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung, BoxLayout.X_AXIS));
+		
 
 		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam = new JLabel("Năm:        ");
 		lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setBackground(new Color(128, 0, 0));
@@ -237,12 +238,15 @@ public class ThongBaoTamTru extends JPanel {
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam);
 
 		JComboBox comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam = new JComboBox();
+		populateYears(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam);
+
 
 		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang = new JLabel("     Tháng:        ");
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang);
 
 		JComboBox comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang = new JComboBox();
+		populateMonths(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang);
 
 		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay = new JLabel("     Ngày:        \r\n");
@@ -250,7 +254,11 @@ public class ThongBaoTamTru extends JPanel {
 
 		JComboBox comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay = new JComboBox();
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay);
-
+		
+		comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.addActionListener(e -> updateDays(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay));
+		comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.addActionListener(e -> updateDays(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay));
+		updateDays(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay);
+		
 		JPanel panel_TBTT_CotPhai_NhanKhau_08 = new JPanel();
 		panel_TBTT_CotPhai_NhanKhau_08.setBackground(Colors.khung_Chung);
 		panel_TBTT_CotPhai.add(panel_TBTT_CotPhai_NhanKhau_08);
@@ -276,20 +284,26 @@ public class ThongBaoTamTru extends JPanel {
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam);
 
 		JComboBox comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam = new JComboBox();
+		populateYears(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam);
 
-		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang_1 = new JLabel("     Tháng:        ");
-		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang_1);
+		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang = new JLabel("     Tháng:        ");
+		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang);
 
 		JComboBox comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang = new JComboBox();
+		populateMonths(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang);
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang);
 
-		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay_1 = new JLabel("     Ngày:        \r\n");
-		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay_1);
+		JLabel lbl_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay = new JLabel("     Ngày:        \r\n");
+		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
 
 		JComboBox comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay = new JComboBox();
 		panel_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
 
+		
+		comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.addActionListener(e -> updateDays(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay));
+		comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.addActionListener(e -> updateDays(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay));
+		updateDays(comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang, comboBox_TBTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
 		JPanel panel = new JPanel();
 		panel.setBackground(Colors.khung_Chung);
 		panel_TBTT_01.add(panel, BorderLayout.EAST);
@@ -318,8 +332,10 @@ public class ThongBaoTamTru extends JPanel {
 		btn_TBTT_No.setOpaque(true);
 		btn_TBTT_No.setBorderPainted(false);
 		btn_TBTT_No.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+		    }
 		});
 		panel_TBTT_confirm.add(btn_TBTT_No);
 
@@ -370,7 +386,6 @@ public class ThongBaoTamTru extends JPanel {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month - 1, 1);
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-
 	}
 
 }
