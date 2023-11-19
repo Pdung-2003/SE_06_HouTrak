@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import test.DatabaseConnector;
 import view.Colors;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -102,18 +103,33 @@ public class LoginView extends JFrame {
         textField_TenDangNhap.setHorizontalAlignment(SwingConstants.CENTER);
         panel_1.add(textField_TenDangNhap);
         textField_TenDangNhap.setColumns(10);
+        textField_TenDangNhap.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                performLogin();
+            }
+        });
 
         textField_MatKhau = new JTextField();
         textField_MatKhau.setHorizontalAlignment(SwingConstants.CENTER);
         textField_MatKhau.setColumns(10);
         textField_MatKhau.setBounds(49, 89, 317, 40);
+
         panel_1.add(textField_MatKhau);
+        textField_MatKhau.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                performLogin();
+            }
+        });
 
         JButton btnButton_DangNhap = new JButton("Đăng nhập");
+
         btnButton_DangNhap.setFont(new Font("Times New Roman", Font.BOLD, 15));
         btnButton_DangNhap.setBorderPainted(false);
         btnButton_DangNhap.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                performLogin();
             }
         });
         btnButton_DangNhap.setToolTipText("");
@@ -158,6 +174,29 @@ public class LoginView extends JFrame {
         btnButton_NewAcc.setBounds(99, 260, 218, 32);
         panel_1.add(btnButton_NewAcc);
         setVisible(true);
+    }
+    // Hàm xử lý đăng nhập và chuyển trang
+    private void performLogin(){
+        String username = textField_TenDangNhap.getText();
+        String password = textField_MatKhau.getText();
+
+        // Gọi phương thức checkLogin từ DatabaseConnector
+        boolean isValidLogin = DatabaseConnector.checkLogin(username, password);
+
+        if (isValidLogin) {
+            // Đăng nhập thành công
+            JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+
+            // Đóng cửa sổ LoginView
+            dispose();
+
+            // Mở cửa sổ ManHinhChinh
+            ManHinhChinh manHinhChinh = new ManHinhChinh();
+            manHinhChinh.setVisible(true);
+        } else {
+            // Thông báo đăng nhập không thành công
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không đúng!");
+        }
     }
 }
 
