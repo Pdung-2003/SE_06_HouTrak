@@ -102,7 +102,7 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		    CapNhatTamTru capNhatTamTruPanel = new CapNhatTamTru(mainFrame);
 		    mainFrame.switchToMainPanel(capNhatTamTruPanel);
 		});
-		panel_SB_QLNK.add(btn_SB_QLNK_TBTT);
+		panel_SB_QLNK.add(btn_SB_QLNK_CNTT);
 		
 		JButton btn_SB_QLNK_TBTV = new JButton("  Thông báo tạm vắng");
 		btn_SB_QLNK_TBTV.setHorizontalAlignment(SwingConstants.LEFT);
@@ -156,9 +156,6 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		});
 		panel_SB_QLNK.add(btn_SB_QLNK_LSTDNK);
 		
-		JPanel panel_SB_QLHK_dem = new JPanel();
-		panel_SB_QLHK_dem.setBackground(Colors.menu_Trai);
-		panel_SB_QLNK.add(panel_SB_QLHK_dem);
 		
 		JButton btn_SB_QLNK_Back = new JButton("Quay lại");
 		btn_SB_QLNK_Back.setHorizontalAlignment(SwingConstants.CENTER);

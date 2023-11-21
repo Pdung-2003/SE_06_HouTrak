@@ -185,9 +185,9 @@ public class TimKiemHoKhau extends JPanel {
 		lbl_TKHK_CotPhai_01_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_NgayLap);
 
-		JPanel panel_TKHK_CotPhai_01_ThongTinChuHo = new JPanel(); // cho nay cho mot bang thong tin chu ho
-		panel_TKHK_CotPhai_01_ThongTinChuHo.setBackground(Colors.khung_Chung);
-		panel_TKHK_CotPhai_01.add(panel_TKHK_CotPhai_01_ThongTinChuHo);
+		JLabel lbl_TKHK_CotPhai_01_ChuHo = new JLabel("New label"); //dien ngay lap vao day
+		lbl_TKHK_CotPhai_01_ChuHo.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_ChuHo);
 
 		JPanel panel_TKHK_CotPhai_02 = new JPanel();// cho nay cho mot bang thong tin thanh vien thuoc ho khau
 		panel_TKHK_CotPhai_02.setBackground(Colors.khung_Chung);

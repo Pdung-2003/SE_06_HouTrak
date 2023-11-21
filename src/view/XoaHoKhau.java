@@ -193,10 +193,9 @@ public class XoaHoKhau extends JPanel {
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_DiaChi);
 
 		// panel nay de bang thong tin chu ho
-		JPanel panel_XNK_CotPhai_ThongTinChuHo = new JPanel();
-		panel_XNK_CotPhai_ThongTinChuHo.setBackground(Colors.khung_Chung);
-		panel_XNK_CotPhai_01.add(panel_XNK_CotPhai_ThongTinChuHo);
-		panel_XNK_CotPhai_ThongTinChuHo.setLayout(new BorderLayout(0, 0));
+		JLabel lbl_XNK_CotPhai_ChuHo = new JLabel("New label");
+		lbl_XNK_CotPhai_ChuHo.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_ChuHo);
 
 		JLabel lbl_XNK_CotPhai_NgayLap = new JLabel("New label");// dien ngay lap vao day
 		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
