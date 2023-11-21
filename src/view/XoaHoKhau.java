@@ -171,6 +171,39 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotPhai.setBackground(Colors.khung_Chung);
 		panel_XHK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_XHK_02.add(panel_XHK_CotPhai, BorderLayout.CENTER);
+		panel_XHK_CotPhai.setLayout(new GridLayout(2, 1, 0, 0));
+
+		JPanel panel_XNK_CotPhai_01 = new JPanel();
+		panel_XNK_CotPhai_01.setBackground(Colors.khung_Chung);
+		panel_XHK_CotPhai.add(panel_XNK_CotPhai_01);
+		panel_XNK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
+
+		JLabel lbl_XNK_CotPhai_MaHK = new JLabel("New label");// dien ma ho khau vao day
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_MaHK);
+
+		JLabel lbl_XNK_CotPhai_KhuVuc = new JLabel("New label");// dien khu vuc vao day
+		lbl_XNK_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_KhuVuc);
+
+		JLabel lbl_XNK_CotPhai_DiaChi = new JLabel("New label");// dien dia chi vao day
+		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_DiaChi);
+
+		// panel nay de bang thong tin chu ho
+		JPanel panel_XNK_CotPhai_ThongTinChuHo = new JPanel();
+		panel_XNK_CotPhai_ThongTinChuHo.setBackground(Colors.khung_Chung);
+		panel_XNK_CotPhai_01.add(panel_XNK_CotPhai_ThongTinChuHo);
+		panel_XNK_CotPhai_ThongTinChuHo.setLayout(new BorderLayout(0, 0));
+
+		JLabel lbl_XNK_CotPhai_NgayLap = new JLabel("New label");// dien ngay lap vao day
+		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgayLap);
+
+		JPanel panel_XNK_CotPhai_02 = new JPanel();//dien bang thong tin thanh vien thuoc ho khau vao day
+		panel_XNK_CotPhai_02.setBackground(Colors.khung_Chung);
+		panel_XHK_CotPhai.add(panel_XNK_CotPhai_02);
+		panel_XNK_CotPhai_02.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_XHK_Confirm = new JPanel();
 		panel_XHK_Confirm.setBackground(Colors.khung_Chung);
@@ -198,13 +231,13 @@ public class XoaHoKhau extends JPanel {
 		btn_XHK_No.setOpaque(true);
 		btn_XHK_No.setBorderPainted(false);
 		btn_XHK_No.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
-		        mainFrame.switchToMainPanel(quanLyHoKhauPanel);
-		    }
+			public void actionPerformed(ActionEvent e) {
+				QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
+				mainFrame.switchToMainPanel(quanLyHoKhauPanel);
+			}
 		});
 		panel_XHK_Confirm.add(btn_XHK_No);
-		
+
 
 		JPanel panel_XHK_Title = new JPanel();
 		panel_XHK_Title.setBackground(Colors.khung_Chung);
