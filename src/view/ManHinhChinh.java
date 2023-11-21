@@ -44,8 +44,7 @@ public class ManHinhChinh extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("logo \r\ncongty");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		panel_Header.add(lblNewLabel, BorderLayout.WEST);	
-		
+		panel_Header.add(lblNewLabel, BorderLayout.WEST);
 
 		cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
@@ -70,6 +69,7 @@ public class ManHinhChinh extends JFrame {
        
         setVisible(true);
     }
+
 		
 		//Sidebar
 	 private JPanel createButtonsPanel() {

@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import test.DatabaseConnector;
+import test.LoginChecker;
 import view.Colors;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -181,7 +182,7 @@ public class LoginView extends JFrame {
         String password = textField_MatKhau.getText();
 
         // Gọi phương thức checkLogin từ DatabaseConnector
-        boolean isValidLogin = DatabaseConnector.checkLogin(username, password);
+        boolean isValidLogin = LoginChecker.checkLogin(username, password);
 
         if (isValidLogin) {
             // Đăng nhập thành công
