@@ -133,6 +133,9 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_SubTitle.add(lbl_TKNK_Sort);
 
 		JComboBox comboBox_TKNK_Sort = new JComboBox();
+		comboBox_TKNK_Sort.addItem("Tên ");
+		comboBox_TKNK_Sort.addItem("Mã hộ khẩu ");
+		comboBox_TKNK_Sort.addItem("Mã nhân khẩu ");
 		panel_TKNK_SubTitle.add(comboBox_TKNK_Sort);
 	}
 

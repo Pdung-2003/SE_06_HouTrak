@@ -65,6 +65,9 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 		lbl_LSTDNK_Sort.setAlignmentX(0.5f);
 		
 		JComboBox comboBox_LSTDNK_Sort = new JComboBox();
+		comboBox_LSTDNK_Sort.addItem("Ngày thay đổi");
+		comboBox_LSTDNK_Sort.addItem("Mã Nhân khẩu");
+		comboBox_LSTDNK_Sort.addItem("Loại thay đổi");
 		comboBox_LSTDNK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_LSTDNK_SubTitle.add(comboBox_LSTDNK_Sort);
 	}

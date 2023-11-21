@@ -3,6 +3,7 @@ package view;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -226,6 +227,18 @@ public class TachHoKhau extends JPanel {
 		panel_CotPhai_ThongTinSau_Content_01.setLayout(new GridLayout(2, 1, 0, 0));
 
 		JComboBox comboBox_CotPhai_ThongTinSau_Content_KhuVuc = new JComboBox();
+		comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực A");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực B");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực C");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực D");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực E");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực F");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực G");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực H");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực J");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực K");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực L");
+        comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực M");
 		panel_CotPhai_ThongTinSau_Content_01.add(comboBox_CotPhai_ThongTinSau_Content_KhuVuc);
 
 		textField_CotPhai_ThongTinSau_Content_DiaChi = new JTextField();
@@ -258,7 +271,7 @@ public class TachHoKhau extends JPanel {
 		btn_TachHK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-						"Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
+						"Bạn có chắc chắn muốn xác nhận tách ? ", "Xác nhận ",
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmResult == JOptionPane.YES_OPTION) {
@@ -269,7 +282,6 @@ public class TachHoKhau extends JPanel {
 					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
 					JOptionPane.showMessageDialog(mainFrame, "Hủy.");
 				}
-			}
 			}
 		});
 		panel_TachHK_Confirm.add(btn_TachHK_Yes);

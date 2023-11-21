@@ -401,7 +401,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		btn_TDNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn xóa không?", "Xác nhận xóa",
+		                "Bạn có chắc chắn muốn thay đổi không?", "Xác nhận thay đổi",
 		                JOptionPane.YES_NO_OPTION);
 
 		        if (confirmResult == JOptionPane.YES_OPTION) {

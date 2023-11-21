@@ -332,7 +332,11 @@ public class CapNhatTamTru extends JPanel {
 	}
 
 	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
 		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
 		for (int day = 1; day <= daysInMonth; day++) {
 			dayComboBox.addItem(day);
 		}
@@ -346,4 +350,5 @@ public class CapNhatTamTru extends JPanel {
 
 	}
 
-}
+
+

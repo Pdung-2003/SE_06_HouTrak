@@ -167,6 +167,18 @@ public class ThayDoiHoKhau extends JPanel {
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.setLayout(new GridLayout(8, 1, 10, 10));
 
 		JComboBox comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc = new JComboBox();
+		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực A");
+		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực B");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực C");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực D");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực E");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực F");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực G");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực H");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực J");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực K");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực L");
+        comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực M");
 		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc);
 
@@ -385,16 +397,17 @@ public class ThayDoiHoKhau extends JPanel {
 		btn_TDHK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
+		                "Bạn có chắc chắn muốn thay đổi ", "Xác nhận ",
 		                JOptionPane.YES_NO_OPTION);
 
 		        if (confirmResult == JOptionPane.YES_OPTION) {
 		            // Thực hiện thay doi o day
 		            // Hiển thị thông báo xóa thành công
-		            JOptionPane.showMessageDialog(mainFrame, "Thêm thành công!");
+		            JOptionPane.showMessageDialog(mainFrame, "Thay đổi thành công!");
 		        } else if (confirmResult == JOptionPane.NO_OPTION) {
 		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Hủy.");
+		            JOptionPane.showMessageDialog(mainFrame, "Đã Hủy.");
+		            // reset lại cái JLabel...
 		        }
 			}
 		});

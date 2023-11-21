@@ -68,6 +68,9 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		lbl_LSTDHK_Subtitle.setAlignmentX(0.5f);
 		
 		JComboBox comboBox_LSTDHK_Sort = new JComboBox();
+		comboBox_LSTDHK_Sort.addItem("Ngày thay đổi");
+		comboBox_LSTDHK_Sort.addItem("Mã hộ khẩu");
+		comboBox_LSTDHK_Sort.addItem("Loại thay đổi");
 		comboBox_LSTDHK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_LSTDHK_SubTitle.add(comboBox_LSTDHK_Sort);
 

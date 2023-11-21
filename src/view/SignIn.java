@@ -7,6 +7,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -57,9 +59,16 @@ public class SignIn extends JPanel {
 		JLabel lblNewLabel_2 = new JLabel("Phần mềm quản lí dân cư HouTrak");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 35));
-		panel_SignIn_Content_Title.add(lblNewLabel_2);
-
+		panel_SignIn_Content_Title.add(lblNewLabel_2,BorderLayout.NORTH);
+		
+		JLabel lblLabel_Logo = new JLabel();
+		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("Logo_Signin.png"))));
+		lblLabel_Logo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLabel_Logo.setForeground(new Color(255, 255, 255));
+		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);
+		
 		JLabel lblNewLabel_3 = new JLabel("Phần mềm được phát triển bởi công ty SE_06");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 20));
 		panel_SignIn_Content_Title.add(lblNewLabel_3, BorderLayout.SOUTH);
 
@@ -126,7 +135,11 @@ public class SignIn extends JPanel {
 		panel_SignIn_Content_function_Form.add(panel_SignIn_dem11);
 
 		JButton btnNewButton = new JButton("Đăng Nhập");
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton.setBackground(Colors.menu_Trai);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setOpaque(true);
+		btnNewButton.setBorderPainted(false);
 		panel_SignIn_Content_function_Form.add(btnNewButton);
 
 		JPanel panel_SignIn_dem12 = new JPanel();

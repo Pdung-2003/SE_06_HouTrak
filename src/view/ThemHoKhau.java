@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -255,7 +256,20 @@ public class ThemHoKhau extends JPanel {
 		btn_THK_Yes.setOpaque(true);
 		btn_THK_Yes.setBorderPainted(false);
 		btn_THK_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {		
+					int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+			                "Bạn có chắc chắn muốn thêm không?", "Xác nhận thêm ",
+			                JOptionPane.YES_NO_OPTION);
+
+			        if (confirmResult == JOptionPane.YES_OPTION) {
+			            // Thực hiện thay doi o day
+			        		
+			            // Hiển thị thông báo xóa thành công
+			            JOptionPane.showMessageDialog(mainFrame, "Thêm thành công!");
+			        } else if (confirmResult == JOptionPane.NO_OPTION) {
+			            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+			            JOptionPane.showMessageDialog(mainFrame, "Đã hủy thêm.");
+			        }
 			}
 		});
 		panel_THK_confirm.add(btn_THK_Yes);
