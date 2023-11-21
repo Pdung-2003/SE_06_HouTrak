@@ -257,6 +257,19 @@ public class TachHoKhau extends JPanel {
 		btn_TachHK_Yes.setBorderPainted(false);
 		btn_TachHK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+						"Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
+						JOptionPane.YES_NO_OPTION);
+
+				if (confirmResult == JOptionPane.YES_OPTION) {
+					// Thực hiện thay doi o day
+					// Hiển thị thông báo xóa thành công
+					JOptionPane.showMessageDialog(mainFrame, "Tách thành công!");
+				} else if (confirmResult == JOptionPane.NO_OPTION) {
+					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+					JOptionPane.showMessageDialog(mainFrame, "Hủy.");
+				}
+			}
 			}
 		});
 		panel_TachHK_Confirm.add(btn_TachHK_Yes);
