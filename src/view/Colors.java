@@ -14,4 +14,9 @@ public class Colors {
 
     public static final Color button_XacNhan = new Color(0,128,0);
     public static final Color button_Huy = new Color(178,34,34);
+
+    static Color mau_Nen_QLHK = new Color(189, 204, 178);  // Thay đổi màu theo mong muốn
+    static Color mau_Text_QLHK = Color.BLACK;   // Thay đổi màu theo mong muốn
+    static Color mau_Header = new Color(157, 197, 211);
+    static Color mau_Chan = Color.white;
 }

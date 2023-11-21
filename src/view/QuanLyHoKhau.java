@@ -3,70 +3,153 @@ package view;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.BorderFactory;
+import java.awt.*;
+import javax.swing.table.DefaultTableCellRenderer;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Rectangle;
+import java.util.List;
+
+import test.DatabaseConnector;
+import test.HoKhau;
+
 
 public class QuanLyHoKhau extends JPanel {
-
+	private JTable table;
+	private DefaultTableModel tableModel;
 	/**
 	 * Create the panel.
 	 */
 	public QuanLyHoKhau() {
+		setLayout(new CardLayout(10, 10));
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
-		
+
 		JPanel panel_QuanLyHoKhau = new JPanel();
 		add(panel_QuanLyHoKhau, "name_189901170782200");
 		panel_QuanLyHoKhau.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLHK_Title = new JPanel();
 		panel_QLHK_Title.setBackground(Colors.nen_Chung);
 		panel_QuanLyHoKhau.add(panel_QLHK_Title, BorderLayout.NORTH);
 		panel_QLHK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_Title_QuanLyHoKhau = new JLabel("Thông tin các hộ khẩu      ");
 		lbl_Title_QuanLyHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_Title_QuanLyHoKhau.setBackground(Colors.nen_Chung);
 		panel_QLHK_Title.add(lbl_Title_QuanLyHoKhau);
-		
+
 		JPanel panel_KhungNoiDungQLHK = new JPanel();
 		panel_KhungNoiDungQLHK.setPreferredSize(new Dimension(1463, 10));
 		panel_KhungNoiDungQLHK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
 		panel_KhungNoiDungQLHK.setBackground(Colors.khung_Chung);
 		panel_QuanLyHoKhau.add(panel_KhungNoiDungQLHK, BorderLayout.CENTER);
 		panel_KhungNoiDungQLHK.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLHK_02 = new JPanel();
 		panel_QLHK_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungQLHK.add(panel_QLHK_02, BorderLayout.CENTER);
 		panel_QLHK_02.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLHK_02_BangThongTin = new JPanel();
 		panel_QLHK_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_QLHK_02_BangThongTin.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_QLHK_02.add(panel_QLHK_02_BangThongTin, BorderLayout.CENTER);
-		
+
 		JPanel panel_QLHK_SubTitle = new JPanel();
 		panel_QLHK_SubTitle.setBackground(Colors.khung_Chung);
 		panel_QLHK_02.add(panel_QLHK_SubTitle, BorderLayout.NORTH);
 		panel_QLHK_SubTitle.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_QLHK_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLHK_SubTitle.add(lbl_QLHK_Sort);
 		lbl_QLHK_Sort.setMaximumSize(new Dimension(1000, 14));
 		lbl_QLHK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_QLHK_Sort.setAlignmentX(0.5f);
-		
+
 		JComboBox comboBox_QLHK_Sort = new JComboBox();
 		comboBox_QLHK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_QLHK_SubTitle.add(comboBox_QLHK_Sort);
-	}
 
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("STT");
+		tableModel.addColumn("Mã Hộ Khẩu");
+		tableModel.addColumn("Họ Tên Chủ Hộ");
+		tableModel.addColumn("Ngày Lập");
+		tableModel.addColumn("Địa Chỉ");
+		tableModel.addColumn("Khu Vực");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);  // STT
+		table.getColumnModel().getColumn(1).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(2).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(3).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(4).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(5).setPreferredWidth(100); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+
+		// Thêm JScrollPane vào panel
+		panel_QLHK_02_BangThongTin.add(scrollPane);
+
+		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
+		loadDataFromDatabase();
+	}
+	// Load data from the database and populate the table
+	private void loadDataFromDatabase() {
+		// Clear existing data
+		tableModel.setRowCount(0);
+
+		// Fetch data from the database
+		List<HoKhau> danhSachHoKhau = DatabaseConnector.getDanhSachHoKhau();
+
+		// Populate the table with the fetched data
+		for (HoKhau hoKhau : danhSachHoKhau) {
+			Object[] rowData = {
+					hoKhau.getStt(),
+					hoKhau.getMaHoKhau(),
+					hoKhau.getHoTenChuHo(),
+					hoKhau.getNgayLap(),
+					hoKhau.getDiaChi(),
+					hoKhau.getKhuVuc()
+			};
+			tableModel.addRow(rowData);
+		}
+	}
 }

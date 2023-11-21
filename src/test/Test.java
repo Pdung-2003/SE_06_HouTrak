@@ -7,7 +7,8 @@ import view.*;
 public class Test {
     public static void main(String[] args) {
         try {
-            new LoginView();
+            //new LoginView();
+            new ManHinhChinh();
         } catch (Exception e) {
             e.printStackTrace();
         }
