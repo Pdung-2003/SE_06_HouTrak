@@ -178,18 +178,23 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
 
 		JLabel lbl_XNK_CotPhai_MaNK = new JLabel("New label"); // dien ma nhan khau vao
+		lbl_XNK_CotPhai_MaNK.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_MaNK);
 
 		JLabel lbl_XNK_CotPhai_HoVaTen = new JLabel("New label"); // dien ho va ten
+		lbl_XNK_CotPhai_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_HoVaTen);
 
 		JLabel lbl_XNK_CotPhai_CCCD = new JLabel("New label"); // dien cccd
+		lbl_XNK_CotPhai_CCCD.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_CCCD);
 
 		JLabel lbl_XNK_CotPhai_NgaySinh = new JLabel("New label"); // dien ngay sinh
+		lbl_XNK_CotPhai_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgaySinh);
 
 		JLabel lbl_XNK_CotPhai_GioiTinh = new JLabel("New label"); // dien gioi tinh
+		lbl_XNK_CotPhai_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_GioiTinh);
 
 		JPanel panel_XNK_CotPhai_02 = new JPanel();
@@ -198,9 +203,11 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_CotPhai_02.setLayout(new GridLayout(5, 1, 0, 0));
 
 		JLabel lbl_XNK_CotPhai_QueQuan = new JLabel("New label");// dien que quan
+		lbl_XNK_CotPhai_QueQuan.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_02.add(lbl_XNK_CotPhai_QueQuan);
 
 		JLabel lbl_XNK_CotPhai_TonGiao = new JLabel("New label");// dien ton giao
+		lbl_XNK_CotPhai_TonGiao.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_02.add(lbl_XNK_CotPhai_TonGiao);
 
 		JPanel panel_XNK_Confirm = new JPanel();
