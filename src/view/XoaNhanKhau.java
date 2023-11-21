@@ -30,7 +30,7 @@ public class XoaNhanKhau extends JPanel {
 	private ManHinhChinh mainFrame;
 
 	public XoaNhanKhau(ManHinhChinh mainFrame) {
-		 this.mainFrame = mainFrame;
+		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -159,10 +159,49 @@ public class XoaNhanKhau extends JPanel {
 		lbl_XNK_CotTrai_6.setMinimumSize(new Dimension(50, 14));
 		lbl_XNK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 12));
 
+		JLabel lbl_XNK_CotTrai_7 = new JLabel("     Tôn Giáo                          ");
+		lbl_XNK_CotTrai_7.setMinimumSize(new Dimension(50, 14));
+		lbl_XNK_CotTrai_7.setMaximumSize(new Dimension(200, 14));
+		lbl_XNK_CotTrai_7.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_XNK_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotTrai_02.add(lbl_XNK_CotTrai_7);
+
 		JPanel panel_XNK_CotPhai = new JPanel();
 		panel_XNK_CotPhai.setBackground(Colors.khung_Chung);
 		panel_XNK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_XNK_02.add(panel_XNK_CotPhai, BorderLayout.CENTER);
+		panel_XNK_CotPhai.setLayout(new GridLayout(2, 1, 0, 0));
+
+		JPanel panel_XNK_CotPhai_01 = new JPanel();
+		panel_XNK_CotPhai_01.setBackground(Colors.khung_Chung);
+		panel_XNK_CotPhai.add(panel_XNK_CotPhai_01);
+		panel_XNK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
+
+		JLabel lbl_XNK_CotPhai_MaNK = new JLabel("New label"); // dien ma nhan khau vao
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_MaNK);
+
+		JLabel lbl_XNK_CotPhai_HoVaTen = new JLabel("New label"); // dien ho va ten
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_HoVaTen);
+
+		JLabel lbl_XNK_CotPhai_CCCD = new JLabel("New label"); // dien cccd
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_CCCD);
+
+		JLabel lbl_XNK_CotPhai_NgaySinh = new JLabel("New label"); // dien ngay sinh
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgaySinh);
+
+		JLabel lbl_XNK_CotPhai_GioiTinh = new JLabel("New label"); // dien gioi tinh
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_GioiTinh);
+
+		JPanel panel_XNK_CotPhai_02 = new JPanel();
+		panel_XNK_CotPhai_02.setBackground(Colors.khung_Chung);
+		panel_XNK_CotPhai.add(panel_XNK_CotPhai_02);
+		panel_XNK_CotPhai_02.setLayout(new GridLayout(5, 1, 0, 0));
+
+		JLabel lbl_XNK_CotPhai_QueQuan = new JLabel("New label");// dien que quan
+		panel_XNK_CotPhai_02.add(lbl_XNK_CotPhai_QueQuan);
+
+		JLabel lbl_XNK_CotPhai_TonGiao = new JLabel("New label");// dien ton giao
+		panel_XNK_CotPhai_02.add(lbl_XNK_CotPhai_TonGiao);
 
 		JPanel panel_XNK_Confirm = new JPanel();
 		panel_XNK_Confirm.setBackground(Colors.khung_Chung);
@@ -190,10 +229,10 @@ public class XoaNhanKhau extends JPanel {
 		btn_XNK_No.setOpaque(true);
 		btn_XNK_No.setBorderPainted(false);
 		btn_XNK_No.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
-		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
-		    }
+			public void actionPerformed(ActionEvent e) {
+				QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+				mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+			}
 		});
 		panel_XNK_Confirm.add(btn_XNK_No);
 
