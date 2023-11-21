@@ -6,6 +6,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -321,6 +322,18 @@ public class ThongBaoTamTru extends JPanel {
 		btn_TBTT_Yes.setBorderPainted(false);
 		btn_TBTT_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+		                "Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
+		                JOptionPane.YES_NO_OPTION);
+
+		        if (confirmResult == JOptionPane.YES_OPTION) {
+		            // Thực hiện thay doi o day
+		            // Hiển thị thông báo xóa thành công
+		            JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng thành công!");
+		        } else if (confirmResult == JOptionPane.NO_OPTION) {
+		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+		            JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng đã bị hủy.");
+		        }
 			}
 		});
 		panel_TBTT_confirm.add(btn_TBTT_Yes);

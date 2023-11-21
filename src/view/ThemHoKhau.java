@@ -85,7 +85,19 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_CotPhai.setLayout(new GridLayout(10, 1, 5, 10));
 
 		JComboBox comboBox_THK_CotPhai_02 = new JComboBox();
-		panel_THK_CotPhai.add(comboBox_THK_CotPhai_02);
+		comboBox_THK_CotPhai_02.addItem("Khu vực A");
+        comboBox_THK_CotPhai_02.addItem("Khu vực B");
+        comboBox_THK_CotPhai_02.addItem("Khu vực C");
+        comboBox_THK_CotPhai_02.addItem("Khu vực D");
+        comboBox_THK_CotPhai_02.addItem("Khu vực E");
+        comboBox_THK_CotPhai_02.addItem("Khu vực F");
+        comboBox_THK_CotPhai_02.addItem("Khu vực G");
+        comboBox_THK_CotPhai_02.addItem("Khu vực H");
+        comboBox_THK_CotPhai_02.addItem("Khu vực J");
+        comboBox_THK_CotPhai_02.addItem("Khu vực K");
+        comboBox_THK_CotPhai_02.addItem("Khu vực L");
+        comboBox_THK_CotPhai_02.addItem("Khu vực M");
+        panel_THK_CotPhai.add(comboBox_THK_CotPhai_02);
 
 		textField_THK_CotPhai_02 = new JTextField();
 		textField_THK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));

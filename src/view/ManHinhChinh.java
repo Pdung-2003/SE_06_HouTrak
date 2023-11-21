@@ -78,12 +78,14 @@ public class ManHinhChinh extends JFrame {
 	     buttonsPanel.setBackground(Colors.menu_Trai);
 	     
 	     JButton button_QLHK = new JButton("  Quản lí hộ khẩu");
+	    
 	        button_QLHK.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLHK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLHK.setBackground(Colors.menu_Trai);
 	        button_QLHK.setForeground(Color.WHITE);
 	        button_QLHK.setOpaque(true);
-	        // Border button
+	        button_QLHK.setBorderPainted(true);
+	     // Border button
 	        int topBottomBorderSize = 1; // Adjust this value as needed for the border thickness
 	        Border matteBorder = BorderFactory.createMatteBorder(
 	            topBottomBorderSize, 0, topBottomBorderSize, 0, Color.BLACK);
@@ -158,7 +160,8 @@ public class ManHinhChinh extends JFrame {
 	        panel_trung_tam.repaint();
 	    }
 	  
-	
+	    
+	 
 
 	
 	public static void main(String[] args) {

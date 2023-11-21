@@ -3,6 +3,7 @@ package view;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -224,6 +225,20 @@ public class XoaNhanKhau extends JPanel {
 		btn_XNK_Yes.setBorderPainted(false);
 		btn_XNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+		                "Bạn có chắc chắn muốn xóa không?", "Xác nhận xóa",
+		                JOptionPane.YES_NO_OPTION);
+
+		        if (confirmResult == JOptionPane.YES_OPTION) {
+		            // Thực hiện xóa ở đây
+		            // Ví dụ: xóa dữ liệu từ cơ sở dữ liệu
+
+		            // Hiển thị thông báo xóa thành công
+		            JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+		        }else if (confirmResult == JOptionPane.NO_OPTION) {
+		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+		            JOptionPane.showMessageDialog(mainFrame, "Xóa đã bị hủy.");
+		        }
 			}
 		});
 		panel_XNK_Confirm.add(btn_XNK_Yes);

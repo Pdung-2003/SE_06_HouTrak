@@ -67,6 +67,8 @@ public class QuanLyNhanKhau extends JPanel {
 		JComboBox comboBox_QLNK_Sort = new JComboBox();
 		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_QLNK_SubTitle.add(comboBox_QLNK_Sort);
+		comboBox_QLNK_Sort.addItem("Mã hộ khẩu");
+		comboBox_QLNK_Sort.addItem("Mã Nhân Khẩu");
 	}
 
 }

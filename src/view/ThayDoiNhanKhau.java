@@ -7,6 +7,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -399,6 +400,20 @@ public class ThayDoiNhanKhau extends JPanel {
 		btn_TDNK_Yes.setBorderPainted(false);
 		btn_TDNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+		                "Bạn có chắc chắn muốn xóa không?", "Xác nhận xóa",
+		                JOptionPane.YES_NO_OPTION);
+
+		        if (confirmResult == JOptionPane.YES_OPTION) {
+		            // Thực hiện thay doi o day
+		           
+		        		
+		            // Hiển thị thông báo xóa thành công
+		            JOptionPane.showMessageDialog(mainFrame, "Thay đổi thành công!");
+		        } else if (confirmResult == JOptionPane.NO_OPTION) {
+		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+		            JOptionPane.showMessageDialog(mainFrame, "Thay đổi đã bị hủy.");
+		        }
 			}
 		});
 		panel_TDNK_Confirm.add(btn_TDNK_Yes);
