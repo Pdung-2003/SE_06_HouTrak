@@ -162,6 +162,36 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_CotPhai.setBackground(Colors.khung_Chung);
 		panel_TKHK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_TKHK_02.add(panel_TKHK_CotPhai, BorderLayout.CENTER);
+		panel_TKHK_CotPhai.setLayout(new GridLayout(2, 1, 0, 0));
+
+		JPanel panel_TKHK_CotPhai_01 = new JPanel();
+		panel_TKHK_CotPhai.add(panel_TKHK_CotPhai_01);
+		panel_TKHK_CotPhai_01.setBackground(Colors.khung_Chung);
+		panel_TKHK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
+
+		JLabel lbl_TKHK_CotPhai_01_MaHK = new JLabel("New label");//dien ma ho khau vao day
+		lbl_TKHK_CotPhai_01_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_MaHK);
+
+		JLabel lbl_TKHK_CotPhai_01_KhuVuc = new JLabel("New label"); // dien khu vuc vao day
+		lbl_TKHK_CotPhai_01_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_KhuVuc);
+
+		JLabel lbl_TKHK_CotPhai_01_DiaChi = new JLabel("New label"); // dien dia chi vao day
+		lbl_TKHK_CotPhai_01_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_DiaChi);
+
+		JLabel lbl_TKHK_CotPhai_01_NgayLap = new JLabel("New label"); //dien ngay lap vao day
+		lbl_TKHK_CotPhai_01_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_NgayLap);
+
+		JPanel panel_TKHK_CotPhai_01_ThongTinChuHo = new JPanel(); // cho nay cho mot bang thong tin chu ho
+		panel_TKHK_CotPhai_01_ThongTinChuHo.setBackground(Colors.khung_Chung);
+		panel_TKHK_CotPhai_01.add(panel_TKHK_CotPhai_01_ThongTinChuHo);
+
+		JPanel panel_TKHK_CotPhai_02 = new JPanel();// cho nay cho mot bang thong tin thanh vien thuoc ho khau
+		panel_TKHK_CotPhai_02.setBackground(Colors.khung_Chung);
+		panel_TKHK_CotPhai.add(panel_TKHK_CotPhai_02);
 
 		JPanel panel_TKHK_Confirm = new JPanel();
 		panel_TKHK_Confirm.setBackground(Colors.khung_Chung);
