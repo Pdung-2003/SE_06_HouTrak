@@ -1,8 +1,15 @@
 package view;
 
-import test.DatabaseConnector;
-
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
@@ -14,11 +21,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Calendar;
 
 public class ThemNhanKhau extends JPanel {
@@ -27,12 +29,11 @@ public class ThemNhanKhau extends JPanel {
 	private JTextField textField_TNK_CotPhai_04;
 	private JTextField textField_TNK_CotPhai_05;
 	private JTextField textField_TNK_CotPhai_06;
-	private JTextField textField_TNK_CotPhai_07;
 
-	private final ManHinhChinh mainFrame;
+	private ManHinhChinh mainFrame;
 
 	public ThemNhanKhau(ManHinhChinh mainFrame) {
-		this.mainFrame = mainFrame;
+		 this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -58,53 +59,61 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_01.add(panel_TNK_CotTrai, BorderLayout.WEST);
 		panel_TNK_CotTrai.setLayout(new GridLayout(10, 1, 5, 10));
 
-		JLabel lbl_TNK_CotTrai_2 = new JLabel("     Thông tin nhân khẩu      ");
+		JLabel lbl_TNK_CotTrai_2 = new JLabel("     Địa chỉ");
+		lbl_TNK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotTrai.add(lbl_TNK_CotTrai_2);
+
+		JLabel lbl_TNK_CotTrai_3 = new JLabel("     Thông tin nhân khẩu      ");
+		lbl_TNK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TNK_CotTrai.add(lbl_TNK_CotTrai_3);
 
 		JPanel panel_TNK_CotPhai = new JPanel();
 		panel_TNK_CotPhai.setBackground(Colors.khung_Chung);
 		panel_TNK_01.add(panel_TNK_CotPhai, BorderLayout.CENTER);
 		panel_TNK_CotPhai.setLayout(new GridLayout(10, 1, 5, 10));
 
-		//Tạo label và trường nhập cho Họ tên
+		textField_TNK_CotPhai_02 = new JTextField();
+		textField_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TNK_CotPhai_02.setBackground(Colors.input_Colors);
+		panel_TNK_CotPhai.add(textField_TNK_CotPhai_02);
+		textField_TNK_CotPhai_02.setColumns(10);
+
 		JPanel panel_TNK_CotPhai_NhanKhau_01 = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_01.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_01);
 		panel_TNK_CotPhai_NhanKhau_01.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_01 = new JLabel("   Họ và tên*              ");
+		JLabel lbl_TNK_CotPhai_01 = new JLabel("   Họ và tên              ");
 		lbl_TNK_CotPhai_01.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_01.add(lbl_TNK_CotPhai_01, BorderLayout.WEST);
 
-		textField_TNK_CotPhai_02 = new JTextField();
-		textField_TNK_CotPhai_02.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_01.add(textField_TNK_CotPhai_02, BorderLayout.CENTER);
-		textField_TNK_CotPhai_02.setColumns(10);
+		textField_TNK_CotPhai_03 = new JTextField();
+		textField_TNK_CotPhai_03.setBackground(Colors.input_Colors);
+		textField_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TNK_CotPhai_NhanKhau_01.add(textField_TNK_CotPhai_03, BorderLayout.CENTER);
+		textField_TNK_CotPhai_03.setColumns(10);
 
-		//Tạo label và trường nhập cho CCCD
 		JPanel panel_TNK_CotPhai_NhanKhau_02 = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_02.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_02);
 		panel_TNK_CotPhai_NhanKhau_02.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_02 = new JLabel("   CCCD/CMND*       ");
+		JLabel lbl_TNK_CotPhai_02 = new JLabel("   CCCD/CMND       ");
 		lbl_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_02.add(lbl_TNK_CotPhai_02, BorderLayout.WEST);
 
-		textField_TNK_CotPhai_03 = new JTextField();
-		textField_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_03.setColumns(10);
-		textField_TNK_CotPhai_03.setBackground(new Color(217, 217, 217));
-		panel_TNK_CotPhai_NhanKhau_02.add(textField_TNK_CotPhai_03, BorderLayout.CENTER);
+		textField_TNK_CotPhai_04 = new JTextField();
+		textField_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TNK_CotPhai_04.setColumns(10);
+		textField_TNK_CotPhai_04.setBackground(new Color(217, 217, 217));
+		panel_TNK_CotPhai_NhanKhau_02.add(textField_TNK_CotPhai_04, BorderLayout.CENTER);
 
-		//Tạo label và trường nhập cho Giới tính
 		JPanel panel_TNK_CotPhai_NhanKhau_03 = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_03.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_03);
 		panel_TNK_CotPhai_NhanKhau_03.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_03 = new JLabel("   Giới tính*               ");
+		JLabel lbl_TNK_CotPhai_03 = new JLabel("   Giới tính               ");
 		lbl_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_03.add(lbl_TNK_CotPhai_03, BorderLayout.WEST);
 
@@ -127,13 +136,12 @@ public class ThemNhanKhau extends JPanel {
 		bg_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01);
 		bg_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02);
 
-		//Tạo label và trường nhập cho Ngày sinh
 		JPanel panel_TNK_CotPhai_NhanKhau_04 = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_04.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_04);
 		panel_TNK_CotPhai_NhanKhau_04.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_04 = new JLabel("   Ngày sinh*             ");
+		JLabel lbl_TNK_CotPhai_04 = new JLabel("   Ngày sinh             ");
 		lbl_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_04.add(lbl_TNK_CotPhai_04, BorderLayout.WEST);
 
@@ -168,9 +176,6 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Ngay);
 
 		JComboBox comboBox_TNK_CotPhai_NhanKhau_Ngay = new JComboBox();
-		comboBox_TNK_CotPhai_NhanKhau_Ngay.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_TNK_CotPhai_NhanKhau_Thang.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_TNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_CotPhai_NhanKhau_Ngay);
 		comboBox_TNK_CotPhai_NhanKhau_Thang.addActionListener(e -> updateDays(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay));
 		comboBox_TNK_CotPhai_NhanKhau_Nam.addActionListener(e -> updateDays(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay));
@@ -180,7 +185,6 @@ public class ThemNhanKhau extends JPanel {
 		// Initial population of days
 		updateDays(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay);
 
-		//Tạo label và trường nhập cho Tôn giáo
 		JPanel panel_TNK_CotPhai_NhanKhau_05 = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_05.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_05);
@@ -190,13 +194,12 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai_NhanKhau_05.add(lbl_TNK_CotPhai_05, BorderLayout.WEST);
 		lbl_TNK_CotPhai_05.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		textField_TNK_CotPhai_04 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_05.add(textField_TNK_CotPhai_04, BorderLayout.CENTER);
-		textField_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_04.setColumns(10);
-		textField_TNK_CotPhai_04.setBackground(Colors.input_Colors);
+		textField_TNK_CotPhai_05 = new JTextField();
+		panel_TNK_CotPhai_NhanKhau_05.add(textField_TNK_CotPhai_05, BorderLayout.CENTER);
+		textField_TNK_CotPhai_05.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TNK_CotPhai_05.setColumns(10);
+		textField_TNK_CotPhai_05.setBackground(Colors.input_Colors);
 
-		//Tạo label và trường nhập cho Quê quán
 		JPanel panel_TNK_CotPhai_NhanKhau_06 = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_06.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_06);
@@ -206,44 +209,11 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai_NhanKhau_06.add(lbl_TNK_CotPhai_06, BorderLayout.WEST);
 		lbl_TNK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		textField_TNK_CotPhai_05 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_06.add(textField_TNK_CotPhai_05, BorderLayout.CENTER);
-		textField_TNK_CotPhai_05.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_05.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_05.setColumns(10);
-
-		//Tạo label và trường nhập cho Địa chỉ
-		JPanel panel_TNK_CotPhai_NhanKhau_07 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_07.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_07);
-		panel_TNK_CotPhai_NhanKhau_07.setLayout(new BorderLayout(5, 5));
-
-		JLabel lbl_TNK_CotPhai_07 = new JLabel("   Mã hộ khẩu*        ");
-		panel_TNK_CotPhai_NhanKhau_07.add(lbl_TNK_CotPhai_07, BorderLayout.WEST);
-		lbl_TNK_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 12));
-
 		textField_TNK_CotPhai_06 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_07.add(textField_TNK_CotPhai_06, BorderLayout.CENTER);
+		panel_TNK_CotPhai_NhanKhau_06.add(textField_TNK_CotPhai_06, BorderLayout.CENTER);
 		textField_TNK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
 		textField_TNK_CotPhai_06.setBackground(Colors.input_Colors);
 		textField_TNK_CotPhai_06.setColumns(10);
-		textField_TNK_CotPhai_06.setToolTipText("VD: MHK00001");
-
-		//Tạo label và trường nhập cho Biệt danh
-		JPanel panel_TNK_CotPhai_NhanKhau_08 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_08.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_08);
-		panel_TNK_CotPhai_NhanKhau_08.setLayout(new BorderLayout(5, 5));
-
-		JLabel lbl_TNK_CotPhai_08 = new JLabel("   Biệt danh            ");
-		panel_TNK_CotPhai_NhanKhau_08.add(lbl_TNK_CotPhai_08, BorderLayout.WEST);
-		lbl_TNK_CotPhai_08.setFont(new Font("Arial", Font.PLAIN, 12));
-
-		textField_TNK_CotPhai_07 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_08.add(textField_TNK_CotPhai_07, BorderLayout.CENTER);
-		textField_TNK_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_07.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_07.setColumns(10);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Colors.khung_Chung);
@@ -262,84 +232,20 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_Yes.setBorderPainted(false);
 		btn_TNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String hoTen = textField_TNK_CotPhai_02.getText();
-				String cmnd = textField_TNK_CotPhai_03.getText();
-				String gioiTinh = rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected() ? "Nam" : "Nữ";
-				int nam = (int) comboBox_TNK_CotPhai_NhanKhau_Nam.getSelectedItem();
-				int thang = (int) comboBox_TNK_CotPhai_NhanKhau_Thang.getSelectedItem();
-				int ngay = (int) comboBox_TNK_CotPhai_NhanKhau_Ngay.getSelectedItem();
-				String tonGiao = textField_TNK_CotPhai_04.getText();
-				String queQuan = textField_TNK_CotPhai_05.getText();
-				String maHoKhau = textField_TNK_CotPhai_06.getText(); // Lấy mã hộ khẩu từ textField
-				String bietDanh = textField_TNK_CotPhai_07.getText(); // Lấy biệt danh dân cư từ textField
+				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+		                "Bạn có chắc chắn muốn thêm ? ", "Xác nhận ",
+		                JOptionPane.YES_NO_OPTION);
 
-				if (hoTen.isEmpty() || cmnd.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty() ) {
-					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin bắt buộc!");
-					return; // Không thêm vào cơ sở dữ liệu nếu thiếu thông tin bắt buộc
-				}
-				// Thực hiện lưu thông tin vào cơ sở dữ liệu
-				try (Connection connection = DatabaseConnector.getConnection()) {
-					if (connection != null) {
-						String sqlToCheckCondition = "SELECT * FROM HoKhau WHERE MaHoKhau = ?";
-						PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-						preparedStatementToCheckCondition.setString(1, maHoKhau);
-						ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
-						if (resultSet.next()) {
-							String sql = "INSERT INTO NhanKhau (HoTen, soCMNDCCCD, GioiTinh, NgaySinh, TonGiao, QueQuan, MaHoKhau, BietDanh) " +
-									"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-							try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-								// Tạo đối tượng java.sql.Date từ thông tin ngày, tháng, năm
-								LocalDate ngaySinh = LocalDate.of(nam, thang, ngay);
-								java.sql.Date ngaySinhSQL = java.sql.Date.valueOf(ngaySinh);
-
-								preparedStatement.setString(1, hoTen);
-								preparedStatement.setString(2, cmnd);
-								preparedStatement.setString(3, gioiTinh);
-								preparedStatement.setDate(4, ngaySinhSQL);
-								preparedStatement.setString(5, tonGiao);
-								preparedStatement.setString(6, queQuan);
-								preparedStatement.setString(7, maHoKhau);
-								preparedStatement.setString(8, bietDanh);
-
-								// Execute the PreparedStatement
-								preparedStatement.executeUpdate();
-								preparedStatement.close();
-
-								// Display a success message to the user
-								JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");
-
-								// Clear các trường nhập liệu sau khi thêm thành công
-								textField_TNK_CotPhai_02.setText("");
-								textField_TNK_CotPhai_03.setText("");
-								textField_TNK_CotPhai_04.setText("");
-								textField_TNK_CotPhai_05.setText("");
-								textField_TNK_CotPhai_06.setText("");
-								bg_NhanKhau_GioiTinh.clearSelection();
-								comboBox_TNK_CotPhai_NhanKhau_Nam.setSelectedItem(1900);
-								comboBox_TNK_CotPhai_NhanKhau_Thang.setSelectedItem(1);
-								comboBox_TNK_CotPhai_NhanKhau_Ngay.setSelectedItem(1);
-								textField_TNK_CotPhai_07.setText("");
-							}
-						}else {
-							// Nếu không tồn tại mã hộ khẩu, hiển thị thông báo lỗi
-							JOptionPane.showMessageDialog(null, "Mã hộ khẩu không tồn tại trong cơ sở dữ liệu!");
-							return;
-						}
-
-						// Đóng ResultSet, PreparedStatement và kết nối
-						resultSet.close();
-						preparedStatementToCheckCondition.close();
-						connection.close();
-					}
-					// Chuyển về giao diện Quản lý nhân khẩu sau khi thêm thành công
-					// ... (code to switch back to the management interface)
-				} catch (SQLException ex) {
-					// Handle any SQL exceptions here
-					ex.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Lỗi khi thêm nhân khẩu!");
-				}
+		        if (confirmResult == JOptionPane.YES_OPTION) {
+		            // Thực hiện thay doi o day
+		            // Hiển thị thông báo xóa thành công
+		            JOptionPane.showMessageDialog(mainFrame, "Thêm thành công!");
+		        } else if (confirmResult == JOptionPane.NO_OPTION) {
+		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+		            JOptionPane.showMessageDialog(mainFrame, "Thêm đã bị hủy.");
+		        }
 			}
-			});
+		});
 		panel_TNK_confirm.add(btn_TNK_Yes);
 
 		JButton btn_TNK_No = new JButton("Hủy");
@@ -349,10 +255,10 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_No.setOpaque(true);
 		btn_TNK_No.setBorderPainted(false);
 		btn_TNK_No.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
-				mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
-			}
+		    public void actionPerformed(ActionEvent e) {
+		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+		    }
 		});
 		panel_TNK_confirm.add(btn_TNK_No);
 
@@ -371,6 +277,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_title.add(lbl_Title_ThemNhanKhau);
 
 		setVisible(true);
+
 
 	}
 

@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -171,6 +173,38 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotPhai.setBackground(Colors.khung_Chung);
 		panel_XHK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_XHK_02.add(panel_XHK_CotPhai, BorderLayout.CENTER);
+		panel_XHK_CotPhai.setLayout(new GridLayout(2, 1, 0, 0));
+
+		JPanel panel_XNK_CotPhai_01 = new JPanel();
+		panel_XNK_CotPhai_01.setBackground(Colors.khung_Chung);
+		panel_XHK_CotPhai.add(panel_XNK_CotPhai_01);
+		panel_XNK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
+
+		JLabel lbl_XNK_CotPhai_MaHK = new JLabel("New label");// dien ma ho khau vao day
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_MaHK);
+
+		JLabel lbl_XNK_CotPhai_KhuVuc = new JLabel("New label");// dien khu vuc vao day
+		lbl_XNK_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_KhuVuc);
+
+		JLabel lbl_XNK_CotPhai_DiaChi = new JLabel("New label");// dien dia chi vao day
+		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_DiaChi);
+
+		// panel nay de bang thong tin chu ho
+		JLabel lbl_XNK_CotPhai_ChuHo = new JLabel("New label");
+		lbl_XNK_CotPhai_ChuHo.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_ChuHo);
+
+		JLabel lbl_XNK_CotPhai_NgayLap = new JLabel("New label");// dien ngay lap vao day
+		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgayLap);
+
+		JPanel panel_XNK_CotPhai_02 = new JPanel();//dien bang thong tin thanh vien thuoc ho khau vao day
+		panel_XNK_CotPhai_02.setBackground(Colors.khung_Chung);
+		panel_XHK_CotPhai.add(panel_XNK_CotPhai_02);
+		panel_XNK_CotPhai_02.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_XHK_Confirm = new JPanel();
 		panel_XHK_Confirm.setBackground(Colors.khung_Chung);
@@ -186,6 +220,21 @@ public class XoaHoKhau extends JPanel {
 		btn_XHK_Yes.setBorderPainted(false);
 		btn_XHK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+		                "Bạn có chắc chắn muốn xóa không?", "Xác nhận xóa",
+		                JOptionPane.YES_NO_OPTION);
+
+		        if (confirmResult == JOptionPane.YES_OPTION) {
+		            // Thực hiện xóa ở đây
+		            // Ví dụ: xóa dữ liệu từ cơ sở dữ liệu
+		        		
+		            // Hiển thị thông báo xóa thành công
+		            JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+		        } else if (confirmResult == JOptionPane.NO_OPTION) {
+		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+		            JOptionPane.showMessageDialog(mainFrame, "Xóa đã bị hủy.");
+		        }
+				
 			}
 		});
 		panel_XHK_Confirm.add(btn_XHK_Yes);
@@ -198,13 +247,13 @@ public class XoaHoKhau extends JPanel {
 		btn_XHK_No.setOpaque(true);
 		btn_XHK_No.setBorderPainted(false);
 		btn_XHK_No.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
-		        mainFrame.switchToMainPanel(quanLyHoKhauPanel);
-		    }
+			public void actionPerformed(ActionEvent e) {
+				QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
+				mainFrame.switchToMainPanel(quanLyHoKhauPanel);
+			}
 		});
 		panel_XHK_Confirm.add(btn_XHK_No);
-		
+
 
 		JPanel panel_XHK_Title = new JPanel();
 		panel_XHK_Title.setBackground(Colors.khung_Chung);

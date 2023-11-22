@@ -2,8 +2,10 @@ package view;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+import java.net.URL;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +13,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 import view.*;
 
 public class ManHinhChinh extends JFrame {
@@ -25,6 +31,7 @@ public class ManHinhChinh extends JFrame {
 	private QuanLyHoKhau quanLyHoKhauMainPanel;
 	private SideBar_QuanLyNhanKhau quanLyNhanKhauPanel;
 	private QuanLyNhanKhau quanLyNhanKhauMainPanel;
+	private JLabel jLabel_Logo;
 	
 	public ManHinhChinh() {
 		setTitle("Phần mềm quản lí dân cư HouTrak");
@@ -33,7 +40,9 @@ public class ManHinhChinh extends JFrame {
 		setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
@@ -42,9 +51,59 @@ public class ManHinhChinh extends JFrame {
 		contentPane.add(panel_Header, BorderLayout.NORTH);
 		panel_Header.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("logo \r\ncongty");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		panel_Header.add(lblNewLabel, BorderLayout.WEST);
+		JPanel panel1 = new JPanel(new GridLayout(1, 2));
+		panel1.setBackground(Colors.vien_Tren_Duoi);
+		
+		// logo
+		JLabel lblLabel_MauCanhLogo = new JLabel();
+		lblLabel_MauCanhLogo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("VoVanMauXanh.png"))));
+		lblLabel_MauCanhLogo.setForeground(new Color(255, 255, 255));
+		panel1.add(lblLabel_MauCanhLogo);
+		
+		JLabel lblLabel_Logo = new JLabel();
+		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("Logo_Houtrak.png"))));
+		lblLabel_Logo.setForeground(new Color(255, 255, 255));
+		panel1.add(lblLabel_Logo);
+		panel_Header.add(panel1, BorderLayout.WEST);
+		
+		// thanh menu ben tren
+		JPanel panel = new JPanel(new GridLayout(1, 4));
+		panel.setBackground(Colors.vien_Tren_Duoi);
+		panel_Header.add(panel, BorderLayout.EAST);
+		
+		JButton btnTrangChu = new JButton("Trang chủ");
+		btnTrangChu.setHorizontalAlignment(SwingConstants.CENTER);
+		btnTrangChu.setBackground(Colors.vien_Tren_Duoi);
+		btnTrangChu.setForeground(Color.WHITE);
+		btnTrangChu.setBorderPainted(false);
+		btnTrangChu.setOpaque(true);
+      
+		
+	    JButton btnHoTro = new JButton("Hỗ trợ");
+	    btnHoTro.setHorizontalAlignment(SwingConstants.CENTER);
+		btnHoTro.setBackground(Colors.vien_Tren_Duoi);
+		btnHoTro.setForeground(Color.WHITE);
+		btnHoTro.setBorderPainted(false);
+		btnHoTro.setOpaque(true);
+	    
+	    JButton btnThongTin = new JButton("Thông tin");
+	    btnThongTin.setHorizontalAlignment(SwingConstants.CENTER);
+	    btnThongTin.setBackground(Colors.vien_Tren_Duoi);
+	    btnThongTin.setBorderPainted(false);
+	    btnThongTin.setForeground(Color.WHITE);
+	    btnThongTin.setOpaque(true);
+	    
+	  
+	    
+	    JLabel lblImage = new JLabel();
+	    lblImage.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("Imageaccount.png"))));
+	    lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+	   
+		panel.add(btnTrangChu);	
+		panel.add(btnHoTro);
+		panel.add(btnThongTin);
+		panel.add(lblImage);
+		
 
 		cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
@@ -69,7 +128,6 @@ public class ManHinhChinh extends JFrame {
        
         setVisible(true);
     }
-
 		
 		//Sidebar
 	 private JPanel createButtonsPanel() {
@@ -78,12 +136,14 @@ public class ManHinhChinh extends JFrame {
 	     buttonsPanel.setBackground(Colors.menu_Trai);
 	     
 	     JButton button_QLHK = new JButton("  Quản lí hộ khẩu");
+	    
 	        button_QLHK.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLHK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLHK.setBackground(Colors.menu_Trai);
 	        button_QLHK.setForeground(Color.WHITE);
 	        button_QLHK.setOpaque(true);
-	        // Border button
+	        button_QLHK.setBorderPainted(true);
+	     // Border button
 	        int topBottomBorderSize = 1; // Adjust this value as needed for the border thickness
 	        Border matteBorder = BorderFactory.createMatteBorder(
 	            topBottomBorderSize, 0, topBottomBorderSize, 0, Color.BLACK);
@@ -101,6 +161,7 @@ public class ManHinhChinh extends JFrame {
 	        button_QLNK.setBackground(Colors.menu_Trai);
 	        button_QLNK.setForeground(Color.WHITE);
 	        button_QLNK.setOpaque(true);
+	        button_QLNK.setBorderPainted(true);
 	        button_QLNK.setBorder(matteBorder);
 	        button_QLNK.addActionListener(e -> {
 	            switchPanel("QuanLyNhanKhau");
@@ -158,7 +219,8 @@ public class ManHinhChinh extends JFrame {
 	        panel_trung_tam.repaint();
 	    }
 	  
-	
+	    
+	 
 
 	
 	public static void main(String[] args) {

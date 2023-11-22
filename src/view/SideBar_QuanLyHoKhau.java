@@ -132,9 +132,8 @@ import view.*
 		panel_SB_QLHK_dem_2.setBackground(Colors.menu_Trai);
 		panel_SB_QLHK.add(panel_SB_QLHK_dem_2);
 		
-		JButton btn_SB_QLHK_Back = new JButton("  Quay lại");
-
-        btn_SB_QLHK_Back.setHorizontalAlignment(SwingConstants.LEFT);
+		JButton btn_SB_QLHK_Back = new JButton("Quay lại");
+        btn_SB_QLHK_Back.setHorizontalAlignment(SwingConstants.CENTER);
         btn_SB_QLHK_Back.setFont(new Font("Arial", Font.BOLD, 20));
         btn_SB_QLHK_Back.setBackground(Colors.menu_Trai);
         btn_SB_QLHK_Back.setForeground(Color.WHITE);
