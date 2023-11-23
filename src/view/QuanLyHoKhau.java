@@ -84,7 +84,6 @@ public class QuanLyHoKhau extends JPanel {
 
 		// Tạo bảng và mô hình bảng
 		tableModel = new DefaultTableModel();
-		tableModel.addColumn("STT");
 		tableModel.addColumn("Mã Hộ Khẩu");
 		tableModel.addColumn("Họ Tên Chủ Hộ");
 		tableModel.addColumn("Ngày Lập");
@@ -114,12 +113,11 @@ public class QuanLyHoKhau extends JPanel {
 		});
 
 		// Đặt kích thước của các cột trong bảng
-		table.getColumnModel().getColumn(0).setPreferredWidth(50);  // STT
-		table.getColumnModel().getColumn(1).setPreferredWidth(120); // Mã Hộ Khẩu
-		table.getColumnModel().getColumn(2).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(3).setPreferredWidth(100); // Ngày Lập
-		table.getColumnModel().getColumn(4).setPreferredWidth(250); // Địa Chỉ
-		table.getColumnModel().getColumn(5).setPreferredWidth(100); // Khu Vực
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
@@ -148,7 +146,6 @@ public class QuanLyHoKhau extends JPanel {
 		// Populate the table with the fetched data
 		for (HoKhau hoKhau : danhSachHoKhau) {
 			Object[] rowData = {
-					hoKhau.getStt(),
 					hoKhau.getMaHoKhau(),
 					hoKhau.getHoTenChuHo(),
 					hoKhau.getNgayLap(),

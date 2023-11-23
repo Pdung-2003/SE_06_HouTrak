@@ -1,26 +1,24 @@
 package view;
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import test.DatabaseConnector;
+import test.HoKhau;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import java.awt.*;
+
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 public class TimKiemHoKhau extends JPanel {
+	private JTable table;
+	private DefaultTableModel tableModel;
 	private JTextField text_TKHK_01;
 
 	/**
@@ -110,6 +108,12 @@ public class TimKiemHoKhau extends JPanel {
 		btn_TKHK_01_TimKiem.setBorderPainted(false);
 		panel_TKHK_01_content.add(btn_TKHK_01_TimKiem);
 
+		btn_TKHK_01_TimKiem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				search();
+			}
+		});
+
 		JPanel panel_TKHK_02 = new JPanel();
 		panel_TKHK_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTKHK.add(panel_TKHK_02, BorderLayout.CENTER);
@@ -121,42 +125,6 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_02.add(panel_TKHK_CotTrai, BorderLayout.WEST);
 		panel_TKHK_CotTrai.setLayout(new GridLayout(10, 1, 0, 0));
 
-		JLabel lbl_TKHK_CotTrai_1 = new JLabel("     Mã hộ khẩu");
-		lbl_TKHK_CotTrai_1.setMaximumSize(new Dimension(100, 14));
-		lbl_TKHK_CotTrai_1.setPreferredSize(new Dimension(23, 50));
-		lbl_TKHK_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotTrai.add(lbl_TKHK_CotTrai_1);
-
-		JLabel lbl_TKHK_CotTrai_2 = new JLabel("     Khu vực");
-		lbl_TKHK_CotTrai_2.setPreferredSize(new Dimension(23, 500));
-		lbl_TKHK_CotTrai_2.setMaximumSize(new Dimension(100, 14));
-		lbl_TKHK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotTrai.add(lbl_TKHK_CotTrai_2);
-
-		JLabel lbl_TKHK_CotTrai_3 = new JLabel("     Địa chỉ");
-		lbl_TKHK_CotTrai_3.setPreferredSize(new Dimension(23, 500));
-		lbl_TKHK_CotTrai_3.setMaximumSize(new Dimension(100, 14));
-		lbl_TKHK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotTrai.add(lbl_TKHK_CotTrai_3);
-
-		JLabel lbl_TKHK_CotTrai_4 = new JLabel("     Ngày lập");
-		lbl_TKHK_CotTrai_4.setPreferredSize(new Dimension(23, 500));
-		lbl_TKHK_CotTrai_4.setMaximumSize(new Dimension(100, 14));
-		lbl_TKHK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotTrai.add(lbl_TKHK_CotTrai_4);
-
-		JLabel lbl_TKHK_CotTrai_5 = new JLabel("     Chủ hộ");
-		lbl_TKHK_CotTrai_5.setPreferredSize(new Dimension(23, 500));
-		lbl_TKHK_CotTrai_5.setMaximumSize(new Dimension(100, 14));
-		lbl_TKHK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotTrai.add(lbl_TKHK_CotTrai_5);
-
-		JLabel lbl_TKHK_CotTrai_6 = new JLabel("     Thành viên thuộc hộ khẩu     ");
-		panel_TKHK_CotTrai.add(lbl_TKHK_CotTrai_6);
-		lbl_TKHK_CotTrai_6.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_TKHK_CotTrai_6.setMaximumSize(new Dimension(200, 14));
-		lbl_TKHK_CotTrai_6.setMinimumSize(new Dimension(50, 14));
-		lbl_TKHK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 12));
 
 		JPanel panel_TKHK_CotPhai = new JPanel();
 		panel_TKHK_CotPhai.setBackground(Colors.khung_Chung);
@@ -169,26 +137,6 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_CotPhai_01.setBackground(Colors.khung_Chung);
 		panel_TKHK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
 
-		JLabel lbl_TKHK_CotPhai_01_MaHK = new JLabel("New label");//dien ma ho khau vao day
-		lbl_TKHK_CotPhai_01_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_MaHK);
-
-		JLabel lbl_TKHK_CotPhai_01_KhuVuc = new JLabel("New label"); // dien khu vuc vao day
-		lbl_TKHK_CotPhai_01_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_KhuVuc);
-
-		JLabel lbl_TKHK_CotPhai_01_DiaChi = new JLabel("New label"); // dien dia chi vao day
-		lbl_TKHK_CotPhai_01_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_DiaChi);
-
-		JLabel lbl_TKHK_CotPhai_01_NgayLap = new JLabel("New label"); //dien ngay lap vao day
-		lbl_TKHK_CotPhai_01_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_NgayLap);
-
-		JLabel lbl_TKHK_CotPhai_01_ChuHo = new JLabel("New label"); //dien ngay lap vao day
-		lbl_TKHK_CotPhai_01_ChuHo.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TKHK_CotPhai_01.add(lbl_TKHK_CotPhai_01_ChuHo);
-
 		JPanel panel_TKHK_CotPhai_02 = new JPanel();// cho nay cho mot bang thong tin thanh vien thuoc ho khau
 		panel_TKHK_CotPhai_02.setBackground(Colors.khung_Chung);
 		panel_TKHK_CotPhai.add(panel_TKHK_CotPhai_02);
@@ -200,14 +148,83 @@ public class TimKiemHoKhau extends JPanel {
 
 		JPanel panel_TKHK_SubTitle = new JPanel();
 		panel_TKHK_SubTitle.setBackground(Colors.khung_Chung);
+		panel_TKHK_SubTitle.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_TKHK_02.add(panel_TKHK_SubTitle, BorderLayout.NORTH);
-		panel_TKHK_SubTitle.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TKHK_Subtitle = new JLabel("Thông tin hộ khẩu:");
 		panel_TKHK_SubTitle.add(lbl_TKHK_Subtitle);
 		lbl_TKHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
 		lbl_TKHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_TKHK_Subtitle.setAlignmentX(0.5f);
-	}
 
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Mã Hộ Khẩu");
+		tableModel.addColumn("Họ Tên Chủ Hộ");
+		tableModel.addColumn("Ngày Lập");
+		tableModel.addColumn("Địa Chỉ");
+		tableModel.addColumn("Khu Vực");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 400));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+
+		// Thêm JScrollPane vào panel
+		panel_TKHK_SubTitle.add(scrollPane);
+	}
+	private void search() {
+		String address = text_TKHK_01.getText();
+		// Clear existing data
+		tableModel.setRowCount(0);
+
+		// Fetch data from the database
+		List<HoKhau> danhSachHoKhau = DatabaseConnector.searchHoKhau(address);
+
+		// Populate the table with the fetched data
+		for (HoKhau hoKhau : danhSachHoKhau) {
+			Object[] rowData = {
+					hoKhau.getMaHoKhau(),
+					hoKhau.getHoTenChuHo(),
+					hoKhau.getNgayLap(),
+					hoKhau.getDiaChi(),
+					hoKhau.getKhuVuc()
+			};
+			tableModel.addRow(rowData);
+		}
+	}
 }

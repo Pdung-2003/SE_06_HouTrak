@@ -48,14 +48,13 @@ public class DatabaseConnector {
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 try (ResultSet rs = pstmt.executeQuery()) {
                     while (rs.next()) {
-                        int stt = rs.getInt("STT");
                         String maHoKhau = rs.getString("MaHoKhau");
                         String hoTenChuHo = rs.getString("HoTenChuHo");
                         Date ngayLap = rs.getDate("NgayLap");
                         String diaChi = rs.getString("DiaChi");
                         String khuVuc = rs.getString("KhuVuc");
 
-                        HoKhau hoKhau = new HoKhau(stt, maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                        HoKhau hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
                         danhSachHoKhau.add(hoKhau);
                     }
                 }
@@ -75,7 +74,33 @@ public class DatabaseConnector {
     // 4. Tach ho khau
 
     // 5. Search
+    public static List<HoKhau> searchHoKhau(String Address) {
+        List<HoKhau> danhSachHoKhau = new ArrayList<>();
 
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM HoKhau WHERE DiaChi LIKE ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, "%" + Address + "%");
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String hoTenChuHo = rs.getString("HoTenChuHo");
+                        Date ngayLap = rs.getDate("NgayLap");
+                        String diaChi = rs.getString("DiaChi");
+                        String khuVuc = rs.getString("KhuVuc");
+
+                        HoKhau hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                        danhSachHoKhau.add(hoKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return danhSachHoKhau;
+    }
     // 6. Remove
 
     // 7. Xem lich su
