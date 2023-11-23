@@ -66,6 +66,59 @@ public class DatabaseConnector {
         return danhSachHoKhau;
     }
 
+    public static List<HoKhau> DsHoKHauOderByNgayLap() {
+        List<HoKhau> danhSachHoKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM HoKhau ORDER BY NgayLap";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String hoTenChuHo = rs.getString("HoTenChuHo");
+                        Date ngayLap = rs.getDate("NgayLap");
+                        String diaChi = rs.getString("DiaChi");
+                        String khuVuc = rs.getString("KhuVuc");
+
+                        HoKhau hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                        danhSachHoKhau.add(hoKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return danhSachHoKhau;
+    }
+
+    public static List<HoKhau> DsHoKHauOderByKhuVuc() {
+        List<HoKhau> danhSachHoKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM HoKhau ORDER BY KhuVuc";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String hoTenChuHo = rs.getString("HoTenChuHo");
+                        Date ngayLap = rs.getDate("NgayLap");
+                        String diaChi = rs.getString("DiaChi");
+                        String khuVuc = rs.getString("KhuVuc");
+
+                        HoKhau hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                        danhSachHoKhau.add(hoKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return danhSachHoKhau;
+    }
 
     // 2. Them Ho khau
     // 2. Them Ho khau
@@ -146,6 +199,62 @@ public class DatabaseConnector {
 
         try (Connection conn = ds.getConnection()) {
             String query = "SELECT * FROM LichSuThayDoi WHERE MaNhanKhau IS NULL";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maThayDoi = rs.getString("MaThayDoi");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String ttThayDoi = rs.getString("ThongTinThayDoi");
+                        String ttTruoc = rs.getString("ThongTinTruoc");
+                        String ttSau = rs.getString("ThongTinSau");
+                        String nguoiThayDoi = rs.getString("NguoiThayDoi");
+                        Date ngayThayDoi = rs.getDate("NgayThayDoi");
+
+                        ThayDoiHoKhau thayDoi = new ThayDoiHoKhau(maThayDoi, maHoKhau, ttThayDoi, ttTruoc, ttSau, nguoiThayDoi, ngayThayDoi);
+                        dsThayDoi.add(thayDoi);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsThayDoi;
+    }
+    public static List<ThayDoiHoKhau> DsLichSuHKOrderByMHK() {
+        List<ThayDoiHoKhau> dsThayDoi = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM LichSuThayDoi WHERE MaNhanKhau IS NULL ORDER BY MaHoKhau";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maThayDoi = rs.getString("MaThayDoi");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String ttThayDoi = rs.getString("ThongTinThayDoi");
+                        String ttTruoc = rs.getString("ThongTinTruoc");
+                        String ttSau = rs.getString("ThongTinSau");
+                        String nguoiThayDoi = rs.getString("NguoiThayDoi");
+                        Date ngayThayDoi = rs.getDate("NgayThayDoi");
+
+                        ThayDoiHoKhau thayDoi = new ThayDoiHoKhau(maThayDoi, maHoKhau, ttThayDoi, ttTruoc, ttSau, nguoiThayDoi, ngayThayDoi);
+                        dsThayDoi.add(thayDoi);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsThayDoi;
+    }
+    public static List<ThayDoiHoKhau> DsLichSuHKOrderByType() {
+        List<ThayDoiHoKhau> dsThayDoi = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM LichSuThayDoi WHERE MaNhanKhau IS NULL ORDER BY ThongTinThayDoi";
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 try (ResultSet rs = pstmt.executeQuery()) {
