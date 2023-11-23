@@ -55,23 +55,13 @@ public class SignIn extends JPanel {
 		panel_SignIn_Content_Title.setBackground(Colors.nen_Chung);
 		panel_SignIn_content.add(panel_SignIn_Content_Title);
 		panel_SignIn_Content_Title.setLayout(new BorderLayout(0, 0));
-
-		JLabel lblNewLabel_2 = new JLabel("Phần mềm quản lí dân cư HouTrak");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 35));
-		panel_SignIn_Content_Title.add(lblNewLabel_2,BorderLayout.NORTH);
 		
 		JLabel lblLabel_Logo = new JLabel();
 		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("Logo_Signin.png"))));
 		lblLabel_Logo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLabel_Logo.setForeground(new Color(255, 255, 255));
-		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);
+		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);	
 		
-		JLabel lblNewLabel_3 = new JLabel("Phần mềm được phát triển bởi công ty SE_06");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 20));
-		panel_SignIn_Content_Title.add(lblNewLabel_3, BorderLayout.SOUTH);
-
 		JPanel panel_SignIn_Content_function = new JPanel();
 		panel_SignIn_content.add(panel_SignIn_Content_function);
 		panel_SignIn_Content_function.setLayout(new BorderLayout(0, 0));
