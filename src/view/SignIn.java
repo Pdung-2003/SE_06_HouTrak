@@ -50,13 +50,13 @@ public class SignIn extends JFrame {
 		panel_SignIn_Content_Title.setBackground(Colors.nen_Chung);
 		panel_SignIn_content.add(panel_SignIn_Content_Title);
 		panel_SignIn_Content_Title.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblLabel_Logo = new JLabel();
 		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("Logo_Signin.png"))));
 		lblLabel_Logo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLabel_Logo.setForeground(new Color(255, 255, 255));
-		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);	
-		
+		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);
+
 		JPanel panel_SignIn_Content_function = new JPanel();
 		panel_SignIn_content.add(panel_SignIn_Content_function);
 		panel_SignIn_Content_function.setLayout(new BorderLayout(0, 0));
@@ -80,7 +80,21 @@ public class SignIn extends JFrame {
 		JPanel panel_SignIn_Content_function_Form = new JPanel();
 		panel_SignIn_Content_function_Form.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function.add(panel_SignIn_Content_function_Form, BorderLayout.CENTER);
-		panel_SignIn_Content_function_Form.setLayout(new GridLayout(8, 1, 20, 20));
+		panel_SignIn_Content_function_Form.setLayout(new GridLayout(10, 1, 40, 40));
+
+		JPanel panel_SingIn_dem9 = new JPanel();
+		panel_SingIn_dem9.setBackground(Colors.khung_Chung);
+		panel_SignIn_Content_function_Form.add(panel_SingIn_dem9);
+
+		JPanel panel_SignIn_Content_function_Form_TItle = new JPanel();
+		panel_SignIn_Content_function_Form_TItle.setBackground(Colors.khung_Chung);
+		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle);
+		panel_SignIn_Content_function_Form_TItle.setLayout(new BorderLayout(0, 0));
+
+		JLabel lblNewLabel_4 = new JLabel("Đăng nhập tài khoản");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 25));
+		panel_SignIn_Content_function_Form_TItle.add(lblNewLabel_4, BorderLayout.CENTER);
 
 		JPanel panel_SignIn_dem10 = new JPanel();
 		panel_SignIn_dem10.setBackground(Colors.khung_Chung);
@@ -127,27 +141,27 @@ public class SignIn extends JFrame {
 		btnSignIn.setBorderPainted(false);
 		panel_SignIn_Content_function_Form.add(btnSignIn);
 		// Sự kiện khi nhấn nút đăng nhập
-        btnSignIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = textField_SignIn_TK.getText();
-                String password = new String(passwordField_SignIn_MK.getPassword());
+		btnSignIn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String username = textField_SignIn_TK.getText();
+				String password = new String(passwordField_SignIn_MK.getPassword());
 
-                // Kiểm tra thông tin đăng nhập
-                if (authenticate(username, password)) {
-                    // Đăng nhập thành công, mở ManHinhChinh
-                    ManHinhChinh mainFrame = new ManHinhChinh();
-                    mainFrame.setVisible(true);
-                    dispose(); // Đóng cửa sổ đăng nhập
-                } else {
-                    // Đăng nhập thất bại
-                    JOptionPane.showMessageDialog(SignIn.this,
-                            "Tài khoản hoặc mật khẩu bạn nhập không đúng",
-                            "Lỗi đăng nhập",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
+				// Kiểm tra thông tin đăng nhập
+				if (authenticate(username, password)) {
+					// Đăng nhập thành công, mở ManHinhChinh
+					ManHinhChinh mainFrame = new ManHinhChinh();
+					mainFrame.setVisible(true);
+					dispose(); // Đóng cửa sổ đăng nhập
+				} else {
+					// Đăng nhập thất bại
+					JOptionPane.showMessageDialog(SignIn.this,
+							"Tài khoản hoặc mật khẩu bạn nhập không đúng",
+							"Lỗi đăng nhập",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 
 		JPanel panel_SignIn_dem12 = new JPanel();
 		panel_SignIn_dem12.setBackground(Colors.khung_Chung);
@@ -186,9 +200,9 @@ public class SignIn extends JFrame {
 		setVisible(true);
 	}
 	private boolean authenticate(String username, String password) {
-        // Thực hiện kiểm tra đăng nhập ở đây
-        // Đây chỉ là ví dụ, bạn cần thay thế bằng logic thực tế
-        return "admin".equals(username) && "123456".equals(password);
-    }
+		// Thực hiện kiểm tra đăng nhập ở đây
+		// Đây chỉ là ví dụ, bạn cần thay thế bằng logic thực tế
+		return "admin".equals(username) && "123456".equals(password);
+	}
 
 }

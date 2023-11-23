@@ -22,12 +22,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 
 import java.awt.BorderLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import java.awt.GridBagLayout;
@@ -312,9 +314,34 @@ public class ThemHoKhau extends JPanel {
 		
 		
 
-		JPanel panel_THK_Dem = new JPanel();
-		panel_THK_Dem.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTHK.add(panel_THK_Dem, BorderLayout.NORTH);
+		JPanel panel_THK_NhapFIle = new JPanel();
+		panel_THK_NhapFIle.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTHK.add(panel_THK_NhapFIle, BorderLayout.NORTH);
+		panel_THK_NhapFIle.setLayout(new BorderLayout(10, 10));
+		
+		JButton btn_THK_NhapFile = new JButton("Chọn file");
+		btn_THK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_THK_NhapFIle.add(btn_THK_NhapFile, BorderLayout.WEST);
+		
+		btn_THK_NhapFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openExcelFile();
+            }
+        });
+		
+		
+		JLabel lbl_THK_TenFile = new JLabel("New label"); // Cho nay dien ten file
+		panel_THK_NhapFIle.add(lbl_THK_TenFile, BorderLayout.CENTER);
+		
+		JPanel panel_THK_NhapFile_dem = new JPanel();
+		panel_THK_NhapFile_dem.setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		panel_THK_NhapFile_dem.setBackground(Colors.khung_Chung);
+		panel_THK_NhapFIle.add(panel_THK_NhapFile_dem, BorderLayout.SOUTH);
+		
+		JPanel panel_THK_NhapFile_dem_2 = new JPanel();
+		panel_THK_NhapFile_dem_2.setBackground(Colors.khung_Chung);
+		panel_THK_NhapFIle.add(panel_THK_NhapFile_dem_2, BorderLayout.NORTH);
 
 		JPanel panel_THK_title = new JPanel();
 		panel_THK_title.setBackground(Colors.nen_Chung);
@@ -403,4 +430,20 @@ public class ThemHoKhau extends JPanel {
 			return 1;
 		} else return -1;
 	}
+	
+	private static void openExcelFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "xls", "xlsx");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Người dùng đã chọn một tệp
+            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            System.out.println("Selected file: " + filePath);
+
+            // Gọi phương thức xử lý tệp Excel ở đây (đọc, xử lý, v.v.)
+        }
+    }
 }
