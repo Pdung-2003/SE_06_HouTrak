@@ -32,6 +32,10 @@ import javax.swing.JFrame;
 
 import java.awt.GridBagLayout;
 import java.util.Calendar;
+import java.util.Date;
+
+import static test.DatabaseConnector.insertChuHo;
+import static test.DatabaseConnector.insertHoKhau;
 
 public class ThemHoKhau extends JPanel {
 	private JTextField textField_THK_CotPhai_02;
@@ -39,7 +43,13 @@ public class ThemHoKhau extends JPanel {
 	private JTextField textField_THK_CotPhai_04;
 	private JTextField textField_THK_CotPhai_05;
 	private JTextField textField_THK_CotPhai_06;
+	private JComboBox comboBox_THK_CotPhai_02;
+	private JRadioButton rdbtn_THK_CotPhai_ChuHo_GioiTinh_01;
+	private JRadioButton rdbtn_THK_CotPhai_ChuHo_GioiTinh_02;
 	private ManHinhChinh mainFrame;
+	private JComboBox comboBox_THK_CotPhai_ChuHo_Nam;
+	private JComboBox comboBox_THK_CotPhai_ChuHo_Thang;
+	private JComboBox comboBox_THK_CotPhai_ChuHo_Ngay;
 
 	public ThemHoKhau(ManHinhChinh mainFrame) {
 		 this.mainFrame = mainFrame;
@@ -85,7 +95,7 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_01.add(panel_THK_CotPhai, BorderLayout.CENTER);
 		panel_THK_CotPhai.setLayout(new GridLayout(10, 1, 5, 10));
 
-		JComboBox comboBox_THK_CotPhai_02 = new JComboBox();
+		comboBox_THK_CotPhai_02 = new JComboBox();
 		comboBox_THK_CotPhai_02.addItem("Khu vực A");
         comboBox_THK_CotPhai_02.addItem("Khu vực B");
         comboBox_THK_CotPhai_02.addItem("Khu vực C");
@@ -150,14 +160,19 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_CotPhai_ChuHo_03.add(panel_THK_CotPhai_ChuHo_GioiTinh, BorderLayout.CENTER);
 		panel_THK_CotPhai_ChuHo_GioiTinh.setLayout(new BoxLayout(panel_THK_CotPhai_ChuHo_GioiTinh, BoxLayout.X_AXIS));
 
-		JRadioButton rdbtn_THK_CotPhai_ChuHo_GioiTinh_01 = new JRadioButton("Nam");
+		rdbtn_THK_CotPhai_ChuHo_GioiTinh_01 = new JRadioButton("Nam");
 		rdbtn_THK_CotPhai_ChuHo_GioiTinh_01.setFont(new Font("Arial", Font.PLAIN, 12));
 		rdbtn_THK_CotPhai_ChuHo_GioiTinh_01.setBackground(Colors.khung_Chung);
 		panel_THK_CotPhai_ChuHo_GioiTinh.add(rdbtn_THK_CotPhai_ChuHo_GioiTinh_01);
 
-		JRadioButton rdbtn_THK_CotPhai_ChuHo_GioiTinh_02 = new JRadioButton("Nữ");
+		rdbtn_THK_CotPhai_ChuHo_GioiTinh_02 = new JRadioButton("Nữ");
 		rdbtn_THK_CotPhai_ChuHo_GioiTinh_02.setBackground(Colors.khung_Chung);
 		panel_THK_CotPhai_ChuHo_GioiTinh.add(rdbtn_THK_CotPhai_ChuHo_GioiTinh_02);
+
+		// Tạo ButtonGroup để nhóm các JRadioButton lại với nhau
+		ButtonGroup gioiTinhGroup = new ButtonGroup();
+		gioiTinhGroup.add(rdbtn_THK_CotPhai_ChuHo_GioiTinh_01);
+		gioiTinhGroup.add(rdbtn_THK_CotPhai_ChuHo_GioiTinh_02);
 
 		ButtonGroup bg_ChuHo_GioiTinh = new ButtonGroup();
 		bg_ChuHo_GioiTinh.add(rdbtn_THK_CotPhai_ChuHo_GioiTinh_01);
@@ -186,7 +201,7 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(lbl_THK_CotPhai_ChuHo_Nam);
 		lbl_THK_CotPhai_ChuHo_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		JComboBox comboBox_THK_CotPhai_ChuHo_Nam = new JComboBox();
+		comboBox_THK_CotPhai_ChuHo_Nam = new JComboBox();
 		populateYears(comboBox_THK_CotPhai_ChuHo_Nam);
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Nam);
 
@@ -194,14 +209,14 @@ public class ThemHoKhau extends JPanel {
 
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(lbl_THK_CotPhai_ChuHo_Thang);
 
-		JComboBox comboBox_THK_CotPhai_ChuHo_Thang = new JComboBox();
+		comboBox_THK_CotPhai_ChuHo_Thang = new JComboBox();
 		populateMonths(comboBox_THK_CotPhai_ChuHo_Thang);
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Thang);
 
 		JLabel lbl_THK_CotPhai_ChuHo_Ngay = new JLabel("     Ngày:        \r\n");
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(lbl_THK_CotPhai_ChuHo_Ngay);
 
-		JComboBox comboBox_THK_CotPhai_ChuHo_Ngay = new JComboBox();
+		comboBox_THK_CotPhai_ChuHo_Ngay = new JComboBox();
 		panel_THK_CotPhai_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_CotPhai_ChuHo_Ngay);
 		comboBox_THK_CotPhai_ChuHo_Thang.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
 		comboBox_THK_CotPhai_ChuHo_Nam.addActionListener(e -> updateDays(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay));
@@ -256,16 +271,22 @@ public class ThemHoKhau extends JPanel {
 		btn_THK_Yes.setOpaque(true);
 		btn_THK_Yes.setBorderPainted(false);
 		btn_THK_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
+			public void actionPerformed(ActionEvent e) {
+				int check = getData();
+				if (check == 0){
+					return ;
+				}
 					int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
 			                "Bạn có chắc chắn muốn thêm không?", "Xác nhận thêm ",
 			                JOptionPane.YES_NO_OPTION);
 
 			        if (confirmResult == JOptionPane.YES_OPTION) {
 			            // Thực hiện thay doi o day
-			        		
-			            // Hiển thị thông báo xóa thành công
-			            JOptionPane.showMessageDialog(mainFrame, "Thêm thành công!");
+						if (check == 1){
+							JOptionPane.showMessageDialog(mainFrame, "Thêm thành công!");
+						} else if (check == -1){
+							JOptionPane.showMessageDialog(mainFrame, "Thêm thất bại! Kiểm tra lại thông tin!");
+						}
 			        } else if (confirmResult == JOptionPane.NO_OPTION) {
 			            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
 			            JOptionPane.showMessageDialog(mainFrame, "Đã hủy thêm.");
@@ -338,5 +359,48 @@ public class ThemHoKhau extends JPanel {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month - 1, 1);
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+	}
+	private String getFormattedDate(JComboBox comboBoxYear, JComboBox comboBoxMonth, JComboBox comboBoxDay) {
+		// Ghep du lieu nam sinh
+		String year = comboBoxYear.getSelectedItem().toString();
+		String month = comboBoxMonth.getSelectedItem().toString();
+		String day = comboBoxDay.getSelectedItem().toString();
+
+		// Kiểm tra xem có giá trị null không
+		if (year == null || month == null || day == null) {
+			return null;
+		}
+
+		// Định dạng ngày tháng năm
+		return year + "-" + month + "-" + day;
+	}
+	private int getData(){
+		String hoTenChuHo = textField_THK_CotPhai_03.getText();
+		String diaChi = textField_THK_CotPhai_02.getText();
+		// Check if an item is selected before attempting to get its value
+		String khuVuc = (comboBox_THK_CotPhai_02.getSelectedItem() != null)
+				? comboBox_THK_CotPhai_02.getSelectedItem().toString()
+				: "";
+		String ngaySinh = getFormattedDate(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
+		String tonGiao = textField_THK_CotPhai_05.getText();
+		String soCMNDCCCD = textField_THK_CotPhai_04.getText();
+		String queQuan = textField_THK_CotPhai_06.getText();
+		String gioiTinh = "";
+		if (rdbtn_THK_CotPhai_ChuHo_GioiTinh_01.isSelected()) {
+			gioiTinh = "Nam";
+		} else if (rdbtn_THK_CotPhai_ChuHo_GioiTinh_02.isSelected()) {
+			gioiTinh = "Nữ";
+		}
+		// Kiểm tra nếu có trường thông tin nào thiếu thì không thực hiện INSERT
+		if (hoTenChuHo.isEmpty() || diaChi.isEmpty() || khuVuc.isEmpty() || ngaySinh == null
+				|| tonGiao.isEmpty() || soCMNDCCCD.isEmpty() || queQuan.isEmpty() || gioiTinh.isEmpty()) {
+			JOptionPane.showMessageDialog(mainFrame, "Vui lòng điền đầy đủ thông tin.");
+			return 0;
+		}
+		boolean check1 = insertHoKhau(hoTenChuHo, diaChi, khuVuc);
+		boolean check2 = insertChuHo(hoTenChuHo, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
+		if (check1 == true && check2 == true) {
+			return 1;
+		} else return -1;
 	}
 }

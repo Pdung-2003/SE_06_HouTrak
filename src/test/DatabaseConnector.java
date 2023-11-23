@@ -68,6 +68,43 @@ public class DatabaseConnector {
 
 
     // 2. Them Ho khau
+    // 2. Them Ho khau
+    public static boolean insertHoKhau(String hoTenChuHo, String diaChi, String khuVuc) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO HoKhau(hoTenChuHo, diaChi, khuVuc) VALUES (?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, hoTenChuHo);
+                pstmt.setString(2, diaChi);
+                pstmt.setString(3, khuVuc);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // Them chu ho trong them ho khau
+    public static boolean insertChuHo(String hoTen, String ngaySinh, String tonGiao, String soCMNDCCCD, String queQuan, String gioiTinh, String diaChi) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO NhanKhau(hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau) VALUES (?, ?, ?, ?, ?, ?, (SELECT MaHoKhau FROM HoKhau WHERE DiaChi = ?))";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, hoTen);
+                pstmt.setString(2, ngaySinh);
+                pstmt.setString(3, tonGiao);
+                pstmt.setString(4, soCMNDCCCD);
+                pstmt.setString(5, queQuan);
+                pstmt.setString(6, gioiTinh);
+                pstmt.setString(7, diaChi);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     // 3. Thay doi ho khau
 

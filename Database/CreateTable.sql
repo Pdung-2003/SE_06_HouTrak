@@ -14,7 +14,6 @@ CREATE TABLE NhanKhau (
     MaNhanKhau AS CONVERT(NVARCHAR(10), 'MNK' + RIGHT('000000' + CAST(STT AS VARCHAR(5)), 5)) PERSISTED PRIMARY KEY,
     HoTen NVARCHAR(255),
     NgaySinh DATE,
-    BietDanh NVARCHAR(50),
     TonGiao NVARCHAR(50),
     SoCMNDCCCD NVARCHAR(20),
     QueQuan NVARCHAR(255),
@@ -220,6 +219,31 @@ BEGIN
         @CurrentUser AS NguoiThayDoi,
         GETDATE() AS NgayThayDoi
     FROM INSERTED i;
+END;
+
+CREATE TRIGGER Tr_NhanKhau_Delete
+ON NhanKhau
+AFTER DELETE
+AS
+BEGIN
+    DECLARE @CurrentUser NVARCHAR(50);
+    SET @CurrentUser = (SELECT SUSER_SNAME());
+
+    -- Xóa dữ liệu tương ứng từ bảng LichSuThayDoi trước
+    DELETE FROM LichSuThayDoi
+    WHERE MaNhanKhau IN (SELECT MaNhanKhau FROM DELETED);
+
+    -- Thêm dữ liệu vào LichSuThayDoi sau khi đã xóa
+    INSERT INTO LichSuThayDoi (MaNhanKhau, MaHoKhau, ThongTinThayDoi, ThongTinTruoc, ThongTinSau, NguoiThayDoi, NgayThayDoi)
+    SELECT 
+        d.MaNhanKhau,
+        d.MaHoKhau,
+        'DELETE' AS ThongTinThayDoi,
+        CAST('HoTen: ' + d.HoTen + ', NgaySinh: ' + CONVERT(NVARCHAR, d.NgaySinh) AS NVARCHAR(MAX)) AS ThongTinTruoc,
+        NULL AS ThongTinSau,
+        @CurrentUser AS NguoiThayDoi,
+        GETDATE() AS NgayThayDoi
+    FROM DELETED d;
 END;
 
 -- Trigger cho việc UPDATE bảng NhanKhau
