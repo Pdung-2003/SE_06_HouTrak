@@ -191,8 +191,56 @@ public class DatabaseConnector {
 
         return danhSachHoKhau;
     }
-    // 6. Remove
+    public static HoKhau searchHoKhauByID(String MaHoKhau) {
+        HoKhau hoKhau = null;
 
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM HoKhau WHERE MaHoKhau = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, MaHoKhau);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String hoTenChuHo = rs.getString("HoTenChuHo");
+                        Date ngayLap = rs.getDate("NgayLap");
+                        String diaChi = rs.getString("DiaChi");
+                        String khuVuc = rs.getString("KhuVuc");
+
+                        hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return hoKhau;
+    }
+    // 6. Remove
+    public static boolean removeHoKhau(String MaHoKhau) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "DELETE FROM NhanKhau WHERE MaHoKhau = ?;\n" +
+                    "DELETE FROM TamTru WHERE MaNhanKhau IN (SELECT MaNhanKhau FROM NhanKhau WHERE MaHoKhau = ?);\n" +
+                    "DELETE FROM TamVang WHERE MaNhanKhau IN (SELECT MaNhanKhau FROM NhanKhau WHERE MaHoKhau = ?);\n" +
+                    "DELETE FROM KhaiTu WHERE MaNhanKhau IN (SELECT MaNhanKhau FROM NhanKhau WHERE MaHoKhau = ?);\n" +
+                    "DELETE FROM KhoanThuHoKhau WHERE MaHoKhau = ?;\n" +
+                    "DELETE FROM HoKhau WHERE MaHoKhau = ?;";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, MaHoKhau);
+                pstmt.setString(2, MaHoKhau);
+                pstmt.setString(3, MaHoKhau);
+                pstmt.setString(4, MaHoKhau);
+                pstmt.setString(5, MaHoKhau);
+                pstmt.setString(6, MaHoKhau);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     // 7. Xem lich su
     public static List<ThayDoiHoKhau> getDsThayDoi() {
         List<ThayDoiHoKhau> dsThayDoi = new ArrayList<>();

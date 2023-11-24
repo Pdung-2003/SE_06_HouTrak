@@ -1,5 +1,8 @@
 package view;
 
+import test.DatabaseConnector;
+import test.HoKhau;
+
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
@@ -24,8 +27,17 @@ import java.awt.Rectangle;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class XoaHoKhau extends JPanel {
+	JLabel lbl_XNK_CotPhai_MaHK = new JLabel();// dien ma ho khau vao day
+	JLabel lbl_XNK_CotPhai_KhuVuc = new JLabel();// dien khu vuc vao day
+	JLabel lbl_XNK_CotPhai_DiaChi = new JLabel();// dien dia chi vao day
+	JLabel lbl_XNK_CotPhai_ChuHo = new JLabel();
+	JLabel lbl_XNK_CotPhai_NgayLap = new JLabel();// dien ngay lap vao day
 	private JTextField txt_XHK_TImKiem;
 
 	private ManHinhChinh mainFrame;
@@ -33,6 +45,7 @@ public class XoaHoKhau extends JPanel {
 	 * Create the panel.
 	 */
 	public XoaHoKhau(ManHinhChinh mainFrame) {
+		//Manh
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
@@ -108,6 +121,32 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_01_content.add(btn_XHK_01_TimKiem);
 		btn_XHK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Search tu database
+				// Search từ database
+				String maHoKhau = txt_XHK_TImKiem.getText();
+				HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
+
+				// Kiểm tra xem hoKhau có giá trị hay không
+				if (hoKhau != null) {
+					String id = hoKhau.getMaHoKhau();
+					String khuVuc = hoKhau.getKhuVuc();
+					String diaChi = hoKhau.getDiaChi();
+					String chuHo = hoKhau.getHoTenChuHo();
+					Date date = hoKhau.getNgayLap();
+
+					// Đặt giá trị vào các JLabel
+					lbl_XNK_CotPhai_MaHK.setText(id);
+					lbl_XNK_CotPhai_KhuVuc.setText(khuVuc);
+					lbl_XNK_CotPhai_DiaChi.setText(diaChi);
+					lbl_XNK_CotPhai_ChuHo.setText(chuHo);
+
+					// Format và đặt giá trị ngày vào JLabel
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					lbl_XNK_CotPhai_NgayLap.setText(dateFormat.format(date));
+				} else {
+					// Nếu không tìm thấy thông tin, có thể hiển thị một thông báo hoặc thực hiện các hành động khác
+					JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin cho mã hộ khẩu: " + maHoKhau);
+				}
 			}
 		});
 		JPanel panel_XHK_02 = new JPanel();
@@ -180,24 +219,19 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotPhai.add(panel_XNK_CotPhai_01);
 		panel_XNK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
 
-		JLabel lbl_XNK_CotPhai_MaHK = new JLabel("New label");// dien ma ho khau vao day
 		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_MaHK);
 
-		JLabel lbl_XNK_CotPhai_KhuVuc = new JLabel("New label");// dien khu vuc vao day
 		lbl_XNK_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_KhuVuc);
 
-		JLabel lbl_XNK_CotPhai_DiaChi = new JLabel("New label");// dien dia chi vao day
 		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_DiaChi);
 
 		// panel nay de bang thong tin chu ho
-		JLabel lbl_XNK_CotPhai_ChuHo = new JLabel("New label");
 		lbl_XNK_CotPhai_ChuHo.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_ChuHo);
 
-		JLabel lbl_XNK_CotPhai_NgayLap = new JLabel("New label");// dien ngay lap vao day
 		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgayLap);
 

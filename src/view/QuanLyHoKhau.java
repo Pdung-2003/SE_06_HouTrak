@@ -97,7 +97,6 @@ public class QuanLyHoKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 30;
 		table = new JTable(tableModel);
-
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -132,6 +131,7 @@ public class QuanLyHoKhau extends JPanel {
 		// Đặt màu sắc cho background của bảng
 		table.setBackground(Colors.mau_Nen_QLHK);
 		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
 		panel_QLHK_02_BangThongTin.add(scrollPane);
