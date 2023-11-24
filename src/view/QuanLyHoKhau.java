@@ -75,7 +75,7 @@ public class QuanLyHoKhau extends JPanel {
 		lbl_QLHK_Sort.setMaximumSize(new Dimension(1000, 14));
 		lbl_QLHK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_QLHK_Sort.setAlignmentX(0.5f);
-		
+
 
 		comboBox_QLHK_Sort = new JComboBox();
 		comboBox_QLHK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -83,8 +83,8 @@ public class QuanLyHoKhau extends JPanel {
 		comboBox_QLHK_Sort.addItem("Mã hộ khẩu");
 		comboBox_QLHK_Sort.addItem("Ngày lập");
 		comboBox_QLHK_Sort.addItem("Khu vực");
-		
-		
+
+
 
 		// Tạo bảng và mô hình bảng
 		tableModel = new DefaultTableModel();
@@ -97,7 +97,6 @@ public class QuanLyHoKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 30;
 		table = new JTable(tableModel);
-
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -132,6 +131,7 @@ public class QuanLyHoKhau extends JPanel {
 		// Đặt màu sắc cho background của bảng
 		table.setBackground(Colors.mau_Nen_QLHK);
 		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
 		panel_QLHK_02_BangThongTin.add(scrollPane);
