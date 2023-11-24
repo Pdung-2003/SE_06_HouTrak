@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
+import test.DatabaseConnector;
 import view.Colors;
 
 import java.awt.BorderLayout;
@@ -25,6 +26,10 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class XoaNhanKhau extends JPanel {
 	private JTextField txt_XNK_TImKiem;
@@ -167,6 +172,13 @@ public class XoaNhanKhau extends JPanel {
 		lbl_XNK_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotTrai_02.add(lbl_XNK_CotTrai_7);
 
+		JLabel lbl_XNK_CotTrai_8 = new JLabel("     Mã Hộ Khẩu                          ");
+		lbl_XNK_CotTrai_8.setMinimumSize(new Dimension(50, 14));
+		lbl_XNK_CotTrai_8.setMaximumSize(new Dimension(200, 14));
+		lbl_XNK_CotTrai_8.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_XNK_CotTrai_8.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotTrai_02.add(lbl_XNK_CotTrai_8);
+
 		JPanel panel_XNK_CotPhai = new JPanel();
 		panel_XNK_CotPhai.setBackground(Colors.khung_Chung);
 		panel_XNK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
@@ -211,6 +223,10 @@ public class XoaNhanKhau extends JPanel {
 		lbl_XNK_CotPhai_TonGiao.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_02.add(lbl_XNK_CotPhai_TonGiao);
 
+		JLabel lbl_XNK_CotPhai_MaHK = new JLabel("New label");// dien ma ho khau
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XNK_CotPhai_02.add(lbl_XNK_CotPhai_MaHK);
+
 		JPanel panel_XNK_Confirm = new JPanel();
 		panel_XNK_Confirm.setBackground(Colors.khung_Chung);
 		panel_XNK_02.add(panel_XNK_Confirm, BorderLayout.SOUTH);
@@ -226,45 +242,45 @@ public class XoaNhanKhau extends JPanel {
 		btn_XNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Mảng chứa các tùy chọn
-		        String[] options = {"Rời đi", "Đã mất"};
-		        int confirmResult = JOptionPane.showOptionDialog(mainFrame,
-		                "Người này rời đi hay đã mất?",
-		                "Xác nhận",
-		                JOptionPane.DEFAULT_OPTION,
-		                JOptionPane.QUESTION_MESSAGE,
-		                null,
-		                options,
-		                options[0]);
+				String[] options = {"Rời đi", "Đã mất"};
+				int confirmResult = JOptionPane.showOptionDialog(mainFrame,
+						"Người này rời đi hay đã mất?",
+						"Xác nhận",
+						JOptionPane.DEFAULT_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,
+						options,
+						options[0]);
 
-		        if (confirmResult == 0) {
-		            // Thực hiện xóa như bình thường
-		            // ...
-		            JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
-		        } else if (confirmResult == 1) {
-		            // Yêu cầu nhập thông tin về việc "đã mất"
-		            JTextField textFieldNguoiKhaiTu = new JTextField();
-		            JTextField textFieldNguyenNhan = new JTextField();
-		            JTextField textFieldThoiGianMat = new JTextField();
+				if (confirmResult == 0) {
+					// Thực hiện xóa như bình thường
+					// ...
+					JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+				} else if (confirmResult == 1) {
+					// Yêu cầu nhập thông tin về việc "đã mất"
+					JTextField textFieldNguoiKhaiTu = new JTextField();
+					JTextField textFieldNguyenNhan = new JTextField();
+					JTextField textFieldThoiGianMat = new JTextField();
 
-		            Object[] message = {
-		                "Người khai tử:", textFieldNguoiKhaiTu,
-		                "Nguyên nhân:", textFieldNguyenNhan,
-		                "Thời gian mất:", textFieldThoiGianMat
-		            };
+					Object[] message = {
+							"Người khai tử:", textFieldNguoiKhaiTu,
+							"Nguyên nhân:", textFieldNguyenNhan,
+							"Thời gian mất:", textFieldThoiGianMat
+					};
 
-		            int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin", JOptionPane.OK_CANCEL_OPTION);
-		            if (option == JOptionPane.OK_OPTION) {
-		                // Xử lý thông tin nhập vào
-		                String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
-		                String nguyenNhan = textFieldNguyenNhan.getText();
-		                String thoiGianMat = textFieldThoiGianMat.getText();
+					int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin", JOptionPane.OK_CANCEL_OPTION);
+					if (option == JOptionPane.OK_OPTION) {
+						// Xử lý thông tin nhập vào
+						String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
+						String nguyenNhan = textFieldNguyenNhan.getText();
+						String thoiGianMat = textFieldThoiGianMat.getText();
 
-		                // Thực hiện xử lý dữ liệu ở đây
-		                // ...
+						// Thực hiện xử lý dữ liệu ở đây
+						// ...
 
-		                JOptionPane.showMessageDialog(mainFrame, "Thông tin đã được ghi nhận.");
-		            }
-		        }
+						JOptionPane.showMessageDialog(mainFrame, "Thông tin đã được ghi nhận.");
+					}
+				}
 			}
 		});
 		panel_XNK_Confirm.add(btn_XNK_Yes);
@@ -305,6 +321,53 @@ public class XoaNhanKhau extends JPanel {
 		lbl_Title_XoaNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_XNK_title.add(lbl_Title_XoaNhanKhau);
 
+
+		//thêm hàm tìm kiếm và hiển thị ttin cho nhân khẩu muốn xóa
+		btn_XNK_01_TimKiem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				String maNK = txt_XNK_TImKiem.getText();
+				if (maNK.equals("")) {
+					JOptionPane.showMessageDialog(null, "Không được để trống ô tìm kiếm !");
+					return;
+				}
+				try (Connection connection = DatabaseConnector.getConnection()) {
+					if (connection != null) {
+						String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE maNhanKhau = ?";
+						PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
+						preparedStatementToCheckCondition.setString(1, maNK);
+						ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
+
+						boolean found = false;
+
+						while (resultSet.next()) {
+							found = true;
+							lbl_XNK_CotPhai_MaNK.setText(resultSet.getString("MaNhanKhau"));
+							lbl_XNK_CotPhai_HoVaTen.setText(resultSet.getString("HoTen"));
+							lbl_XNK_CotPhai_CCCD.setText(resultSet.getString("SoCMNDCCCD"));
+							lbl_XNK_CotPhai_NgaySinh.setText(resultSet.getString("NgaySinh"));
+							lbl_XNK_CotPhai_GioiTinh.setText(resultSet.getString("GioiTinh"));
+							lbl_XNK_CotPhai_QueQuan.setText(resultSet.getString("QueQuan"));
+							lbl_XNK_CotPhai_TonGiao.setText(resultSet.getString("TonGiao"));
+							lbl_XNK_CotPhai_MaHK.setText(resultSet.getString("MaHoKhau"));
+						}
+
+
+						if (!found) {
+							JOptionPane.showMessageDialog(null, "Không tìm thấy mã nhân khẩu khớp!");
+						}
+
+						// Đóng kết nối và tài nguyên
+						resultSet.close();
+						preparedStatementToCheckCondition.close();
+						connection.close();
+					}
+				} catch (SQLException ex) {
+					// Handle any SQL exceptions here
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Lỗi khi kết nối cơ sở dữ liệu !");
+				}
+			}
+		});
 	}
 
 }
