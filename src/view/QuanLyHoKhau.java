@@ -12,6 +12,9 @@ import javax.swing.BorderFactory;
 import java.awt.*;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import test.DatabaseConnector;
@@ -19,6 +22,7 @@ import test.HoKhau;
 
 
 public class QuanLyHoKhau extends JPanel {
+	private JComboBox comboBox_QLHK_Sort;
 	private JTable table;
 	private DefaultTableModel tableModel;
 	/**
@@ -73,7 +77,7 @@ public class QuanLyHoKhau extends JPanel {
 		lbl_QLHK_Sort.setAlignmentX(0.5f);
 		
 
-		JComboBox comboBox_QLHK_Sort = new JComboBox();
+		comboBox_QLHK_Sort = new JComboBox();
 		comboBox_QLHK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_QLHK_SubTitle.add(comboBox_QLHK_Sort);
 		comboBox_QLHK_Sort.addItem("Mã hộ khẩu");
@@ -134,14 +138,29 @@ public class QuanLyHoKhau extends JPanel {
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
 		loadDataFromDatabase();
+		comboBox_QLHK_Sort.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					// Load data again when the selected item changes
+					loadDataFromDatabase();
+				}
+			}
+		});
 	}
 	// Load data from the database and populate the table
 	private void loadDataFromDatabase() {
 		// Clear existing data
 		tableModel.setRowCount(0);
-
+		List<HoKhau>  danhSachHoKhau = new ArrayList<>();
 		// Fetch data from the database
-		List<HoKhau> danhSachHoKhau = DatabaseConnector.getDanhSachHoKhau();
+		String option = comboBox_QLHK_Sort.getSelectedItem().toString();
+		if (option.equals("Mã hộ khẩu")){
+			danhSachHoKhau = DatabaseConnector.getDanhSachHoKhau();
+		} else if (option.equals("Ngày lập")){
+			danhSachHoKhau = DatabaseConnector.DsHoKHauOderByNgayLap();
+		} else if (option.equals("Khu vực")){
+			danhSachHoKhau = DatabaseConnector.DsHoKHauOderByKhuVuc();
+		}
 
 		// Populate the table with the fetched data
 		for (HoKhau hoKhau : danhSachHoKhau) {

@@ -12,12 +12,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LichSuThayDoiHoKhau extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private JComboBox comboBox_LSTDHK_Sort;
 	private JTable table;
 	private DefaultTableModel tableModel;
 	public LichSuThayDoiHoKhau() {
@@ -67,7 +71,7 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		lbl_LSTDHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_LSTDHK_Subtitle.setAlignmentX(0.5f);
 		
-		JComboBox comboBox_LSTDHK_Sort = new JComboBox();
+		comboBox_LSTDHK_Sort = new JComboBox();
 		comboBox_LSTDHK_Sort.addItem("Ngày thay đổi");
 		comboBox_LSTDHK_Sort.addItem("Mã hộ khẩu");
 		comboBox_LSTDHK_Sort.addItem("Loại thay đổi");
@@ -130,6 +134,14 @@ public class LichSuThayDoiHoKhau extends JPanel {
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
 		loadDataFromDatabase();
+		comboBox_LSTDHK_Sort.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					// Load data again when the selected item changes
+					loadDataFromDatabase();
+				}
+			}
+		});
 	}
 	// Load data from the database and populate the table
 	private void loadDataFromDatabase() {
@@ -137,7 +149,16 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		tableModel.setRowCount(0);
 
 		// Fetch data from the database
-		List<ThayDoiHoKhau> dsThayDoi = DatabaseConnector.getDsThayDoi();
+		List<ThayDoiHoKhau> dsThayDoi = new ArrayList<>();
+		// Fetch data from the database
+		String option = comboBox_LSTDHK_Sort.getSelectedItem().toString();
+		if (option.equals("Ngày thay đổi")){
+			dsThayDoi = DatabaseConnector.getDsThayDoi();
+		} else if (option.equals("Mã hộ khẩu")){
+			dsThayDoi = DatabaseConnector.DsLichSuHKOrderByMHK();
+		} else if (option.equals("Loại thay đổi")){
+			dsThayDoi = DatabaseConnector.DsLichSuHKOrderByType();
+		}
 
 		// Populate the table with the fetched data
 		for (ThayDoiHoKhau thayDoi : dsThayDoi) {

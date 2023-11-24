@@ -125,8 +125,7 @@ public class ManHinhChinh extends JFrame {
         
   
         contentPane.add(cardPanel, BorderLayout.WEST);
-       
-        setVisible(true);
+       	setVisible(true);
     }
 		
 		//Sidebar

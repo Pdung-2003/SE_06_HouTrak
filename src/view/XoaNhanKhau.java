@@ -225,19 +225,45 @@ public class XoaNhanKhau extends JPanel {
 		btn_XNK_Yes.setBorderPainted(false);
 		btn_XNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn xóa không?", "Xác nhận xóa",
-		                JOptionPane.YES_NO_OPTION);
+				// Mảng chứa các tùy chọn
+		        String[] options = {"Rời đi", "Đã mất"};
+		        int confirmResult = JOptionPane.showOptionDialog(mainFrame,
+		                "Người này rời đi hay đã mất?",
+		                "Xác nhận",
+		                JOptionPane.DEFAULT_OPTION,
+		                JOptionPane.QUESTION_MESSAGE,
+		                null,
+		                options,
+		                options[0]);
 
-		        if (confirmResult == JOptionPane.YES_OPTION) {
-		            // Thực hiện xóa ở đây
-		            // Ví dụ: xóa dữ liệu từ cơ sở dữ liệu
-
-		            // Hiển thị thông báo xóa thành công
+		        if (confirmResult == 0) {
+		            // Thực hiện xóa như bình thường
+		            // ...
 		            JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
-		        }else if (confirmResult == JOptionPane.NO_OPTION) {
-		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Xóa đã bị hủy.");
+		        } else if (confirmResult == 1) {
+		            // Yêu cầu nhập thông tin về việc "đã mất"
+		            JTextField textFieldNguoiKhaiTu = new JTextField();
+		            JTextField textFieldNguyenNhan = new JTextField();
+		            JTextField textFieldThoiGianMat = new JTextField();
+
+		            Object[] message = {
+		                "Người khai tử:", textFieldNguoiKhaiTu,
+		                "Nguyên nhân:", textFieldNguyenNhan,
+		                "Thời gian mất:", textFieldThoiGianMat
+		            };
+
+		            int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin", JOptionPane.OK_CANCEL_OPTION);
+		            if (option == JOptionPane.OK_OPTION) {
+		                // Xử lý thông tin nhập vào
+		                String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
+		                String nguyenNhan = textFieldNguyenNhan.getText();
+		                String thoiGianMat = textFieldThoiGianMat.getText();
+
+		                // Thực hiện xử lý dữ liệu ở đây
+		                // ...
+
+		                JOptionPane.showMessageDialog(mainFrame, "Thông tin đã được ghi nhận.");
+		            }
 		        }
 			}
 		});
