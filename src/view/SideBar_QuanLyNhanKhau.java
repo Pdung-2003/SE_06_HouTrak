@@ -31,7 +31,7 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		
 		JPanel panel_SB_QLNK = new JPanel();
 		add(panel_SB_QLNK, "name_356790614328500");
-		panel_SB_QLNK.setLayout(new GridLayout(10, 1, 0, 0));
+		panel_SB_QLNK.setLayout(new GridLayout(15, 1, 0, 0));
 		panel_SB_QLNK.setBackground(Colors.menu_Trai);
 		
 		JButton btn_SB_QLNK = new JButton("  Quản lý nhân khẩu");
@@ -155,6 +155,19 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		    mainFrame.switchToMainPanel(lichSuThayDoiNhanKhauPanel);
 		});
 		panel_SB_QLNK.add(btn_SB_QLNK_LSTDNK);
+
+		JButton btn_SB_QLNK_TKeNK = new JButton("  Thống kê nhân khẩu");
+		btn_SB_QLNK_TKeNK.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLNK_TKeNK.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_SB_QLNK_TKeNK.setBackground(Colors.menu_Trai);
+		btn_SB_QLNK_TKeNK.setForeground(Color.WHITE);
+		btn_SB_QLNK_TKeNK.setOpaque(true);
+		btn_SB_QLNK_TKeNK.setBorder(matteBorder);
+		btn_SB_QLNK_TKeNK.addActionListener(e -> {
+			ThongKeNhanKhau thongKeNhanKhauPanel = new ThongKeNhanKhau();
+			mainFrame.switchToMainPanel(thongKeNhanKhauPanel);
+		});
+		panel_SB_QLNK.add(btn_SB_QLNK_TKeNK);
 		
 		
 		JButton btn_SB_QLNK_Back = new JButton("Quay lại");
