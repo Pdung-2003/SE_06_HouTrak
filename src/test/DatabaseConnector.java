@@ -167,7 +167,7 @@ public class DatabaseConnector {
         return false;
     }
 
-    // 3. Thay doi ho khau
+    // 3. Tach ho khau
     public static boolean tachHoKhau(String diaChi, String khuVuc, String maChuHo) {
         try (Connection conn = ds.getConnection()) {
             String query = "INSERT INTO HoKhau(hoTenChuHo, diaChi, khuVuc) VALUES ((SELECT HoTen FROM NhanKhau WHERE MaNhanKhau = ?) , ?, ?)" +
@@ -209,6 +209,29 @@ public class DatabaseConnector {
         }
         return false;
     }
+    public static boolean thayDoiChuHo(String diaChi, String khuVuc, String soCMNDCCCD, String maHoKhau) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "UPDATE HoKhau\n" +
+                    "SET\n" +
+                    "    HoTenChuHo = COALESCE((SELECT HoTen FROM NhanKhau WHERE SoCMNDCCCD = ? AND MaHoKhau = ?), HoTenChuHo),\n" +
+                    "    DiaChi = ?,\n" +
+                    "    KhuVuc = ?\n" +
+                    "WHERE MaHoKhau = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, soCMNDCCCD);
+                pstmt.setString(2, maHoKhau);
+                pstmt.setString(3, diaChi);
+                pstmt.setString(4, khuVuc);
+                pstmt.setString(5, maHoKhau);
+                int rowsAffected = pstmt.executeUpdate();
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     // 5. Search
     public static List<HoKhau> searchHoKhau(String Address) {

@@ -25,8 +25,8 @@ public class ThayDoiHoKhau extends JPanel {
 	JComboBox comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc = new JComboBox();
 	private JTextField text_TDHK_01;
 	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi;
-	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen;
-	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_CCCD;
+	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen = null;
+	private String soCMNDCCCD;
 	private ManHinhChinh mainFrame;
 
 	public ThayDoiHoKhau(ManHinhChinh mainFrame) {
@@ -126,7 +126,7 @@ public class ThayDoiHoKhau extends JPanel {
 					Date date = hoKhau.getNgayLap();
 
 					Object[] rowData = {
-							id, khuVuc, diaChi, chuHo, date
+							id, chuHo, date, diaChi, khuVuc
 					};
 					tableModel.addRow(rowData);
 
@@ -328,23 +328,44 @@ public class ThayDoiHoKhau extends JPanel {
 		btn_TDHK_Yes.setBorderPainted(false);
 		btn_TDHK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn thay đổi ", "Xác nhận ",
-		                JOptionPane.YES_NO_OPTION);
+				String hoVaTenChuHo = textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.getText().trim();
+				if (!hoVaTenChuHo.isEmpty()){
+					int confirmResult1 = JOptionPane.showConfirmDialog(mainFrame,
+							"Bạn xác nhận muốn thay đổi chủ hộ ", "Xác nhận ",
+							JOptionPane.YES_NO_OPTION);
 
-		        if (confirmResult == JOptionPane.YES_OPTION) {
-		            // Thực hiện thay doi o day
-		            // Hiển thị thông báo xóa thành công
-					boolean check = updateHK();
-					if (check == true)
-		            	JOptionPane.showMessageDialog(mainFrame, "Thay đổi thành công!");
-					else
-						JOptionPane.showMessageDialog(mainFrame, "Thay đổi thất bại");
-		        } else if (confirmResult == JOptionPane.NO_OPTION) {
-		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Đã Hủy.");
-		            // reset lại cái JLabel...
-		        }
+					if (confirmResult1 == JOptionPane.YES_OPTION) {
+						// Thực hiện thay doi o day
+						// Hiển thị thông báo xóa thành công
+						boolean check = updateCH();
+						if (check == true)
+							JOptionPane.showMessageDialog(mainFrame, "Thay đổi thành công!");
+						else
+							JOptionPane.showMessageDialog(mainFrame, "Thay đổi thất bại. Nhân khẩu không thuộc hộ này!");
+					} else if (confirmResult1 == JOptionPane.NO_OPTION) {
+						// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+						JOptionPane.showMessageDialog(mainFrame, "Đã Hủy.");
+						// reset lại cái JLabel...
+					}
+				}else {
+					int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
+							"Bạn có chắc chắn muốn thay đổi ", "Xác nhận ",
+							JOptionPane.YES_NO_OPTION);
+
+					if (confirmResult == JOptionPane.YES_OPTION) {
+						// Thực hiện thay doi o day
+						// Hiển thị thông báo xóa thành công
+						boolean check = updateHK();
+						if (check == true)
+							JOptionPane.showMessageDialog(mainFrame, "Thay đổi thành công!");
+						else
+							JOptionPane.showMessageDialog(mainFrame, "Thay đổi thất bại");
+					} else if (confirmResult == JOptionPane.NO_OPTION) {
+						// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+						JOptionPane.showMessageDialog(mainFrame, "Đã Hủy.");
+						// reset lại cái JLabel...
+					}
+				}
 			}
 		});
 		panel_TDHK_Confirm.add(btn_TDHK_Yes);
@@ -409,7 +430,7 @@ public class ThayDoiHoKhau extends JPanel {
 				? comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.getSelectedItem().toString()
 				: "";
 		String diaChi = textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.getText();
-
-		return true;
+		soCMNDCCCD = textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.getText();
+		return DatabaseConnector.thayDoiChuHo(diaChi, khuVuc, soCMNDCCCD, maHoKhau);
 	}
 }
