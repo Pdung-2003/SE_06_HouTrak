@@ -1,14 +1,9 @@
 package view;
 
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.BorderFactory;
 import java.awt.*;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -135,6 +130,9 @@ public class QuanLyHoKhau extends JPanel {
 
 		// Thêm JScrollPane vào panel
 		panel_QLHK_02_BangThongTin.add(scrollPane);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
 		loadDataFromDatabase();

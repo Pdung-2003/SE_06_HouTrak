@@ -1,14 +1,15 @@
 package view;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import test.DatabaseConnector;
+import test.HoKhau;
+import test.NhanKhau;
+
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -23,9 +24,18 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class TachHoKhau extends JPanel {
+	private JTable table;
+	private DefaultTableModel tableModel;
+	private String maHoKhau;
+	JComboBox comboBox_CotPhai_ThongTinSau_Content_KhuVuc = new JComboBox();
+	JLabel lbl_CotPhai_ThongTinDau_DiaChi = new JLabel();
+	JLabel lbl_CotPhai_ThongTinDau_ChuHo = new JLabel();
 	private JTextField txt_TachHK_TImKiem;
 	private ManHinhChinh mainFrame;
 	private JTextField textField_CotPhai_ThongTinSau_Content_DiaChi;
@@ -109,6 +119,22 @@ public class TachHoKhau extends JPanel {
 		panel_TachHK_01_content.add(btn_TachHK_01_TimKiem);
 		btn_TachHK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String maHoKhau = txt_TachHK_TImKiem.getText();
+				HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
+				loadDataFromDatabase();
+
+				// Kiểm tra xem hoKhau có giá trị hay không
+				if (hoKhau != null) {
+					String diaChi = hoKhau.getDiaChi();
+					String chuHo = hoKhau.getHoTenChuHo();
+
+					// Đặt giá trị vào các JLabel
+					lbl_CotPhai_ThongTinDau_DiaChi.setText(diaChi);
+					lbl_CotPhai_ThongTinDau_ChuHo.setText(chuHo);
+				} else {
+					// Nếu không tìm thấy thông tin, có thể hiển thị một thông báo hoặc thực hiện các hành động khác
+					JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin cho mã hộ khẩu: " + maHoKhau);
+				}
 			}
 		});
 		JPanel panel_TachHK_02 = new JPanel();
@@ -173,16 +199,76 @@ public class TachHoKhau extends JPanel {
 		panel_CotPhai_ThongTinDau.add(panel_CotPhai_ThongTinDau_01);
 		panel_CotPhai_ThongTinDau_01.setLayout(new GridLayout(2, 1, 0, 0));
 
-		JLabel lbl_CotPhai_ThongTinDau_DiaChi = new JLabel("New label");
 		panel_CotPhai_ThongTinDau_01.add(lbl_CotPhai_ThongTinDau_DiaChi);
 
-		JLabel lbl_CotPhai_ThongTinDau_ChuHo = new JLabel("New label");
 		panel_CotPhai_ThongTinDau_01.add(lbl_CotPhai_ThongTinDau_ChuHo);
 
 		JPanel panel_CotPhai_ThongTinDau_02 = new JPanel();
 		panel_CotPhai_ThongTinDau_02.setBackground(Colors.khung_Chung);
 		panel_CotPhai_ThongTinDau.add(panel_CotPhai_ThongTinDau_02);
 		panel_CotPhai_ThongTinDau_02.setLayout(new BorderLayout(0, 0));
+
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Mã Nhân Khẩu");
+		tableModel.addColumn("Họ Tên");
+		tableModel.addColumn("Ngày Sinh");
+		tableModel.addColumn("Tôn Giáo");
+		tableModel.addColumn("Số CMND/CCCD");
+		tableModel.addColumn("Quê Quán");
+		tableModel.addColumn("Giới Tính");
+		tableModel.addColumn("Mã Hộ Khẩu");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(80); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(100); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(80); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(100); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+		table.getColumnModel().getColumn(5).setPreferredWidth(100); // Khu Vực
+		table.getColumnModel().getColumn(6).setPreferredWidth(80); // Khu Vực
+		table.getColumnModel().getColumn(7).setPreferredWidth(80); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		table.setPreferredScrollableViewportSize(new Dimension(800, 100));
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		//scrollPane.setPreferredSize(new Dimension(1400, 80));  // Đặt kích thước của JScrollPane
+		//scrollPane.setViewportView(table);
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_CotPhai_ThongTinDau_02.add(scrollPane);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		JPanel panel_CotPhai_ThongTinSau = new JPanel();
 		panel_CotPhai_ThongTinSau.setBackground(Colors.khung_Chung);
@@ -226,7 +312,6 @@ public class TachHoKhau extends JPanel {
 		panel_CotPhai_ThongTinSau_Content.add(panel_CotPhai_ThongTinSau_Content_01);
 		panel_CotPhai_ThongTinSau_Content_01.setLayout(new GridLayout(2, 1, 0, 0));
 
-		JComboBox comboBox_CotPhai_ThongTinSau_Content_KhuVuc = new JComboBox();
 		comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực A");
         comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực B");
         comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực C");
@@ -276,8 +361,13 @@ public class TachHoKhau extends JPanel {
 
 				if (confirmResult == JOptionPane.YES_OPTION) {
 					// Thực hiện thay doi o day
+					JOptionPane.showMessageDialog(mainFrame, "Vui lòng chờ xử lý này có thể tốn chút thời gian");
 					// Hiển thị thông báo xóa thành công
-					JOptionPane.showMessageDialog(mainFrame, "Tách thành công!");
+					boolean check = tachHK();
+					if (check == true)
+						JOptionPane.showMessageDialog(mainFrame, "Tách thành công!");
+					else
+						JOptionPane.showMessageDialog(mainFrame, "Tách thất bại kiểm tra lại thông tin");
 				} else if (confirmResult == JOptionPane.NO_OPTION) {
 					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
 					JOptionPane.showMessageDialog(mainFrame, "Hủy.");
@@ -323,5 +413,34 @@ public class TachHoKhau extends JPanel {
 		lbl_Title_TachHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_TachHK_title.add(lbl_Title_TachHoKhau);
 	}
+	private void loadDataFromDatabase() {
+		maHoKhau = txt_TachHK_TImKiem.getText();
+		// Clear existing data
+		tableModel.setRowCount(0);
+		List<NhanKhau> danhSachNhanKhau = new ArrayList<>();
+		danhSachNhanKhau = DatabaseConnector.getDsNhanKhau(maHoKhau);
 
+		// Populate the table with the fetched data
+		for (NhanKhau nhanKhau : danhSachNhanKhau) {
+			Object[] rowData = {
+					nhanKhau.getMaNhanKhau(),
+					nhanKhau.getHoTen(),
+					nhanKhau.getNgaySinh(),
+					nhanKhau.getTonGiao(),
+					nhanKhau.getSoCMNDCCCD(),
+					nhanKhau.getQueQuan(),
+					nhanKhau.getGioiTinh(),
+					nhanKhau.getMaHoKhau()
+			};
+			tableModel.addRow(rowData);
+		}
+	}
+	private boolean tachHK() {
+		String diaChi = textField_CotPhai_ThongTinSau_Content_DiaChi.getText();
+		String khuVuc = (comboBox_CotPhai_ThongTinSau_Content_KhuVuc.getSelectedItem() != null)
+				? comboBox_CotPhai_ThongTinSau_Content_KhuVuc.getSelectedItem().toString()
+				: "";
+		String maChuHo = textField_CotPhai_ThongTinSau_Content_ChuHo.getText();
+		return DatabaseConnector.tachHoKhau(diaChi, khuVuc, maChuHo);
+	}
 }

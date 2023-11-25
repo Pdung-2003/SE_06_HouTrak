@@ -2,29 +2,27 @@ package view;
 
 import test.DatabaseConnector;
 import test.HoKhau;
+import test.NhanKhau;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import java.awt.Point;
 import java.awt.Rectangle;
-import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
@@ -38,9 +36,13 @@ public class XoaHoKhau extends JPanel {
 	JLabel lbl_XNK_CotPhai_DiaChi = new JLabel();// dien dia chi vao day
 	JLabel lbl_XNK_CotPhai_ChuHo = new JLabel();
 	JLabel lbl_XNK_CotPhai_NgayLap = new JLabel();// dien ngay lap vao day
+	JPanel panel_XNK_CotPhai_02 = new JPanel();
+	private JTable table;
+	private DefaultTableModel tableModel;
 	private JTextField txt_XHK_TImKiem;
 
 	private ManHinhChinh mainFrame;
+	private String maHoKhau;
 	/**
 	 * Create the panel.
 	 */
@@ -125,6 +127,7 @@ public class XoaHoKhau extends JPanel {
 				// Search từ database
 				String maHoKhau = txt_XHK_TImKiem.getText();
 				HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
+				loadDataFromDatabase();
 
 				// Kiểm tra xem hoKhau có giá trị hay không
 				if (hoKhau != null) {
@@ -235,10 +238,74 @@ public class XoaHoKhau extends JPanel {
 		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgayLap);
 
-		JPanel panel_XNK_CotPhai_02 = new JPanel();//dien bang thong tin thanh vien thuoc ho khau vao day
+		//dien bang thong tin thanh vien thuoc ho khau vao day
 		panel_XNK_CotPhai_02.setBackground(Colors.khung_Chung);
 		panel_XHK_CotPhai.add(panel_XNK_CotPhai_02);
 		panel_XNK_CotPhai_02.setLayout(new BorderLayout(0, 0));
+		Dimension preferredSize = new Dimension(1400, 100);
+		panel_XNK_CotPhai_02.setPreferredSize(preferredSize);
+
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Mã Nhân Khẩu");
+		tableModel.addColumn("Họ Tên");
+		tableModel.addColumn("Ngày Sinh");
+		tableModel.addColumn("Tôn Giáo");
+		tableModel.addColumn("Số CMND/CCCD");
+		tableModel.addColumn("Quê Quán");
+		tableModel.addColumn("Giới Tính");
+		tableModel.addColumn("Mã Hộ Khẩu");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(80); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(100); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(80); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(100); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+		table.getColumnModel().getColumn(5).setPreferredWidth(100); // Khu Vực
+		table.getColumnModel().getColumn(6).setPreferredWidth(80); // Khu Vực
+		table.getColumnModel().getColumn(7).setPreferredWidth(80); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		table.setPreferredScrollableViewportSize(new Dimension(800, 100));
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		//scrollPane.setPreferredSize(new Dimension(1400, 80));  // Đặt kích thước của JScrollPane
+		//scrollPane.setViewportView(table);
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_XNK_CotPhai_02.add(scrollPane);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		JPanel panel_XHK_Confirm = new JPanel();
 		panel_XHK_Confirm.setBackground(Colors.khung_Chung);
@@ -259,11 +326,12 @@ public class XoaHoKhau extends JPanel {
 		                JOptionPane.YES_NO_OPTION);
 
 		        if (confirmResult == JOptionPane.YES_OPTION) {
-		            // Thực hiện xóa ở đây
-		            // Ví dụ: xóa dữ liệu từ cơ sở dữ liệu
-		        		
-		            // Hiển thị thông báo xóa thành công
-		            JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+		            boolean check = DatabaseConnector.removeHoKhau(maHoKhau);
+					if (check == true) {
+						JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+					} else{
+						JOptionPane.showMessageDialog(mainFrame, "Xóa thất bại! Vui lòng kiểm tra lại!");
+					}
 		        } else if (confirmResult == JOptionPane.NO_OPTION) {
 		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
 		            JOptionPane.showMessageDialog(mainFrame, "Xóa đã bị hủy.");
@@ -310,6 +378,28 @@ public class XoaHoKhau extends JPanel {
 		lbl_Title_XoaHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_XHK_title.add(lbl_Title_XoaHoKhau);
 
+	}
+	private void loadDataFromDatabase() {
+		maHoKhau = txt_XHK_TImKiem.getText();
+		// Clear existing data
+		tableModel.setRowCount(0);
+		List<NhanKhau>  danhSachNhanKhau = new ArrayList<>();
+		danhSachNhanKhau = DatabaseConnector.getDsNhanKhau(maHoKhau);
+
+		// Populate the table with the fetched data
+		for (NhanKhau nhanKhau : danhSachNhanKhau) {
+			Object[] rowData = {
+					nhanKhau.getMaNhanKhau(),
+					nhanKhau.getHoTen(),
+					nhanKhau.getNgaySinh(),
+					nhanKhau.getTonGiao(),
+					nhanKhau.getSoCMNDCCCD(),
+					nhanKhau.getQueQuan(),
+					nhanKhau.getGioiTinh(),
+					nhanKhau.getMaHoKhau()
+			};
+			tableModel.addRow(rowData);
+		}
 	}
 
 }

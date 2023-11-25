@@ -4,6 +4,7 @@ import test.DatabaseConnector;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -88,7 +89,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_02);
 		panel_TNK_CotPhai_NhanKhau_02.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_02 = new JLabel("   CCCD/CMND*       ");
+		JLabel lbl_TNK_CotPhai_02 = new JLabel("   CCCD/CMND*      ");
 		lbl_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_02.add(lbl_TNK_CotPhai_02, BorderLayout.WEST);
 
@@ -104,7 +105,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_03);
 		panel_TNK_CotPhai_NhanKhau_03.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_03 = new JLabel("   Giới tính*               ");
+		JLabel lbl_TNK_CotPhai_03 = new JLabel("   Giới tính*              ");
 		lbl_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_03.add(lbl_TNK_CotPhai_03, BorderLayout.WEST);
 
@@ -133,7 +134,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_04);
 		panel_TNK_CotPhai_NhanKhau_04.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TNK_CotPhai_04 = new JLabel("   Ngày sinh*             ");
+		JLabel lbl_TNK_CotPhai_04 = new JLabel("   Ngày sinh*            ");
 		lbl_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_04.add(lbl_TNK_CotPhai_04, BorderLayout.WEST);
 
@@ -218,7 +219,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_07);
 		panel_TNK_CotPhai_NhanKhau_07.setLayout(new BorderLayout(5, 5));
 
-		JLabel lbl_TNK_CotPhai_07 = new JLabel("   Mã hộ khẩu*        ");
+		JLabel lbl_TNK_CotPhai_07 = new JLabel("   Mã hộ khẩu*       ");
 		panel_TNK_CotPhai_NhanKhau_07.add(lbl_TNK_CotPhai_07, BorderLayout.WEST);
 		lbl_TNK_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 12));
 
@@ -247,10 +248,10 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn thêm ? ", "Xác nhận ",
-		                JOptionPane.YES_NO_OPTION);
+						"Bạn có chắc chắn muốn thêm ? ", "Xác nhận ",
+						JOptionPane.YES_NO_OPTION);
 
-		        if (confirmResult == JOptionPane.YES_OPTION) {
+				if (confirmResult == JOptionPane.YES_OPTION) {
 					String hoTen = textField_TNK_CotPhai_02.getText();
 					String cmnd = textField_TNK_CotPhai_03.getText();
 					String gioiTinh = rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected() ? "Nam" : "Nữ";
@@ -324,10 +325,10 @@ public class ThemNhanKhau extends JPanel {
 						ex.printStackTrace();
 						JOptionPane.showMessageDialog(null, "Lỗi khi thêm nhân khẩu!");
 					}
-		        } else if (confirmResult == JOptionPane.NO_OPTION) {
-		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Thêm đã bị hủy.");
-		        }
+				} else if (confirmResult == JOptionPane.NO_OPTION) {
+					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+					JOptionPane.showMessageDialog(mainFrame, "Thêm đã bị hủy.");
+				}
 			}
 		});
 		panel_TNK_confirm.add(btn_TNK_Yes);
@@ -339,16 +340,40 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_No.setOpaque(true);
 		btn_TNK_No.setBorderPainted(false);
 		btn_TNK_No.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
-		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
-		    }
+			public void actionPerformed(ActionEvent e) {
+				QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+				mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+			}
 		});
 		panel_TNK_confirm.add(btn_TNK_No);
 
 		JPanel panel_TNK_Dem = new JPanel();
 		panel_TNK_Dem.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTNK.add(panel_TNK_Dem, BorderLayout.NORTH);
+		panel_TNK_Dem.setLayout(new BorderLayout(10, 10));
+
+		JButton btn_TNK_NhapFile = new JButton("Chọn file");
+		btn_TNK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_TNK_Dem.add(btn_TNK_NhapFile, BorderLayout.WEST);
+
+		btn_TNK_NhapFile.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				openExcelFile();
+			}
+		});
+
+		JPanel panel_TNK_NhapFile_dem = new JPanel();
+		panel_TNK_NhapFile_dem.setBackground(Colors.khung_Chung);
+		panel_TNK_Dem.add(panel_TNK_NhapFile_dem, BorderLayout.NORTH);
+
+		JPanel panel_TNK_NhapFile_dem2 = new JPanel();
+		panel_TNK_NhapFile_dem2.setBackground(Colors.khung_Chung);
+		panel_TNK_Dem.add(panel_TNK_NhapFile_dem2, BorderLayout.SOUTH);
+
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_TNK_Dem.add(lblNewLabel, BorderLayout.CENTER);
 
 		JPanel panel_TNK_title = new JPanel();
 		panel_TNK_title.setBackground(Colors.nen_Chung);
@@ -394,6 +419,22 @@ public class ThemNhanKhau extends JPanel {
 		calendar.set(year, month - 1, 1);
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
+	}
+
+	private static void openExcelFile() {
+		JFileChooser fileChooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "xls", "xlsx");
+		fileChooser.setFileFilter(filter);
+
+		int result = fileChooser.showOpenDialog(null);
+
+		if (result == JFileChooser.APPROVE_OPTION) {
+			// Người dùng đã chọn một tệp
+			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+			System.out.println("Selected file: " + filePath);
+
+			// Gọi phương thức xử lý tệp Excel ở đây (đọc, xử lý, v.v.)
+		}
 	}
 
 }

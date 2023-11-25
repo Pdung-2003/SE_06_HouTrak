@@ -22,6 +22,7 @@ CREATE TABLE NhanKhau (
     FOREIGN KEY (MaHoKhau) REFERENCES HoKhau(MaHoKhau)
 );
 
+
 -- 3. Tạo bảng Lịch sử thay đổi thông tin nhân khẩu hộ khẩu
 CREATE TABLE LichSuThayDoi (
 	STT INT IDENTITY(1, 1),
