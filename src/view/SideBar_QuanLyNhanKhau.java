@@ -31,7 +31,7 @@ public class SideBar_QuanLyNhanKhau extends JPanel {
 		
 		JPanel panel_SB_QLNK = new JPanel();
 		add(panel_SB_QLNK, "name_356790614328500");
-		panel_SB_QLNK.setLayout(new GridLayout(15, 1, 0, 0));
+		panel_SB_QLNK.setLayout(new GridLayout(11, 1, 0, 0));
 		panel_SB_QLNK.setBackground(Colors.menu_Trai);
 		
 		JButton btn_SB_QLNK = new JButton("  Quản lý nhân khẩu");

@@ -24,7 +24,7 @@ import view.*
 		
 		JPanel panel_SB_QLHK = new JPanel();
 		add(panel_SB_QLHK, "name_422097596483300");
-		panel_SB_QLHK.setLayout(new GridLayout(10, 1, 0, 0));
+		panel_SB_QLHK.setLayout(new GridLayout(11, 1, 0, 0));
 		panel_SB_QLHK.setBackground(Colors.menu_Trai);
 		
 		JButton btn_SB_QLHK = new JButton("  Quản lí hộ khẩu");
