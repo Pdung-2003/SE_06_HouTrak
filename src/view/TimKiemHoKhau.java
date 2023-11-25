@@ -66,6 +66,9 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_KhoangTrang2.add(lbl_TKHK_CachTim);
 
 		JComboBox comboBox_TKHK_CachTim = new JComboBox();
+		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo tên chủ hộ");
+		comboBox_TKHK_CachTim.addItem("Tìm kiém theo mã hộ khẩu");
+		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo địa chỉ");
 		panel_TKHK_KhoangTrang2.add(comboBox_TKHK_CachTim);
 
 		JPanel panel_TKHK_KhoangTrang1 = new JPanel();

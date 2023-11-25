@@ -25,5 +25,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="adaptive" level="project" />
+    <orderEntry type="library" name="sqljdbc_12" level="project" />
   </component>
 </module>

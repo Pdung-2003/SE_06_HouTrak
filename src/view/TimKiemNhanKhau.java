@@ -72,8 +72,13 @@ public class TimKiemNhanKhau extends JPanel {
 		lbl_TKNK_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_TKNK_KhoangTrang2.add(lbl_TKNK_CachTim);
 
-		JComboBox comboBox_TKHK_CachTim = new JComboBox();
-		panel_TKNK_KhoangTrang2.add(comboBox_TKHK_CachTim);
+		JComboBox comboBox_TKNK_SortTK = new JComboBox();
+		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo tên");
+		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo ngày sinh");
+		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo số CMND");
+		comboBox_TKNK_SortTK.addItem("Tìm kiém theo mã nhân khẩu");
+		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo mã hộ khẩu");
+		panel_TKNK_KhoangTrang2.add(comboBox_TKNK_SortTK);
 
 		JPanel panel_TKNK_KhoangTrang1 = new JPanel();
 		panel_TKNK_KhoangTrang1.setBackground(Colors.khung_Chung);
