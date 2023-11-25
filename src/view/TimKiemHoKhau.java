@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.border.MatteBorder;
@@ -19,6 +20,7 @@ import javax.swing.table.JTableHeader;
 public class TimKiemHoKhau extends JPanel {
 	private JTable table;
 	private DefaultTableModel tableModel;
+	private JComboBox comboBox_TKHK_CachTim;
 	private JTextField text_TKHK_01;
 
 	/**
@@ -65,9 +67,9 @@ public class TimKiemHoKhau extends JPanel {
 		lbl_TKHK_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_TKHK_KhoangTrang2.add(lbl_TKHK_CachTim);
 
-		JComboBox comboBox_TKHK_CachTim = new JComboBox();
+		comboBox_TKHK_CachTim = new JComboBox();
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo tên chủ hộ");
-		comboBox_TKHK_CachTim.addItem("Tìm kiém theo mã hộ khẩu");
+		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo mã hộ khẩu");
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo địa chỉ");
 		panel_TKHK_KhoangTrang2.add(comboBox_TKHK_CachTim);
 
@@ -222,13 +224,20 @@ public class TimKiemHoKhau extends JPanel {
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 	}
 	private void search() {
-		String address = text_TKHK_01.getText();
+		String info = text_TKHK_01.getText();
 		// Clear existing data
 		tableModel.setRowCount(0);
 
 		// Fetch data from the database
-		List<HoKhau> danhSachHoKhau = DatabaseConnector.searchHoKhau(address);
-
+		List<HoKhau> danhSachHoKhau = new ArrayList<>();
+		String option = comboBox_TKHK_CachTim.getSelectedItem().toString();
+		if (option.equals("Tìm kiếm theo mã hộ khẩu")){
+			danhSachHoKhau = DatabaseConnector.searchHoKhauMaHoKhau(info);
+		} else if (option.equals("Tìm kiếm theo tên chủ hộ")){
+			danhSachHoKhau = DatabaseConnector.searchHoKhauCH(info);
+		} else if (option.equals("Tìm kiếm theo địa chỉ")){
+			danhSachHoKhau = DatabaseConnector.searchHoKhau(info);
+		}
 		// Populate the table with the fetched data
 		for (HoKhau hoKhau : danhSachHoKhau) {
 			Object[] rowData = {

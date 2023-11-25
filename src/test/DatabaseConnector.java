@@ -261,6 +261,60 @@ public class DatabaseConnector {
 
         return danhSachHoKhau;
     }
+    public static List<HoKhau> searchHoKhauCH(String tenCH) {
+        List<HoKhau> danhSachHoKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM HoKhau WHERE HoTenChuHo LIKE ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, "%" + tenCH + "%");
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String hoTenChuHo = rs.getString("HoTenChuHo");
+                        Date ngayLap = rs.getDate("NgayLap");
+                        String diaChi = rs.getString("DiaChi");
+                        String khuVuc = rs.getString("KhuVuc");
+
+                        HoKhau hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                        danhSachHoKhau.add(hoKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return danhSachHoKhau;
+    }
+    public static List<HoKhau> searchHoKhauMaHoKhau(String maHo) {
+        List<HoKhau> danhSachHoKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM HoKhau WHERE MaHoKhau LIKE ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, "%" + maHo + "%");
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String hoTenChuHo = rs.getString("HoTenChuHo");
+                        Date ngayLap = rs.getDate("NgayLap");
+                        String diaChi = rs.getString("DiaChi");
+                        String khuVuc = rs.getString("KhuVuc");
+
+                        HoKhau hoKhau = new HoKhau(maHoKhau, hoTenChuHo, ngayLap, diaChi, khuVuc);
+                        danhSachHoKhau.add(hoKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return danhSachHoKhau;
+    }
     public static HoKhau searchHoKhauByID(String MaHoKhau) {
         HoKhau hoKhau = null;
 
