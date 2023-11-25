@@ -66,13 +66,21 @@ public class TimKiemNhanKhau extends JPanel {
 		JPanel panel_TKNK_KhoangTrang2 = new JPanel();
 		panel_TKNK_KhoangTrang2.setBackground(Colors.khung_Chung);
 		panel_TKNK_01.add(panel_TKNK_KhoangTrang2, BorderLayout.NORTH);
+		panel_TKNK_KhoangTrang2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+		JLabel lbl_TKNK_CachTim = new JLabel("Tìm Kiếm theo: ");
+		lbl_TKNK_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TKNK_KhoangTrang2.add(lbl_TKNK_CachTim);
+
+		JComboBox comboBox_TKHK_CachTim = new JComboBox();
+		panel_TKNK_KhoangTrang2.add(comboBox_TKHK_CachTim);
 
 		JPanel panel_TKNK_KhoangTrang1 = new JPanel();
 		panel_TKNK_KhoangTrang1.setBackground(Colors.khung_Chung);
 		panel_TKNK_01.add(panel_TKNK_KhoangTrang1, BorderLayout.WEST);
 		panel_TKNK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel = new JLabel("   Nhập tên nhân khẩu: ");
+		JLabel lblNewLabel = new JLabel("   Nhập thông tin tìm kiếm nhân khẩu: ");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKNK_KhoangTrang1.add(lblNewLabel, BorderLayout.CENTER);
 
