@@ -173,16 +173,16 @@ public class QuanLyNhanKhau extends JPanel {
 					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo số CMND":
-					// Sắp xếp dữ liệu theo CMND (column 5)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(5, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo CMND (column 4)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo giới tính":
-					// Sắp xếp dữ liệu theo giới tính (column 7)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(7, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo giới tính (column 6)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(6, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo mã hộ khẩu":
-					// Sắp xếp dữ liệu theo mã hộ khẩu (column 8)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(8, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo mã hộ khẩu (column 7)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(7, SortOrder.ASCENDING)));
 					break;
 			}
 		});

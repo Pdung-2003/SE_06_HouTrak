@@ -36,7 +36,6 @@ public class ThayDoiNhanKhau extends JPanel {
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD;
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao;
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan;
-	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh;
 	private ManHinhChinh mainFrame;
 
 	public ThayDoiNhanKhau(ManHinhChinh mainFrame) {
@@ -325,20 +324,6 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_07.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao, BorderLayout.CENTER);
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.setColumns(10);
 
-		JPanel panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_08 = new JPanel();
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_08.setBackground(Colors.khung_Chung);
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai.add(panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_08);
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_08.setLayout(new BorderLayout(0, 0));
-
-		JLabel lblNewLabel_8 = new JLabel("   Biệt danh             ");
-		lblNewLabel_8.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_08.add(lblNewLabel_8, BorderLayout.WEST);
-
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh = new JTextField();
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh.setBackground(Colors.input_Colors);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_08.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh, BorderLayout.CENTER);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh.setColumns(10);
 		//Tạo panel và trường nhập cho quê quán
 		JPanel panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_09 = new JPanel();
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_09.setBackground(Colors.khung_Chung);
@@ -384,7 +369,6 @@ public class ThayDoiNhanKhau extends JPanel {
 		tableModel.addColumn("Mã Nhân Khẩu");
 		tableModel.addColumn("Họ Tên");
 		tableModel.addColumn("Ngày Sinh");
-		tableModel.addColumn("Biệt Danh");
 		tableModel.addColumn("Tôn Giáo");
 		tableModel.addColumn("Số CMND");
 		tableModel.addColumn("Quê Quán");
@@ -417,7 +401,6 @@ public class ThayDoiNhanKhau extends JPanel {
 							dataRow.add(resultSet.getString("MaNhanKhau"));
 							dataRow.add(resultSet.getString("HoTen"));
 							dataRow.add(resultSet.getString("NgaySinh"));
-							dataRow.add(resultSet.getString("BietDanh"));
 							dataRow.add(resultSet.getString("TonGiao"));
 							dataRow.add(resultSet.getString("SoCMNDCCCD"));
 							dataRow.add(resultSet.getString("QueQuan"));
@@ -532,7 +515,6 @@ public class ThayDoiNhanKhau extends JPanel {
 					String tonGiao = textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.getText();
 					String queQuan = textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan.getText();
 					String maHoKhau = textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi.getText();
-					String bietDanh = textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh.getText();
 
 					// Kiểm tra mã nhân khẩu đã được tìm kiếm trước đó
 					String maNhanKhau = text_TDNK_01.getText();
@@ -549,7 +531,7 @@ public class ThayDoiNhanKhau extends JPanel {
 							ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
 							if (resultSet.next()) {
 								// Câu lệnh SQL để cập nhật thông tin cho mã nhân khẩu đã được tìm thấy
-								String sql = "UPDATE NhanKhau SET HoTen = ?, soCMNDCCCD = ?, GioiTinh = ?, NgaySinh = ?, TonGiao = ?, BietDanh = ?, MaHoKhau = ?, QueQuan = ? WHERE maNhanKhau = ?";
+								String sql = "UPDATE NhanKhau SET HoTen = ?, soCMNDCCCD = ?, GioiTinh = ?, NgaySinh = ?, TonGiao = ?, MaHoKhau = ?, QueQuan = ? WHERE maNhanKhau = ?";
 
 								// Tạo đối tượng java.sql.Date từ thông tin ngày, tháng, năm
 								LocalDate ngaySinh = LocalDate.of(nam, thang, ngay);
@@ -561,10 +543,9 @@ public class ThayDoiNhanKhau extends JPanel {
 								preparedStatement.setString(3, gioiTinh);
 								preparedStatement.setDate(4, ngaySinhSQL);
 								preparedStatement.setString(5, tonGiao);
-								preparedStatement.setString(6, bietDanh);
-								preparedStatement.setString(7, maHoKhau);
-								preparedStatement.setString(8, queQuan);
-								preparedStatement.setString(9, maNhanKhau);
+								preparedStatement.setString(6, maHoKhau);
+								preparedStatement.setString(7, queQuan);
+								preparedStatement.setString(8, maNhanKhau);
 
 								int rowsAffected = preparedStatement.executeUpdate();
 
@@ -583,7 +564,6 @@ public class ThayDoiNhanKhau extends JPanel {
 								comboBox_Nam.setSelectedItem(1900);
 								comboBox_Thang.setSelectedItem(1);
 								comboBox_Ngay.setSelectedItem(1);
-								textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_BietDanh.setText("");
 
 								// Đóng kết nối và tài nguyên
 								preparedStatement.close();

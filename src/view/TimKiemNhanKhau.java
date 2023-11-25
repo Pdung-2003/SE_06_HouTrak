@@ -259,24 +259,24 @@ public class TimKiemNhanKhau extends JPanel {
 					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo số CMND":
-					// Sắp xếp dữ liệu theo cmnd (column 5)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(5, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo cmnd (column 4)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo giới tính":
-					// Sắp xếp dữ liệu theo giới tính (column 7)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(7, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo giới tính (column 6)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(6, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo mã nhân khẩu":
-					// Sắp xếp dữ liệu theo mã nhân khẩu (column 1)
+					// Sắp xếp dữ liệu theo mã nhân khẩu (column 0)
 					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo mã hộ khẩu":
-					// Sắp xếp dữ liệu theo mã hộ khẩu (column 8)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(8, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo mã hộ khẩu (column 7)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(7, SortOrder.ASCENDING)));
 					break;
 				case "Sắp xếp theo quê quán":
-					// Sắp xếp dữ liệu theo quê quán (column 6)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(6, SortOrder.ASCENDING)));
+					// Sắp xếp dữ liệu theo quê quán (column 5)
+					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(5, SortOrder.ASCENDING)));
 					break;
 			}
 		});
