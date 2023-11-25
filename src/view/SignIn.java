@@ -12,7 +12,6 @@ import javax.swing.JPasswordField;
 public class SignIn extends JFrame {
 	private JTextField textField_SignIn_TK;
 	private JPasswordField passwordField_SignIn_MK;
-	private JButton btnSignIn;
 
 	/**
 	 * Create the panel.
@@ -80,7 +79,7 @@ public class SignIn extends JFrame {
 		JPanel panel_SignIn_Content_function_Form = new JPanel();
 		panel_SignIn_Content_function_Form.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function.add(panel_SignIn_Content_function_Form, BorderLayout.CENTER);
-		panel_SignIn_Content_function_Form.setLayout(new GridLayout(10, 1, 40, 40));
+		panel_SignIn_Content_function_Form.setLayout(new GridLayout(10, 1, 20, 20));
 
 		JPanel panel_SingIn_dem9 = new JPanel();
 		panel_SingIn_dem9.setBackground(Colors.khung_Chung);
@@ -95,10 +94,6 @@ public class SignIn extends JFrame {
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_SignIn_Content_function_Form_TItle.add(lblNewLabel_4, BorderLayout.CENTER);
-
-		JPanel panel_SignIn_dem10 = new JPanel();
-		panel_SignIn_dem10.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function_Form.add(panel_SignIn_dem10);
 
 		JPanel panel_SignIn_Account = new JPanel();
 		panel_SignIn_Account.setBackground(Colors.khung_Chung);
@@ -132,41 +127,50 @@ public class SignIn extends JFrame {
 		JPanel panel_SignIn_dem11 = new JPanel();
 		panel_SignIn_dem11.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_dem11);
+		panel_SignIn_dem11.setLayout(new BorderLayout(0, 0));
 
-		btnSignIn = new JButton("Đăng Nhập");
-		btnSignIn.setFont(new Font("Arial", Font.BOLD, 20));
-		btnSignIn.setBackground(Colors.menu_Trai);
-		btnSignIn.setForeground(Color.WHITE);
-		btnSignIn.setOpaque(true);
-		btnSignIn.setBorderPainted(false);
-		panel_SignIn_Content_function_Form.add(btnSignIn);
-		// Sự kiện khi nhấn nút đăng nhập
-		btnSignIn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String username = textField_SignIn_TK.getText();
-				String password = new String(passwordField_SignIn_MK.getPassword());
+		JPanel panel_SignIn_btn_DangNhap = new JPanel();
+		panel_SignIn_dem11.add(panel_SignIn_btn_DangNhap, BorderLayout.CENTER);
+		panel_SignIn_btn_DangNhap.setLayout(new GridLayout(1, 3, 0, 0));
 
-				// Kiểm tra thông tin đăng nhập
-				if (authenticate(username, password)) {
-					// Đăng nhập thành công, mở ManHinhChinh
-					ManHinhChinh mainFrame = new ManHinhChinh();
-					mainFrame.setVisible(true);
-					dispose(); // Đóng cửa sổ đăng nhập
-				} else {
-					// Đăng nhập thất bại
-					JOptionPane.showMessageDialog(SignIn.this,
-							"Tài khoản hoặc mật khẩu bạn nhập không đúng",
-							"Lỗi đăng nhập",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Colors.khung_Chung);
+		panel_SignIn_btn_DangNhap.add(panel_1);
+
+		JButton btnSignIn_1 = new JButton("Đăng Nhập");
+		btnSignIn_1.setOpaque(true);
+		btnSignIn_1.setForeground(Color.WHITE);
+		btnSignIn_1.setFont(new Font("Arial", Font.BOLD, 20));
+		btnSignIn_1.setBorderPainted(false);
+		btnSignIn_1.setBackground(new Color(2, 62, 138));
+		panel_SignIn_btn_DangNhap.add(btnSignIn_1);
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Colors.khung_Chung);
+		panel_SignIn_btn_DangNhap.add(panel_2);
 
 		JPanel panel_SignIn_dem12 = new JPanel();
 		panel_SignIn_dem12.setBackground(Colors.khung_Chung);
 		panel_SignIn_dem12.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		panel_SignIn_Content_function_Form.add(panel_SignIn_dem12);
+
+		JButton btnNewButton = new JButton("Quên mật khẩu?");
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_SignIn_dem12.add(btnNewButton);
+
+		JPanel panel_SignIn_SignUp_Title = new JPanel();
+		panel_SignIn_SignUp_Title.setBackground(Colors.khung_Chung);
+		panel_SignIn_Content_function_Form.add(panel_SignIn_SignUp_Title);
+		panel_SignIn_SignUp_Title.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+		JLabel lblNewLabel_2 = new JLabel("Chưa có tài khoản?");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_SignIn_SignUp_Title.add(lblNewLabel_2);
+
+		JButton btnNewButton_1 = new JButton("Đăng Ký Tài Khoản");
+		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_SignIn_Content_function_Form.add(btnNewButton_1);
 
 		JPanel panel_Header = new JPanel();
 		panel_Header.setBackground(Colors.vien_Tren_Duoi);
