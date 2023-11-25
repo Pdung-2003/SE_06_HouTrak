@@ -59,13 +59,21 @@ public class TimKiemHoKhau extends JPanel {
 		JPanel panel_TKHK_KhoangTrang2 = new JPanel();
 		panel_TKHK_KhoangTrang2.setBackground(Colors.khung_Chung);
 		panel_TKHK_01.add(panel_TKHK_KhoangTrang2, BorderLayout.NORTH);
+		panel_TKHK_KhoangTrang2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+		JLabel lbl_TKHK_CachTim = new JLabel("Tìm kiếm theo: ");
+		lbl_TKHK_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TKHK_KhoangTrang2.add(lbl_TKHK_CachTim);
+
+		JComboBox comboBox_TKHK_CachTim = new JComboBox();
+		panel_TKHK_KhoangTrang2.add(comboBox_TKHK_CachTim);
 
 		JPanel panel_TKHK_KhoangTrang1 = new JPanel();
 		panel_TKHK_KhoangTrang1.setBackground(Colors.khung_Chung);
 		panel_TKHK_01.add(panel_TKHK_KhoangTrang1, BorderLayout.WEST);
 		panel_TKHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TKHK_01 = new JLabel("   Nhập địa chỉ hộ khẩu: ");
+		JLabel lbl_TKHK_01 = new JLabel("   Nhập thông tin tìm kiếm hộ khẩu: ");
 		lbl_TKHK_01.setBackground(Colors.khung_Chung);
 		lbl_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKHK_KhoangTrang1.add(lbl_TKHK_01, BorderLayout.CENTER);
