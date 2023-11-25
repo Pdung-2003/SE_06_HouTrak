@@ -149,7 +149,6 @@ public class TimKiemNhanKhau extends JPanel {
 		tableModel.addColumn("Mã Nhân Khẩu");
 		tableModel.addColumn("Họ Tên");
 		tableModel.addColumn("Ngày Sinh");
-		tableModel.addColumn("Biệt Danh");
 		tableModel.addColumn("Tôn Giáo");
 		tableModel.addColumn("Số CMND");
 		tableModel.addColumn("Quê Quán");
@@ -183,7 +182,6 @@ public class TimKiemNhanKhau extends JPanel {
 							dataRow.add(resultSet.getString("MaNhanKhau"));
 							dataRow.add(resultSet.getString("HoTen"));
 							dataRow.add(resultSet.getString("NgaySinh"));
-							dataRow.add(resultSet.getString("BietDanh"));
 							dataRow.add(resultSet.getString("TonGiao"));
 							dataRow.add(resultSet.getString("SoCMNDCCCD"));
 							dataRow.add(resultSet.getString("QueQuan"));

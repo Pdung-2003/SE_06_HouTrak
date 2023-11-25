@@ -87,7 +87,6 @@ public class QuanLyNhanKhau extends JPanel {
 		tableModel.addColumn("Mã Nhân Khẩu");
 		tableModel.addColumn("Họ Tên");
 		tableModel.addColumn("Ngày Sinh");
-		tableModel.addColumn("Biệt Danh");
 		tableModel.addColumn("Tôn Giáo");
 		tableModel.addColumn("Số CMND");
 		tableModel.addColumn("Quê Quán");
@@ -100,7 +99,7 @@ public class QuanLyNhanKhau extends JPanel {
 			Connection connection = DatabaseConnector.getConnection();
 
 			if (connection != null) {
-				String query = "SELECT MaNhanKhau, HoTen, NgaySinh,BietDanh,TonGiao, SoCMNDCCCD, QueQuan, GioiTinh,MaHoKhau FROM NhanKhau";
+				String query = "SELECT MaNhanKhau, HoTen, NgaySinh,TonGiao, SoCMNDCCCD, QueQuan, GioiTinh,MaHoKhau FROM NhanKhau";
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -115,7 +114,6 @@ public class QuanLyNhanKhau extends JPanel {
 					dataRow.add(resultSet.getString("MaNhanKhau"));
 					dataRow.add(resultSet.getString("HoTen"));
 					dataRow.add(resultSet.getString("NgaySinh"));
-					dataRow.add(resultSet.getString("BietDanh"));
 					dataRow.add(resultSet.getString("TonGiao"));
 					dataRow.add(resultSet.getString("SoCMNDCCCD"));
 					dataRow.add(resultSet.getString("QueQuan"));

@@ -229,22 +229,6 @@ public class ThemNhanKhau extends JPanel {
 		textField_TNK_CotPhai_06.setColumns(10);
 		textField_TNK_CotPhai_06.setToolTipText("VD: MHK00001");
 
-		//Tạo label và trường nhập cho Biệt danh
-		JPanel panel_TNK_CotPhai_NhanKhau_08 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_08.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_08);
-		panel_TNK_CotPhai_NhanKhau_08.setLayout(new BorderLayout(5, 5));
-
-		JLabel lbl_TNK_CotPhai_08 = new JLabel("   Biệt danh            ");
-		panel_TNK_CotPhai_NhanKhau_08.add(lbl_TNK_CotPhai_08, BorderLayout.WEST);
-		lbl_TNK_CotPhai_08.setFont(new Font("Arial", Font.PLAIN, 12));
-
-		textField_TNK_CotPhai_07 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_08.add(textField_TNK_CotPhai_07, BorderLayout.CENTER);
-		textField_TNK_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_07.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_07.setColumns(10);
-
 		JPanel panel = new JPanel();
 		panel.setBackground(Colors.khung_Chung);
 		panel_TNK_01.add(panel, BorderLayout.EAST);
@@ -276,7 +260,6 @@ public class ThemNhanKhau extends JPanel {
 					String tonGiao = textField_TNK_CotPhai_04.getText();
 					String queQuan = textField_TNK_CotPhai_05.getText();
 					String maHoKhau = textField_TNK_CotPhai_06.getText(); // Lấy mã hộ khẩu từ textField
-					String bietDanh = textField_TNK_CotPhai_07.getText(); // Lấy biệt danh dân cư từ textField
 
 					if (hoTen.isEmpty() || cmnd.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty() ) {
 						JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin bắt buộc!");
@@ -290,8 +273,8 @@ public class ThemNhanKhau extends JPanel {
 							preparedStatementToCheckCondition.setString(1, maHoKhau);
 							ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
 							if (resultSet.next()) {
-								String sql = "INSERT INTO NhanKhau (HoTen, soCMNDCCCD, GioiTinh, NgaySinh, TonGiao, QueQuan, MaHoKhau, BietDanh) " +
-										"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+								String sql = "INSERT INTO NhanKhau (HoTen, soCMNDCCCD, GioiTinh, NgaySinh, TonGiao, QueQuan, MaHoKhau) " +
+										"VALUES (?, ?, ?, ?, ?, ?, ?)";
 								try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 									// Tạo đối tượng java.sql.Date từ thông tin ngày, tháng, năm
 									LocalDate ngaySinh = LocalDate.of(nam, thang, ngay);
@@ -304,7 +287,6 @@ public class ThemNhanKhau extends JPanel {
 									preparedStatement.setString(5, tonGiao);
 									preparedStatement.setString(6, queQuan);
 									preparedStatement.setString(7, maHoKhau);
-									preparedStatement.setString(8, bietDanh);
 
 									// Execute the PreparedStatement
 									preparedStatement.executeUpdate();
