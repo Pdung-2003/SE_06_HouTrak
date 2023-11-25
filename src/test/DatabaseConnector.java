@@ -168,8 +168,47 @@ public class DatabaseConnector {
     }
 
     // 3. Thay doi ho khau
-
-    // 4. Tach ho khau
+    public static boolean tachHoKhau(String diaChi, String khuVuc, String maChuHo) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO HoKhau(hoTenChuHo, diaChi, khuVuc) VALUES ((SELECT HoTen FROM NhanKhau WHERE MaNhanKhau = ?) , ?, ?)" +
+                    "DECLARE @MaHoKhauMoi NVARCHAR(10);\n" +
+                    "SET @MaHoKhauMoi = (SELECT TOP 1 MaHoKhau FROM HoKhau ORDER BY STT DESC);" +
+                    "UPDATE NhanKhau\n" +
+                    "SET MaHoKhau = @MaHoKhauMoi\n" +
+                    "WHERE MaNhanKhau = ? AND MaHoKhau <> @MaHoKhauMoi;";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maChuHo);
+                pstmt.setString(2, diaChi);
+                pstmt.setString(3, khuVuc);
+                pstmt.setString(4, maChuHo);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // 4. Thay doi ho khau
+    public static boolean thayDoiHoKhau(String diaChi, String khuVuc, String maHoKhau) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "UPDATE HoKhau\n" +
+                    "SET\n" +
+                    "    DiaChi = ?,\n" +
+                    "    KhuVuc = ?\n" +
+                    "WHERE MaHoKhau = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, diaChi);
+                pstmt.setString(2, khuVuc);
+                pstmt.setString(3, maHoKhau);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     // 5. Search
     public static List<HoKhau> searchHoKhau(String Address) {
@@ -226,6 +265,38 @@ public class DatabaseConnector {
         return hoKhau;
     }
     // 6. Remove
+    //Hien thong tin nhan khau trong HoKhau
+    public static List<NhanKhau> getDsNhanKhau(String MaHoKhau) {
+        List<NhanKhau> DsNhanKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM NhanKhau WHERE MaHoKhau = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, MaHoKhau);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String tonGiao = rs.getString("TonGiao");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String queQuan = rs.getString("QueQuan");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+
+                        NhanKhau nhanKhau = new NhanKhau(maNhanKhau, hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
+                        DsNhanKhau.add(nhanKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
+
     public static boolean removeHoKhau(String MaHoKhau) {
         try (Connection conn = ds.getConnection()) {
             String query = "DELETE FROM NhanKhau WHERE MaHoKhau = ?;\n" +

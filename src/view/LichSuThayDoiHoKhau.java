@@ -131,6 +131,9 @@ public class LichSuThayDoiHoKhau extends JPanel {
 
 		// Thêm JScrollPane vào panel
 		panel_LSTDHK_02_BangThongTin.add(scrollPane);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
 		loadDataFromDatabase();

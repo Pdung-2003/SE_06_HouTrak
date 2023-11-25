@@ -206,6 +206,9 @@ public class TimKiemHoKhau extends JPanel {
 
 		// Thêm JScrollPane vào panel
 		panel_TKHK_SubTitle.add(scrollPane);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 	}
 	private void search() {
 		String address = text_TKHK_01.getText();
