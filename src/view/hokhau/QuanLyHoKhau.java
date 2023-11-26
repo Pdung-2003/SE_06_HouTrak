@@ -119,6 +119,7 @@ public class QuanLyHoKhau extends JPanel {
 		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_QLHK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -130,7 +131,7 @@ public class QuanLyHoKhau extends JPanel {
 		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
-		panel_QLHK_02_BangThongTin.add(scrollPane);
+		panel_QLHK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
