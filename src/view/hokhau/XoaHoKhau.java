@@ -1,5 +1,6 @@
 package view.hokhau;
 
+import controller.hokhau.XoaHoKhauController;
 import model.DatabaseConnector;
 import model.HoKhau;
 import model.NhanKhau;
@@ -34,18 +35,22 @@ import java.util.Date;
 import java.util.List;
 
 public class XoaHoKhau extends JPanel {
-	JLabel lbl_XNK_CotPhai_MaHK = new JLabel();// dien ma ho khau vao day
-	JLabel lbl_XNK_CotPhai_KhuVuc = new JLabel();// dien khu vuc vao day
-	JLabel lbl_XNK_CotPhai_DiaChi = new JLabel();// dien dia chi vao day
-	JLabel lbl_XNK_CotPhai_ChuHo = new JLabel();
-	JLabel lbl_XNK_CotPhai_NgayLap = new JLabel();// dien ngay lap vao day
-	JPanel panel_XNK_CotPhai_02 = new JPanel();
-	private JTable table;
-	private DefaultTableModel tableModel;
+	private JLabel lbl_XNK_CotPhai_MaHK = new JLabel();
+	private JLabel lbl_XNK_CotPhai_KhuVuc = new JLabel();
+	private JLabel lbl_XNK_CotPhai_DiaChi = new JLabel();
+	private JLabel lbl_XNK_CotPhai_ChuHo = new JLabel();
+	private JLabel lbl_XNK_CotPhai_NgayLap = new JLabel();
 	private JTextField txt_XHK_TImKiem;
+	private JButton btn_XHK_01_TimKiem;
+	private JButton btn_XHK_Yes;
+	private JButton btn_XHK_No;
 
 	private ManHinhChinh mainFrame;
 	private String maHoKhau;
+
+	JPanel panel_XNK_CotPhai_02 = new JPanel();
+	private JTable table;
+	private DefaultTableModel tableModel;
 	/**
 	 * Create the panel.
 	 */
@@ -116,7 +121,7 @@ public class XoaHoKhau extends JPanel {
 		txt_XHK_TImKiem.setBackground(new Color(217, 217, 217));
 		txt_XHK_TImKiem.setColumns(10);
 
-		JButton btn_XHK_01_TimKiem = new JButton("Tìm kiếm");
+		btn_XHK_01_TimKiem = new JButton("Tìm kiếm");
 		btn_XHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_XHK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_XHK_01_TimKiem.setForeground(Color.WHITE);
@@ -124,37 +129,7 @@ public class XoaHoKhau extends JPanel {
 		btn_XHK_01_TimKiem.setBorderPainted(false);
 		btn_XHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		panel_XHK_01_content.add(btn_XHK_01_TimKiem);
-		btn_XHK_01_TimKiem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Search tu database
-				// Search từ database
-				String maHoKhau = txt_XHK_TImKiem.getText();
-				HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
-				loadDataFromDatabase();
 
-				// Kiểm tra xem hoKhau có giá trị hay không
-				if (hoKhau != null) {
-					String id = hoKhau.getMaHoKhau();
-					String khuVuc = hoKhau.getKhuVuc();
-					String diaChi = hoKhau.getDiaChi();
-					String chuHo = hoKhau.getHoTenChuHo();
-					Date date = hoKhau.getNgayLap();
-
-					// Đặt giá trị vào các JLabel
-					lbl_XNK_CotPhai_MaHK.setText(id);
-					lbl_XNK_CotPhai_KhuVuc.setText(khuVuc);
-					lbl_XNK_CotPhai_DiaChi.setText(diaChi);
-					lbl_XNK_CotPhai_ChuHo.setText(chuHo);
-
-					// Format và đặt giá trị ngày vào JLabel
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-					lbl_XNK_CotPhai_NgayLap.setText(dateFormat.format(date));
-				} else {
-					// Nếu không tìm thấy thông tin, có thể hiển thị một thông báo hoặc thực hiện các hành động khác
-					JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin cho mã hộ khẩu: " + maHoKhau);
-				}
-			}
-		});
 		JPanel panel_XHK_02 = new JPanel();
 		panel_XHK_02.setBorder(null);
 		panel_XHK_02.setBackground(Colors.khung_Noi_Dung);
@@ -315,36 +290,16 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_02.add(panel_XHK_Confirm, BorderLayout.SOUTH);
 		panel_XHK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
-		JButton btn_XHK_Yes = new JButton("Xóa\r\n");
+		btn_XHK_Yes = new JButton("Xóa\r\n");
 		btn_XHK_Yes.setMinimumSize(new Dimension(50, 23));
 		btn_XHK_Yes.setToolTipText("");
 		btn_XHK_Yes.setBackground(Colors.button_XacNhan);
 		btn_XHK_Yes.setForeground(Color.WHITE);
 		btn_XHK_Yes.setOpaque(true);
 		btn_XHK_Yes.setBorderPainted(false);
-		btn_XHK_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn xóa không?", "Xác nhận xóa",
-		                JOptionPane.YES_NO_OPTION);
-
-		        if (confirmResult == JOptionPane.YES_OPTION) {
-		            boolean check = DatabaseConnector.removeHoKhau(maHoKhau);
-					if (check == true) {
-						JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
-					} else{
-						JOptionPane.showMessageDialog(mainFrame, "Xóa thất bại! Vui lòng kiểm tra lại!");
-					}
-		        } else if (confirmResult == JOptionPane.NO_OPTION) {
-		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Xóa đã bị hủy.");
-		        }
-				
-			}
-		});
 		panel_XHK_Confirm.add(btn_XHK_Yes);
 
-		JButton btn_XHK_No = new JButton("Hủy\r\n");
+		btn_XHK_No = new JButton("Hủy\r\n");
 		btn_XHK_No.setMinimumSize(new Dimension(50, 23));
 		btn_XHK_No.setToolTipText("");
 		btn_XHK_No.setBackground(Colors.button_Huy);
@@ -381,8 +336,52 @@ public class XoaHoKhau extends JPanel {
 		lbl_Title_XoaHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_XHK_title.add(lbl_Title_XoaHoKhau);
 
+		XoaHoKhauController controller = new XoaHoKhauController(mainFrame, this);
 	}
-	private void loadDataFromDatabase() {
+	public JLabel getLbl_XNK_CotPhai_MaHK() {
+		return lbl_XNK_CotPhai_MaHK;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_KhuVuc() {
+		return lbl_XNK_CotPhai_KhuVuc;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_DiaChi() {
+		return lbl_XNK_CotPhai_DiaChi;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_ChuHo() {
+		return lbl_XNK_CotPhai_ChuHo;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_NgayLap() {
+		return lbl_XNK_CotPhai_NgayLap;
+	}
+
+	public JTextField getTxt_XHK_TImKiem() {
+		return txt_XHK_TImKiem;
+	}
+
+	public JButton getBtn_XHK_01_TimKiem() {
+		return btn_XHK_01_TimKiem;
+	}
+
+	public JButton getBtn_XHK_Yes() {
+		return btn_XHK_Yes;
+	}
+
+	public JButton getBtn_XHK_No() {
+		return btn_XHK_No;
+	}
+
+	public String getMaHoKhau() {
+		return maHoKhau;
+	}
+
+	public void setMaHoKhau(String maHoKhau) {
+		this.maHoKhau = maHoKhau;
+	}
+	public void loadDataFromDatabase() {
 		maHoKhau = txt_XHK_TImKiem.getText();
 		// Clear existing data
 		tableModel.setRowCount(0);

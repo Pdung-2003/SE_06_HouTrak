@@ -1,5 +1,6 @@
 package view.hokhau;
 
+import controller.hokhau.ThemHoKhauController;
 import view.dangnhap.ManHinhChinh;
 import view.hokhau.QuanLyHoKhau;
 import view.settings.Colors;
@@ -48,6 +49,11 @@ public class ThemHoKhau extends JPanel {
 	private JComboBox comboBox_THK_CotPhai_ChuHo_Nam;
 	private JComboBox comboBox_THK_CotPhai_ChuHo_Thang;
 	private JComboBox comboBox_THK_CotPhai_ChuHo_Ngay;
+	private JButton btn_THK_Yes;
+	private JButton btn_THK_No;
+	private JButton btn_THK_NhapFile;
+	private ThemHoKhauController themHoKhauController;
+
 
 	public ThemHoKhau(ManHinhChinh mainFrame) {
 		 this.mainFrame = mainFrame;
@@ -261,51 +267,24 @@ public class ThemHoKhau extends JPanel {
 		panel_KhungNoiDungTHK.add(panel_THK_confirm, BorderLayout.SOUTH);
 		panel_THK_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
-		JButton btn_THK_Yes = new JButton("Thêm");
+		btn_THK_Yes = new JButton("Thêm");
 		btn_THK_Yes.setMinimumSize(new Dimension(50, 23));
 		btn_THK_Yes.setToolTipText("");
 		btn_THK_Yes.setBackground(Colors.button_XacNhan);
 		btn_THK_Yes.setForeground(Color.WHITE);
 		btn_THK_Yes.setOpaque(true);
 		btn_THK_Yes.setBorderPainted(false);
-		btn_THK_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int check = getData();
-				if (check == 0){
-					return ;
-				}
-					int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-			                "Bạn có chắc chắn muốn thêm không?", "Xác nhận thêm ",
-			                JOptionPane.YES_NO_OPTION);
 
-			        if (confirmResult == JOptionPane.YES_OPTION) {
-			            // Thực hiện thay doi o day
-						if (check == 1){
-							JOptionPane.showMessageDialog(mainFrame, "Thêm thành công!");
-						} else if (check == -1){
-							JOptionPane.showMessageDialog(mainFrame, "Thêm thất bại! Kiểm tra lại thông tin!");
-						}
-			        } else if (confirmResult == JOptionPane.NO_OPTION) {
-			            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-			            JOptionPane.showMessageDialog(mainFrame, "Đã hủy thêm.");
-			        }
-			}
-		});
 		panel_THK_confirm.add(btn_THK_Yes);
 
-		JButton btn_THK_No = new JButton("Hủy");
+		btn_THK_No = new JButton("Hủy");
 		btn_THK_No.setMinimumSize(new Dimension(50, 23));
 		btn_THK_No.setToolTipText("");
 		btn_THK_No.setBackground(Colors.button_Huy);
 		btn_THK_No.setForeground(Color.WHITE);
 		btn_THK_No.setOpaque(true);
 		btn_THK_No.setBorderPainted(false);
-		btn_THK_No.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
-		        mainFrame.switchToMainPanel(quanLyHoKhauPanel);
-		    }
-		});
+
 		panel_THK_confirm.add(btn_THK_No);
 		
 		
@@ -315,16 +294,9 @@ public class ThemHoKhau extends JPanel {
 		panel_KhungNoiDungTHK.add(panel_THK_NhapFIle, BorderLayout.NORTH);
 		panel_THK_NhapFIle.setLayout(new BorderLayout(10, 10));
 		
-		JButton btn_THK_NhapFile = new JButton("Chọn file");
+		btn_THK_NhapFile = new JButton("Chọn file");
 		btn_THK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_THK_NhapFIle.add(btn_THK_NhapFile, BorderLayout.WEST);
-		
-		btn_THK_NhapFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openExcelFile();
-            }
-        });
 		
 		
 		JLabel lbl_THK_TenFile = new JLabel("New label"); // Cho nay dien ten file
@@ -349,9 +321,23 @@ public class ThemHoKhau extends JPanel {
 		lbl_Title_ThemHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_THK_title.add(lbl_Title_ThemHoKhau);
 
+		themHoKhauController = new ThemHoKhauController(this);
+
 		setVisible(true);
 
 
+	}
+
+	public JButton getBtn_THK_Yes() {
+		return btn_THK_Yes;
+	}
+
+	public JButton getBtn_THK_No() {
+		return btn_THK_No;
+	}
+
+	public JButton getBtn_THK_NhapFile() {
+		return btn_THK_NhapFile;
 	}
 
 	private void populateYears(JComboBox comboBox) {
@@ -397,7 +383,7 @@ public class ThemHoKhau extends JPanel {
 		// Định dạng ngày tháng năm
 		return year + "-" + month + "-" + day;
 	}
-	private int getData(){
+	public int getData(){
 		String hoTenChuHo = textField_THK_CotPhai_03.getText();
 		String diaChi = textField_THK_CotPhai_02.getText();
 		// Check if an item is selected before attempting to get its value
@@ -442,4 +428,8 @@ public class ThemHoKhau extends JPanel {
             // Gọi phương thức xử lý tệp Excel ở đây (đọc, xử lý, v.v.)
         }
     }
+
+	public ManHinhChinh getMainFrame() {
+		return mainFrame;
+	}
 }
