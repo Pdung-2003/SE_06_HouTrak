@@ -134,36 +134,20 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
-
-		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
-		loadDataFromDatabase();
-		comboBox_LSTDHK_Sort.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					// Load data again when the selected item changes
-					loadDataFromDatabase();
-				}
-			}
-		});
 	}
 	// Load data from the database and populate the table
-	private void loadDataFromDatabase() {
-		// Clear existing data
+	public void addSortItemListener(ItemListener listener) {
+		comboBox_LSTDHK_Sort.addItemListener(listener);
+	}
+
+	public String getSelectedSortOption() {
+		return comboBox_LSTDHK_Sort.getSelectedItem().toString();
+	}
+
+	// Thêm phương thức này để cập nhật dữ liệu từ Controller và hiển thị lên bảng
+	public void loadDataFromDatabase(List<ThayDoiHoKhau> dsThayDoi) {
 		tableModel.setRowCount(0);
 
-		// Fetch data from the database
-		List<ThayDoiHoKhau> dsThayDoi = new ArrayList<>();
-		// Fetch data from the database
-		String option = comboBox_LSTDHK_Sort.getSelectedItem().toString();
-		if (option.equals("Ngày thay đổi")){
-			dsThayDoi = DatabaseConnector.getDsThayDoi();
-		} else if (option.equals("Mã hộ khẩu")){
-			dsThayDoi = DatabaseConnector.DsLichSuHKOrderByMHK();
-		} else if (option.equals("Loại thay đổi")){
-			dsThayDoi = DatabaseConnector.DsLichSuHKOrderByType();
-		}
-
-		// Populate the table with the fetched data
 		for (ThayDoiHoKhau thayDoi : dsThayDoi) {
 			Object[] rowData = {
 					thayDoi.getMaThayDoi(),

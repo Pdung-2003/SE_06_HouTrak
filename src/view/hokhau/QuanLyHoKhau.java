@@ -9,12 +9,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import model.DatabaseConnector;
+import controller.hokhau.QuanLyHoKhauController;
 import model.HoKhau;
-import view.hokhau.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 
@@ -22,6 +20,7 @@ public class QuanLyHoKhau extends JPanel {
 	private JComboBox comboBox_QLHK_Sort;
 	private JTable table;
 	private DefaultTableModel tableModel;
+	private QuanLyHoKhauController controller;
 	/**
 	 * Create the panel.
 	 */
@@ -137,30 +136,23 @@ public class QuanLyHoKhau extends JPanel {
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
-		loadDataFromDatabase();
 		comboBox_QLHK_Sort.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					// Load data again when the selected item changes
-					loadDataFromDatabase();
+					controller.sortData(comboBox_QLHK_Sort.getSelectedItem().toString());
 				}
 			}
 		});
+		controller = new QuanLyHoKhauController(this);
+	}
+	public void setController(QuanLyHoKhauController controller){
+		this.controller = controller;
 	}
 	// Load data from the database and populate the table
-	private void loadDataFromDatabase() {
+	public void populateTable(List<HoKhau> danhSachHoKhau) {
 		// Clear existing data
 		tableModel.setRowCount(0);
-		List<HoKhau>  danhSachHoKhau = new ArrayList<>();
-		// Fetch data from the database
-		String option = comboBox_QLHK_Sort.getSelectedItem().toString();
-		if (option.equals("Mã hộ khẩu")){
-			danhSachHoKhau = DatabaseConnector.getDanhSachHoKhau();
-		} else if (option.equals("Ngày lập")){
-			danhSachHoKhau = DatabaseConnector.DsHoKHauOderByNgayLap();
-		} else if (option.equals("Khu vực")){
-			danhSachHoKhau = DatabaseConnector.DsHoKHauOderByKhuVuc();
-		}
 
 		// Populate the table with the fetched data
 		for (HoKhau hoKhau : danhSachHoKhau) {

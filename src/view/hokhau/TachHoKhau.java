@@ -1,5 +1,6 @@
 package view.hokhau;
 
+import controller.hokhau.TachHoKhauController;
 import model.DatabaseConnector;
 import model.HoKhau;
 import model.NhanKhau;
@@ -42,6 +43,7 @@ public class TachHoKhau extends JPanel {
 	private ManHinhChinh mainFrame;
 	private JTextField textField_CotPhai_ThongTinSau_Content_DiaChi;
 	private JTextField textField_CotPhai_ThongTinSau_Content_ChuHo;
+	private TachHoKhauController controller;
 	/**
 	 * Create the panel.
 	 */
@@ -50,6 +52,8 @@ public class TachHoKhau extends JPanel {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
+
+		controller = new TachHoKhauController(this);
 
 		JPanel panel_TachHoKhau = new JPanel();
 		add(panel_TachHoKhau, "name_216194905272000");
@@ -355,6 +359,7 @@ public class TachHoKhau extends JPanel {
 		btn_TachHK_Yes.setForeground(Color.WHITE);
 		btn_TachHK_Yes.setOpaque(true);
 		btn_TachHK_Yes.setBorderPainted(false);
+		btn_TachHK_Yes.addActionListener(controller::onTachHKButtonClick);
 		btn_TachHK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
@@ -365,11 +370,7 @@ public class TachHoKhau extends JPanel {
 					// Thực hiện thay doi o day
 					JOptionPane.showMessageDialog(mainFrame, "Vui lòng chờ xử lý này có thể tốn chút thời gian");
 					// Hiển thị thông báo xóa thành công
-					boolean check = tachHK();
-					if (check == true)
-						JOptionPane.showMessageDialog(mainFrame, "Tách thành công!");
-					else
-						JOptionPane.showMessageDialog(mainFrame, "Tách thất bại kiểm tra lại thông tin");
+					controller.onTachHoKhauConfirmed();
 				} else if (confirmResult == JOptionPane.NO_OPTION) {
 					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
 					JOptionPane.showMessageDialog(mainFrame, "Hủy.");
@@ -378,6 +379,7 @@ public class TachHoKhau extends JPanel {
 		});
 		panel_TachHK_Confirm.add(btn_TachHK_Yes);
 
+
 		JButton btn_TachHK_No = new JButton("Hủy\r\n");
 		btn_TachHK_No.setMinimumSize(new Dimension(50, 23));
 		btn_TachHK_No.setToolTipText("");
@@ -385,12 +387,7 @@ public class TachHoKhau extends JPanel {
 		btn_TachHK_No.setForeground(Color.WHITE);
 		btn_TachHK_No.setOpaque(true);
 		btn_TachHK_No.setBorderPainted(false);
-		btn_TachHK_No.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
-				mainFrame.switchToMainPanel(quanLyHoKhauPanel);
-			}
-		});
+		btn_TachHK_No.addActionListener(controller::onHuyButtonClick);
 		panel_TachHK_Confirm.add(btn_TachHK_No);
 
 
@@ -437,12 +434,44 @@ public class TachHoKhau extends JPanel {
 			tableModel.addRow(rowData);
 		}
 	}
-	private boolean tachHK() {
-		String diaChi = textField_CotPhai_ThongTinSau_Content_DiaChi.getText();
-		String khuVuc = (comboBox_CotPhai_ThongTinSau_Content_KhuVuc.getSelectedItem() != null)
-				? comboBox_CotPhai_ThongTinSau_Content_KhuVuc.getSelectedItem().toString()
-				: "";
-		String maChuHo = textField_CotPhai_ThongTinSau_Content_ChuHo.getText();
-		return DatabaseConnector.tachHoKhau(diaChi, khuVuc, maChuHo);
+	public String getMaHoKhauInput() {
+		return txt_TachHK_TImKiem.getText();
+	}
+
+	public void displayErrorMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+
+	public void updateThongTinDau(String diaChi, String chuHo) {
+		lbl_CotPhai_ThongTinDau_DiaChi.setText(diaChi);
+		lbl_CotPhai_ThongTinDau_ChuHo.setText(chuHo);
+	}
+
+	public DefaultTableModel getTableModel() {
+		return tableModel;
+	}
+
+	public void clearTableData() {
+		tableModel.setRowCount(0);
+	}
+
+	public void addRowToTable(Object[] rowData) {
+		tableModel.addRow(rowData);
+	}
+
+	public String getDiaChiInput() {
+		return textField_CotPhai_ThongTinSau_Content_DiaChi.getText();
+	}
+
+	public String getKhuVucInput() {
+		return (String) comboBox_CotPhai_ThongTinSau_Content_KhuVuc.getSelectedItem();
+	}
+
+	public String getMaChuHoInput() {
+		return textField_CotPhai_ThongTinSau_Content_ChuHo.getText();
+	}
+
+	public ManHinhChinh getMainFrame() {
+		return mainFrame;
 	}
 }
