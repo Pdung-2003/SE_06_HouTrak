@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 import static model.DatabaseConnector.insertChuHo;
 import static model.DatabaseConnector.insertHoKhau;
@@ -115,19 +115,15 @@ public class ThemHoKhauController {
                 int soCMNDCCCD1 = (int) numericValue; // Chuyển đổi thành số nguyên nếu cần
                 String soCMNDCCCD = String.valueOf(soCMNDCCCD1);
                 String gioiTinh = row.getCell(3) != null ? row.getCell(3).getStringCellValue() : "";
-                Date ngaySinhDate = row.getCell(4) != null ? row.getCell(4).getDateCellValue() : null;
+                Date ngaySinhDate = row.getCell(4) != null ? new Date(row.getCell(4).getDateCellValue().getTime()) : null;
                 String tonGiao = row.getCell(5) != null ? row.getCell(5).getStringCellValue() : "";
                 String queQuan = row.getCell(6) != null ? row.getCell(6).getStringCellValue() : "";
                 String diaChi = row.getCell(7).getStringCellValue();
                 String khuVuc = row.getCell(8).getStringCellValue();
 
-                // Định dạng ngày tháng
-                String ngaySinh = ngaySinhDate != null ? new SimpleDateFormat("yyyy-MM-dd").format(ngaySinhDate) : "";
-                System.out.println(hoTenChuHo + soCMNDCCCD + gioiTinh +ngaySinh + tonGiao + queQuan + diaChi +khuVuc);
-
                 // Chèn vào cơ sở dữ liệu
                 insertHoKhau(hoTenChuHo, diaChi, khuVuc); // Hàm này cần được cập nhật để chấp nhận các tham số mới
-                insertChuHo(hoTenChuHo, soCMNDCCCD, gioiTinh, ngaySinh, tonGiao, queQuan, diaChi);
+                insertChuHo(hoTenChuHo, ngaySinhDate, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
             }
             file.close();
         } catch (Exception e) {

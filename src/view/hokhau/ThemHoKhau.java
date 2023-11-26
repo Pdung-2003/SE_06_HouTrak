@@ -38,6 +38,7 @@ import javax.swing.JFileChooser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -378,7 +379,7 @@ public class ThemHoKhau extends JPanel {
 		calendar.set(year, month - 1, 1);
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
-	private String getFormattedDate(JComboBox comboBoxYear, JComboBox comboBoxMonth, JComboBox comboBoxDay) {
+	private Date getFormattedDate(JComboBox comboBoxYear, JComboBox comboBoxMonth, JComboBox comboBoxDay) {
 		// Ghep du lieu nam sinh
 		String year = comboBoxYear.getSelectedItem().toString();
 		String month = comboBoxMonth.getSelectedItem().toString();
@@ -390,7 +391,16 @@ public class ThemHoKhau extends JPanel {
 		}
 
 		// Định dạng ngày tháng năm
-		return year + "-" + month + "-" + day;
+		String dateString = year + "-" + month + "-" + day;
+
+		// Chuyển đổi chuỗi thành đối tượng Date
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormat.parse(dateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null; // Trả về null nếu có lỗi chuyển đổi
+		}
 	}
 	public int getData(){
 		String hoTenChuHo = textField_THK_CotPhai_03.getText();
@@ -399,7 +409,7 @@ public class ThemHoKhau extends JPanel {
 		String khuVuc = (comboBox_THK_CotPhai_02.getSelectedItem() != null)
 				? comboBox_THK_CotPhai_02.getSelectedItem().toString()
 				: "";
-		String ngaySinh = getFormattedDate(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
+		Date ngaySinh = getFormattedDate(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
 		String tonGiao = textField_THK_CotPhai_05.getText();
 		String soCMNDCCCD = textField_THK_CotPhai_04.getText();
 		String queQuan = textField_THK_CotPhai_06.getText();
@@ -416,7 +426,7 @@ public class ThemHoKhau extends JPanel {
 			return 0;
 		}
 		boolean check1 = insertHoKhau(hoTenChuHo, diaChi, khuVuc);
-		boolean check2 = insertChuHo(hoTenChuHo, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
+		boolean check2 = insertChuHo(hoTenChuHo, (java.sql.Date) ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
 		if (check1 == true && check2 == true) {
 			return 1;
 		} else return -1;
