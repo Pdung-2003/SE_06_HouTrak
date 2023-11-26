@@ -1,6 +1,11 @@
 package view.hokhau;
 
 import controller.hokhau.ThemHoKhauController;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.dangnhap.ManHinhChinh;
 import view.hokhau.QuanLyHoKhau;
 import view.settings.Colors;
@@ -31,7 +36,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static model.DatabaseConnector.insertChuHo;
 import static model.DatabaseConnector.insertHoKhau;
@@ -412,22 +421,6 @@ public class ThemHoKhau extends JPanel {
 			return 1;
 		} else return -1;
 	}
-	
-	private static void openExcelFile() {
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "xls", "xlsx");
-        fileChooser.setFileFilter(filter);
-
-        int result = fileChooser.showOpenDialog(null);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            // Người dùng đã chọn một tệp
-            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-            System.out.println("Selected file: " + filePath);
-
-            // Gọi phương thức xử lý tệp Excel ở đây (đọc, xử lý, v.v.)
-        }
-    }
 
 	public ManHinhChinh getMainFrame() {
 		return mainFrame;

@@ -167,4 +167,6 @@ public class QuanLyHoKhau extends JPanel {
 			tableModel.addRow(rowData);
 		}
 	}
+
+
 }
