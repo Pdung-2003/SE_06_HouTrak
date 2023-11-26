@@ -27,5 +27,6 @@
     </orderEntry>
     <orderEntry type="library" name="adaptive" level="project" />
     <orderEntry type="library" name="sqljdbc_12" level="project" />
+    <orderEntry type="library" name="mssql-jdbc-11.2.3.jre17" level="project" />
   </component>
 </module>
