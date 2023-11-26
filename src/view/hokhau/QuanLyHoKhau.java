@@ -147,6 +147,7 @@ public class QuanLyHoKhau extends JPanel {
 		controller = new QuanLyHoKhauController(this);
 	}
 	public void setController(QuanLyHoKhauController controller){
+
 		this.controller = controller;
 	}
 	// Load data from the database and populate the table

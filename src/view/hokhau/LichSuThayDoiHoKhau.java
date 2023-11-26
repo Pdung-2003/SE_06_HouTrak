@@ -1,6 +1,6 @@
 package view.hokhau;
 
-import model.DatabaseConnector;
+import controller.hokhau.LichSuThayDoiController;
 import model.ThayDoiHoKhau;
 import view.hokhau.CustomRowHeightRenderer;
 import view.settings.Colors;
@@ -24,6 +24,7 @@ public class LichSuThayDoiHoKhau extends JPanel {
 	private JComboBox comboBox_LSTDHK_Sort;
 	private JTable table;
 	private DefaultTableModel tableModel;
+	private LichSuThayDoiController controller;
 	public LichSuThayDoiHoKhau() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
@@ -134,18 +135,24 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+
+
+		comboBox_LSTDHK_Sort.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					// Load data again when the selected item changes
+					controller.sortData(comboBox_LSTDHK_Sort.getSelectedItem().toString());
+				}
+			}
+		});
+		controller = new LichSuThayDoiController(this);
+	}
+
+	public void setController(LichSuThayDoiController controller){
+		this.controller = controller;
 	}
 	// Load data from the database and populate the table
-	public void addSortItemListener(ItemListener listener) {
-		comboBox_LSTDHK_Sort.addItemListener(listener);
-	}
-
-	public String getSelectedSortOption() {
-		return comboBox_LSTDHK_Sort.getSelectedItem().toString();
-	}
-
-	// Thêm phương thức này để cập nhật dữ liệu từ Controller và hiển thị lên bảng
-	public void loadDataFromDatabase(List<ThayDoiHoKhau> dsThayDoi) {
+	public void populateTable(List<ThayDoiHoKhau> dsThayDoi) {
 		tableModel.setRowCount(0);
 
 		for (ThayDoiHoKhau thayDoi : dsThayDoi) {
