@@ -1,5 +1,7 @@
 package view;
 
+import test.DatabaseConnector;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +26,13 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Vector;
 
 public class CapNhatTamTru extends JPanel {
 	
@@ -121,7 +129,7 @@ public class CapNhatTamTru extends JPanel {
 		lbl_CNTT_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotTrai.add(lbl_CNTT_CotTrai_1);
 		
-		JLabel lbl_CNTT_CotTrai_2 = new JLabel("     Địa chỉ hiện tại");
+		JLabel lbl_CNTT_CotTrai_2 = new JLabel("     Mã hộ khẩu");
 		lbl_CNTT_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotTrai.add(lbl_CNTT_CotTrai_2);
 
@@ -152,7 +160,7 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_CotPhai.add(panel_CNTT_CotPhai_NhanKhau_02);
 		panel_CNTT_CotPhai_NhanKhau_02.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_CNTT_CotPhai_02 = new JLabel("   Địa chỉ mới:          ");
+		JLabel lbl_CNTT_CotPhai_02 = new JLabel("   Mã hộ khẩu mới:          ");
 		lbl_CNTT_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotPhai_NhanKhau_02.add(lbl_CNTT_CotPhai_02, BorderLayout.WEST);
 
@@ -271,22 +279,132 @@ public class CapNhatTamTru extends JPanel {
 		btn_CNTT_Yes.setForeground(Color.WHITE);
 		btn_CNTT_Yes.setOpaque(true);
 		btn_CNTT_Yes.setBorderPainted(false);
+
+		btn_CNTT_01_TimKiem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Lấy số CMND/CCCD từ text field
+				String soCMNDCCCD = text_CNTT_01.getText();
+
+				// Tạo truy vấn SQL để tìm kiếm mã nhân khẩu dựa trên số CMND/CCCD và kiểm tra trong bảng TamTru
+				String query = "SELECT NK.[MaNhanKhau], NK.[HoTen], NK.[MaHoKhau] " +
+						"FROM [HouTrak].[dbo].[NhanKhau] NK " +
+						"LEFT JOIN [HouTrak].[dbo].[TamTru] TT ON NK.[MaNhanKhau] = TT.[MaNhanKhau] " +
+						"WHERE NK.[SoCMNDCCCD] = ? AND TT.[MaNhanKhau] IS NOT NULL";
+
+				try {
+					// Chuẩn bị truy vấn SQL sử dụng PreparedStatement để tránh các vấn đề về bảo mật và chuỗi SQL injection
+					PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(query);
+					preparedStatement.setString(1, soCMNDCCCD);
+
+					// Thực thi truy vấn và lấy kết quả
+					ResultSet resultSet = preparedStatement.executeQuery();
+
+					// Kiểm tra và hiển thị thông tin nếu có kết quả
+					if (resultSet.next()) {
+						String maNhanKhau = resultSet.getString("MaNhanKhau");
+						String hoTen = resultSet.getString("HoTen");
+						String maHoKhau = resultSet.getString("MaHoKhau");
+
+						// Hiển thị thông tin lên các label đã tạo
+						lbl_CNTT_CotPhai_01.setText(hoTen);
+						lbl_CNTT_CotPhai_09.setText(maHoKhau);
+					} else {
+						// Nếu không tìm thấy kết quả
+						JOptionPane.showMessageDialog(mainFrame, "Không tìm thấy thông tin cho số CMND/CCCD này hoặc mã nhân khẩu không có trong bảng TamTru.");
+					}
+
+					// Đóng kết nối và các tài nguyên liên quan
+					resultSet.close();
+					preparedStatement.close();
+				} catch (SQLException ex) {
+					// Xử lý ngoại lệ nếu có lỗi trong quá trình truy vấn cơ sở dữ liệu
+					ex.printStackTrace();
+				}
+			}
+		});
+
 		btn_CNTT_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
-		                JOptionPane.YES_NO_OPTION);
+						"Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
+						JOptionPane.YES_NO_OPTION);
 
-		        if (confirmResult == JOptionPane.YES_OPTION) {
-		            // Thực hiện thay doi o day
-		            // Hiển thị thông báo xóa thành công
-		            JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng thành công!");
-		        } else if (confirmResult == JOptionPane.NO_OPTION) {
-		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng đã bị hủy.");
-		        }
+				if (confirmResult == JOptionPane.YES_OPTION) {
+					// Lấy số CCCD từ text field
+					String soCCCD = text_CNTT_01.getText();
+
+					// Tạo truy vấn SQL để lấy mã nhân khẩu và thông tin thời gian trong bảng TamTru
+					String query = "SELECT NK.MaNhanKhau, TT.ThoiGianBatDau, TT.ThoiGianTamTru " +
+							"FROM NhanKhau NK " +
+							"JOIN TamTru TT ON NK.MaNhanKhau = TT.MaNhanKhau " +
+							"WHERE NK.SoCMNDCCCD = ?";
+					try {
+						// Chuẩn bị truy vấn SQL sử dụng PreparedStatement để tránh các vấn đề về bảo mật và chuỗi SQL injection
+						PreparedStatement preparedStatement = DatabaseConnector.getConnection().prepareStatement(query);
+						preparedStatement.setString(1, soCCCD);
+
+						// Thực thi truy vấn và lấy kết quả
+						ResultSet resultSet = preparedStatement.executeQuery();
+
+						// Kiểm tra và lấy thông tin mã nhân khẩu, thời gian bắt đầu, thời gian kết thúc nếu có kết quả
+						if (resultSet.next()) {
+							int nambatdau = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.getSelectedItem();
+							int thangbatdau = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.getSelectedItem();
+							int ngaybatdau = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay.getSelectedItem();
+							int namketthuc = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.getSelectedItem();
+							int thangketthuc = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.getSelectedItem();
+							int ngayketthuc = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay.getSelectedItem();
+							LocalDate ngayBatDau = LocalDate.of(nambatdau, thangbatdau, ngaybatdau);
+							LocalDate ngayKetThuc = LocalDate.of(namketthuc, thangketthuc, ngayketthuc);
+							java.sql.Date ngayBatDauSQL = java.sql.Date.valueOf(ngayBatDau);
+							java.sql.Date ngayKetThucSQL = java.sql.Date.valueOf(ngayKetThuc);
+							String maNhanKhau = resultSet.getString("MaNhanKhau");
+							String maHoKhauMoi = textField_CNTT_CotPhai_04.getText(); // Lấy thông tin mã hộ khẩu mới từ text field tương ứng
+
+							// Thực hiện cập nhật thông tin mã hộ khẩu mới của mã nhân khẩu trong bảng NhanKhau
+							String updateNhanKhauQuery = "UPDATE NhanKhau SET MaHoKhau = ? WHERE MaNhanKhau = ?";
+							PreparedStatement updateNhanKhauStatement = DatabaseConnector.getConnection().prepareStatement(updateNhanKhauQuery);
+							updateNhanKhauStatement.setString(1, maHoKhauMoi);
+							updateNhanKhauStatement.setString(2, maNhanKhau);
+							int rowsAffectedNhanKhau = updateNhanKhauStatement.executeUpdate();
+
+							// Thực hiện cập nhật thông tin thời gian bắt đầu và kết thúc của mã nhân khẩu trong bảng TamTru
+							String updateTamTruQuery = "UPDATE TamTru SET ThoiGianBatDau = ?, ThoiGianTamTru = ? WHERE MaNhanKhau = ?";
+							PreparedStatement updateTamTruStatement = DatabaseConnector.getConnection().prepareStatement(updateTamTruQuery);
+							updateTamTruStatement.setDate(1, ngayBatDauSQL);
+							updateTamTruStatement.setDate(2, ngayKetThucSQL);
+							updateTamTruStatement.setString(3, maNhanKhau);
+							int rowsAffectedTamTru = updateTamTruStatement.executeUpdate();
+
+							// Kiểm tra và hiển thị thông báo tương ứng
+							if (rowsAffectedNhanKhau > 0 && rowsAffectedTamTru > 0) {
+								JOptionPane.showMessageDialog(mainFrame, "Thông tin mã hộ khẩu và thời gian tạm trú đã được cập nhật thành công!");
+							} else {
+								JOptionPane.showMessageDialog(mainFrame, "Cập nhật thông tin thất bại.");
+							}
+
+							// Đóng kết nối và các tài nguyên liên quan
+							resultSet.close();
+							preparedStatement.close();
+							updateNhanKhauStatement.close();
+							updateTamTruStatement.close();
+						} else {
+							// Nếu không tìm thấy thông tin
+							JOptionPane.showMessageDialog(mainFrame, "Không tìm thấy thông tin cho số CCCD này.");
+						}
+					} catch (SQLException ex) {
+						// Xử lý ngoại lệ nếu có lỗi trong quá trình truy vấn cơ sở dữ liệu
+						ex.printStackTrace();
+					}
+				} else if (confirmResult == JOptionPane.NO_OPTION) {
+					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+					JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng đã bị hủy.");
+				}
 			}
 		});
+
+
+
 		panel_CNTT_confirm.add(btn_CNTT_Yes);
 
 		JButton btn_CNTT_No = new JButton("Hủy");
@@ -314,7 +432,6 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_title.add(lbl_Title_CapNhatTamTru);
 
 		setVisible(true);
-
 
 	}
 

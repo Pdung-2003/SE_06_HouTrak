@@ -30,6 +30,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class XoaNhanKhau extends JPanel {
 	private JTextField txt_XNK_TImKiem;
@@ -253,32 +255,119 @@ public class XoaNhanKhau extends JPanel {
 						options[0]);
 
 				if (confirmResult == 0) {
-					// Thực hiện xóa như bình thường
-					// ...
-					JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+					try (Connection connection = DatabaseConnector.getConnection()) {
+						if (connection != null) {
+							String sqlToDelete = "DELETE FROM NhanKhau WHERE maNhanKhau = ?";
+							PreparedStatement preparedStatementToDelete = connection.prepareStatement(sqlToDelete);
+							preparedStatementToDelete.setString(1, txt_XNK_TImKiem.getText());
+							int rowsAffected = preparedStatementToDelete.executeUpdate();
+
+							if (rowsAffected > 0) {
+								JOptionPane.showMessageDialog(null, "Đã xóa thành công!");
+								//reset về trạng thái đầu
+								lbl_XNK_CotPhai_MaNK.setText("New Label");
+								lbl_XNK_CotPhai_HoVaTen.setText("New Label");
+								lbl_XNK_CotPhai_CCCD.setText("New Label");
+								lbl_XNK_CotPhai_NgaySinh.setText("New Label");
+								lbl_XNK_CotPhai_GioiTinh.setText("New Label");
+								lbl_XNK_CotPhai_QueQuan.setText("New Label");
+								lbl_XNK_CotPhai_TonGiao.setText("New Label");
+								lbl_XNK_CotPhai_MaHK.setText("New Label");
+							} else {
+								JOptionPane.showMessageDialog(null, "Không tìm thấy mã nhân khẩu khớp!");
+							}
+							// Đóng kết nối và tài nguyên
+							preparedStatementToDelete.close();
+							connection.close();
+						}
+					} catch (SQLException ex) {
+						// Handle any SQL exceptions here
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Lỗi khi kết nối cơ sở dữ liệu !");
+					}
 				} else if (confirmResult == 1) {
 					// Yêu cầu nhập thông tin về việc "đã mất"
 					JTextField textFieldNguoiKhaiTu = new JTextField();
 					JTextField textFieldNguyenNhan = new JTextField();
 					JTextField textFieldThoiGianMat = new JTextField();
+					textFieldThoiGianMat.setToolTipText("Thời gian có định dạng DD/MM/YYYY");
 
 					Object[] message = {
 							"Người khai tử:", textFieldNguoiKhaiTu,
 							"Nguyên nhân:", textFieldNguyenNhan,
-							"Thời gian mất:", textFieldThoiGianMat
+							"Thời gian mất:", textFieldThoiGianMat,
 					};
 
 					int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin", JOptionPane.OK_CANCEL_OPTION);
 					if (option == JOptionPane.OK_OPTION) {
 						// Xử lý thông tin nhập vào
+						String maNhanKhau = txt_XNK_TImKiem.getText();
 						String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
 						String nguyenNhan = textFieldNguyenNhan.getText();
 						String thoiGianMat = textFieldThoiGianMat.getText();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						try {
+							java.util.Date parsedDate = dateFormat.parse(thoiGianMat);
+							java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
 
-						// Thực hiện xử lý dữ liệu ở đây
-						// ...
+							try (Connection connection = DatabaseConnector.getConnection()) {
+								if (connection != null) {
+									// Xây dựng câu lệnh SQL DELETE để xóa dữ liệu từ bảng NhanKhau
+									String sqlToDelete = "DELETE FROM NhanKhau WHERE maNhanKhau = ?";
+									PreparedStatement preparedStatementToDelete = connection.prepareStatement(sqlToDelete);
+									preparedStatementToDelete.setString(1, maNhanKhau);
 
-						JOptionPane.showMessageDialog(mainFrame, "Thông tin đã được ghi nhận.");
+									// Thực hiện xóa dữ liệu từ bảng NhanKhau
+									int rowsAffected = preparedStatementToDelete.executeUpdate();
+
+									if (rowsAffected > 0) {
+										JOptionPane.showMessageDialog(null, "Đã xóa thông tin nhân khẩu thành công !");
+										// ... (thêm thông tin vào bảng KhaiTu)
+										// Xây dựng câu lệnh SQL INSERT để chèn thông tin vào bảng KhaiTu
+										String sqlToInsertKhaiTu = "INSERT INTO KhaiTu (MaNhanKhau, NguoiKhaiTu, ThoiGianKhaiTu, NguyenNhan) VALUES (?, ?, ?, ?)";
+										PreparedStatement preparedStatementToInsertKhaiTu = connection.prepareStatement(sqlToInsertKhaiTu);
+										preparedStatementToInsertKhaiTu.setString(1, maNhanKhau);
+										preparedStatementToInsertKhaiTu.setString(2, nguoiKhaiTu);
+										preparedStatementToInsertKhaiTu.setDate(3, sqlDate);
+										preparedStatementToInsertKhaiTu.setString(4, nguyenNhan);
+
+										//reset về trạng thái đầu
+										lbl_XNK_CotPhai_MaNK.setText("New Label");
+										lbl_XNK_CotPhai_HoVaTen.setText("New Label");
+										lbl_XNK_CotPhai_CCCD.setText("New Label");
+										lbl_XNK_CotPhai_NgaySinh.setText("New Label");
+										lbl_XNK_CotPhai_GioiTinh.setText("New Label");
+										lbl_XNK_CotPhai_QueQuan.setText("New Label");
+										lbl_XNK_CotPhai_TonGiao.setText("New Label");
+										lbl_XNK_CotPhai_MaHK.setText("New Label");
+										int rowsInserted = preparedStatementToInsertKhaiTu.executeUpdate();
+
+										if (rowsInserted > 0) {
+											JOptionPane.showMessageDialog(null, "Đã thêm thông tin khai tử thành công vào bảng KhaiTu!");
+											// ... (cập nhật giao diện hoặc thực hiện hành động cần thiết)
+										} else {
+											JOptionPane.showMessageDialog(null, "Không thể thêm thông tin khai tử vào bảng KhaiTu!");
+										}
+
+										// Đóng kết nối và tài nguyên
+										preparedStatementToInsertKhaiTu.close();
+									} else {
+										JOptionPane.showMessageDialog(null, "Không tìm thấy mã nhân khẩu khớp để xóa từ bảng NhanKhau!");
+									}
+
+									// Đóng kết nối và tài nguyên
+									preparedStatementToDelete.close();
+									connection.close();
+								}
+							} catch (SQLException ex) {
+								ex.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Lỗi khi kết nối cơ sở dữ liệu!");
+							}
+
+						} catch (ParseException parseException) {
+							parseException.printStackTrace();
+							JOptionPane.showMessageDialog(null,"Cần nhập đúng định dạng ngày, định dạng ngày có dạng DD/MM/YYYY!");
+						}
 					}
 				}
 			}
