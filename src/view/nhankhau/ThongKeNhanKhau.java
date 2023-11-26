@@ -12,11 +12,14 @@ import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ThongKeNhanKhau extends JPanel {
 	private JTextField text_TKeNK_01;
@@ -26,10 +29,12 @@ public class ThongKeNhanKhau extends JPanel {
 	private JTextField textField_TKeNK_02_ThayDoiThongTin_CotPhai_ChuHo_TonGiao;
 	private JTextField textField_TKeNK_02_ThayDoiThongTin_CotPhai_ChuHo_QueQuan;
 	private ManHinhChinh mainFrame;
+	private  CardLayout cardLayout;
 	/**
 	 * Create the panel.
 	 */
 	public ThongKeNhanKhau() {
+		cardLayout = new CardLayout();
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -64,7 +69,8 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_TKeNK_02_BangThongTin.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_TKeNK_02.add(panel_TKeNK_02_BangThongTin, BorderLayout.CENTER);
-		panel_TKeNK_02_BangThongTin.setLayout(new CardLayout(0, 0));
+		panel_TKeNK_02_BangThongTin.setLayout(cardLayout);
+
 
 		// panel gioi tinh
 		JPanel panel_TKeNK_02_BangThongTin_GioiTinh = new JPanel();
@@ -72,6 +78,7 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_GioiTinh.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon = new JPanel();
+		panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon.setBackground(Colors.khung_Chung);
 		panel_TKeNK_02_BangThongTin_GioiTinh.add(panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon, BorderLayout.NORTH);
 		panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -80,13 +87,20 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon.add(lbl_TKeNK_02_BangThongTin_GioiTinh_LuaChon);
 
 		JComboBox comboBox_TKeNK_02_BangThongTin_GioiTinh_LuaChon = new JComboBox();
+		comboBox_TKeNK_02_BangThongTin_GioiTinh_LuaChon.addItem("Nam");
+		comboBox_TKeNK_02_BangThongTin_GioiTinh_LuaChon.addItem("Nữ");
 		panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon.add(comboBox_TKeNK_02_BangThongTin_GioiTinh_LuaChon);
 
 		JButton btn_TKeNK_02_BangThongTin_GioiTInh_Filter = new JButton("Thống kê");
 		btn_TKeNK_02_BangThongTin_GioiTInh_Filter.setFont(new Font("Arial", Font.PLAIN, 14));
+		btn_TKeNK_02_BangThongTin_GioiTInh_Filter.setBackground(Colors.button_Chung);
+		btn_TKeNK_02_BangThongTin_GioiTInh_Filter.setForeground(Color.WHITE);
+		btn_TKeNK_02_BangThongTin_GioiTInh_Filter.setOpaque(true);
+		btn_TKeNK_02_BangThongTin_GioiTInh_Filter.setBorderPainted(false);
 		panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon.add(btn_TKeNK_02_BangThongTin_GioiTInh_Filter);
 		//dien thing tin ve gioi tinh vao trong panel này
 		JPanel panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung = new JPanel();
+		panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung.setBackground(Colors.khung_Chung);
 		panel_TKeNK_02_BangThongTin_GioiTinh.add(panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung, BorderLayout.CENTER);
 		panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung.setLayout(new BorderLayout(0, 0));
 
@@ -105,10 +119,21 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_DoTuoi_Filter.add(lbl_TKeNK_02_BangThongTin_DoTuoi_Filter);
 
 		JComboBox comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter = new JComboBox();
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Mầm non");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Mẫu giáo");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 1");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 2");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 3");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Độ tuổi lao động");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Nghỉ hưu");
 		panel_TKeNK_02_BangThongTin_DoTuoi_Filter.add(comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter);
 
 		JButton btn_TKeNK_02_BangThongTin_DoTuoi_Filter = new JButton("Thống kê\r\n");
 		btn_TKeNK_02_BangThongTin_DoTuoi_Filter.setFont(new Font("Arial", Font.PLAIN, 14));
+		btn_TKeNK_02_BangThongTin_DoTuoi_Filter.setBackground(Colors.button_Chung);
+		btn_TKeNK_02_BangThongTin_DoTuoi_Filter.setForeground(Color.WHITE);
+		btn_TKeNK_02_BangThongTin_DoTuoi_Filter.setOpaque(true);
+		btn_TKeNK_02_BangThongTin_DoTuoi_Filter.setBorderPainted(false);
 		panel_TKeNK_02_BangThongTin_DoTuoi_Filter.add(btn_TKeNK_02_BangThongTin_DoTuoi_Filter);
 
 		// dien bang thong tin ve do tuoi vao day
@@ -132,10 +157,16 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_TamTru_Filter.add(lbl_TKeNK_02_BangThongTin_TamTru_TInhTrang);
 
 		JComboBox comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang = new JComboBox();
+		comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang.addItem("Hết hạn");
+		comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang.addItem("Chưa hết");
 		panel_TKeNK_02_BangThongTin_TamTru_Filter.add(comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang);
 
 		JButton btn_TKeNK_02_BangThongTin_TamTru_Filter = new JButton("Thống kê");
 		btn_TKeNK_02_BangThongTin_TamTru_Filter.setFont(new Font("Arial", Font.PLAIN, 14));
+		btn_TKeNK_02_BangThongTin_TamTru_Filter.setBackground(Colors.button_Chung);
+		btn_TKeNK_02_BangThongTin_TamTru_Filter.setForeground(Color.WHITE);
+		btn_TKeNK_02_BangThongTin_TamTru_Filter.setOpaque(true);
+		btn_TKeNK_02_BangThongTin_TamTru_Filter.setBorderPainted(false);
 		panel_TKeNK_02_BangThongTin_TamTru_Filter.add(btn_TKeNK_02_BangThongTin_TamTru_Filter);
 
 		// dien bang noi dung tam tru vao day
@@ -159,10 +190,16 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_TamVang_Filter.add(lbl_TKeNK_02_BangThongTin_TamVang_TinhTrang);
 
 		JComboBox comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang = new JComboBox();
+		comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang.addItem("Hết hạn");
+		comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang.addItem("Chưa hết");
 		panel_TKeNK_02_BangThongTin_TamVang_Filter.add(comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang);
 
 		JButton btn_TKeNK_02_BangThongTin_TamVang_Filter = new JButton("Thống kê");
 		btn_TKeNK_02_BangThongTin_TamVang_Filter.setFont(new Font("Arial", Font.PLAIN, 14));
+		btn_TKeNK_02_BangThongTin_TamVang_Filter.setBackground(Colors.button_Chung);
+		btn_TKeNK_02_BangThongTin_TamVang_Filter.setForeground(Color.WHITE);
+		btn_TKeNK_02_BangThongTin_TamVang_Filter.setOpaque(true);
+		btn_TKeNK_02_BangThongTin_TamVang_Filter.setBorderPainted(false);
 		panel_TKeNK_02_BangThongTin_TamVang_Filter.add(btn_TKeNK_02_BangThongTin_TamVang_Filter);
 
 		// dien bang noi dung tam vang vao day
@@ -183,18 +220,60 @@ public class ThongKeNhanKhau extends JPanel {
 
 		JButton btnTKeNK_Filter_01 = new JButton("Giới tính");
 		btnTKeNK_Filter_01.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_01.setBackground(Colors.button_Chung);
+		btnTKeNK_Filter_01.setForeground(Color.WHITE);
+		btnTKeNK_Filter_01.setOpaque(true);
+		btnTKeNK_Filter_01.setBorderPainted(false);
+		btnTKeNK_Filter_01.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel_TKeNK_02_BangThongTin, "name_523497043257300"); // Hiển thị panel_TKeNK_02_BangThongTin_GioiTinh
+			}
+		});
 		panel_TKeNK_SubTitle_Filter.add(btnTKeNK_Filter_01);
 
 		JButton btnTKeNK_Filter_02 = new JButton("Độ tuổi");
 		btnTKeNK_Filter_02.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_02.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_02.setBackground(Colors.button_Chung);
+		btnTKeNK_Filter_02.setForeground(Color.WHITE);
+		btnTKeNK_Filter_02.setOpaque(true);
+		btnTKeNK_Filter_02.setBorderPainted(false);
+		btnTKeNK_Filter_02.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel_TKeNK_02_BangThongTin, "name_525783448293100");
+				// Hiển thị panel_TKeNK_02_BangThongTin_GioiTinh
+			}
+		});
 		panel_TKeNK_SubTitle_Filter.add(btnTKeNK_Filter_02);
 
 		JButton btnTKeNK_Filter_03 = new JButton("Tạm Trú");
 		btnTKeNK_Filter_03.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_03.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_03.setBackground(Colors.button_Chung);
+		btnTKeNK_Filter_03.setForeground(Color.WHITE);
+		btnTKeNK_Filter_03.setOpaque(true);
+		btnTKeNK_Filter_03.setBorderPainted(false);
+		btnTKeNK_Filter_03.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel_TKeNK_02_BangThongTin, "name_526025298931000");
+				// Hiển thị panel_TKeNK_02_BangThongTin_GioiTinh
+			}
+		});
 		panel_TKeNK_SubTitle_Filter.add(btnTKeNK_Filter_03);
 
 		JButton btnTKeNK_Filter_04 = new JButton("Tạm vắng");
 		btnTKeNK_Filter_04.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_04.setBackground(Colors.button_Chung);
+		btnTKeNK_Filter_04.setForeground(Color.WHITE);
+		btnTKeNK_Filter_04.setOpaque(true);
+		btnTKeNK_Filter_04.setBorderPainted(false);
+		btnTKeNK_Filter_04.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnTKeNK_Filter_04.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel_TKeNK_02_BangThongTin, "name_526025298931000");
+				// Hiển thị panel_TKeNK_02_BangThongTin_GioiTinh
+			}
+		});
 		panel_TKeNK_SubTitle_Filter.add(btnTKeNK_Filter_04);
 
 		JPanel panel_1 = new JPanel();
