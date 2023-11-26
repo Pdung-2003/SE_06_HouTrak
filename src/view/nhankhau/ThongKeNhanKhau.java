@@ -85,7 +85,7 @@ public class ThongKeNhanKhau extends JPanel {
 		JButton btn_TKeNK_02_BangThongTin_GioiTInh_Filter = new JButton("Thống kê");
 		btn_TKeNK_02_BangThongTin_GioiTInh_Filter.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_TKeNK_02_BangThongTin_GioiTinh_LuaChon.add(btn_TKeNK_02_BangThongTin_GioiTInh_Filter);
-
+		//dien thing tin ve gioi tinh vao trong panel này
 		JPanel panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung = new JPanel();
 		panel_TKeNK_02_BangThongTin_GioiTinh.add(panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung, BorderLayout.CENTER);
 		panel_TKeNK_02_BangThongTin_GioiTinh_NoiDung.setLayout(new BorderLayout(0, 0));
