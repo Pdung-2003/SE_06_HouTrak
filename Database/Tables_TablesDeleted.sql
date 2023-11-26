@@ -68,7 +68,7 @@ CREATE TABLE KhaiTu (
     NguoiKhaiTu NVARCHAR(255),
     ThoiGianKhaiTu DATETIME,
     NguyenNhan NVARCHAR(MAX),
-    FOREIGN KEY (MaNhanKhau) REFERENCES NhanKhau(MaNhanKhau)
+    FOREIGN KEY (MaNhanKhau) REFERENCES NhanKhau_Deleted(MaNhanKhau)
 );
 
 --7. Tạo bảng Quỹ
@@ -198,7 +198,7 @@ CREATE TABLE HoKhau_Deleted (
 
 -- 2. Tạo bảng nhân khẩu
 CREATE TABLE NhanKhau_Deleted (
-    MaNhanKhau NVARCHAR(10),
+    MaNhanKhau NVARCHAR(10) PRIMARY KEY,
     HoTen NVARCHAR(255),
     NgaySinh DATE,
     TonGiao NVARCHAR(50),
