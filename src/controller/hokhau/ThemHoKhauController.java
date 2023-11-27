@@ -22,7 +22,7 @@ import static model.DatabaseConnector.insertChuHo;
 import static model.DatabaseConnector.insertHoKhau;
 
 public class ThemHoKhauController {
-    private ThemHoKhau themHoKhauView;
+    private static ThemHoKhau themHoKhauView;
 
     public ThemHoKhauController(ThemHoKhau themHoKhauView) {
         this.themHoKhauView = themHoKhauView;
@@ -94,6 +94,7 @@ public class ThemHoKhauController {
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
             System.out.println("Selected file: " + filePath);
             readExcelFile(filePath);
+            JOptionPane.showMessageDialog(themHoKhauView.getMainFrame(), "Thêm thành công danh sách hộ khẩu");
         }
     }
     private static void readExcelFile(String filePath) {
