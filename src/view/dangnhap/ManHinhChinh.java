@@ -132,7 +132,7 @@ public class ManHinhChinh extends JFrame {
 	     buttonsPanel.setPreferredSize(new Dimension(339, 920));
 	     buttonsPanel.setBackground(Colors.menu_Trai);
 	     
-	     JButton button_QLHK = new JButton("  Quản lí hộ khẩu");
+	     JButton button_QLHK = new JButton("  Quản lý hộ khẩu");
 	    
 	        button_QLHK.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLHK.setFont(new Font("Arial", Font.BOLD, 20));
@@ -152,7 +152,7 @@ public class ManHinhChinh extends JFrame {
 	        });
 	        buttonsPanel.add(button_QLHK);
 	        
-	        JButton button_QLNK = new JButton("  Quản lí nhân khẩu");
+	        JButton button_QLNK = new JButton("  Quản lý nhân khẩu");
 	        button_QLNK.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLNK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLNK.setBackground(Colors.menu_Trai);
@@ -166,7 +166,7 @@ public class ManHinhChinh extends JFrame {
 	        });
 	        buttonsPanel.add(button_QLNK);
 	        
-	        JButton button_QLTC = new JButton("  Quản lí thu chi");
+	        JButton button_QLTC = new JButton("  Quản lý thu chi");
 	        button_QLTC.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLTC.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLTC.setBackground(Colors.menu_Trai);
@@ -175,7 +175,7 @@ public class ManHinhChinh extends JFrame {
 	        button_QLTC.setBorder(matteBorder);
 	        buttonsPanel.add(button_QLTC);
 	        
-	        JButton button_QLPT = new JButton("  Quản lí phát thưởng");
+	        JButton button_QLPT = new JButton("  Quản lý phát thưởng");
 	        button_QLPT.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLPT.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLPT.setBackground(Colors.menu_Trai);
@@ -184,7 +184,7 @@ public class ManHinhChinh extends JFrame {
 	        button_QLPT.setBorder(matteBorder);
 	        buttonsPanel.add(button_QLPT);
 	        
-	        JButton button_QLTK = new JButton("  Quản lí tài khoản");
+	        JButton button_QLTK = new JButton("  Quản lý tài khoản");
 	        button_QLTK.setHorizontalAlignment(SwingConstants.LEFT);
 	        button_QLTK.setFont(new Font("Arial", Font.BOLD, 20));
 	        button_QLTK.setBackground(Colors.menu_Trai);
