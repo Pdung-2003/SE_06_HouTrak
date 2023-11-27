@@ -278,6 +278,7 @@ public class ThayDoiHoKhau extends JPanel {
 		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_TDHK_02_ThongTinHienTai.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -288,7 +289,7 @@ public class ThayDoiHoKhau extends JPanel {
 		table.setForeground(Colors.mau_Text_QLHK);
 
 		// Thêm JScrollPane vào panel
-		panel_TDHK_02_ThongTinHienTai.add(scrollPane);
+		panel_TDHK_02_ThongTinHienTai.add(scrollPane, BorderLayout.CENTER);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));

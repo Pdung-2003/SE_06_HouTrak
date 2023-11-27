@@ -267,6 +267,7 @@ public class XoaHoKhau extends JPanel {
 		table.getColumnModel().getColumn(7).setPreferredWidth(80); // Khu Vực
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_XNK_CotPhai_02.setLayout(new BorderLayout(10, 10));
 
 		table.setPreferredScrollableViewportSize(new Dimension(800, 100));
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
@@ -280,7 +281,7 @@ public class XoaHoKhau extends JPanel {
 		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
-		panel_XNK_CotPhai_02.add(scrollPane);
+		panel_XNK_CotPhai_02.add(scrollPane, BorderLayout.CENTER);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));

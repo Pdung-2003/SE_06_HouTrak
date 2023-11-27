@@ -121,6 +121,7 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		table.getColumnModel().getColumn(6).setPreferredWidth(50);
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_LSTDHK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -131,7 +132,7 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		table.setForeground(Colors.mau_Text_QLHK);
 
 		// Thêm JScrollPane vào panel
-		panel_LSTDHK_02_BangThongTin.add(scrollPane);
+		panel_LSTDHK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));

@@ -482,5 +482,50 @@ public class DatabaseConnector {
 
         return dsThayDoi;
     }
+    // II. Nhân khẩu
+// 1. Thống kê nhân khẩu
+// 1.1. Thống kê theo giới tính
+    public static List<NhanKhau> getDsNhanKhauBySex(String sex) {
+        List<NhanKhau> DsNhanKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM NhanKhau WHERE GioiTinh = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, sex);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String tonGiao = rs.getString("TonGiao");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String queQuan = rs.getString("QueQuan");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+
+                        NhanKhau nhanKhau = new NhanKhau(maNhanKhau, hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
+                        DsNhanKhau.add(nhanKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
+
+    // 1.2. Thống kê theo độ tuổi
+
+
+    // 1.3. Thống kê theo tạm trú
+
+
+    // 1.4. Thống kê theo tạm vắng
+
+
 }
+
+
 

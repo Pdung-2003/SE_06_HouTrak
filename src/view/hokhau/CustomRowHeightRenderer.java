@@ -3,7 +3,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
-class CustomRowHeightRenderer extends DefaultTableCellRenderer {
+public class CustomRowHeightRenderer extends DefaultTableCellRenderer {
     private int rowHeight;
 
     public CustomRowHeightRenderer(int rowHeight) {
