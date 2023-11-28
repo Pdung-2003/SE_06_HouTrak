@@ -1,35 +1,19 @@
 package view.nhankhau;
 
-import view.settings.Colors;
+import controller.nhankhau.CapNhatTamTruController;
 import view.dangnhap.ManHinhChinh;
+import view.settings.Colors;
 
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 public class CapNhatTamTru extends JPanel {
-	
+
 	private JTextField text_CNTT_01;
 	private JTextField textField_CNTT_CotPhai_04;
 	private ManHinhChinh mainFrame;
@@ -41,18 +25,18 @@ public class CapNhatTamTru extends JPanel {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
-		
+
 		JPanel panel_CapNhatTamTru = new JPanel();
 		add(panel_CapNhatTamTru, "name_547139030888200");
 		panel_CapNhatTamTru.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_KhungNoiDungCNTT = new JPanel();
 		panel_KhungNoiDungCNTT.setPreferredSize(new Dimension(1463, 10));
 		panel_KhungNoiDungCNTT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
 		panel_KhungNoiDungCNTT.setBackground(Colors.khung_Chung);
 		panel_CapNhatTamTru.add(panel_KhungNoiDungCNTT, BorderLayout.CENTER);
 		panel_KhungNoiDungCNTT.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_CNTT_01 = new JPanel();
 		panel_CNTT_01.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		panel_CNTT_01.setBackground(Colors.input_Colors);
@@ -122,8 +106,8 @@ public class CapNhatTamTru extends JPanel {
 		JLabel lbl_CNTT_CotTrai_1 = new JLabel("     Tên người tạm trú");
 		lbl_CNTT_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotTrai.add(lbl_CNTT_CotTrai_1);
-		
-		JLabel lbl_CNTT_CotTrai_2 = new JLabel("     Địa chỉ hiện tại");
+
+		JLabel lbl_CNTT_CotTrai_2 = new JLabel("     Mã hộ khẩu");
 		lbl_CNTT_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotTrai.add(lbl_CNTT_CotTrai_2);
 
@@ -144,7 +128,7 @@ public class CapNhatTamTru extends JPanel {
 		JLabel lbl_CNTT_CotPhai_01 = new JLabel("   Họ và tên");// dien ho va ten
 		lbl_CNTT_CotPhai_01.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotPhai_NhanKhau_01.add(lbl_CNTT_CotPhai_01, BorderLayout.CENTER);
-		
+
 		JLabel lbl_CNTT_CotPhai_09 = new JLabel("   Địa chi");// dien dia chi vao day
 		lbl_CNTT_CotPhai_09.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotPhai.add(lbl_CNTT_CotPhai_09);
@@ -154,7 +138,7 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_CotPhai.add(panel_CNTT_CotPhai_NhanKhau_02);
 		panel_CNTT_CotPhai_NhanKhau_02.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_CNTT_CotPhai_02 = new JLabel("   Địa chỉ mới:          ");
+		JLabel lbl_CNTT_CotPhai_02 = new JLabel("   Mã hộ khẩu mới:          ");
 		lbl_CNTT_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_CNTT_CotPhai_NhanKhau_02.add(lbl_CNTT_CotPhai_02, BorderLayout.WEST);
 
@@ -179,12 +163,12 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_CotPhai_NhanKhau_07.setBackground(Colors.khung_Chung);
 		panel_CNTT_CotPhai_NhanKhau_07.add(panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau, BorderLayout.CENTER);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau.setLayout(new GridLayout(1, 2, 0, 0));
-		
+
 		JPanel panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung = new JPanel();
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.setBackground(Colors.khung_Chung);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau.add(panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.setLayout(new BoxLayout(panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung, BoxLayout.X_AXIS));
-		
+
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam = new JLabel("Năm:        ");
 		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setBackground(new Color(128, 0, 0));
@@ -208,11 +192,11 @@ public class CapNhatTamTru extends JPanel {
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay = new JComboBox();
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay);
-		
+
 		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.addActionListener(e -> updateDays(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay));
 		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.addActionListener(e -> updateDays(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay));
 		updateDays(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay);
-		
+
 		JPanel panel_CNTT_CotPhai_NhanKhau_08 = new JPanel();
 		panel_CNTT_CotPhai_NhanKhau_08.setBackground(Colors.khung_Chung);
 		panel_CNTT_CotPhai.add(panel_CNTT_CotPhai_NhanKhau_08);
@@ -254,7 +238,7 @@ public class CapNhatTamTru extends JPanel {
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay = new JComboBox();
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
 
-		
+
 		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.addActionListener(e -> updateDays(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay));
 		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.addActionListener(e -> updateDays(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay));
 		updateDays(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang, comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
@@ -273,22 +257,43 @@ public class CapNhatTamTru extends JPanel {
 		btn_CNTT_Yes.setForeground(Color.WHITE);
 		btn_CNTT_Yes.setOpaque(true);
 		btn_CNTT_Yes.setBorderPainted(false);
+
+		btn_CNTT_01_TimKiem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String soCMNDCCCD = text_CNTT_01.getText();
+				CapNhatTamTruController.timKiemTamTru(soCMNDCCCD, lbl_CNTT_CotPhai_01, lbl_CNTT_CotPhai_09);
+			}
+		});
+
+
 		btn_CNTT_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-		                "Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
-		                JOptionPane.YES_NO_OPTION);
+						"Bạn có chắc chắn muốn xác nhận ", "Xác nhận ",
+						JOptionPane.YES_NO_OPTION);
 
-		        if (confirmResult == JOptionPane.YES_OPTION) {
-		            // Thực hiện thay doi o day
-		            // Hiển thị thông báo xóa thành công
-		            JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng thành công!");
-		        } else if (confirmResult == JOptionPane.NO_OPTION) {
-		            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-		            JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng đã bị hủy.");
-		        }
+				if (confirmResult == JOptionPane.YES_OPTION) {
+					// Lấy số CCCD từ text field
+					String soCCCD = text_CNTT_01.getText();
+					int nambatdau = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.getSelectedItem();
+					int thangbatdau = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.getSelectedItem();
+					int ngaybatdau = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay.getSelectedItem();
+					int namketthuc = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.getSelectedItem();
+					int thangketthuc = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.getSelectedItem();
+					int ngayketthuc = (int) comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay.getSelectedItem();
+					String maHoKhauMoi = textField_CNTT_CotPhai_04.getText(); // Lấy thông tin mã hộ khẩu mới từ text field tương ứng
+
+					CapNhatTamTruController.capNhatTamTru(soCCCD, nambatdau, thangbatdau, ngaybatdau,
+							namketthuc, thangketthuc, ngayketthuc, maHoKhauMoi);
+				} else if (confirmResult == JOptionPane.NO_OPTION) {
+					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+					JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng đã bị hủy.");
+				}
 			}
 		});
+
+
+
 		panel_CNTT_confirm.add(btn_CNTT_Yes);
 
 		JButton btn_CNTT_No = new JButton("Hủy");
@@ -298,10 +303,10 @@ public class CapNhatTamTru extends JPanel {
 		btn_CNTT_No.setOpaque(true);
 		btn_CNTT_No.setBorderPainted(false);
 		btn_CNTT_No.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
-		        mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
-		    }
+			public void actionPerformed(ActionEvent e) {
+				QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
+				mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
+			}
 		});
 		panel_CNTT_confirm.add(btn_CNTT_No);
 
@@ -316,7 +321,6 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_title.add(lbl_Title_CapNhatTamTru);
 
 		setVisible(true);
-
 
 	}
 
@@ -350,7 +354,6 @@ public class CapNhatTamTru extends JPanel {
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
-	}
-
+}
 
 
