@@ -517,7 +517,39 @@ public class DatabaseConnector {
     }
 
     // 1.2. Thống kê theo độ tuổi
+    public static List<NhanKhau> getDsNhanKhauDoTuoi(String a, String b) {
+        List<NhanKhau> DsNhanKhau = new ArrayList<>();
 
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT *\n" +
+                    "FROM NhanKhau\n" +
+                    "WHERE DATEDIFF(YEAR, NgaySinh, GETDATE()) BETWEEN ? AND ?;";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, a);
+                pstmt.setString(2, b);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String tonGiao = rs.getString("TonGiao");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String queQuan = rs.getString("QueQuan");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+
+                        NhanKhau nhanKhau = new NhanKhau(maNhanKhau, hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
+                        DsNhanKhau.add(nhanKhau);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
 
     // 1.3. Thống kê theo tạm trú
     public static List<TamTru> getTamTruHetHan() {

@@ -41,12 +41,14 @@ public class ThongKeNhanKhau extends JPanel {
 	private JComboBox comboBox_TKeNK_02_BangThongTin_GioiTinh_LuaChon;
 	private JComboBox comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang;
 	private JComboBox comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang;
+	private JComboBox comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane1;
 	private JScrollPane scrollPane2;
 	private int soLuongBySex;
 	private int soLuongTamVang;
 	private int soLuongTamTru;
+	private int soLuongDoTuoi;
 	private JLabel lbl_TKeNK_Tong;
 	/**
 	 * Create the panel.
@@ -156,14 +158,14 @@ public class ThongKeNhanKhau extends JPanel {
 		lbl_TKeNK_02_BangThongTin_DoTuoi_Filter.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_TKeNK_02_BangThongTin_DoTuoi_Filter.add(lbl_TKeNK_02_BangThongTin_DoTuoi_Filter);
 
-		JComboBox comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter = new JComboBox();
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Mầm non");
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Mẫu giáo");
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 1");
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 2");
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 3");
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Độ tuổi lao động");
-		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Nghỉ hưu");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter = new JComboBox();
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Mầm non (0-2)");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Mẫu giáo (3-5)");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 1 (6-10)");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 2 (11-14)");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Cấp 3 (15-18)");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Độ tuổi lao động (19-60)");
+		comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.addItem("Nghỉ hưu (>60)");
 		panel_TKeNK_02_BangThongTin_DoTuoi_Filter.add(comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter);
 
 		JButton btn_TKeNK_02_BangThongTin_DoTuoi_Filter = new JButton("Thống kê\r\n");
@@ -179,6 +181,15 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_DoTuoi_NoiDung.setBackground(Colors.khung_Chung);
 		panel_TKeNK_02_BangThongTin_DoTuoi.add(panel_TKeNK_02_BangThongTin_DoTuoi_NoiDung, BorderLayout.CENTER);
 		panel_TKeNK_02_BangThongTin_DoTuoi_NoiDung.setLayout(new BorderLayout(0, 0));
+		btn_TKeNK_02_BangThongTin_DoTuoi_Filter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel_TKeNK_02_BangThongTin_DoTuoi_NoiDung.setLayout(new BorderLayout(10, 10));
+				panel_TKeNK_02_BangThongTin_DoTuoi_NoiDung.add(scrollPane, BorderLayout.CENTER);
+				loadDoTuoi();
+				lbl_TKeNK_Tong.setText("Tổng số lượng: " + soLuongDoTuoi);
+			}
+		});
 
 		//panel tam tru
 		JPanel panel_TKeNK_02_BangThongTin_TamTru = new JPanel();
@@ -619,6 +630,52 @@ public class ThongKeNhanKhau extends JPanel {
 			};
 			tableModel2.addRow(rowData);
 			soLuongTamTru += 1;
+		}
+	}
+	private void loadDoTuoi() {
+		String a = null, b = null;
+		String option = comboBox_TKeNK_02_BangThongTin_DoTuoi_Filter.getSelectedItem().toString();
+		// Clear existing data
+		tableModel.setRowCount(0);
+		List<NhanKhau> danhSachNhanKhau = new ArrayList<>();
+		if(option.equals("Mầm non (0-2)")) {
+			a = String.valueOf(0);
+			b = String.valueOf(2);
+		} else if(option.equals("Mẫu giáo (3-5)")) {
+			a = String.valueOf(3);
+			b = String.valueOf(5);
+		} else if(option.equals("Cấp 1 (6-10)")) {
+			a = String.valueOf(6);
+			b = String.valueOf(10);
+		} else if(option.equals("Cấp 2 (11-14)")) {
+			a = String.valueOf(11);
+			b = String.valueOf(14);
+		} else if(option.equals("Cấp 3 (15-18)")) {
+			a = String.valueOf(15);
+			b = String.valueOf(18);
+		} else if(option.equals("Độ tuổi lao động (19-60)")) {
+			a = String.valueOf(19);
+			b = String.valueOf(60);
+		} else if(option.equals("Nghỉ hưu (>60)")) {
+			a = String.valueOf(61);
+			b = String.valueOf(200);
+		}
+		danhSachNhanKhau = DatabaseConnector.getDsNhanKhauDoTuoi(a, b);
+		soLuongDoTuoi = 0;
+		// Populate the table with the fetched data
+		for (NhanKhau nhanKhau : danhSachNhanKhau) {
+			Object[] rowData = {
+					nhanKhau.getMaNhanKhau(),
+					nhanKhau.getHoTen(),
+					nhanKhau.getNgaySinh(),
+					nhanKhau.getTonGiao(),
+					nhanKhau.getSoCMNDCCCD(),
+					nhanKhau.getQueQuan(),
+					nhanKhau.getGioiTinh(),
+					nhanKhau.getMaHoKhau()
+			};
+			tableModel.addRow(rowData);
+			soLuongDoTuoi += 1;
 		}
 	}
 
