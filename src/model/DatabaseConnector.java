@@ -520,10 +520,136 @@ public class DatabaseConnector {
 
 
     // 1.3. Thống kê theo tạm trú
+    public static List<TamTru> getTamTruHetHan() {
+        List<TamTru> DsNhanKhau = new ArrayList<>();
 
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT t.MaGiayTamTru, t.MaNhanKhau, n.HoTen, n.SoCMNDCCCD, t.LyDo, t.ThoiGianBatDau, t.ThoiGianTamTru\n" +
+                    "FROM TamTru t JOIN NhanKhau n\n" +
+                    "ON t.MaNhanKhau = n.MaNhanKhau\n" +
+                    "WHERE t.ThoiGianTamTru <= GETDATE();";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maGiayTamTru = rs.getString("MaGiayTamTru");
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String  hoTen = rs.getString("HoTen");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String lyDo = rs.getString("LyDo");
+                        Date thoiGianBatDau = rs.getDate("ThoiGianBatDau");
+                        Date thoiGianTamTru = rs.getDate("ThoiGianTamTru");
+
+                        TamTru tamTru = new TamTru(maGiayTamTru, maNhanKhau, hoTen, soCMNDCCCD, lyDo, thoiGianBatDau, thoiGianTamTru);
+                        DsNhanKhau.add(tamTru);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
+    public static List<TamTru> getTamTruConHan() {
+        List<TamTru> DsNhanKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT t.MaGiayTamTru, t.MaNhanKhau, n.HoTen, n.SoCMNDCCCD, t.LyDo, t.ThoiGianBatDau, t.ThoiGianTamTru\n" +
+                    "FROM TamTru t JOIN NhanKhau n\n" +
+                    "ON t.MaNhanKhau = n.MaNhanKhau\n" +
+                    "WHERE t.ThoiGianTamTru > GETDATE();";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maGiayTamTru = rs.getString("MaGiayTamTru");
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String  hoTen = rs.getString("HoTen");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String lyDo = rs.getString("LyDo");
+                        Date thoiGianBatDau = rs.getDate("ThoiGianBatDau");
+                        Date thoiGianTamTru = rs.getDate("ThoiGianTamTru");
+
+                        TamTru tamTru = new TamTru(maGiayTamTru, maNhanKhau, hoTen, soCMNDCCCD, lyDo, thoiGianBatDau, thoiGianTamTru);
+                        DsNhanKhau.add(tamTru);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
 
     // 1.4. Thống kê theo tạm vắng
 
+    public static List<TamVang> getTamVangHetHan() {
+        List<TamVang> DsNhanKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT t.MaGiayTamVang, t.MaNhanKhau, n.HoTen, n.SoCMNDCCCD, t.LyDo, t.NgayBatDau, t.NgayKetThuc, t.NoiTamTru\n" +
+                    "FROM TamVang t JOIN NhanKhau n\n" +
+                    "ON t.MaNhanKhau = n.MaNhanKhau\n" +
+                    "WHERE t.NgayKetThuc <= GETDATE();";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maGiayTamVang = rs.getString("MaGiayTamVang");
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String  hoTen = rs.getString("HoTen");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String lyDo = rs.getString("LyDo");
+                        Date ngayBatDau = rs.getDate("NgayBatDau");
+                        Date ngayKetThuc = rs.getDate("NgayKetThuc");
+                        String noiTamTru = rs.getString("NoiTamTru");
+
+                        TamVang tamVang = new TamVang(maGiayTamVang, maNhanKhau, hoTen, soCMNDCCCD, lyDo, ngayBatDau, ngayKetThuc, noiTamTru);
+                        DsNhanKhau.add(tamVang);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
+
+    public static List<TamVang> getTamVangConHan() {
+        List<TamVang> DsNhanKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT t.MaGiayTamVang, t.MaNhanKhau, n.HoTen, n.SoCMNDCCCD, t.LyDo, t.NgayBatDau, t.NgayKetThuc, t.NoiTamTru\n" +
+                    "FROM TamVang t JOIN NhanKhau n\n" +
+                    "ON t.MaNhanKhau = n.MaNhanKhau\n" +
+                    "WHERE t.NgayKetThuc > GETDATE();";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maGiayTamVang = rs.getString("MaGiayTamVang");
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String  hoTen = rs.getString("HoTen");
+                        String soCMNDCCCD = rs.getString("SoCMNDCCCD");
+                        String lyDo = rs.getString("LyDo");
+                        Date ngayBatDau = rs.getDate("NgayBatDau");
+                        Date ngayKetThuc = rs.getDate("NgayKetThuc");
+                        String noiTamTru = rs.getString("NoiTamTru");
+
+                        TamVang tamVang = new TamVang(maGiayTamVang, maNhanKhau, hoTen, soCMNDCCCD, lyDo, ngayBatDau, ngayKetThuc, noiTamTru);
+                        DsNhanKhau.add(tamVang);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return DsNhanKhau;
+    }
 
 }
 
