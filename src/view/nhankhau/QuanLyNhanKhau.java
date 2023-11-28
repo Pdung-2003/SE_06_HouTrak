@@ -1,25 +1,16 @@
 package view.nhankhau;
 
-import model.DatabaseConnector;
+import controller.nhankhau.QuanLyNhanKhauController;
+import view.hokhau.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Rectangle;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Vector;
+import java.awt.*;
 
 public class QuanLyNhanKhau extends JPanel {
 
@@ -65,8 +56,44 @@ public class QuanLyNhanKhau extends JPanel {
 		//Tạo model cho Table
 		DefaultTableModel tableModel = new DefaultTableModel();
 
-		// Tạo JTable với model đã tạo
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
 		JTable table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_QLNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_QLNK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		// Thiết lập kích thước cho JTable
 		Dimension tableSize = new Dimension(1100, 600);
@@ -78,12 +105,6 @@ public class QuanLyNhanKhau extends JPanel {
 		// Thiết lập sorter cho JTable
 		table.setRowSorter(sorter);
 
-		// Tạo JScrollPane để bao quanh JTable và thiết lập kích thước cho nó
-		JScrollPane scrollPane = new JScrollPane(table);
-		Dimension scrollPaneSize = new Dimension(1100, 600);
-		scrollPane.setPreferredSize(scrollPaneSize);
-		panel_QLNK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
-
 		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
 		tableModel.addColumn("Mã Nhân Khẩu");
 		tableModel.addColumn("Họ Tên");
@@ -94,46 +115,15 @@ public class QuanLyNhanKhau extends JPanel {
 		tableModel.addColumn("Giới Tính");
 		tableModel.addColumn("Mã Hộ Khẩu");
 
-		// Thêm dữ liệu mẫu vào model
-		try {
-			// Kết nối đến cơ sở dữ liệu
-			Connection connection = DatabaseConnector.getConnection();
-
-			if (connection != null) {
-				String query = "SELECT MaNhanKhau, HoTen, NgaySinh,TonGiao, SoCMNDCCCD, QueQuan, GioiTinh,MaHoKhau FROM NhanKhau";
-				PreparedStatement preparedStatement = connection.prepareStatement(query);
-				ResultSet resultSet = preparedStatement.executeQuery();
-
-				// Xóa tất cả dữ liệu cũ trong tableModel (nếu có)
-				while (tableModel.getRowCount() > 0) {
-					tableModel.removeRow(0);
-				}
-
-				// Thêm dữ liệu từ ResultSet vào tableModel
-				while (resultSet.next()) {
-					Vector<String> dataRow = new Vector<>();
-					dataRow.add(resultSet.getString("MaNhanKhau"));
-					dataRow.add(resultSet.getString("HoTen"));
-					dataRow.add(resultSet.getString("NgaySinh"));
-					dataRow.add(resultSet.getString("TonGiao"));
-					dataRow.add(resultSet.getString("SoCMNDCCCD"));
-					dataRow.add(resultSet.getString("QueQuan"));
-					dataRow.add(resultSet.getString("GioiTinh"));
-					dataRow.add(resultSet.getString("MaHoKhau"));
-
-					tableModel.addRow(dataRow);
-				}
-
-				// Đóng kết nối và tài nguyên
-				resultSet.close();
-				preparedStatement.close();
-				connection.close();
-			} else {
-				JOptionPane.showMessageDialog(this, "Không thể kết nối đến cơ sở dữ liệu!");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Nhân Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(150); // Họ Tên Nhân Khẩu
+		table.getColumnModel().getColumn(2).setPreferredWidth(120); // Ngày Sinh
+		table.getColumnModel().getColumn(3).setPreferredWidth(150); // Tôn Giáo
+		table.getColumnModel().getColumn(4).setPreferredWidth(150); // CMND
+		table.getColumnModel().getColumn(5).setPreferredWidth(120); // Quê Quán
+		table.getColumnModel().getColumn(6).setPreferredWidth(100); // Giới Tính
+		table.getColumnModel().getColumn(7).setPreferredWidth(120); // Mã Hộ Khẩu
 
 		JPanel panel_QLNK_SubTitle = new JPanel();
 		panel_QLNK_SubTitle.setBackground(Colors.khung_Chung);
@@ -158,35 +148,10 @@ public class QuanLyNhanKhau extends JPanel {
 		comboBox_QLNK_Sort.addItem("Sắp xếp theo mã hộ khẩu");
 
 
-		comboBox_QLNK_Sort.addActionListener(e -> {
-			String selectedItem = comboBox_QLNK_Sort.getSelectedItem().toString();
-			switch (selectedItem) {
-				case "Sắp xếp theo mã nhân khẩu":
-					// Sắp xếp dữ liệu theo mã nhân khẩu (column 0)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
-					break;
-				case "Sắp xếp theo tên":
-					// Sắp xếp dữ liệu theo tên (column 1)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
-					break;
-				case "Sắp xếp theo ngày sinh":
-					// Sắp xếp dữ liệu theo ngày sinh (column 2)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
-					break;
-				case "Sắp xếp theo số CMND":
-					// Sắp xếp dữ liệu theo CMND (column 4)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.ASCENDING)));
-					break;
-				case "Sắp xếp theo giới tính":
-					// Sắp xếp dữ liệu theo giới tính (column 6)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(6, SortOrder.ASCENDING)));
-					break;
-				case "Sắp xếp theo mã hộ khẩu":
-					// Sắp xếp dữ liệu theo mã hộ khẩu (column 7)
-					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(7, SortOrder.ASCENDING)));
-					break;
-			}
-		});
+		QuanLyNhanKhauController controller = new QuanLyNhanKhauController(tableModel, sorter, comboBox_QLNK_Sort);
+
+		// Gọi hàm in bảng khi cần
+		controller.printTableData();
 
 	}
 

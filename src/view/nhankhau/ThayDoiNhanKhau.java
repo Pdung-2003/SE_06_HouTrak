@@ -1,25 +1,18 @@
 package view.nhankhau;
 
-import javax.swing.*;
-
 import model.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
-import view.nhankhau.QuanLyNhanKhau;
+import view.hokhau.CustomRowHeightRenderer;
 import view.settings.Colors;
 
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -353,18 +346,54 @@ public class ThayDoiNhanKhau extends JPanel {
 		//Tạo model cho Table
 		DefaultTableModel tableModel = new DefaultTableModel();
 
-		// Tạo JTable với model đã tạo
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
 		JTable table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_TDNK_02_ThongTinHienTai.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 60));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_TDNK_02_ThongTinHienTai.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		// Thiết lập kích thước cho JTable
-		Dimension tableSize = new Dimension(1100, 40);
+		Dimension tableSize = new Dimension(1100, 60);
 		table.setPreferredScrollableViewportSize(tableSize);
 
-		// Tạo JScrollPane để bao quanh JTable và thiết lập kích thước cho nó
-		JScrollPane scrollPane = new JScrollPane(table);
-		Dimension scrollPaneSize = new Dimension(1100, 40);
-		scrollPane.setPreferredSize(scrollPaneSize);
-		panel_TDNK_02_ThongTinHienTai.add(scrollPane, BorderLayout.CENTER);
+		// Khai báo biến sorter là một RowSorter
+		RowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+
+		// Thiết lập sorter cho JTable
+		table.setRowSorter(sorter);
 
 		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
 		tableModel.addColumn("Mã Nhân Khẩu");
@@ -375,6 +404,16 @@ public class ThayDoiNhanKhau extends JPanel {
 		tableModel.addColumn("Quê Quán");
 		tableModel.addColumn("Giới Tính");
 		tableModel.addColumn("Mã Hộ Khẩu");
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Nhân Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(150); // Họ Tên Nhân Khẩu
+		table.getColumnModel().getColumn(2).setPreferredWidth(120); // Ngày Sinh
+		table.getColumnModel().getColumn(3).setPreferredWidth(150); // Tôn Giáo
+		table.getColumnModel().getColumn(4).setPreferredWidth(150); // CMND
+		table.getColumnModel().getColumn(5).setPreferredWidth(120); // Quê Quán
+		table.getColumnModel().getColumn(6).setPreferredWidth(100); // Giới Tính
+		table.getColumnModel().getColumn(7).setPreferredWidth(120); // Mã Hộ Khẩu
 
 		btn_TDNK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

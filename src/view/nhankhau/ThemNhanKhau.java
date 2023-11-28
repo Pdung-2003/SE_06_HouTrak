@@ -1,28 +1,15 @@
 package view.nhankhau;
 
-import model.DatabaseConnector;
+import controller.nhankhau.ThemNhanKhauController;
 import view.dangnhap.ManHinhChinh;
-import view.nhankhau.QuanLyNhanKhau;
 import view.settings.Colors;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Calendar;
 
 public class ThemNhanKhau extends JPanel {
@@ -250,83 +237,40 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_Yes.setBorderPainted(false);
 		btn_TNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Lấy thông tin từ các trường nhập liệu
+				String hoTen = textField_TNK_CotPhai_02.getText();
+				String cmnd = textField_TNK_CotPhai_03.getText();
+				String gioiTinh = rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected() ? "Nam" : "Nữ";
+				int nam = (int) comboBox_TNK_CotPhai_NhanKhau_Nam.getSelectedItem();
+				int thang = (int) comboBox_TNK_CotPhai_NhanKhau_Thang.getSelectedItem();
+				int ngay = (int) comboBox_TNK_CotPhai_NhanKhau_Ngay.getSelectedItem();
+				String tonGiao = textField_TNK_CotPhai_04.getText();
+				String queQuan = textField_TNK_CotPhai_05.getText();
+				String maHoKhau = textField_TNK_CotPhai_06.getText(); // Lấy mã hộ khẩu từ textField
+
+				if (hoTen.isEmpty() || cmnd.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin bắt buộc!");
+					return; // Không thêm vào cơ sở dữ liệu nếu thiếu thông tin bắt buộc
+				}
+
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
 						"Bạn có chắc chắn muốn thêm ? ", "Xác nhận ",
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmResult == JOptionPane.YES_OPTION) {
-					String hoTen = textField_TNK_CotPhai_02.getText();
-					String cmnd = textField_TNK_CotPhai_03.getText();
-					String gioiTinh = rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected() ? "Nam" : "Nữ";
-					int nam = (int) comboBox_TNK_CotPhai_NhanKhau_Nam.getSelectedItem();
-					int thang = (int) comboBox_TNK_CotPhai_NhanKhau_Thang.getSelectedItem();
-					int ngay = (int) comboBox_TNK_CotPhai_NhanKhau_Ngay.getSelectedItem();
-					String tonGiao = textField_TNK_CotPhai_04.getText();
-					String queQuan = textField_TNK_CotPhai_05.getText();
-					String maHoKhau = textField_TNK_CotPhai_06.getText(); // Lấy mã hộ khẩu từ textField
-
-					if (hoTen.isEmpty() || cmnd.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty() ) {
-						JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin bắt buộc!");
-						return; // Không thêm vào cơ sở dữ liệu nếu thiếu thông tin bắt buộc
-					}
-					// Thực hiện lưu thông tin vào cơ sở dữ liệu
-					try (Connection connection = DatabaseConnector.getConnection()) {
-						if (connection != null) {
-							String sqlToCheckCondition = "SELECT * FROM HoKhau WHERE MaHoKhau = ?";
-							PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-							preparedStatementToCheckCondition.setString(1, maHoKhau);
-							ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
-							if (resultSet.next()) {
-								String sql = "INSERT INTO NhanKhau (HoTen, soCMNDCCCD, GioiTinh, NgaySinh, TonGiao, QueQuan, MaHoKhau) " +
-										"VALUES (?, ?, ?, ?, ?, ?, ?)";
-								try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-									// Tạo đối tượng java.sql.Date từ thông tin ngày, tháng, năm
-									LocalDate ngaySinh = LocalDate.of(nam, thang, ngay);
-									java.sql.Date ngaySinhSQL = java.sql.Date.valueOf(ngaySinh);
-
-									preparedStatement.setString(1, hoTen);
-									preparedStatement.setString(2, cmnd);
-									preparedStatement.setString(3, gioiTinh);
-									preparedStatement.setDate(4, ngaySinhSQL);
-									preparedStatement.setString(5, tonGiao);
-									preparedStatement.setString(6, queQuan);
-									preparedStatement.setString(7, maHoKhau);
-
-									// Execute the PreparedStatement
-									preparedStatement.executeUpdate();
-									preparedStatement.close();
-
-									// Display a success message to the user
-									JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");
-
-									// Clear các trường nhập liệu sau khi thêm thành công
-									textField_TNK_CotPhai_02.setText("");
-									textField_TNK_CotPhai_03.setText("");
-									textField_TNK_CotPhai_04.setText("");
-									textField_TNK_CotPhai_05.setText("");
-									textField_TNK_CotPhai_06.setText("");
-									bg_NhanKhau_GioiTinh.clearSelection();
-									comboBox_TNK_CotPhai_NhanKhau_Nam.setSelectedItem(1900);
-									comboBox_TNK_CotPhai_NhanKhau_Thang.setSelectedItem(1);
-									comboBox_TNK_CotPhai_NhanKhau_Ngay.setSelectedItem(1);}
-							}else {
-								// Nếu không tồn tại mã hộ khẩu, hiển thị thông báo lỗi
-								JOptionPane.showMessageDialog(null, "Mã hộ khẩu không tồn tại trong cơ sở dữ liệu!");
-								return;
-							}
-
-							// Đóng ResultSet, PreparedStatement và kết nối
-							resultSet.close();
-							preparedStatementToCheckCondition.close();
-							connection.close();
-						}
-						// Chuyển về giao diện Quản lý nhân khẩu sau khi thêm thành công
-						// ... (code to switch back to the management interface)
-					} catch (SQLException ex) {
-						// Handle any SQL exceptions here
-						ex.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Lỗi khi thêm nhân khẩu!");
-					}
+					// Thực hiện thêm nhân khẩu thông qua controller
+					ThemNhanKhauController themNhanKhauController = new ThemNhanKhauController();
+					themNhanKhauController.themNhanKhau(hoTen, cmnd, gioiTinh, nam, thang, ngay, tonGiao, queQuan, maHoKhau);
+					//reset các trường nhập liệu
+					textField_TNK_CotPhai_02.setText("");
+					textField_TNK_CotPhai_03.setText("");
+					textField_TNK_CotPhai_04.setText("");
+					textField_TNK_CotPhai_05.setText("");
+					textField_TNK_CotPhai_06.setText("");
+					bg_NhanKhau_GioiTinh.clearSelection();
+					comboBox_TNK_CotPhai_NhanKhau_Nam.setSelectedItem(1900);
+					comboBox_TNK_CotPhai_NhanKhau_Thang.setSelectedItem(1);
+					comboBox_TNK_CotPhai_NhanKhau_Ngay.setSelectedItem(1);
 				} else if (confirmResult == JOptionPane.NO_OPTION) {
 					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
 					JOptionPane.showMessageDialog(mainFrame, "Thêm đã bị hủy.");
