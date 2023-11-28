@@ -1,5 +1,6 @@
 package view.nhankhau;
 
+import model.TamTru;
 import model.TamVang;
 import view.dangnhap.ManHinhChinh;
 import view.hokhau.CustomRowHeightRenderer;
@@ -33,14 +34,19 @@ public class ThongKeNhanKhau extends JPanel {
 	private  CardLayout cardLayout1;
 	private JTable table;
 	private JTable table1;
+	private JTable table2;
 	private DefaultTableModel tableModel;
 	private DefaultTableModel tableModel1;
+	private DefaultTableModel tableModel2;
 	private JComboBox comboBox_TKeNK_02_BangThongTin_GioiTinh_LuaChon;
 	private JComboBox comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang;
+	private JComboBox comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane1;
+	private JScrollPane scrollPane2;
 	private int soLuongBySex;
 	private int soLuongTamVang;
+	private int soLuongTamTru;
 	private JLabel lbl_TKeNK_Tong;
 	/**
 	 * Create the panel.
@@ -188,7 +194,7 @@ public class ThongKeNhanKhau extends JPanel {
 		lbl_TKeNK_02_BangThongTin_TamTru_TInhTrang.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_TKeNK_02_BangThongTin_TamTru_Filter.add(lbl_TKeNK_02_BangThongTin_TamTru_TInhTrang);
 
-		JComboBox comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang = new JComboBox();
+		comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang = new JComboBox();
 		comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang.addItem("Hết hạn");
 		comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang.addItem("Chưa hết");
 		panel_TKeNK_02_BangThongTin_TamTru_Filter.add(comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang);
@@ -206,6 +212,16 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_02_BangThongTin_TamTru_NoiDung.setBackground(Colors.khung_Chung);
 		panel_TKeNK_02_BangThongTin_TamTru.add(panel_TKeNK_02_BangThongTin_TamTru_NoiDung, BorderLayout.CENTER);
 		panel_TKeNK_02_BangThongTin_TamTru_NoiDung.setLayout(new BorderLayout(0, 0));
+
+		btn_TKeNK_02_BangThongTin_TamTru_Filter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel_TKeNK_02_BangThongTin_TamTru_NoiDung.setLayout(new BorderLayout(10, 10));
+				panel_TKeNK_02_BangThongTin_TamTru_NoiDung.add(scrollPane2, BorderLayout.CENTER);
+				loadTamTru();
+				lbl_TKeNK_Tong.setText("Tổng số lượng: " + soLuongTamTru);
+			}
+		});
 
 		//panel tam vang
 		JPanel panel_TKeNK_02_BangThongTin_TamVang = new JPanel();
@@ -244,7 +260,7 @@ public class ThongKeNhanKhau extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				panel_TKeNK_02_BangThongTin_TamVang_NoiDung.setLayout(new BorderLayout(10, 10));
-				panel_TKeNK_02_BangThongTin_TamVang_NoiDung.add(scrollPane, BorderLayout.CENTER);
+				panel_TKeNK_02_BangThongTin_TamVang_NoiDung.add(scrollPane1, BorderLayout.CENTER);
 				loadTamVang();
 				lbl_TKeNK_Tong.setText("Tổng số lượng: " + soLuongTamVang);
 			}
@@ -393,14 +409,14 @@ public class ThongKeNhanKhau extends JPanel {
 		//Bang cho TAM VANG
 		// Tạo bảng và mô hình bảng gioi tinh
 		tableModel1 = new DefaultTableModel();
+		tableModel1.addColumn("Mã Tạm Vắng");
 		tableModel1.addColumn("Mã Nhân Khẩu");
 		tableModel1.addColumn("Họ Tên");
-		tableModel1.addColumn("Ngày Sinh");
-		tableModel1.addColumn("Tôn Giáo");
 		tableModel1.addColumn("Số CMND/CCCD");
-		tableModel1.addColumn("Quê Quán");
-		tableModel1.addColumn("Giới Tính");
-		tableModel1.addColumn("Mã Hộ Khẩu");
+		tableModel1.addColumn("Lý Do");
+		tableModel1.addColumn("Ngày Bắt Đầu");
+		tableModel1.addColumn("Ngày Kết Thúc");
+		tableModel1.addColumn("Nơi Tạm Trú");
 
 		// Tạo JTable với mô hình bảng đã tạo
 		table1 = new JTable(tableModel1);
@@ -447,10 +463,70 @@ public class ThongKeNhanKhau extends JPanel {
 		scrollPane1.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
-		panel_TKeNK_02_BangThongTin_TamVang_NoiDung.add(scrollPane, BorderLayout.CENTER);
-		JViewport viewport1 = scrollPane.getViewport();
+		panel_TKeNK_02_BangThongTin_TamVang_NoiDung.add(scrollPane1, BorderLayout.CENTER);
+		JViewport viewport1 = scrollPane1.getViewport();
+		viewport1.setBackground(Colors.khung_Chung);
+		scrollPane1.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+
+		//Bang cho TAM VANG
+		// Tạo bảng và mô hình bảng gioi tinh
+		tableModel2 = new DefaultTableModel();
+		tableModel2.addColumn("Mã Tạm Trú");
+		tableModel2.addColumn("Mã Nhân Khẩu");
+		tableModel2.addColumn("Họ Tên");
+		tableModel2.addColumn("Số CMND/CCCD");
+		tableModel2.addColumn("Lý Do");
+		tableModel2.addColumn("Ngày Bắt Đầu");
+		tableModel2.addColumn("Ngày Kết Thúc");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		table2 = new JTable(tableModel2);
+		// Đặt màu sắc cho header của bảng
+
+		// In đậm chữ ở header và đặt font
+		table2.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		// Đặt kích thước của các cột trong bảng
+		table2.getColumnModel().getColumn(0).setPreferredWidth(80); // Mã Hộ Khẩu
+		table2.getColumnModel().getColumn(1).setPreferredWidth(100); // Họ Tên Chủ Hộ
+		table2.getColumnModel().getColumn(2).setPreferredWidth(80); // Ngày Lập
+		table2.getColumnModel().getColumn(3).setPreferredWidth(100); // Địa Chỉ
+		table2.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+		table2.getColumnModel().getColumn(5).setPreferredWidth(100); // Khu Vực
+		table2.getColumnModel().getColumn(6).setPreferredWidth(80); // Khu Vực
+
+		table2.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_TKeNK_02_BangThongTin_TamTru_NoiDung.setLayout(new BorderLayout(10, 10));
+
+		table2.setPreferredScrollableViewportSize(new Dimension(800, 100));
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		scrollPane2 = new JScrollPane(table2);
+		//scrollPane.setPreferredSize(new Dimension(1400, 80));  // Đặt kích thước của JScrollPane
+		//scrollPane.setViewportView(table);
+
+		// Đặt màu sắc cho background của bảng
+		table2.setBackground(Colors.mau_Nen_QLHK);
+		table2.setForeground(Colors.mau_Text_QLHK);
+		scrollPane2.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_TKeNK_02_BangThongTin_TamTru_NoiDung.add(scrollPane2, BorderLayout.CENTER);
+		viewport = scrollPane2.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
-		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+		scrollPane2.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		lbl_TKeNK_Tong = new JLabel(); // dien tong so luong vao day
 		lbl_TKeNK_Tong.setFont(new Font("Arial", Font.BOLD, 16));
@@ -492,7 +568,7 @@ public class ThongKeNhanKhau extends JPanel {
 	private void loadTamVang() {
 		String option = comboBox_TKeNK_02_BangThongTin_TamVang_TinhTrang.getSelectedItem().toString();
 		// Clear existing data
-		tableModel.setRowCount(0);
+		tableModel1.setRowCount(0);
 		List<TamVang> danhSachNhanKhau = new ArrayList<>();
 		if(option.equals("Hết hạn")) {
 			danhSachNhanKhau = DatabaseConnector.getTamVangHetHan();
@@ -513,8 +589,37 @@ public class ThongKeNhanKhau extends JPanel {
 					nhanKhau.getNgayKetThuc(),
 					nhanKhau.getNoiTamTru()
 			};
-			tableModel.addRow(rowData);
+			tableModel1.addRow(rowData);
 			soLuongTamVang += 1;
 		}
 	}
+
+	private void loadTamTru() {
+		String option = comboBox_TKeNK_02_BangThongTin_TamTru_TinhTrang.getSelectedItem().toString();
+		// Clear existing data
+		tableModel2.setRowCount(0);
+		List<TamTru> danhSachNhanKhau = new ArrayList<>();
+		if(option.equals("Hết hạn")) {
+			danhSachNhanKhau = DatabaseConnector.getTamTruHetHan();
+		} else if(option.equals("Chưa hết")) {
+			danhSachNhanKhau = DatabaseConnector.getTamTruConHan();
+		}
+
+		soLuongTamTru = 0;
+		// Populate the table with the fetched data
+		for (TamTru nhanKhau : danhSachNhanKhau) {
+			Object[] rowData = {
+					nhanKhau.getMaGiayTamTru(),
+					nhanKhau.getMaNhanKhau(),
+					nhanKhau.getHoTen(),
+					nhanKhau.getSoCMNDCCCD(),
+					nhanKhau.getLyDo(),
+					nhanKhau.getThoiGianBatDau(),
+					nhanKhau.getThoiGianTamTru()
+			};
+			tableModel2.addRow(rowData);
+			soLuongTamTru += 1;
+		}
+	}
+
 }
