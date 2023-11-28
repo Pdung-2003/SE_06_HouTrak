@@ -1,10 +1,13 @@
 package view.dangnhap;
 
+import model.LoginChecker;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
@@ -52,7 +55,7 @@ public class SignIn extends JFrame {
 		panel_SignIn_Content_Title.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblLabel_Logo = new JLabel();
-		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("Logo_Signin.png"))));
+		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("/view/image/Logo_Signin.png"))));
 		lblLabel_Logo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLabel_Logo.setForeground(new Color(255, 255, 255));
 		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);
@@ -145,6 +148,12 @@ public class SignIn extends JFrame {
 		btnSignIn_1.setBorderPainted(false);
 		btnSignIn_1.setBackground(new Color(2, 62, 138));
 		panel_SignIn_btn_DangNhap.add(btnSignIn_1);
+		btnSignIn_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				performLogin();
+			}
+		});
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Colors.khung_Chung);
@@ -204,10 +213,28 @@ public class SignIn extends JFrame {
 		panel_header_logo.add(panel_logo_dem4, BorderLayout.EAST);
 		setVisible(true);
 	}
-	private boolean authenticate(String username, String password) {
-		// Thực hiện kiểm tra đăng nhập ở đây
-		// Đây chỉ là ví dụ, bạn cần thay thế bằng logic thực tế
-		return "admin".equals(username) && "123456".equals(password);
+	// Hàm xử lý đăng nhập và chuyển trang
+	private void performLogin(){
+		String username = textField_SignIn_TK.getText();
+		String password = passwordField_SignIn_MK.getText();
+
+		// Gọi phương thức checkLogin từ DatabaseConnector
+		boolean isValidLogin = LoginChecker.checkLogin(username, password);
+
+		if (isValidLogin) {
+			// Đăng nhập thành công
+			JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
+
+			// Đóng cửa sổ LoginView
+			dispose();
+
+			// Mở cửa sổ ManHinhChinh
+			ManHinhChinh manHinhChinh = new ManHinhChinh();
+			manHinhChinh.setVisible(true);
+		} else {
+			// Thông báo đăng nhập không thành công
+			JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không đúng!");
+		}
 	}
 
 }
