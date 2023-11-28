@@ -1,30 +1,20 @@
 package view.nhankhau;
 
-import model.DatabaseConnector;
+import controller.nhankhau.TimKiemNhanKhauController;
+import view.hokhau.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 public class TimKiemNhanKhau extends JPanel {
 	private JTextField text_TKNK_01;
@@ -76,7 +66,7 @@ public class TimKiemNhanKhau extends JPanel {
 		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo tên");
 		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo ngày sinh");
 		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo số CMND");
-		comboBox_TKNK_SortTK.addItem("Tìm kiém theo mã nhân khẩu");
+		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo mã nhân khẩu");
 		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo mã hộ khẩu");
 		panel_TKNK_KhoangTrang2.add(comboBox_TKNK_SortTK);
 
@@ -135,12 +125,47 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_TKNK_02_BangThongTin.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_TKNK_02.add(panel_TKNK_02_BangThongTin, BorderLayout.CENTER);
-
-		//Tạo model cho Table
+//Tạo model cho Table
 		DefaultTableModel tableModel = new DefaultTableModel();
 
-		// Tạo JTable với model đã tạo
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
 		JTable table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_TKNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_TKNK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		// Thiết lập kích thước cho JTable
 		Dimension tableSize = new Dimension(1100, 600);
@@ -152,12 +177,6 @@ public class TimKiemNhanKhau extends JPanel {
 		// Thiết lập sorter cho JTable
 		table.setRowSorter(sorter);
 
-		// Tạo JScrollPane để bao quanh JTable và thiết lập kích thước cho nó
-		JScrollPane scrollPane = new JScrollPane(table);
-		Dimension scrollPaneSize = new Dimension(1100, 600);
-		scrollPane.setPreferredSize(scrollPaneSize);
-		panel_TKNK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
-
 		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
 		tableModel.addColumn("Mã Nhân Khẩu");
 		tableModel.addColumn("Họ Tên");
@@ -168,55 +187,46 @@ public class TimKiemNhanKhau extends JPanel {
 		tableModel.addColumn("Giới Tính");
 		tableModel.addColumn("Mã Hộ Khẩu");
 
-		//Thêm chức năng tìm kiếm vào nút Tìm kiếm
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Nhân Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(150); // Họ Tên Nhân Khẩu
+		table.getColumnModel().getColumn(2).setPreferredWidth(120); // Ngày Sinh
+		table.getColumnModel().getColumn(3).setPreferredWidth(150); // Tôn Giáo
+		table.getColumnModel().getColumn(4).setPreferredWidth(150); // CMND
+		table.getColumnModel().getColumn(5).setPreferredWidth(120); // Quê Quán
+		table.getColumnModel().getColumn(6).setPreferredWidth(100); // Giới Tính
+		table.getColumnModel().getColumn(7).setPreferredWidth(120); // Mã Hộ Khẩu
+
+		// Trong phương thức của TimKiemNhanKhau
 		btn_TKNK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String hoTen = text_TKNK_01.getText();
-				if (hoTen.equals("")) {
+				String selectedItem = comboBox_TKNK_SortTK.getSelectedItem().toString();
+				String searchText = text_TKNK_01.getText();
+
+				if (searchText.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Không được để trống ô tìm kiếm !");
 					return;
 				}
-				try (Connection connection = DatabaseConnector.getConnection()) {
-					if (connection != null) {
-						String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE hoTen LIKE ?";
-						PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-						preparedStatementToCheckCondition.setString(1, "%"+hoTen+"%");
-						ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
 
-						//Xóa dữ liệu trên bảng
-						while (tableModel.getRowCount() > 0) {
-							tableModel.removeRow(0);
-						}
-						boolean found = false;
-						//Thêm dữ liệu mới vào
-						while (resultSet.next()) {
-							found = true;
-							Vector<String> dataRow = new Vector<>();
-							dataRow.add(resultSet.getString("MaNhanKhau"));
-							dataRow.add(resultSet.getString("HoTen"));
-							dataRow.add(resultSet.getString("NgaySinh"));
-							dataRow.add(resultSet.getString("TonGiao"));
-							dataRow.add(resultSet.getString("SoCMNDCCCD"));
-							dataRow.add(resultSet.getString("QueQuan"));
-							dataRow.add(resultSet.getString("GioiTinh"));
-							dataRow.add(resultSet.getString("MaHoKhau"));
-
-							tableModel.addRow(dataRow);
-						}
-
-						if (!found) {
-							JOptionPane.showMessageDialog(null, "Không tìm thấy tên nhân khẩu khớp!");
-						}
-
-						// Đóng kết nối và tài nguyên
-						resultSet.close();
-						preparedStatementToCheckCondition.close();
-						connection.close();
-					}
-				} catch (SQLException ex) {
-					// Handle any SQL exceptions here
-					ex.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Lỗi khi kết nối cơ sở dữ liệu !");
+				switch (selectedItem) {
+					case "Tìm kiếm theo tên":
+						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo ngày sinh":
+						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo số CMND":
+						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo mã nhân khẩu":
+						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo mã hộ khẩu":
+						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
+						break;
+						default:
+						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
+						break;
 				}
 			}
 		});
