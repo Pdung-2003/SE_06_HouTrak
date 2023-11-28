@@ -1,16 +1,41 @@
 package view.nhankhau;
 
 import controller.nhankhau.ThemNhanKhauController;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static model.DatabaseConnector.*;
 
 public class ThemNhanKhau extends JPanel {
 	private JTextField textField_TNK_CotPhai_02;
@@ -20,7 +45,17 @@ public class ThemNhanKhau extends JPanel {
 	private JTextField textField_TNK_CotPhai_06;
 	private JTextField textField_TNK_CotPhai_07;
 
+	private JButton btn_TNK_Yes;
+	private JButton btn_TNK_No;
+	private JButton btn_TNK_NhapFile;
+	private JComboBox comboBox_TNK_CotPhai_NhanKhau_Nam;
+	private JComboBox comboBox_TNK_CotPhai_NhanKhau_Thang;
+	private JComboBox comboBox_TNK_CotPhai_NhanKhau_Ngay;
+
+	private JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01;
+	private JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02;
 	private final ManHinhChinh mainFrame;
+	private ThemNhanKhauController themNhanKhauController;
 
 	public ThemNhanKhau(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
@@ -104,12 +139,12 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai_NhanKhau_03.add(panel_TNK_CotPhai_NhanKhau_GioiTinh, BorderLayout.CENTER);
 		panel_TNK_CotPhai_NhanKhau_GioiTinh.setLayout(new BoxLayout(panel_TNK_CotPhai_NhanKhau_GioiTinh, BoxLayout.X_AXIS));
 
-		JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01 = new JRadioButton("Nam");
+		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01 = new JRadioButton("Nam");
 		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.setFont(new Font("Arial", Font.PLAIN, 12));
 		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01);
 
-		JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02 = new JRadioButton("Nữ");
+		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02 = new JRadioButton("Nữ");
 		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02.setFont(new Font("Arial", Font.PLAIN, 12));
 		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02);
@@ -142,7 +177,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Nam);
 		lbl_TNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		JComboBox comboBox_TNK_CotPhai_NhanKhau_Nam = new JComboBox();
+		comboBox_TNK_CotPhai_NhanKhau_Nam = new JComboBox();
 		populateYears(comboBox_TNK_CotPhai_NhanKhau_Nam);
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_CotPhai_NhanKhau_Nam);
 
@@ -150,7 +185,7 @@ public class ThemNhanKhau extends JPanel {
 		lbl_TNK_CotPhai_NhanKhau_Thang.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Thang);
 
-		JComboBox comboBox_TNK_CotPhai_NhanKhau_Thang = new JComboBox();
+		comboBox_TNK_CotPhai_NhanKhau_Thang = new JComboBox();
 		populateMonths(comboBox_TNK_CotPhai_NhanKhau_Thang);
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_CotPhai_NhanKhau_Thang);
 
@@ -158,7 +193,7 @@ public class ThemNhanKhau extends JPanel {
 		lbl_TNK_CotPhai_NhanKhau_Ngay.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Ngay);
 
-		JComboBox comboBox_TNK_CotPhai_NhanKhau_Ngay = new JComboBox();
+		comboBox_TNK_CotPhai_NhanKhau_Ngay = new JComboBox();
 		comboBox_TNK_CotPhai_NhanKhau_Ngay.setFont(new Font("Arial", Font.PLAIN, 12));
 		comboBox_TNK_CotPhai_NhanKhau_Thang.setFont(new Font("Arial", Font.PLAIN, 12));
 		comboBox_TNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -229,57 +264,15 @@ public class ThemNhanKhau extends JPanel {
 		panel_KhungNoiDungTNK.add(panel_TNK_confirm, BorderLayout.SOUTH);
 		panel_TNK_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
-		JButton btn_TNK_Yes = new JButton("Thêm");
+		btn_TNK_Yes = new JButton("Thêm");
 		btn_TNK_Yes.setToolTipText("");
 		btn_TNK_Yes.setBackground(Colors.button_XacNhan);
 		btn_TNK_Yes.setForeground(Color.WHITE);
 		btn_TNK_Yes.setOpaque(true);
 		btn_TNK_Yes.setBorderPainted(false);
-		btn_TNK_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Lấy thông tin từ các trường nhập liệu
-				String hoTen = textField_TNK_CotPhai_02.getText();
-				String cmnd = textField_TNK_CotPhai_03.getText();
-				String gioiTinh = rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected() ? "Nam" : "Nữ";
-				int nam = (int) comboBox_TNK_CotPhai_NhanKhau_Nam.getSelectedItem();
-				int thang = (int) comboBox_TNK_CotPhai_NhanKhau_Thang.getSelectedItem();
-				int ngay = (int) comboBox_TNK_CotPhai_NhanKhau_Ngay.getSelectedItem();
-				String tonGiao = textField_TNK_CotPhai_04.getText();
-				String queQuan = textField_TNK_CotPhai_05.getText();
-				String maHoKhau = textField_TNK_CotPhai_06.getText(); // Lấy mã hộ khẩu từ textField
-
-				if (hoTen.isEmpty() || cmnd.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin bắt buộc!");
-					return; // Không thêm vào cơ sở dữ liệu nếu thiếu thông tin bắt buộc
-				}
-
-				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
-						"Bạn có chắc chắn muốn thêm ? ", "Xác nhận ",
-						JOptionPane.YES_NO_OPTION);
-
-				if (confirmResult == JOptionPane.YES_OPTION) {
-					// Thực hiện thêm nhân khẩu thông qua controller
-					ThemNhanKhauController themNhanKhauController = new ThemNhanKhauController();
-					themNhanKhauController.themNhanKhau(hoTen, cmnd, gioiTinh, nam, thang, ngay, tonGiao, queQuan, maHoKhau);
-					//reset các trường nhập liệu
-					textField_TNK_CotPhai_02.setText("");
-					textField_TNK_CotPhai_03.setText("");
-					textField_TNK_CotPhai_04.setText("");
-					textField_TNK_CotPhai_05.setText("");
-					textField_TNK_CotPhai_06.setText("");
-					bg_NhanKhau_GioiTinh.clearSelection();
-					comboBox_TNK_CotPhai_NhanKhau_Nam.setSelectedItem(1900);
-					comboBox_TNK_CotPhai_NhanKhau_Thang.setSelectedItem(1);
-					comboBox_TNK_CotPhai_NhanKhau_Ngay.setSelectedItem(1);
-				} else if (confirmResult == JOptionPane.NO_OPTION) {
-					// Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
-					JOptionPane.showMessageDialog(mainFrame, "Thêm đã bị hủy.");
-				}
-			}
-		});
 		panel_TNK_confirm.add(btn_TNK_Yes);
 
-		JButton btn_TNK_No = new JButton("Hủy");
+		btn_TNK_No = new JButton("Hủy");
 		btn_TNK_No.setToolTipText("");
 		btn_TNK_No.setBackground(Colors.button_Huy);
 		btn_TNK_No.setForeground(Color.WHITE);
@@ -298,16 +291,9 @@ public class ThemNhanKhau extends JPanel {
 		panel_KhungNoiDungTNK.add(panel_TNK_Dem, BorderLayout.NORTH);
 		panel_TNK_Dem.setLayout(new BorderLayout(10, 10));
 
-		JButton btn_TNK_NhapFile = new JButton("Chọn file");
+		btn_TNK_NhapFile = new JButton("Chọn file");
 		btn_TNK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
 		panel_TNK_Dem.add(btn_TNK_NhapFile, BorderLayout.WEST);
-
-		btn_TNK_NhapFile.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				openExcelFile();
-			}
-		});
 
 		JPanel panel_TNK_NhapFile_dem = new JPanel();
 		panel_TNK_NhapFile_dem.setBackground(Colors.khung_Chung);
@@ -317,9 +303,7 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_NhapFile_dem2.setBackground(Colors.khung_Chung);
 		panel_TNK_Dem.add(panel_TNK_NhapFile_dem2, BorderLayout.SOUTH);
 
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_TNK_Dem.add(lblNewLabel, BorderLayout.CENTER);
+
 
 		JPanel panel_TNK_title = new JPanel();
 		panel_TNK_title.setBackground(Colors.nen_Chung);
@@ -331,9 +315,20 @@ public class ThemNhanKhau extends JPanel {
 		lbl_Title_ThemNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_TNK_title.add(lbl_Title_ThemNhanKhau);
 
+		themNhanKhauController = new ThemNhanKhauController(this);
 		setVisible(true);
 
 
+	}
+	public JButton getBtn_TNK_Yes() {return btn_TNK_Yes;}
+	public JButton getBtn_TNK_No() {
+		return btn_TNK_No;
+	}
+	public JButton getBtn_TNK_NhapFile() {
+		return btn_TNK_NhapFile;
+	}
+	public ManHinhChinh getMainFrame() {
+		return mainFrame;
 	}
 
 	private void populateYears(JComboBox comboBox) {
@@ -366,21 +361,46 @@ public class ThemNhanKhau extends JPanel {
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 	}
+	private String getFormattedDate(JComboBox comboBoxYear, JComboBox comboBoxMonth, JComboBox comboBoxDay) {
+		// Ghep du lieu nam sinh
+		String year = comboBoxYear.getSelectedItem().toString();
+		String month = comboBoxMonth.getSelectedItem().toString();
+		String day = comboBoxDay.getSelectedItem().toString();
 
-	private static void openExcelFile() {
-		JFileChooser fileChooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "xls", "xlsx");
-		fileChooser.setFileFilter(filter);
-
-		int result = fileChooser.showOpenDialog(null);
-
-		if (result == JFileChooser.APPROVE_OPTION) {
-			// Người dùng đã chọn một tệp
-			String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-			System.out.println("Selected file: " + filePath);
-
-			// Gọi phương thức xử lý tệp Excel ở đây (đọc, xử lý, v.v.)
+		// Kiểm tra xem có giá trị null không
+		if (year == null || month == null || day == null) {
+			return null;
 		}
+
+		// Định dạng ngày tháng năm
+		return year + "-" + month + "-" + day;
 	}
+
+	public int getData() {
+		// Lấy dữ liệu từ các trường nhập liệu
+		String hoTen = textField_TNK_CotPhai_02.getText();
+		String soCMNDCCCD = textField_TNK_CotPhai_03.getText();
+		String gioiTinh = "";
+		if (rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected()) {
+			gioiTinh = "Nam";
+		} else if (rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02.isSelected()) {
+			gioiTinh = "Nữ";
+		}
+		String ngaySinh = getFormattedDate(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay);
+		String tonGiao = textField_TNK_CotPhai_04.getText();
+		String queQuan = textField_TNK_CotPhai_05.getText();
+		String maHoKhau = textField_TNK_CotPhai_06.getText();
+
+		// Kiểm tra các trường thông tin bắt buộc
+		if (hoTen.isEmpty() || soCMNDCCCD.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin bắt buộc!");
+			return 0;
+		}
+		boolean check1 = insertNhanKhau(hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
+		if (check1 == true) {return 1;}
+		else {return -1;}
+	}
+
+
 
 }

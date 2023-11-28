@@ -2,11 +2,9 @@ package view.hokhau;
 
 import controller.hokhau.XoaHoKhauController;
 import model.DatabaseConnector;
-import model.HoKhau;
 import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
-import view.hokhau.CustomRowHeightRenderer;
-import view.hokhau.QuanLyHoKhau;
+import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
@@ -29,9 +27,7 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class XoaHoKhau extends JPanel {

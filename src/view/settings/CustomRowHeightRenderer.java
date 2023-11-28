@@ -1,4 +1,4 @@
-package view.hokhau;
+package view.settings;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;

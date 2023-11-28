@@ -5,8 +5,7 @@ import model.DatabaseConnector;
 import model.HoKhau;
 import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
-import view.hokhau.CustomRowHeightRenderer;
-import view.hokhau.QuanLyHoKhau;
+import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;

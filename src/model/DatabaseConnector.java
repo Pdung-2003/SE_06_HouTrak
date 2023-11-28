@@ -11,8 +11,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("2308");
-        ds.setServerName("DESKTOP-2MP8OGB");
+        ds.setPassword("123");
+        ds.setServerName("LAPTOP-POT66FBA");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
@@ -160,6 +160,39 @@ public class DatabaseConnector {
                 pstmt.setString(7, diaChi);
                 int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
                 return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // insertNhanKhau
+    public static boolean insertNhanKhau(String hoTen, String ngaySinh, String tonGiao, String soCMNDCCCD, String queQuan, String gioiTinh,  String maHoKhau) {
+        try (Connection conn = model.DatabaseConnector.getConnection()) {
+            // Kiểm tra xem mã hộ khẩu có tồn tại hay không
+            String sqlCheckHoKhau = "SELECT * FROM HoKhau WHERE MaHoKhau = ?";
+            try (PreparedStatement pstmtCheck = conn.prepareStatement(sqlCheckHoKhau)) {
+                pstmtCheck.setString(1, maHoKhau);
+                ResultSet rs = pstmtCheck.executeQuery();
+                if (!rs.next()) { // Nếu không tìm thấy mã hộ khẩu
+                    System.out.println("Mã hộ khẩu không tồn tại.");
+                    return false;
+                }
+            }
+
+            String query = "INSERT INTO NhanKhau(hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, hoTen);
+                pstmt.setString(2, ngaySinh);
+                pstmt.setString(3, tonGiao);
+                pstmt.setString(4, soCMNDCCCD);
+                pstmt.setString(5, queQuan);
+                pstmt.setString(6, gioiTinh);
+                pstmt.setString(7, maHoKhau);
+
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

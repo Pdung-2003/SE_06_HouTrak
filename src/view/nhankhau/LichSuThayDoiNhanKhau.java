@@ -1,7 +1,7 @@
 package view.nhankhau;
 
 import controller.nhankhau.LichSuThayDoiController;
-import view.hokhau.CustomRowHeightRenderer;
+import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;

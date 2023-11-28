@@ -14,6 +14,7 @@ import java.util.List;
 import controller.hokhau.QuanLyHoKhauController;
 import model.HoKhau;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 
 public class QuanLyHoKhau extends JPanel {

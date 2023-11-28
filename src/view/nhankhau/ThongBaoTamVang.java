@@ -2,7 +2,7 @@ package view.nhankhau;
 
 import controller.nhankhau.ThongBaoTamVangController;
 import view.dangnhap.ManHinhChinh;
-import view.hokhau.CustomRowHeightRenderer;
+import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;

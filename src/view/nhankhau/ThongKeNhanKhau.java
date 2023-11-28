@@ -3,7 +3,7 @@ package view.nhankhau;
 import model.TamTru;
 import model.TamVang;
 import view.dangnhap.ManHinhChinh;
-import view.hokhau.CustomRowHeightRenderer;
+import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
@@ -15,8 +15,6 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import model.NhanKhau;

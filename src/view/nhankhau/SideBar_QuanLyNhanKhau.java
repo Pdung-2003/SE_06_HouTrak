@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -15,6 +16,9 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import view.hokhau.ThayDoiHoKhau;
+import view.nhankhau.*;
+import view.dangnhap.*;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 

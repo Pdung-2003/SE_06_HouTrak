@@ -165,7 +165,11 @@ public class SignIn extends JFrame {
 		panel_SignIn_Content_function_Form.add(panel_SignIn_dem12);
 
 		JButton btnNewButton = new JButton("Quên mật khẩu?");
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton.setOpaque(true);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setBackground(new Color(2, 62, 138));
 		panel_SignIn_dem12.add(btnNewButton);
 
 		JPanel panel_SignIn_SignUp_Title = new JPanel();
@@ -179,7 +183,11 @@ public class SignIn extends JFrame {
 		panel_SignIn_SignUp_Title.add(lblNewLabel_2);
 
 		JButton btnNewButton_1 = new JButton("Đăng Ký Tài Khoản");
-		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNewButton_1.setOpaque(true);
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setBackground(new Color(2, 62, 138));
 		panel_SignIn_Content_function_Form.add(btnNewButton_1);
 
 		JPanel panel_Header = new JPanel();

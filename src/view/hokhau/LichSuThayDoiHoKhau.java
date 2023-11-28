@@ -2,7 +2,7 @@ package view.hokhau;
 
 import controller.hokhau.LichSuThayDoiController;
 import model.ThayDoiHoKhau;
-import view.hokhau.CustomRowHeightRenderer;
+import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
@@ -14,7 +14,6 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LichSuThayDoiHoKhau extends JPanel {

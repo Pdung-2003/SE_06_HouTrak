@@ -3,6 +3,7 @@ package view.hokhau;
 import controller.hokhau.TimKiemHoKhauController;
 import model.HoKhau;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import java.awt.*;
 

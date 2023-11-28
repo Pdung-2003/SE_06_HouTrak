@@ -1,60 +1,136 @@
 package controller.nhankhau;
 
-import model.DatabaseConnector;
-
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import view.hokhau.QuanLyHoKhau;
+import view.nhankhau.ThemNhanKhau;
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class ThemNhanKhauController {
-    // Phương thức để thêm nhân khẩu vào cơ sở dữ liệu
-    public void themNhanKhau(String hoTen, String cmnd, String gioiTinh, int nam, int thang, int ngay, String tonGiao, String queQuan, String maHoKhau) {
-        try (Connection connection = DatabaseConnector.getConnection()) {
-            if (connection != null) {
-                String sqlToCheckCondition = "SELECT * FROM HoKhau WHERE MaHoKhau = ?";
-                PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-                preparedStatementToCheckCondition.setString(1, maHoKhau);
-                ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
-                if (resultSet.next()) {
-                    String sql = "INSERT INTO NhanKhau (HoTen, soCMNDCCCD, GioiTinh, NgaySinh, TonGiao, QueQuan, MaHoKhau) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?)";
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                        LocalDate ngaySinh = LocalDate.of(nam, thang, ngay);
-                        java.sql.Date ngaySinhSQL = java.sql.Date.valueOf(ngaySinh);
+import static model.DatabaseConnector.insertNhanKhau;
 
-                        preparedStatement.setString(1, hoTen);
-                        preparedStatement.setString(2, cmnd);
-                        preparedStatement.setString(3, gioiTinh);
-                        preparedStatement.setDate(4, ngaySinhSQL);
-                        preparedStatement.setString(5, tonGiao);
-                        preparedStatement.setString(6, queQuan);
-                        preparedStatement.setString(7, maHoKhau);
+public class ThemNhanKhauController  {
+    private ThemNhanKhau themNhanKhauView;
 
-                        preparedStatement.executeUpdate();
-                        preparedStatement.close();
+    public ThemNhanKhauController(ThemNhanKhau themNhanKhauview) {
+        this.themNhanKhauView = themNhanKhauview;
 
-                        JOptionPane.showMessageDialog(null, "Thêm nhân khẩu thành công!");
-
-                        // Clear các trường nhập liệu sau khi thêm thành công
-                        // ... (các phần clear trường nhập liệu)
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Mã hộ khẩu không tồn tại trong cơ sở dữ liệu!");
-                    return;
-                }
-
-                resultSet.close();
-                preparedStatementToCheckCondition.close();
-                connection.close();
+        // Gắn sự kiện cho nút Thêm
+        themNhanKhauView.getBtn_TNK_Yes().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleThemButtonClick();
             }
-            // Chuyển về giao diện Quản lý nhân khẩu sau khi thêm thành công
-            // ... (code to switch back to the management interface)
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Lỗi khi thêm nhân khẩu!");
+        });
+
+        // Gắn sự kiện cho nút Hủy
+        themNhanKhauView.getBtn_TNK_No().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleHuyButtonClick();
+            }
+        });
+
+        // Gắn sự kiện cho nút Chọn file
+        themNhanKhauView.getBtn_TNK_NhapFile().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleChonFileButtonClick();
+            }
+        });
+
+    }
+    private void handleThemButtonClick() {
+        int check = themNhanKhauView.getData();
+        if (check == 0) {
+            return;
+        }
+        int confirmResult = JOptionPane.showConfirmDialog(themNhanKhauView.getMainFrame(),
+                "Bạn có chắc chắn muốn thêm không?", "Xác nhận thêm ",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmResult == JOptionPane.YES_OPTION) {
+            // Thực hiện thay đổi ở đây
+            if (check == 1) {
+                JOptionPane.showMessageDialog(themNhanKhauView.getMainFrame(), "Thêm thành công!");
+            } else if (check == -1) {
+                JOptionPane.showMessageDialog(themNhanKhauView.getMainFrame(), "Thêm thất bại! Kiểm tra lại thông tin!");
+            }
+        } else if (confirmResult == JOptionPane.NO_OPTION) {
+            // Người dùng chọn "No", không làm gì cả hoặc hiển thị thông báo phù hợp
+            JOptionPane.showMessageDialog(themNhanKhauView.getMainFrame(), "Đã hủy thêm.");
+        }
+
+    }
+    private void handleHuyButtonClick() {
+        // Chuyển đến trang Quản lý hộ khẩu
+        QuanLyHoKhau quanLyHoKhauPanel = new QuanLyHoKhau();
+        themNhanKhauView.getMainFrame().switchToMainPanel(quanLyHoKhauPanel);
+    }
+    private void handleChonFileButtonClick() {
+        openExcelFile();
+    }
+
+    private static void openExcelFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "xls", "xlsx");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Người dùng đã chọn một tệp
+            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            System.out.println("Selected file: " + filePath);
+
+            readExcelFile(filePath);
+        }
+    }
+    private static void readExcelFile(String filePath) {
+        try {
+            FileInputStream file = new FileInputStream(new File(filePath));
+            // Tạo Workbook instance cho xlsx file
+            Workbook workbook = new XSSFWorkbook(file);
+            // Lấy sheet đầu tiên từ workbook
+            Sheet sheet = workbook.getSheetAt(0);
+            // Lặp qua mỗi hàng (row) của sheet
+            for (Row row : sheet) {
+                if (row.getRowNum() == 0) continue; // Bỏ qua tiêu đề
+
+                // Đọc dữ liệu từ mỗi cột
+                String hoTenChuHo = row.getCell(1).getStringCellValue();
+                Cell cell = row.getCell(4); // Lấy ô Excel từ cột 2
+                // Xử lý ô Excel kiểu số nguyên
+                double numericValue = cell.getNumericCellValue();
+                int soCMNDCCCD1 = (int) numericValue; // Chuyển đổi thành số nguyên nếu cần
+                String soCMNDCCCD = String.valueOf(soCMNDCCCD1);
+
+                String hoTen = row.getCell(1).getStringCellValue(); // Họ Tên
+                Date ngaySinhDate = row.getCell(2).getDateCellValue(); // Ngày Sinh
+                String tonGiao = row.getCell(3).getStringCellValue(); // Tôn Giáo
+                String queQuan = row.getCell(5).getStringCellValue(); // Quê Quán
+                String gioiTinh = row.getCell(6) != null ? row.getCell(3).getStringCellValue() : "";
+                String maHoKhau = row.getCell(7).getStringCellValue(); // Mã Hộ Khẩu
+
+                // Định dạng ngày tháng năm
+                String ngaySinh = ngaySinhDate != null ? new SimpleDateFormat("yyyy-MM-dd").format(ngaySinhDate) : "";
+
+                // Xử lý thêm nhân khẩu vào cơ sở dữ liệu
+                insertNhanKhau( hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
+            }
+            file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
+
