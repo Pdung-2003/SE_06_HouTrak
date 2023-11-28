@@ -1,31 +1,14 @@
 package view.nhankhau;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-
+import controller.nhankhau.XoaNhanKhauController;
 import model.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
-import view.nhankhau.QuanLyNhanKhau;
 import view.settings.Colors;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -243,6 +226,7 @@ public class XoaNhanKhau extends JPanel {
 		btn_XNK_Yes.setBorderPainted(false);
 		btn_XNK_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String maNhanKhau = txt_XNK_TImKiem.getText();
 				// Mảng chứa các tùy chọn
 				String[] options = {"Rời đi", "Đã mất"};
 				int confirmResult = JOptionPane.showOptionDialog(mainFrame,
@@ -255,19 +239,18 @@ public class XoaNhanKhau extends JPanel {
 						options[0]);
 
 				if (confirmResult == 0) {
-					// Thực hiện xóa như bình thường
-					// ...
-					JOptionPane.showMessageDialog(mainFrame, "Xóa thành công!");
+					XoaNhanKhauController.xoaNhanKhau(maNhanKhau);
 				} else if (confirmResult == 1) {
 					// Yêu cầu nhập thông tin về việc "đã mất"
 					JTextField textFieldNguoiKhaiTu = new JTextField();
 					JTextField textFieldNguyenNhan = new JTextField();
 					JTextField textFieldThoiGianMat = new JTextField();
+					textFieldThoiGianMat.setToolTipText("Thời gian có định dạng DD/MM/YYYY");
 
 					Object[] message = {
 							"Người khai tử:", textFieldNguoiKhaiTu,
 							"Nguyên nhân:", textFieldNguyenNhan,
-							"Thời gian mất:", textFieldThoiGianMat
+							"Thời gian mất:", textFieldThoiGianMat,
 					};
 
 					int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin", JOptionPane.OK_CANCEL_OPTION);
@@ -276,11 +259,11 @@ public class XoaNhanKhau extends JPanel {
 						String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
 						String nguyenNhan = textFieldNguyenNhan.getText();
 						String thoiGianMat = textFieldThoiGianMat.getText();
+					// Xóa nhân khẩu
+					XoaNhanKhauController.xoaNhanKhau(maNhanKhau);
 
-						// Thực hiện xử lý dữ liệu ở đây
-						// ...
-
-						JOptionPane.showMessageDialog(mainFrame, "Thông tin đã được ghi nhận.");
+					// Thêm thông tin vào bảng KhaiTu
+					XoaNhanKhauController.themKhaiTu(maNhanKhau, nguoiKhaiTu, nguyenNhan, thoiGianMat);
 					}
 				}
 			}
