@@ -11,8 +11,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("manhvu123");
-        ds.setServerName("MANHVU");
+        ds.setPassword("2308");
+        ds.setServerName("DESKTOP-2MP8OGB");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
