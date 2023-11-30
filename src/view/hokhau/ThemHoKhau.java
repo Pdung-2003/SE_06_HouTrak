@@ -409,24 +409,20 @@ public class ThemHoKhau extends JPanel {
 		String khuVuc = (comboBox_THK_CotPhai_02.getSelectedItem() != null)
 				? comboBox_THK_CotPhai_02.getSelectedItem().toString()
 				: "";
-		Date ngaySinh = getFormattedDate(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
+		Date ngaySinhDate = getFormattedDate(comboBox_THK_CotPhai_ChuHo_Nam, comboBox_THK_CotPhai_ChuHo_Thang, comboBox_THK_CotPhai_ChuHo_Ngay);
 		String tonGiao = textField_THK_CotPhai_05.getText();
 		String soCMNDCCCD = textField_THK_CotPhai_04.getText();
 		String queQuan = textField_THK_CotPhai_06.getText();
 		String gioiTinh = "";
+
+		String ngaySinh = ngaySinhDate != null ? new SimpleDateFormat("yyyy-MM-dd").format(ngaySinhDate) : "";
 		if (rdbtn_THK_CotPhai_ChuHo_GioiTinh_01.isSelected()) {
 			gioiTinh = "Nam";
 		} else if (rdbtn_THK_CotPhai_ChuHo_GioiTinh_02.isSelected()) {
 			gioiTinh = "Nữ";
 		}
-		// Kiểm tra nếu có trường thông tin nào thiếu thì không thực hiện INSERT
-		if (hoTenChuHo.isEmpty() || diaChi.isEmpty() || khuVuc.isEmpty() || ngaySinh == null
-				|| tonGiao.isEmpty() || soCMNDCCCD.isEmpty() || queQuan.isEmpty() || gioiTinh.isEmpty()) {
-			JOptionPane.showMessageDialog(mainFrame, "Vui lòng điền đầy đủ thông tin.");
-			return 0;
-		}
 		boolean check1 = insertHoKhau(hoTenChuHo, diaChi, khuVuc);
-		boolean check2 = insertChuHo(hoTenChuHo, (java.sql.Date) ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
+		boolean check2 = insertChuHo(hoTenChuHo, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
 		if (check1 == true && check2 == true) {
 			return 1;
 		} else return -1;

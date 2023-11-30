@@ -11,8 +11,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("123");
-        ds.setServerName("LAPTOP-POT66FBA");
+        ds.setPassword("manhvu123");
+        ds.setServerName("MANHVU");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
@@ -147,12 +147,12 @@ public class DatabaseConnector {
     }
 
     // Them chu ho trong them ho khau
-    public static boolean insertChuHo(String hoTen, Date ngaySinh, String tonGiao, String soCMNDCCCD, String queQuan, String gioiTinh, String diaChi) {
+    public static boolean insertChuHo(String hoTen, String ngaySinh, String tonGiao, String soCMNDCCCD, String queQuan, String gioiTinh, String diaChi) {
         try (Connection conn = ds.getConnection()) {
             String query = "INSERT INTO NhanKhau(hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau) VALUES (?, ?, ?, ?, ?, ?, (SELECT MaHoKhau FROM HoKhau WHERE DiaChi = ?))";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, hoTen);
-                pstmt.setDate(2, ngaySinh);
+                pstmt.setString(2, ngaySinh);
                 pstmt.setString(3, tonGiao);
                 pstmt.setString(4, soCMNDCCCD);
                 pstmt.setString(5, queQuan);

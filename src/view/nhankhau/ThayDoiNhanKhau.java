@@ -5,21 +5,16 @@ import javax.swing.*;
 import model.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -38,6 +33,8 @@ public class ThayDoiNhanKhau extends JPanel {
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao;
 	private JTextField textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan;
 	private ManHinhChinh mainFrame;
+	private JTable table;
+	private DefaultTableModel tableModel;
 
 	public ThayDoiNhanKhau(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
@@ -350,23 +347,8 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_02_ThongTinHienTai.setBackground(Colors.khung_Chung);
 		panel_TDNK_SubTitle.add(panel_TDNK_02_ThongTinHienTai, BorderLayout.CENTER);
 
-		//Tạo model cho Table
-		DefaultTableModel tableModel = new DefaultTableModel();
-
-		// Tạo JTable với model đã tạo
-		JTable table = new JTable(tableModel);
-
-		// Thiết lập kích thước cho JTable
-		Dimension tableSize = new Dimension(1100, 40);
-		table.setPreferredScrollableViewportSize(tableSize);
-
-		// Tạo JScrollPane để bao quanh JTable và thiết lập kích thước cho nó
-		JScrollPane scrollPane = new JScrollPane(table);
-		Dimension scrollPaneSize = new Dimension(1100, 40);
-		scrollPane.setPreferredSize(scrollPaneSize);
-		panel_TDNK_02_ThongTinHienTai.add(scrollPane, BorderLayout.CENTER);
-
 		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
+		tableModel = new DefaultTableModel();
 		tableModel.addColumn("Mã Nhân Khẩu");
 		tableModel.addColumn("Họ Tên");
 		tableModel.addColumn("Ngày Sinh");
@@ -375,6 +357,51 @@ public class ThayDoiNhanKhau extends JPanel {
 		tableModel.addColumn("Quê Quán");
 		tableModel.addColumn("Giới Tính");
 		tableModel.addColumn("Mã Hộ Khẩu");
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_TDNK_02_ThongTinHienTai.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 60));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_TDNK_02_ThongTinHienTai.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
 		btn_TDNK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

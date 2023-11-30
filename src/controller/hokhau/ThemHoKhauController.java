@@ -122,9 +122,11 @@ public class ThemHoKhauController {
                 String diaChi = row.getCell(7).getStringCellValue();
                 String khuVuc = row.getCell(8).getStringCellValue();
 
+                String ngaySinh = ngaySinhDate != null ? new SimpleDateFormat("yyyy-MM-dd").format(ngaySinhDate) : "";
+
                 // Chèn vào cơ sở dữ liệu
                 insertHoKhau(hoTenChuHo, diaChi, khuVuc); // Hàm này cần được cập nhật để chấp nhận các tham số mới
-                insertChuHo(hoTenChuHo, ngaySinhDate, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
+                insertChuHo(hoTenChuHo, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
             }
             file.close();
         } catch (Exception e) {

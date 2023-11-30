@@ -143,11 +143,13 @@ public class QuanLyNhanKhau extends JPanel {
 		tableModel.addColumn("Quê Quán");
 		tableModel.addColumn("Giới Tính");
 		tableModel.addColumn("Mã Hộ Khẩu");
+		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 30;
 		table = new JTable(tableModel);
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
+		// In đậm chữ ở header và đặt font
 		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(
@@ -162,32 +164,30 @@ public class QuanLyNhanKhau extends JPanel {
 			}
 		});
 
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
-		// Khai báo biến sorter là một RowSorter
-		 sorter = new TableRowSorter<>(tableModel);
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_QLNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 
-		// Thiết lập sorter cho JTable
-		table.setRowSorter(sorter);
-
-		// Tạo JScrollPane để bao quanh JTable và thiết lập kích thước cho nó
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
 		panel_QLNK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
-
-
-		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Nhân Khẩu
-		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
-		table.getColumnModel().getColumn(3).setPreferredWidth(100); //Tôn giáo
-		table.getColumnModel().getColumn(4).setPreferredWidth(100); // CMND
-		table.getColumnModel().getColumn(5).setPreferredWidth(100); // Quê quán
-		table.getColumnModel().getColumn(6).setPreferredWidth(100); // Giới tính
-		table.getColumnModel().getColumn(7).setPreferredWidth(120); // Mã Hộ khẩu
-
-		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
 	}
 	public void populateTable(List<NhanKhau> danhSachNhanKhau) {
