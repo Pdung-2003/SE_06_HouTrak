@@ -1,9 +1,6 @@
 package controller.nhankhau;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.hokhau.QuanLyHoKhau;
 import view.nhankhau.ThemNhanKhau;
@@ -19,7 +16,7 @@ import java.util.Date;
 import static model.DatabaseConnector.insertNhanKhau;
 
 public class ThemNhanKhauController  {
-    private ThemNhanKhau themNhanKhauView;
+    private static ThemNhanKhau themNhanKhauView;
 
     public ThemNhanKhauController(ThemNhanKhau themNhanKhauview) {
         this.themNhanKhauView = themNhanKhauview;
@@ -90,12 +87,18 @@ public class ThemNhanKhauController  {
         if (result == JFileChooser.APPROVE_OPTION) {
             // Người dùng đã chọn một tệp
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-            System.out.println("Selected file: " + filePath);
+            String fileName = fileChooser.getSelectedFile().getName();
+            themNhanKhauView.getLblTenFileDaChon().setText(fileName);
 
-            readExcelFile(filePath);
+            boolean success = readExcelFile(filePath);
+            if (success) {
+                JOptionPane.showMessageDialog(null, "Thêm thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Thêm thất bại!");
+            }
         }
     }
-    private static void readExcelFile(String filePath) {
+    private static boolean readExcelFile(String filePath) {
         try {
             FileInputStream file = new FileInputStream(new File(filePath));
             // Tạo Workbook instance cho xlsx file
@@ -104,10 +107,12 @@ public class ThemNhanKhauController  {
             Sheet sheet = workbook.getSheetAt(0);
             // Lặp qua mỗi hàng (row) của sheet
             for (Row row : sheet) {
-                if (row.getRowNum() == 0) continue; // Bỏ qua tiêu đề
+                if (row.getRowNum() == 0 || isRowEmpty(row)) {
+                    continue; // Bỏ qua dòng trống
+                }
 
                 // Đọc dữ liệu từ mỗi cột
-                String hoTenChuHo = row.getCell(1).getStringCellValue();
+
                 Cell cell = row.getCell(4); // Lấy ô Excel từ cột 2
                 // Xử lý ô Excel kiểu số nguyên
                 double numericValue = cell.getNumericCellValue();
@@ -118,19 +123,30 @@ public class ThemNhanKhauController  {
                 Date ngaySinhDate = row.getCell(2).getDateCellValue(); // Ngày Sinh
                 String tonGiao = row.getCell(3).getStringCellValue(); // Tôn Giáo
                 String queQuan = row.getCell(5).getStringCellValue(); // Quê Quán
-                String gioiTinh = row.getCell(6) != null ? row.getCell(3).getStringCellValue() : "";
+                String gioiTinh = row.getCell(6) != null ? row.getCell(6).getStringCellValue() : "";
                 String maHoKhau = row.getCell(7).getStringCellValue(); // Mã Hộ Khẩu
 
                 // Định dạng ngày tháng năm
                 String ngaySinh = ngaySinhDate != null ? new SimpleDateFormat("yyyy-MM-dd").format(ngaySinhDate) : "";
 
                 // Xử lý thêm nhân khẩu vào cơ sở dữ liệu
-                insertNhanKhau( hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
+                insertNhanKhau(hoTen, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, maHoKhau);
             }
             file.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+    }
+    private static boolean isRowEmpty(Row row) {
+        for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
+            Cell cell = row.getCell(cellNum);
+            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 

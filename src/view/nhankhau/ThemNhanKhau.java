@@ -56,6 +56,7 @@ public class ThemNhanKhau extends JPanel {
 	private JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02;
 	private final ManHinhChinh mainFrame;
 	private ThemNhanKhauController themNhanKhauController;
+	private static JLabel lblTenFileDaChon;
 
 	public ThemNhanKhau(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
@@ -303,6 +304,10 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_NhapFile_dem2.setBackground(Colors.khung_Chung);
 		panel_TNK_Dem.add(panel_TNK_NhapFile_dem2, BorderLayout.SOUTH);
 
+		lblTenFileDaChon = new JLabel("Chưa chọn file");
+		lblTenFileDaChon.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_TNK_Dem.add(lblTenFileDaChon, BorderLayout.CENTER);
+
 
 
 		JPanel panel_TNK_title = new JPanel();
@@ -329,6 +334,9 @@ public class ThemNhanKhau extends JPanel {
 	}
 	public ManHinhChinh getMainFrame() {
 		return mainFrame;
+	}
+	public static JLabel getLblTenFileDaChon() {
+		return lblTenFileDaChon;
 	}
 
 	private void populateYears(JComboBox comboBox) {

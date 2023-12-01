@@ -146,6 +146,8 @@ public class QuanLyNhanKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 30;
 		table = new JTable(tableModel);
+		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
+		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
