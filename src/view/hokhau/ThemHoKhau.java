@@ -64,6 +64,7 @@ public class ThemHoKhau extends JPanel {
 	private JButton btn_THK_NhapFile;
 	private ThemHoKhauController themHoKhauController;
 
+	private static JLabel lbl_THK_TenFile;
 
 	public ThemHoKhau(ManHinhChinh mainFrame) {
 		 this.mainFrame = mainFrame;
@@ -309,7 +310,8 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_NhapFIle.add(btn_THK_NhapFile, BorderLayout.WEST);
 		
 		
-		JLabel lbl_THK_TenFile = new JLabel("New label"); // Cho nay dien ten file
+		lbl_THK_TenFile = new JLabel("Chưa chọn file"); // Cho nay dien ten file
+		lbl_THK_TenFile.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_THK_NhapFIle.add(lbl_THK_TenFile, BorderLayout.CENTER);
 		
 		JPanel panel_THK_NhapFile_dem = new JPanel();
@@ -348,6 +350,9 @@ public class ThemHoKhau extends JPanel {
 
 	public JButton getBtn_THK_NhapFile() {
 		return btn_THK_NhapFile;
+	}
+	public static JLabel getLblTenFileDaChon() {
+		return lbl_THK_TenFile;
 	}
 
 	private void populateYears(JComboBox comboBox) {

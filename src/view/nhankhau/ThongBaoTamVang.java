@@ -64,7 +64,7 @@ public class ThongBaoTamVang extends JPanel {
 		JPanel panel_TBTV_01_content = new JPanel();
 		panel_TBTV_01_content.setBackground(Colors.input_Colors);
 		panel_TBTV_01.add(panel_TBTV_01_content, BorderLayout.CENTER);
-		panel_TBTV_01_content.setLayout(new BorderLayout(0, 0));
+		panel_TBTV_01_content.setLayout(new BoxLayout(panel_TBTV_01_content, BoxLayout.X_AXIS));
 
 		text_TBTV_01 = new JTextField();
 		text_TBTV_01.setPreferredSize(new Dimension(1389, 48));
@@ -84,16 +84,7 @@ public class ThongBaoTamVang extends JPanel {
 		btn_TBTV_01_TimKiem.setForeground(Color.WHITE);
 		btn_TBTV_01_TimKiem.setOpaque(true);
 		btn_TBTV_01_TimKiem.setBorderPainted(false);
-		panel_TBTV_01_content.add(btn_TBTV_01_TimKiem, BorderLayout.EAST);
-
-		JPanel panel_TBTV_01_content_Title = new JPanel();
-		panel_TBTV_01_content_Title.setBackground(Colors.khung_Chung);
-		panel_TBTV_01_content.add(panel_TBTV_01_content_Title, BorderLayout.WEST);
-		panel_TBTV_01_content_Title.setLayout(new BoxLayout(panel_TBTV_01_content_Title, BoxLayout.X_AXIS));
-
-		JLabel lbl_TBTV_01_content_Title = new JLabel("   Nhập mã nhân khẩu: ");
-		lbl_TBTV_01_content_Title.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TBTV_01_content_Title.add(lbl_TBTV_01_content_Title);
+		panel_TBTV_01_content.add(btn_TBTV_01_TimKiem);
 
 		JPanel panel_TBTV_02 = new JPanel();
 		panel_TBTV_02.setBackground(Colors.khung_Chung);
@@ -109,12 +100,12 @@ public class ThongBaoTamVang extends JPanel {
 		JPanel panel_TBTV_02_BangThongTin_CotTrai = new JPanel();
 		panel_TBTV_02_BangThongTin_CotTrai.setBackground(Colors.khung_Chung);
 		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_CotTrai, BorderLayout.WEST);
-		panel_TBTV_02_BangThongTin_CotTrai.setLayout(new GridLayout(6, 1, 15, 15));
+		panel_TBTV_02_BangThongTin_CotTrai.setLayout(new GridLayout(6, 1, 0, 0));
 
 		JPanel panel_TBTV_02_BangThongTin_CotPhai = new JPanel();
 		panel_TBTV_02_BangThongTin_CotPhai.setBackground(Colors.khung_Chung);
 		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_CotPhai, BorderLayout.CENTER);
-		panel_TBTV_02_BangThongTin_CotPhai.setLayout(new GridLayout(6, 1, 15, 15));
+		panel_TBTV_02_BangThongTin_CotPhai.setLayout(new GridLayout(6, 1, 0, 0));
 
 		JLabel lbl_TBTV_02_CotTrai_04 = new JLabel("   Địa chỉ chuyển tới: ");
 		lbl_TBTV_02_CotTrai_04.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -258,7 +249,7 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_SubTitle_main.add(lbl_TBTV_Subtitle);
 
 		JPanel panel_TBTV_SubTitle_sort = new JPanel();
-		panel_TBTV_SubTitle_sort.setBackground(Colors.khung_Chung);
+		panel_TBTV_SubTitle_sort.setBackground(new Color(144, 224, 239));
 		panel_TBTV_SubTitle_main.add(panel_TBTV_SubTitle_sort);
 		panel_TBTV_SubTitle_sort.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 

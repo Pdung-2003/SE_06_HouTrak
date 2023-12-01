@@ -93,6 +93,8 @@ public class ThemHoKhauController {
             // Người dùng đã chọn một tệp
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
             System.out.println("Selected file: " + filePath);
+            String fileName = fileChooser.getSelectedFile().getName();
+            themHoKhauView.getLblTenFileDaChon().setText(fileName);
             readExcelFile(filePath);
             JOptionPane.showMessageDialog(themHoKhauView.getMainFrame(), "Thêm thành công danh sách hộ khẩu");
         }
@@ -106,7 +108,9 @@ public class ThemHoKhauController {
             Sheet sheet = workbook.getSheetAt(0);
             // Lặp qua mỗi hàng (row) của sheet
             for (Row row : sheet) {
-                if (row.getRowNum() == 0) continue; // Bỏ qua tiêu đề
+                if (row.getRowNum() == 0 || isRowEmpty(row)) {
+                    continue; // Bỏ qua dòng trống
+                } // Bỏ qua tiêu đề
 
                 // Đọc dữ liệu từ mỗi cột
                 String hoTenChuHo = row.getCell(1).getStringCellValue();
@@ -132,5 +136,14 @@ public class ThemHoKhauController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private static boolean isRowEmpty(Row row) {
+        for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
+            Cell cell = row.getCell(cellNum);
+            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+                return false;
+            }
+        }
+        return true;
     }
 }
