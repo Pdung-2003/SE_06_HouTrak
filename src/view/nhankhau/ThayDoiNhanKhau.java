@@ -1,19 +1,16 @@
 package view.nhankhau;
 
-import javax.swing.*;
-
 import model.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableRowSorter;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -425,17 +422,48 @@ public class ThayDoiNhanKhau extends JPanel {
 						//Thêm dữ liệu mới vào
 						while (resultSet.next()) {
 							found = true;
-							Vector<String> dataRow = new Vector<>();
-							dataRow.add(resultSet.getString("MaNhanKhau"));
-							dataRow.add(resultSet.getString("HoTen"));
-							dataRow.add(resultSet.getString("NgaySinh"));
-							dataRow.add(resultSet.getString("TonGiao"));
-							dataRow.add(resultSet.getString("SoCMNDCCCD"));
-							dataRow.add(resultSet.getString("QueQuan"));
-							dataRow.add(resultSet.getString("GioiTinh"));
-							dataRow.add(resultSet.getString("MaHoKhau"));
+							// Lấy thông tin từ ResultSet và gán vào các biến tương ứng
+							String hoTen = resultSet.getString("HoTen");
+							String ngaySinh = resultSet.getString("NgaySinh");
+							// Tách ngày, tháng và năm từ chuỗi ngày sinh
+							String[] parts = ngaySinh.split("-"); // Giả sử ngày tháng năm được lưu theo định dạng "yyyy-MM-dd"
+							String nam = parts[0];
+							String thang = parts[1];
+							String ngay = parts[2];
+							// Đặt giá trị cho các ComboBox ngày, tháng và năm
+							comboBox_Ngay.setSelectedItem(Integer.parseInt(ngay));
+							comboBox_Thang.setSelectedItem(Integer.parseInt(thang));
+							comboBox_Nam.setSelectedItem(Integer.parseInt(nam));
+							String tonGiao = resultSet.getString("TonGiao");
+							String soCMNDCCCD = resultSet.getString("SoCMNDCCCD");
+							String queQuan = resultSet.getString("QueQuan");
+							String gioiTinh = resultSet.getString("GioiTinh");
+							// Set giá trị cho RadioButton giới tính nếu cần thiết
+							if (gioiTinh.equals("Nam")) {
+								rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam.setSelected(true);
+								rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu.setSelected(false);
+							} else if (gioiTinh.equals("Nu")) {
+								rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu.setSelected(true);
+								rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam.setSelected(false);
+							}
+							String maHoKhau = resultSet.getString("MaHoKhau");
 
+							// Tạo Vector chứa thông tin để đưa vào bảng
+							Vector<String> dataRow = new Vector<>();
+							dataRow.add(maNhanKhau);
+							dataRow.add(hoTen);
+							dataRow.add(ngaySinh);
+							dataRow.add(tonGiao);
+							dataRow.add(soCMNDCCCD);
+							dataRow.add(queQuan);
+							dataRow.add(gioiTinh);
+							dataRow.add(maHoKhau);
+
+							// Thêm dòng dữ liệu vào bảng
 							tableModel.addRow(dataRow);
+
+							// Hiển thị thông tin vào các trường nhập ở trên
+							displayInfoInFields(maNhanKhau, hoTen, soCMNDCCCD, maHoKhau, tonGiao, queQuan);
 						}
 
 						if (!found) {
@@ -454,7 +482,6 @@ public class ThayDoiNhanKhau extends JPanel {
 				}
 			}
 		});
-
 
 		JPanel panel_TDNK_02_ThongTinHienTai_Title = new JPanel();
 		panel_TDNK_02_ThongTinHienTai_Title.setBackground(Colors.khung_Chung);
@@ -659,4 +686,16 @@ public class ThayDoiNhanKhau extends JPanel {
 	public ManHinhChinh getMainFrame() {
 		return mainFrame;
 	}
+
+	private void displayInfoInFields(String maNhanKhau, String hoTen, String cccd, String diaChi, String tonGiao, String queQuan) {
+		// Điền thông tin vào các trường nhập
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen.setText(hoTen);
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD.setText(cccd);
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi.setText(diaChi);
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.setText(tonGiao);
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan.setText(queQuan);
+
+		// Các trường nhập không được thay đổi, vì vậy không cần gán giá trị cho chúng ở đây nếu không có thông tin từ cơ sở dữ liệu
+	}
+
 }
