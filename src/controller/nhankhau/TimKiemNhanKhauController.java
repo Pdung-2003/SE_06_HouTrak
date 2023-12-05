@@ -119,9 +119,9 @@ public class TimKiemNhanKhauController {
         public static void timKiemTheoCMND(DefaultTableModel tableModel, String soCMND) {
             try (Connection connection = DatabaseConnector.getConnection()) {
                 if (connection != null) {
-                    String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE SoCMNDCCCD = ?";
+                    String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE SoCMNDCCCD LIKE ?";
                     PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-                    preparedStatementToCheckCondition.setString(1, soCMND);
+                    preparedStatementToCheckCondition.setString(1, "%" + soCMND + "%");
                     ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
 
                     // Xóa dữ liệu trên bảng
@@ -164,9 +164,9 @@ public class TimKiemNhanKhauController {
     public static void timKiemTheoMaNhanKhau(DefaultTableModel tableModel, String maNhanKhau) {
         try (Connection connection = DatabaseConnector.getConnection()) {
             if (connection != null) {
-                String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE MaNhanKhau = ?";
+                String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE MaNhanKhau LIKE ?";
                 PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-                preparedStatementToCheckCondition.setString(1, maNhanKhau);
+                preparedStatementToCheckCondition.setString(1, "%" + maNhanKhau + "%");
                 ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
 
                 // Xóa dữ liệu trên bảng
@@ -209,9 +209,9 @@ public class TimKiemNhanKhauController {
     public static void timKiemTheoMaHoKhau(DefaultTableModel tableModel, String maHoKhau) {
         try (Connection connection = DatabaseConnector.getConnection()) {
             if (connection != null) {
-                String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE MaHoKhau = ?";
+                String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE MaHoKhau LIKE ?";
                 PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-                preparedStatementToCheckCondition.setString(1, maHoKhau);
+                preparedStatementToCheckCondition.setString(1, "%" + maHoKhau + "%");
                 ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
 
                 // Xóa dữ liệu trên bảng
