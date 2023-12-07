@@ -1,6 +1,7 @@
 package model;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("123");
-        ds.setServerName("LAPTOP-POT66FBA");
+        ds.setPassword("manhvu123");
+        ds.setServerName("MANHVU");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
@@ -222,6 +223,31 @@ public class DatabaseConnector {
         }
         return false;
     }
+    // Search Id chu ho
+    public static String maCH(String maHoKhau, String hoTen) {
+        String maChuHo = "";
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT MaNhanKhau \n" +
+                    "FROM NhanKhau n JOIN HoKhau h\n" +
+                    "ON n.MaHoKhau = h.MaHoKhau\n" +
+                    "WHERE h.MaHoKhau = ? AND n.HoTen = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maHoKhau);
+                pstmt.setString(2, hoTen);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        maChuHo = rs.getString("MaNhanKhau");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return maChuHo;
+    }
+
     // 4. Thay doi ho khau
     public static boolean thayDoiHoKhau(String diaChi, String khuVuc, String maHoKhau) {
         try (Connection conn = ds.getConnection()) {

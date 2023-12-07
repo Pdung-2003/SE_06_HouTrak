@@ -100,12 +100,12 @@ public class ThongBaoTamVang extends JPanel {
 		JPanel panel_TBTV_02_BangThongTin_CotTrai = new JPanel();
 		panel_TBTV_02_BangThongTin_CotTrai.setBackground(Colors.khung_Chung);
 		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_CotTrai, BorderLayout.WEST);
-		panel_TBTV_02_BangThongTin_CotTrai.setLayout(new GridLayout(6, 1, 0, 0));
+		panel_TBTV_02_BangThongTin_CotTrai.setLayout(new GridLayout(6, 1, 25, 25));
 
 		JPanel panel_TBTV_02_BangThongTin_CotPhai = new JPanel();
 		panel_TBTV_02_BangThongTin_CotPhai.setBackground(Colors.khung_Chung);
 		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_CotPhai, BorderLayout.CENTER);
-		panel_TBTV_02_BangThongTin_CotPhai.setLayout(new GridLayout(6, 1, 0, 0));
+		panel_TBTV_02_BangThongTin_CotPhai.setLayout(new GridLayout(6, 1, 25, 25));
 
 		JLabel lbl_TBTV_02_CotTrai_04 = new JLabel("   Địa chỉ chuyển tới: ");
 		lbl_TBTV_02_CotTrai_04.setFont(new Font("Arial", Font.PLAIN, 14));

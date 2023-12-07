@@ -12,19 +12,21 @@ import java.awt.event.ActionEvent;
 
 public class TachHoKhauController {
     private TachHoKhau tachHoKhauView;
+    private String maHoKhau;
+    private String chuHo;
+    private String maCH;
 
     public TachHoKhauController(TachHoKhau tachHoKhauView) {
         this.tachHoKhauView = tachHoKhauView;
     }
 
     public void onTachHKButtonClick(ActionEvent e) {
-        String maHoKhau = tachHoKhauView.getMaHoKhauInput();
+        maHoKhau = tachHoKhauView.getMaHoKhauInput();
         HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
         tachHoKhauView.clearTableData();
-
         if (hoKhau != null) {
             String diaChi = hoKhau.getDiaChi();
-            String chuHo = hoKhau.getHoTenChuHo();
+            chuHo = hoKhau.getHoTenChuHo();
             tachHoKhauView.updateThongTinDau(diaChi, chuHo);
         } else {
             tachHoKhauView.displayErrorMessage("Không tìm thấy thông tin cho mã hộ khẩu: " + maHoKhau);
@@ -37,16 +39,28 @@ public class TachHoKhauController {
     }
 
     public void onTachHoKhauConfirmed() {
+        maHoKhau = tachHoKhauView.getMaHoKhauInput();
+        HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
+        if (hoKhau != null) {
+            chuHo = hoKhau.getHoTenChuHo();
+        }
+
         String diaChi = tachHoKhauView.getDiaChiInput();
         String khuVuc = tachHoKhauView.getKhuVucInput();
         String maChuHo = tachHoKhauView.getMaChuHoInput();
 
-        boolean check = DatabaseConnector.tachHoKhau(diaChi, khuVuc, maChuHo);
+        maCH = DatabaseConnector.maCH(maHoKhau, chuHo);
 
-        if (check) {
-            JOptionPane.showMessageDialog(tachHoKhauView.getMainFrame(), "Tách thành công!");
-        } else {
-            JOptionPane.showMessageDialog(tachHoKhauView.getMainFrame(), "Tách thất bại kiểm tra lại thông tin");
+        if (maCH.equals(maChuHo)){
+            JOptionPane.showMessageDialog(tachHoKhauView.getMainFrame(), "Không thể tách chủ hộ khỏi hộ khẩu");
+        }
+        else {
+            boolean check = DatabaseConnector.tachHoKhau(diaChi, khuVuc, maChuHo);
+            if (check) {
+                JOptionPane.showMessageDialog(tachHoKhauView.getMainFrame(), "Tách thành công!");
+            } else {
+                JOptionPane.showMessageDialog(tachHoKhauView.getMainFrame(), "Tách thất bại kiểm tra lại thông tin");
+            }
         }
     }
 }

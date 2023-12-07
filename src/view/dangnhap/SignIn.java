@@ -24,7 +24,7 @@ public class SignIn extends JFrame {
 		setTitle("Đăng nhập");
 		setSize(1920, 1010);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-
+		setLocationRelativeTo(null);
 		JPanel panel_SignIn = new JPanel();
 		getContentPane().add(panel_SignIn, BorderLayout.CENTER);
 		panel_SignIn.setLayout(new BorderLayout(0, 0));
