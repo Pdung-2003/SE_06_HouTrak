@@ -103,7 +103,7 @@ public class ManHinhChinh extends JFrame {
 		panel.add(lblImage);
 		
 
-		cardLayout = new CardLayout();
+		cardLayout = new CardLayout(20,20);
         cardPanel = new JPanel(cardLayout);
         JPanel buttonsPanel = createButtonsPanel();	
         
