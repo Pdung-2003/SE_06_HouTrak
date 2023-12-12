@@ -1,16 +1,13 @@
-package view;
+package view.chi;
 
-import javax.swing.JComboBox;
+import view.settings.Colors;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.util.Arrays;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
