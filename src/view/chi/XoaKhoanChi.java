@@ -63,7 +63,7 @@ public class XoaKhoanChi extends JPanel {
 		panel_XKC_SearchBar_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
 		JLabel lbl_XKC_SearchBar_Method_Title = new JLabel("Chọn Cách tìm kiếm: ");
-		lbl_XKC_SearchBar_Method_Title.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_XKC_SearchBar_Method_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_Method.add(lbl_XKC_SearchBar_Method_Title);
 		
 		JButton btn_XKC_SearchBar_Method_Reason = new JButton("Tìm bằng lý do\r\n");
@@ -89,11 +89,11 @@ public class XoaKhoanChi extends JPanel {
 		panel_XKC_SearchBar_ByReason_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 		
 		JLabel lbl_XKC_SearchBar_ByReason_Title = new JLabel("Nhập lý do chi: ");
-		lbl_XKC_SearchBar_ByReason_Title.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_XKC_SearchBar_ByReason_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByReason_Title.add(lbl_XKC_SearchBar_ByReason_Title);
 		
 		textField_XKC_SearchBar_ByReason = new JTextField();
-		textField_XKC_SearchBar_ByReason.setFont(new Font("Arial", Font.PLAIN, 20));
+		textField_XKC_SearchBar_ByReason.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByReason.add(textField_XKC_SearchBar_ByReason, BorderLayout.CENTER);
 		textField_XKC_SearchBar_ByReason.setColumns(10);
 		
@@ -112,7 +112,7 @@ public class XoaKhoanChi extends JPanel {
 		panel_XKC_SearchBar_ByTime_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 		
 		JLabel lbl_XKC_SearchBar_ByTime_Title = new JLabel("Nhập thời gian tìm kiếm: ");
-		lbl_XKC_SearchBar_ByTime_Title.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_XKC_SearchBar_ByTime_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByTime_Title.add(lbl_XKC_SearchBar_ByTime_Title);
 		
 		JPanel panel_XKC_SearchBar_ByTime_Content = new JPanel();
@@ -121,23 +121,23 @@ public class XoaKhoanChi extends JPanel {
 		panel_XKC_SearchBar_ByTime_Content.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
 		JLabel lbl_XKC_SearchBar_ByTime_Thang = new JLabel("Tháng: ");
-		lbl_XKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_XKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByTime_Content.add(lbl_XKC_SearchBar_ByTime_Thang);
 		
 		JComboBox comboBox_XKC_SearchBar_ByTime_Thang = new JComboBox();
-		comboBox_XKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 20));
+		comboBox_XKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByTime_Content.add(comboBox_XKC_SearchBar_ByTime_Thang);
 		
 		JLabel lbl_XKC_SearchBar_ByTime_Nam = new JLabel("     Năm: ");
-		lbl_XKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_XKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByTime_Content.add(lbl_XKC_SearchBar_ByTime_Nam);
 		
 		JComboBox comboBox_XKC_SearchBar_ByTime_Nam = new JComboBox();
-		comboBox_XKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 20));
+		comboBox_XKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByTime_Content.add(comboBox_XKC_SearchBar_ByTime_Nam);
 		
 		JButton btn_XKC_SearchBar_ByTime = new JButton("Tìm kiếm");
-		btn_XKC_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 20));
+		btn_XKC_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchBar_ByTime.add(btn_XKC_SearchBar_ByTime, BorderLayout.EAST);
 		
 		// Bảng thông tin điền vào đây
@@ -158,6 +158,7 @@ public class XoaKhoanChi extends JPanel {
 		panel_XKC_SearchResults_Sort.add(lbl_XKC_SearchResults_Sort);
 		
 		JComboBox comboBox_XKC_SearchResults_Sort = new JComboBox();
+		comboBox_XKC_SearchResults_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKC_SearchResults_Sort.add(comboBox_XKC_SearchResults_Sort);		
 		
 		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
