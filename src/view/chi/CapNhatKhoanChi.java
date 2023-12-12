@@ -1,7 +1,6 @@
 package view.chi;
 
 import view.settings.Colors;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,10 +20,13 @@ import java.awt.CardLayout;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+
 public class CapNhatKhoanChi extends JPanel {
 	private JTextField textField_CNKC_Item_Content_LyDo;
-	private JTextField textField_CNKC_Item_Content_SoTien;
 	private JTextField textField_CNKC_SearchBar_ByReason;
+	private JTextField textField_CNKC_Item_Content_SoTien;
 
 	/**
 	 * Create the panel.
@@ -46,10 +48,10 @@ public class CapNhatKhoanChi extends JPanel {
 		add(panel_KhungNoiDungCNKC, BorderLayout.CENTER);
 		panel_KhungNoiDungCNKC.setLayout(new BorderLayout(10, 10));
 		
-		JLabel lbl_Title_CapNhatKhoanChi = new JLabel("Cập nhật khoản chi          ");
-		lbl_Title_CapNhatKhoanChi.setFont(new Font("Arial", Font.BOLD, 20));
-		lbl_Title_CapNhatKhoanChi.setBackground(Colors.nen_Chung);
-		panel_CNKC_Title.add(lbl_Title_CapNhatKhoanChi);
+		JLabel lbl_Title_CapNhatKhoanchi = new JLabel("Cập nhật khoản chi          ");
+		lbl_Title_CapNhatKhoanchi.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_CapNhatKhoanchi.setBackground(Colors.nen_Chung);
+		panel_CNKC_Title.add(lbl_Title_CapNhatKhoanchi);
 		
 		JPanel panel_CNKC_Search = new JPanel();
 		panel_KhungNoiDungCNKC.add(panel_CNKC_Search, BorderLayout.NORTH);
@@ -62,10 +64,10 @@ public class CapNhatKhoanChi extends JPanel {
 		JPanel panel_CNKC_SearchBar_Method = new JPanel();
 		panel_CNKC_SearchBar_Method.setBackground(Colors.khung_Chung);
 		panel_CNKC_SearchBar.add(panel_CNKC_SearchBar_Method, BorderLayout.NORTH);
-		panel_CNKC_SearchBar_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		panel_CNKC_SearchBar_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
 		
-		JLabel lbl_CNKC_SearchBar_Method_Title = new JLabel("Chọn Cách tìm kiếm: ");
-		lbl_CNKC_SearchBar_Method_Title.setFont(new Font("Arial", Font.PLAIN, 20));
+		JLabel lbl_CNKC_SearchBar_Method_Title = new JLabel("   Chọn Cách tìm kiếm: ");
+		lbl_CNKC_SearchBar_Method_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_Method.add(lbl_CNKC_SearchBar_Method_Title);
 		
 		JButton btn_CNKC_SearchBar_Method_Reason = new JButton("Tìm bằng lý do\r\n");
@@ -88,14 +90,14 @@ public class CapNhatKhoanChi extends JPanel {
 		JPanel panel_CNKC_SearchBar_ByReason_Title = new JPanel();
 		panel_CNKC_SearchBar_ByReason_Title.setBackground(Colors.khung_Chung);
 		panel_CNKC_SearchBar_ByReason.add(panel_CNKC_SearchBar_ByReason_Title, BorderLayout.WEST);
-		panel_CNKC_SearchBar_ByReason_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
+		panel_CNKC_SearchBar_ByReason_Title.setLayout(new BoxLayout(panel_CNKC_SearchBar_ByReason_Title, BoxLayout.X_AXIS));
 		
-		JLabel lbl_CNKC_SearchBar_ByReason_Title = new JLabel("Nhập lý do chi: ");
-		lbl_CNKC_SearchBar_ByReason_Title.setFont(new Font("Arial", Font.PLAIN, 20));
+		JLabel lbl_CNKC_SearchBar_ByReason_Title = new JLabel("   Nhập lý do chi: ");
+		lbl_CNKC_SearchBar_ByReason_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByReason_Title.add(lbl_CNKC_SearchBar_ByReason_Title);
 		
 		textField_CNKC_SearchBar_ByReason = new JTextField();
-		textField_CNKC_SearchBar_ByReason.setFont(new Font("Arial", Font.PLAIN, 20));
+		textField_CNKC_SearchBar_ByReason.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByReason.add(textField_CNKC_SearchBar_ByReason, BorderLayout.CENTER);
 		textField_CNKC_SearchBar_ByReason.setColumns(10);
 		
@@ -111,10 +113,10 @@ public class CapNhatKhoanChi extends JPanel {
 		JPanel panel_CNKC_SearchBar_ByTime_Title = new JPanel();
 		panel_CNKC_SearchBar_ByTime_Title.setBackground(Colors.khung_Chung);
 		panel_CNKC_SearchBar_ByTime.add(panel_CNKC_SearchBar_ByTime_Title, BorderLayout.WEST);
-		panel_CNKC_SearchBar_ByTime_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
+		panel_CNKC_SearchBar_ByTime_Title.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lbl_CNKC_SearchBar_ByTime_Title = new JLabel("Nhập thời gian tìm kiếm: ");
-		lbl_CNKC_SearchBar_ByTime_Title.setFont(new Font("Arial", Font.PLAIN, 20));
+		JLabel lbl_CNKC_SearchBar_ByTime_Title = new JLabel("   Nhập thời gian tìm kiếm: ");
+		lbl_CNKC_SearchBar_ByTime_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime_Title.add(lbl_CNKC_SearchBar_ByTime_Title);
 		
 		JPanel panel_CNKC_SearchBar_ByTime_Content = new JPanel();
@@ -123,23 +125,23 @@ public class CapNhatKhoanChi extends JPanel {
 		panel_CNKC_SearchBar_ByTime_Content.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
 		JLabel lbl_CNKC_SearchBar_ByTime_Thang = new JLabel("Tháng: ");
-		lbl_CNKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_CNKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime_Content.add(lbl_CNKC_SearchBar_ByTime_Thang);
 		
 		JComboBox comboBox_CNKC_SearchBar_ByTime_Thang = new JComboBox();
-		comboBox_CNKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 20));
+		comboBox_CNKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime_Content.add(comboBox_CNKC_SearchBar_ByTime_Thang);
 		
 		JLabel lbl_CNKC_SearchBar_ByTime_Nam = new JLabel("     Năm: ");
-		lbl_CNKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 20));
+		lbl_CNKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime_Content.add(lbl_CNKC_SearchBar_ByTime_Nam);
 		
 		JComboBox comboBox_CNKC_SearchBar_ByTime_Nam = new JComboBox();
-		comboBox_CNKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 20));
+		comboBox_CNKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime_Content.add(comboBox_CNKC_SearchBar_ByTime_Nam);
 		
 		JButton btn_CNKC_SearchBar_ByTime = new JButton("Tìm kiếm");
-		btn_CNKC_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 20));
+		btn_CNKC_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime.add(btn_CNKC_SearchBar_ByTime, BorderLayout.EAST);
 		
 		// Bảng thông tin điền vào đây
@@ -165,61 +167,44 @@ public class CapNhatKhoanChi extends JPanel {
 		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
 		panel_CNKC_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
 		
-		// Khu vực thay đổi thông tin
-		JPanel panel_CNKC_Item_Title = new JPanel();
-		panel_KhungNoiDungCNKC.add(panel_CNKC_Item_Title, BorderLayout.WEST);
-		panel_CNKC_Item_Title.setBackground(Colors.khung_Chung);
-		panel_CNKC_Item_Title.setLayout(new GridLayout(6, 1, 20, 20));
-		
-		JLabel panel_CNKC_Item_Title_LyDo = new JLabel("Lý do:\r\n");
-		panel_CNKC_Item_Title_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNKC_Item_Title.add(panel_CNKC_Item_Title_LyDo);
-		
-		JLabel panel_CNKC_Item_Title_SoTien = new JLabel("Số tiền:");
-		panel_CNKC_Item_Title_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNKC_Item_Title.add(panel_CNKC_Item_Title_SoTien);
-		
 		JPanel panel_CNKC_Item_Content = new JPanel();
 		panel_KhungNoiDungCNKC.add(panel_CNKC_Item_Content, BorderLayout.CENTER);
 		panel_CNKC_Item_Content.setBackground(Colors.khung_Chung);
-		panel_CNKC_Item_Content.setLayout(new GridLayout(6, 2, 20, 20));
+		
+		panel_CNKC_Item_Content.setLayout(new BoxLayout(panel_CNKC_Item_Content, BoxLayout.Y_AXIS));
+		
+		JPanel panel_CNKC_Item_Content_LyDo = new JPanel();
+		panel_CNKC_Item_Content.add(panel_CNKC_Item_Content_LyDo);
+		panel_CNKC_Item_Content_LyDo.setBackground(Colors.khung_Chung);
+		panel_CNKC_Item_Content_LyDo.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		
+		JLabel lbl_CNKC_Item_Title_LyDo = new JLabel("Lý do:\r\n");
+		panel_CNKC_Item_Content_LyDo.add(lbl_CNKC_Item_Title_LyDo);
+		lbl_CNKC_Item_Title_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNKC_Item_Title_LyDo.setPreferredSize(new Dimension(100, lbl_CNKC_Item_Title_LyDo.getPreferredSize().height));
 		
 		textField_CNKC_Item_Content_LyDo = new JTextField();
 		textField_CNKC_Item_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNKC_Item_Content.add(textField_CNKC_Item_Content_LyDo);
-		textField_CNKC_Item_Content_LyDo.setColumns(10);
+		textField_CNKC_Item_Content_LyDo.setPreferredSize(new Dimension(500, 30));
+		panel_CNKC_Item_Content_LyDo.add(textField_CNKC_Item_Content_LyDo);
 		
-		JLabel lbl_CNKC_Item_Content_dem_1 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_1);
+		JPanel panel_CNKC_Item_Content_SoTien = new JPanel();
+		panel_CNKC_Item_Content.add(panel_CNKC_Item_Content_SoTien);
+		panel_CNKC_Item_Content_SoTien.setBackground(Colors.khung_Chung);
+		panel_CNKC_Item_Content_SoTien.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		
+		JLabel lbl_CNKC_Item_Title_SoTien = new JLabel("Số tiền");
+		lbl_CNKC_Item_Title_SoTien.setPreferredSize(new Dimension(100, 19));
+		lbl_CNKC_Item_Title_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_CNKC_Item_Content_SoTien.add(lbl_CNKC_Item_Title_SoTien);
 		
 		textField_CNKC_Item_Content_SoTien = new JTextField();
 		textField_CNKC_Item_Content_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNKC_Item_Content.add(textField_CNKC_Item_Content_SoTien);
-		textField_CNKC_Item_Content_SoTien.setColumns(10);
+		textField_CNKC_Item_Content_SoTien.setPreferredSize(new Dimension(500, 30));	
+		panel_CNKC_Item_Content_SoTien.add(textField_CNKC_Item_Content_SoTien);
 		
-		JLabel lbl_CNKC_Item_Content_dem_2 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_2);
+		panel_CNKC_Item_Content.add(Box.createVerticalGlue());
 		
-		JLabel lbl_CNKC_Item_Content_dem_3 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_3);
-		
-		JLabel lbl_CNKC_Item_Content_dem_4 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_4);
-		
-		JLabel lbl_CNKC_Item_Content_dem_5 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_5);
-		
-		JLabel lbl_CNKC_Item_Content_dem_6 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_6);
-		
-		JLabel lbl_CNKC_Item_Content_dem_7 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_7);
-		
-		JLabel lbl_CNKC_Item_Content_dem_8 = new JLabel(" ");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_8);
-		
-		JLabel lbl_CNKC_Item_Content_dem_9 = new JLabel("");
-		panel_CNKC_Item_Content.add(lbl_CNKC_Item_Content_dem_9);
 		
 		// Nút confirm
 		JPanel panel_CNKC_Confirm = new JPanel();
