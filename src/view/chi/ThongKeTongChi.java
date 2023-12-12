@@ -1,7 +1,7 @@
 package view.chi;
 
-
 import view.settings.Colors;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -130,10 +130,31 @@ public class ThongKeTongChi extends JPanel {
 		comboBox_TKTC_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKTC_Filter_Content_EndTime.add(comboBox_TKTC_Filter_Content_EndTime_Ngay);
 		
-		// nơi điền bảng thông tin
+		// Nút duyệt thời gian
+		JButton btn_TKTC_Filter_Confirm = new JButton("Duyệt");
+		btn_TKTC_Filter_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKTC_Filter_Content_EndTime.add(btn_TKTC_Filter_Confirm);
+		
+		// Nơi điền bảng thông tin
 		JPanel panel_TKTC_Content = new JPanel();
 		panel_TKTC_Content.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTKTC.add(panel_TKTC_Content, BorderLayout.CENTER);
 		panel_TKTC_Content.setLayout(new BorderLayout(0, 0));
+		
+		// Sắp xếp thông tin
+		JPanel panel_TKTC_Content_Sort = new JPanel();
+		panel_TKTC_Content.add(panel_TKTC_Content_Sort, BorderLayout.NORTH);
+		panel_TKTC_Content_Sort.setBackground(Colors.khung_Chung);
+		panel_TKTC_Content_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+		
+		JLabel lbl_TKTC_Content_Sort = new JLabel("Sắp xếp theo: ");
+		lbl_TKTC_Content_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKTC_Content_Sort.add(lbl_TKTC_Content_Sort);
+		
+		JComboBox comboBox_TKTC_Sort = new JComboBox();
+		comboBox_TKTC_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKTC_Content_Sort.add(comboBox_TKTC_Sort);
+		
+		// Điền bảng kết quả thống kê
 	}
 }
