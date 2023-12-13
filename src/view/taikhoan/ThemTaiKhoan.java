@@ -1,20 +1,17 @@
 package view.taikhoan;
 
+import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.util.Arrays;
 import java.awt.Dimension;
 import javax.swing.JTextField;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,7 +29,7 @@ public class ThemTaiKhoan extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ThemTaiKhoan() {
+	public ThemTaiKhoan(ManHinhChinh mainFrame) {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new BorderLayout(0, 0));

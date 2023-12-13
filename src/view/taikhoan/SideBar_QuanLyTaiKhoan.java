@@ -80,7 +80,7 @@ public class SideBar_QuanLyTaiKhoan extends JPanel {
 		btn_SB_QLKT_TKTC.setOpaque(true);
 		btn_SB_QLKT_TKTC.setBorder(matteBorder);
 		btn_SB_QLKT_TKTC.addActionListener(e -> {
-			TimTaiKhoan timTaiKhoanPanel = new TimTaiKhoan(mainFrame);
+			TimKiemTaiKhoan timTaiKhoanPanel = new TimKiemTaiKhoan(mainFrame);
 			mainFrame.switchToMainPanel(timTaiKhoanPanel);
 		});
 		panel_SB_QLKT.add(btn_SB_QLKT_TKTC);
