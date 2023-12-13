@@ -39,7 +39,7 @@ public class XoaKhoanThu extends JPanel {
 		
 		JPanel panel_KhungNoiDungXKT = new JPanel();
 		panel_KhungNoiDungXKT.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungXKT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungXKT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungXKT.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungXKT, BorderLayout.CENTER);
 		panel_KhungNoiDungXKT.setLayout(new BorderLayout(10, 10));

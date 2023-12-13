@@ -40,7 +40,7 @@ public class TaoKhoanThu extends JPanel {
 		
 		JPanel panel_KhungNoiDungTKT = new JPanel();
 		panel_KhungNoiDungTKT.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTKT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTKT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTKT.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungTKT, BorderLayout.CENTER);
 		panel_KhungNoiDungTKT.setLayout(new BorderLayout(10, 10));

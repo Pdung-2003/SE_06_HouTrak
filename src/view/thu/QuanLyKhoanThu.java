@@ -36,7 +36,7 @@ public class QuanLyKhoanThu extends JPanel {
 		
 		JPanel panel_KhungNoiDungQLKT = new JPanel();
 		panel_KhungNoiDungQLKT.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungQLKT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungQLKT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungQLKT.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungQLKT, BorderLayout.CENTER);
 		panel_KhungNoiDungQLKT.setLayout(new BorderLayout(0, 0));
