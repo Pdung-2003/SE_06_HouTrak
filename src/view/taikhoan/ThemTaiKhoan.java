@@ -107,6 +107,7 @@ public class ThemTaiKhoan extends JPanel {
 		panel_TTK_Item_Content_MatKhau.add(passwordField_TTK_Item_Content_MatKhau);
 		
 		JButton showHideButton = new JButton("Xem");
+		showHideButton.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TTK_Item_Content_MatKhau.add(showHideButton);
 
         showHideButton.addActionListener(new ActionListener() {
@@ -122,10 +123,19 @@ public class ThemTaiKhoan extends JPanel {
             }
         });
 		
-		panel_TTK_Item_Content.add(Box.createVerticalGlue());
-		panel_TTK_Item_Content.add(Box.createVerticalGlue());
-		panel_TTK_Item_Content.add(Box.createVerticalGlue());
-		panel_TTK_Item_Content.add(Box.createVerticalGlue());
+		JPanel panel_TTK_Item_Content_ChucVu = new JPanel();
+		panel_TTK_Item_Content_ChucVu.setBackground(new Color(144, 224, 239));
+		panel_TTK_Item_Content.add(panel_TTK_Item_Content_ChucVu);
+		panel_TTK_Item_Content_ChucVu.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		
+		JLabel lbl_CNKC_Item_Title_ChucVu = new JLabel("Chức vụ:");
+		lbl_CNKC_Item_Title_ChucVu.setPreferredSize(new Dimension(150, 19));
+		lbl_CNKC_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TTK_Item_Content_ChucVu.add(lbl_CNKC_Item_Title_ChucVu);
+		
+		JComboBox comboBox_TTK_Item_Content_ChucVu = new JComboBox();
+		panel_TTK_Item_Content_ChucVu.add(comboBox_TTK_Item_Content_ChucVu);
+		comboBox_TTK_Item_Content_ChucVu.setPreferredSize(new Dimension(500, 30));
 		panel_TTK_Item_Content.add(Box.createVerticalGlue());
 		panel_TTK_Item_Content.add(Box.createVerticalGlue());
 		panel_TTK_Item_Content.add(Box.createVerticalGlue());
