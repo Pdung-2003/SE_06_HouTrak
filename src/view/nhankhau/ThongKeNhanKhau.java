@@ -258,6 +258,7 @@ public class ThongKeNhanKhau extends JPanel {
 		btn_TKeNK_02_BangThongTin_TamVang_Filter.setOpaque(true);
 		btn_TKeNK_02_BangThongTin_TamVang_Filter.setBorderPainted(false);
 		panel_TKeNK_02_BangThongTin_TamVang_Filter.add(btn_TKeNK_02_BangThongTin_TamVang_Filter);
+		panel_TKeNK_02_BangThongTin_TamVang_Filter.add(btn_TKeNK_02_BangThongTin_TamVang_Filter);
 
 		// dien bang noi dung tam vang vao day
 		JPanel panel_TKeNK_02_BangThongTin_TamVang_NoiDung = new JPanel();

@@ -15,6 +15,7 @@ import view.hokhau.QuanLyHoKhau;
 import view.nhankhau.QuanLyNhanKhau;
 import view.hokhau.SideBar_QuanLyHoKhau;
 import view.nhankhau.SideBar_QuanLyNhanKhau;
+import view.phat_thuong.*;
 import view.settings.Colors;
 
 public class ManHinhChinh extends JFrame {
@@ -29,6 +30,8 @@ public class ManHinhChinh extends JFrame {
 	private QuanLyHoKhau quanLyHoKhauMainPanel;
 	private SideBar_QuanLyNhanKhau quanLyNhanKhauPanel;
 	private QuanLyNhanKhau quanLyNhanKhauMainPanel;
+	private SideBar_QuanLyPhatThuong quanLyPhatThuongPanel;
+	private QuanLyPhatThuong quanLyPhatThuongMainPanel;
 	private JLabel jLabel_Logo;
 	
 	public ManHinhChinh() {
@@ -116,10 +119,13 @@ public class ManHinhChinh extends JFrame {
         quanLyHoKhauMainPanel = new QuanLyHoKhau();
         quanLyNhanKhauPanel = new SideBar_QuanLyNhanKhau(this);
         quanLyNhanKhauMainPanel = new QuanLyNhanKhau();
+        quanLyPhatThuongPanel = new SideBar_QuanLyPhatThuong(this);
+        quanLyPhatThuongMainPanel = new QuanLyPhatThuong();
         
         cardPanel.add(buttonsPanel, "ButtonsPanel");
         cardPanel.add(quanLyHoKhauPanel, "QuanLyHoKhau");
         cardPanel.add(quanLyNhanKhauPanel,"QuanLyNhanKhau");
+        cardPanel.add(quanLyPhatThuongPanel,"QuanLyPhatThuong");
         
   
         contentPane.add(cardPanel, BorderLayout.WEST);
@@ -182,6 +188,10 @@ public class ManHinhChinh extends JFrame {
 	        button_QLPT.setForeground(Color.WHITE);
 	        button_QLPT.setOpaque(true);
 	        button_QLPT.setBorder(matteBorder);
+	        button_QLPT.addActionListener(e -> {
+	            switchPanel("QuanLyPhatThuong");
+	            switchToMainPanel(quanLyPhatThuongMainPanel);
+	        });
 	        buttonsPanel.add(button_QLPT);
 	        
 	        JButton button_QLTK = new JButton("  Quản lý tài khoản");
