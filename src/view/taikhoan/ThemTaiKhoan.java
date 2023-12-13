@@ -46,7 +46,7 @@ public class ThemTaiKhoan extends JPanel {
 		
 		JPanel panel_KhungNoiDungTTK = new JPanel();
 		panel_KhungNoiDungTTK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTTK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTTK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTTK.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungTTK, BorderLayout.CENTER);
 		panel_KhungNoiDungTTK.setLayout(new BorderLayout(10, 10));
