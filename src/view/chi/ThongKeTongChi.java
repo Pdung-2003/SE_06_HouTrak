@@ -32,7 +32,7 @@ public class ThongKeTongChi extends JPanel {
 		
 		JPanel panel_KhungNoiDungTKTC = new JPanel();
 		panel_KhungNoiDungTKTC.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTKTC.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTKTC.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTKTC.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungTKTC, BorderLayout.CENTER);
 		panel_KhungNoiDungTKTC.setLayout(new BorderLayout(10, 10));

@@ -40,7 +40,7 @@ public class CapNhatKhoanChi extends JPanel {
 		
 		JPanel panel_KhungNoiDungCNKC = new JPanel();
 		panel_KhungNoiDungCNKC.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungCNKC.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungCNKC.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungCNKC.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungCNKC, BorderLayout.CENTER);
 		panel_KhungNoiDungCNKC.setLayout(new BorderLayout(10, 10));
