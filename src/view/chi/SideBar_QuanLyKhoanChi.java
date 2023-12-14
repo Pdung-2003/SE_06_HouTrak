@@ -53,10 +53,10 @@ public class SideBar_QuanLyKhoanChi extends JPanel {
 		btn_SB_QLKC_TKC.setForeground(Color.WHITE);
 		btn_SB_QLKC_TKC.setOpaque(true);
 		btn_SB_QLKC_TKC.setBorder(matteBorder);
-//		btn_SB_QLKC_TKC.addActionListener(e -> {
-//			TaoKhoanChi taoKhoanChiPanel = new TaoKhoanChi(mainFrame);
-//			mainFrame.switchToMainPanel(taoKhoanChiPanel);
-//		});
+		btn_SB_QLKC_TKC.addActionListener(e -> {
+			TaoKhoanChi taoKhoanChiPanel = new TaoKhoanChi(mainFrame);
+			mainFrame.switchToMainPanel(taoKhoanChiPanel);
+		});
 		panel_SB_QLKC.add(btn_SB_QLKC_TKC);
 
 		JButton btn_SB_QLKC_CNKC = new JButton("  Cập nhật khoản chi");
@@ -66,10 +66,10 @@ public class SideBar_QuanLyKhoanChi extends JPanel {
 		btn_SB_QLKC_CNKC.setForeground(Color.WHITE);
 		btn_SB_QLKC_CNKC.setOpaque(true);
 		btn_SB_QLKC_CNKC.setBorder(matteBorder);
-//		btn_SB_QLKC_CNKC.addActionListener(e -> {
-//			CapNhatKhoanChi capNhatKhoanChiPanel = new CapNhatKhoanChi(mainFrame);
-//			mainFrame.switchToMainPanel(capNhatKhoanChiPanel);
-//		});
+		btn_SB_QLKC_CNKC.addActionListener(e -> {
+			CapNhatKhoanChi capNhatKhoanChiPanel = new CapNhatKhoanChi(mainFrame);
+			mainFrame.switchToMainPanel(capNhatKhoanChiPanel);
+		});
 		panel_SB_QLKC.add(btn_SB_QLKC_CNKC);
 
 		JButton btn_SB_QLKC_TKTC = new JButton("  Thống kê tổng chi");
@@ -79,10 +79,10 @@ public class SideBar_QuanLyKhoanChi extends JPanel {
 		btn_SB_QLKC_TKTC.setForeground(Color.WHITE);
 		btn_SB_QLKC_TKTC.setOpaque(true);
 		btn_SB_QLKC_TKTC.setBorder(matteBorder);
-//		btn_SB_QLKC_TKTC.addActionListener(e -> {
-//			ThongKeTongChi thongKeTongChiPanel = new ThongKeTongChi(mainFrame);
-//			mainFrame.switchToMainPanel(thongKeTongChiPanel);
-//		});
+		btn_SB_QLKC_TKTC.addActionListener(e -> {
+			ThongKeTongChi thongKeTongChiPanel = new ThongKeTongChi(mainFrame);
+			mainFrame.switchToMainPanel(thongKeTongChiPanel);
+		});
 		panel_SB_QLKC.add(btn_SB_QLKC_TKTC);
 
 
@@ -93,10 +93,10 @@ public class SideBar_QuanLyKhoanChi extends JPanel {
 		btn_SB_QLKC_XKC.setForeground(Color.WHITE);
 		btn_SB_QLKC_XKC.setOpaque(true);
 		btn_SB_QLKC_XKC.setBorder(matteBorder);
-//		btn_SB_QLKC_XKC.addActionListener(e -> {
-//			XoaKhoanChi xoaKhoanChiPanel = new XoaKhoanChi();
-//			mainFrame.switchToMainPanel(xoaKhoanChiPanel);
-//		});
+		btn_SB_QLKC_XKC.addActionListener(e -> {
+			XoaKhoanChi xoaKhoanChiPanel = new XoaKhoanChi();
+			mainFrame.switchToMainPanel(xoaKhoanChiPanel);
+		});
 		panel_SB_QLKC.add(btn_SB_QLKC_XKC);
 
 		JPanel panel_SB_QLKC_dem = new JPanel();
