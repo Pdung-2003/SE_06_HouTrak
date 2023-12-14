@@ -185,6 +185,12 @@ INSERT INTO Users (MaNhanVien, ChucVu, Username, Password)
 VALUES
 ('MNV0001', N'Tổ trưởng', 'totruong',123456);
 
+INSERT INTO DanhSachHocSinh(MaNhanKhau, HocLuc, Lop) 
+VALUES
+('MNK00062', 'Khá', 9),
+('MNK00083', 'Giỏi', 10);
+
+
 -- Tạo bảng Deleted 
 -- 1. Tạo bảng hộ khẩu 
 CREATE TABLE HoKhau_Deleted (

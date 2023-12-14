@@ -1,7 +1,6 @@
 package view.phat_thuong;
 
-import controller.nhankhau.XoaNhanKhauController;
-import model.DatabaseConnector;
+import controller.phat_thuong.XoaHocSinhController;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
@@ -11,17 +10,25 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class XoaHocSinh extends JPanel {
 	private JTextField txt_XHS_TImKiem;
-	private ManHinhChinh mainFrame;
+	// private ManHinhChinh mainFrame;
+	private JButton btn_XHS_01_TimKiem;
+	private JButton btn_XHS_Yes;
+	private JButton btn_XHS_No;
+	private JLabel lbl_XHS_CotPhai_MaNK = new JLabel();
+	private JLabel lbl_XHS_CotPhai_CCCD = new JLabel();
+	private JLabel lbl_XHS_CotPhai_HoVaTen = new JLabel();
+	private JLabel lbl_XHS_CotPhai_NgaySinh = new JLabel();
+	private JLabel lbl_XHS_CotPhai_GioiTinh = new JLabel();
+	private JLabel lbl_XNK_CotPhai_MaHK = new JLabel();
+	private JLabel lbl_XNK_CotPhai_DiaChi = new JLabel();
+	private JLabel lbl_XNK_CotPhai_HocLuc = new JLabel();
+	private JLabel lbl_XNK_CotPhai_Lop = new JLabel();
 
 	public XoaHocSinh(ManHinhChinh mainFrame) {
-		this.mainFrame = mainFrame;
+		// this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new CardLayout(10, 10));
@@ -86,7 +93,7 @@ public class XoaHocSinh extends JPanel {
 		txt_XHS_TImKiem.setBackground(new Color(217, 217, 217));
 		txt_XHS_TImKiem.setColumns(10);
 
-		JButton btn_XHS_01_TimKiem = new JButton("Tìm kiếm");
+		btn_XHS_01_TimKiem = new JButton("Tìm kiếm");
 		btn_XHS_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_XHS_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		panel_XHS_01_content.add(btn_XHS_01_TimKiem);
@@ -143,26 +150,33 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_CotTrai.add(panel_XHS_CotTrai_02);
 		panel_XHS_CotTrai_02.setLayout(new GridLayout(5, 1, 0, 0));
 
-		JLabel lbl_XHS_CotTrai_6 = new JLabel("     Quê quán                          ");
+		JLabel lbl_XHS_CotTrai_6 = new JLabel("     Mã Hộ Khẩu                          ");
 		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_6);
 		lbl_XHS_CotTrai_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_XHS_CotTrai_6.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_6.setMinimumSize(new Dimension(50, 14));
 		lbl_XHS_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		JLabel lbl_XHS_CotTrai_7 = new JLabel("     Tôn Giáo                          ");
+		JLabel lbl_XHS_CotTrai_7 = new JLabel("     Địa Chỉ                         ");
 		lbl_XHS_CotTrai_7.setMinimumSize(new Dimension(50, 14));
 		lbl_XHS_CotTrai_7.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_7.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_XHS_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_7);
 
-		JLabel lbl_XHS_CotTrai_8 = new JLabel("     Mã Hộ Khẩu                          ");
+		JLabel lbl_XHS_CotTrai_8 = new JLabel("     Học Lực                          ");
 		lbl_XHS_CotTrai_8.setMinimumSize(new Dimension(50, 14));
 		lbl_XHS_CotTrai_8.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_8.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_XHS_CotTrai_8.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_8);
+
+		JLabel lbl_XHS_CotTrai_9 = new JLabel("     Lớp                          ");
+		lbl_XHS_CotTrai_9.setMinimumSize(new Dimension(50, 14));
+		lbl_XHS_CotTrai_9.setMaximumSize(new Dimension(200, 14));
+		lbl_XHS_CotTrai_9.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_XHS_CotTrai_9.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_9);
 
 		JPanel panel_XHS_CotPhai = new JPanel();
 		panel_XHS_CotPhai.setBackground(Colors.khung_Chung);
@@ -175,24 +189,19 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_CotPhai.add(panel_XHS_CotPhai_01);
 		panel_XHS_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
 
-		JLabel lbl_XHS_CotPhai_MaNK = new JLabel(); // dien ma nhan khau vao
-		lbl_XHS_CotPhai_MaNK.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_XHS_CotPhai_MaNK.setFont(new Font("Arial", Font.BOLD, 12));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_MaNK);
 
-		JLabel lbl_XHS_CotPhai_HoVaTen = new JLabel(); // dien ho va ten
-		lbl_XHS_CotPhai_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_XHS_CotPhai_HoVaTen.setFont(new Font("Arial", Font.BOLD, 12));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_HoVaTen);
 
-		JLabel lbl_XHS_CotPhai_CCCD = new JLabel(); // dien cccd
-		lbl_XHS_CotPhai_CCCD.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_XHS_CotPhai_CCCD.setFont(new Font("Arial", Font.BOLD, 12));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_CCCD);
 
-		JLabel lbl_XHS_CotPhai_NgaySinh = new JLabel(); // dien ngay sinh
-		lbl_XHS_CotPhai_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_XHS_CotPhai_NgaySinh.setFont(new Font("Arial", Font.BOLD, 12));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_NgaySinh);
 
-		JLabel lbl_XHS_CotPhai_GioiTinh = new JLabel(); // dien gioi tinh
-		lbl_XHS_CotPhai_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_XHS_CotPhai_GioiTinh.setFont(new Font("Arial", Font.BOLD, 12));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_GioiTinh);
 
 		JPanel panel_XHS_CotPhai_02 = new JPanel();
@@ -200,77 +209,33 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_CotPhai.add(panel_XHS_CotPhai_02);
 		panel_XHS_CotPhai_02.setLayout(new GridLayout(5, 1, 0, 0));
 
-		JLabel lbl_XNK_CotPhai_QueQuan = new JLabel();// dien que quan
-		lbl_XNK_CotPhai_QueQuan.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_QueQuan);
-
-		JLabel lbl_XNK_CotPhai_TonGiao = new JLabel();// dien ton giao
-		lbl_XNK_CotPhai_TonGiao.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_TonGiao);
-
-		JLabel lbl_XNK_CotPhai_MaHK = new JLabel();// dien ma ho khau
-		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.BOLD, 12));
 		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_MaHK);
+
+		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.BOLD, 12));
+		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_DiaChi);
+
+		lbl_XNK_CotPhai_HocLuc.setFont(new Font("Arial", Font.BOLD, 12));
+		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_HocLuc);
+
+		lbl_XNK_CotPhai_Lop.setFont(new Font("Arial", Font.BOLD, 12));
+		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_Lop);
 
 		JPanel panel_XHS_Confirm = new JPanel();
 		panel_XHS_Confirm.setBackground(Colors.khung_Chung);
 		panel_XHS_02.add(panel_XHS_Confirm, BorderLayout.SOUTH);
 		panel_XHS_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
-		JButton btn_XHS_Yes = new JButton("Xóa\r\n");
+		btn_XHS_Yes = new JButton("Xóa\r\n");
 		btn_XHS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_XHS_Yes.setToolTipText("");
 		btn_XHS_Yes.setBackground(Colors.button_XacNhan);
 		btn_XHS_Yes.setForeground(Color.WHITE);
 		btn_XHS_Yes.setOpaque(true);
 		btn_XHS_Yes.setBorderPainted(false);
-		btn_XHS_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String maNhanKhau = txt_XHS_TImKiem.getText();
-				// Mảng chứa các tùy chọn
-				String[] options = {"Rời đi", "Đã mất"};
-				int confirmResult = JOptionPane.showOptionDialog(mainFrame,
-						"Người này rời đi hay đã mất?",
-						"Xác nhận",
-						JOptionPane.DEFAULT_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,
-						options,
-						options[0]);
-
-				if (confirmResult == 0) {
-					XoaNhanKhauController.xoaNhanKhau(maNhanKhau);
-				} else if (confirmResult == 1) {
-					// Yêu cầu nhập thông tin về việc "đã mất"
-					JTextField textFieldNguoiKhaiTu = new JTextField();
-					JTextField textFieldNguyenNhan = new JTextField();
-					JTextField textFieldThoiGianMat = new JTextField();
-					textFieldThoiGianMat.setToolTipText("Thời gian có định dạng DD/MM/YYYY");
-
-					Object[] message = {
-							"Người khai tử:", textFieldNguoiKhaiTu,
-							"Nguyên nhân:", textFieldNguyenNhan,
-							"Thời gian mất:", textFieldThoiGianMat,
-					};
-
-					int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin", JOptionPane.OK_CANCEL_OPTION);
-					if (option == JOptionPane.OK_OPTION) {
-						// Xử lý thông tin nhập vào
-						String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
-						String nguyenNhan = textFieldNguyenNhan.getText();
-						String thoiGianMat = textFieldThoiGianMat.getText();
-					// Xóa nhân khẩu
-					XoaNhanKhauController.xoaNhanKhau(maNhanKhau);
-
-					// Thêm thông tin vào bảng KhaiTu
-					XoaNhanKhauController.themKhaiTu(maNhanKhau, nguoiKhaiTu, nguyenNhan, thoiGianMat);
-					}
-				}
-			}
-		});
 		panel_XHS_Confirm.add(btn_XHS_Yes);
 
-		JButton btn_XHS_No = new JButton("Hủy\r\n");
+		btn_XHS_No = new JButton("Hủy\r\n");
 		btn_XHS_No.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_XHS_No.setToolTipText("");
 		btn_XHS_No.setBackground(Colors.button_Huy);
@@ -306,53 +271,110 @@ public class XoaHocSinh extends JPanel {
 		lbl_Title_XoaHocSinh.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_XHS_title.add(lbl_Title_XoaHocSinh);
 
-
-		//thêm hàm tìm kiếm và hiển thị ttin cho nhân khẩu muốn xóa
-		btn_XHS_01_TimKiem.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				String maNK = txt_XHS_TImKiem.getText();
-				if (maNK.equals("")) {
-					JOptionPane.showMessageDialog(null, "Không được để trống ô tìm kiếm !");
-					return;
-				}
-				try (Connection connection = DatabaseConnector.getConnection()) {
-					if (connection != null) {
-						String sqlToCheckCondition = "SELECT * FROM NhanKhau WHERE maNhanKhau = ?";
-						PreparedStatement preparedStatementToCheckCondition = connection.prepareStatement(sqlToCheckCondition);
-						preparedStatementToCheckCondition.setString(1, maNK);
-						ResultSet resultSet = preparedStatementToCheckCondition.executeQuery();
-
-						boolean found = false;
-
-						while (resultSet.next()) {
-							found = true;
-							lbl_XHS_CotPhai_MaNK.setText(resultSet.getString("MaNhanKhau"));
-							lbl_XHS_CotPhai_HoVaTen.setText(resultSet.getString("HoTen"));
-							lbl_XHS_CotPhai_CCCD.setText(resultSet.getString("SoCMNDCCCD"));
-							lbl_XHS_CotPhai_NgaySinh.setText(resultSet.getString("NgaySinh"));
-							lbl_XHS_CotPhai_GioiTinh.setText(resultSet.getString("GioiTinh"));
-							lbl_XNK_CotPhai_QueQuan.setText(resultSet.getString("QueQuan"));
-							lbl_XNK_CotPhai_TonGiao.setText(resultSet.getString("TonGiao"));
-							lbl_XNK_CotPhai_MaHK.setText(resultSet.getString("MaHoKhau"));
-						}
-
-
-						if (!found) {
-							JOptionPane.showMessageDialog(null, "Không tìm thấy mã nhân khẩu khớp!");
-						}
-
-						// Đóng kết nối và tài nguyên
-						resultSet.close();
-						preparedStatementToCheckCondition.close();
-						connection.close();
-					}
-				} catch (SQLException ex) {
-					// Handle any SQL exceptions here
-					ex.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Lỗi khi kết nối cơ sở dữ liệu !");
-				}
-			}
-		});
+		XoaHocSinhController controller = new XoaHocSinhController(mainFrame, this);
 	}
 
+	public JTextField getTxt_XHS_TImKiem() {
+		return txt_XHS_TImKiem;
+	}
+
+	public void setTxt_XHS_TImKiem(JTextField txt_XHS_TImKiem) {
+		this.txt_XHS_TImKiem = txt_XHS_TImKiem;
+	}
+
+	public JButton getBtn_XHS_01_TimKiem() {
+		return btn_XHS_01_TimKiem;
+	}
+
+	public void setBtn_XHS_01_TimKiem(JButton btn_XHS_01_TimKiem) {
+		this.btn_XHS_01_TimKiem = btn_XHS_01_TimKiem;
+	}
+
+	public JButton getBtn_XHS_Yes() {
+		return btn_XHS_Yes;
+	}
+
+	public void setBtn_XHS_Yes(JButton btn_XHS_Yes) {
+		this.btn_XHS_Yes = btn_XHS_Yes;
+	}
+
+	public JButton getBtn_XHS_No() {
+		return btn_XHS_No;
+	}
+
+	public void setBtn_XHS_No(JButton btn_XHS_No) {
+		this.btn_XHS_No = btn_XHS_No;
+	}
+
+	public JLabel getLbl_XHS_CotPhai_MaNK() {
+		return lbl_XHS_CotPhai_MaNK;
+	}
+
+	public void setLbl_XHS_CotPhai_MaNK(JLabel lbl_XHS_CotPhai_MaNK) {
+		this.lbl_XHS_CotPhai_MaNK = lbl_XHS_CotPhai_MaNK;
+	}
+
+	public JLabel getLbl_XHS_CotPhai_CCCD() {
+		return lbl_XHS_CotPhai_CCCD;
+	}
+
+	public void setLbl_XHS_CotPhai_CCCD(JLabel lbl_XHS_CotPhai_CCCD) {
+		this.lbl_XHS_CotPhai_CCCD = lbl_XHS_CotPhai_CCCD;
+	}
+
+	public JLabel getLbl_XHS_CotPhai_HoVaTen() {
+		return lbl_XHS_CotPhai_HoVaTen;
+	}
+
+	public void setLbl_XHS_CotPhai_HoVaTen(JLabel lbl_XHS_CotPhai_HoVaTen) {
+		this.lbl_XHS_CotPhai_HoVaTen = lbl_XHS_CotPhai_HoVaTen;
+	}
+
+	public JLabel getLbl_XHS_CotPhai_NgaySinh() {
+		return lbl_XHS_CotPhai_NgaySinh;
+	}
+
+	public void setLbl_XHS_CotPhai_NgaySinh(JLabel lbl_XHS_CotPhai_NgaySinh) {
+		this.lbl_XHS_CotPhai_NgaySinh = lbl_XHS_CotPhai_NgaySinh;
+	}
+
+	public JLabel getLbl_XHS_CotPhai_GioiTinh() {
+		return lbl_XHS_CotPhai_GioiTinh;
+	}
+
+	public void setLbl_XHS_CotPhai_GioiTinh(JLabel lbl_XHS_CotPhai_GioiTinh) {
+		this.lbl_XHS_CotPhai_GioiTinh = lbl_XHS_CotPhai_GioiTinh;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_MaHK() {
+		return lbl_XNK_CotPhai_MaHK;
+	}
+
+	public void setLbl_XNK_CotPhai_MaHK(JLabel lbl_XNK_CotPhai_MaHK) {
+		this.lbl_XNK_CotPhai_MaHK = lbl_XNK_CotPhai_MaHK;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_DiaChi() {
+		return lbl_XNK_CotPhai_DiaChi;
+	}
+
+	public void setLbl_XNK_CotPhai_DiaChi(JLabel lbl_XNK_CotPhai_DiaChi) {
+		this.lbl_XNK_CotPhai_DiaChi = lbl_XNK_CotPhai_DiaChi;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_HocLuc() {
+		return lbl_XNK_CotPhai_HocLuc;
+	}
+
+	public void setLbl_XNK_CotPhai_HocLuc(JLabel lbl_XNK_CotPhai_HocLuc) {
+		this.lbl_XNK_CotPhai_HocLuc = lbl_XNK_CotPhai_HocLuc;
+	}
+
+	public JLabel getLbl_XNK_CotPhai_Lop() {
+		return lbl_XNK_CotPhai_Lop;
+	}
+
+	public void setLbl_XNK_CotPhai_Lop(JLabel lbl_XNK_CotPhai_Lop) {
+		this.lbl_XNK_CotPhai_Lop = lbl_XNK_CotPhai_Lop;
+	}
 }

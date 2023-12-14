@@ -12,8 +12,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("123");
-        ds.setServerName("LAPTOP-POT66FBA");
+        ds.setPassword("manhvu123");
+        ds.setServerName("MANHVU");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
@@ -738,11 +738,210 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return DsNhanKhau;
     }
 
+    // Module 3: Quan ly phat thuong
+    // 1. Danh sach hoc sinh
+    public static List<HocSinh> getDanhSachHocSinh() {
+        List<HocSinh> dsHocSinh = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT nk.MaNhanKhau, nk.HoTen, nk.SoCMNDCCCD, nk.NgaySinh, nk.GioiTinh, nk.MaHoKhau, hk.DiaChi, ds.HocLuc, ds.Lop\n" +
+                    "FROM DanhSachHocSinh ds JOIN NhanKhau nk\n" +
+                    "ON ds.MaNhanKhau = nk.MaNhanKhau\n" +
+                    "JOIN HoKhau hk ON nk.MaHoKhau = hk.MaHoKhau\n" +
+                    "ORDER BY nk.MaNhanKhau\n";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        String soCCCD = rs.getString("SoCMNDCCCD");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String diaChi = rs.getString("DiaChi");
+                        String hocLuc = rs.getString("HocLuc");
+                        int lop = rs.getInt("Lop");
+
+                        HocSinh hocSinh = new HocSinh(maNhanKhau, hoTen, soCCCD, ngaySinh, gioiTinh, maHoKhau, diaChi, hocLuc, lop);
+                        dsHocSinh.add(hocSinh);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsHocSinh;
+    }
+
+    public static List<HocSinh> getDsHocSinhByTen() {
+        List<HocSinh> dsHocSinh = new ArrayList<>();
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT nk.MaNhanKhau, nk.HoTen, nk.SoCMNDCCCD, nk.NgaySinh, nk.GioiTinh, nk.MaHoKhau, hk.DiaChi, ds.HocLuc, ds.Lop\n" +
+                    "FROM DanhSachHocSinh ds JOIN NhanKhau nk\n" +
+                    "ON ds.MaNhanKhau = nk.MaNhanKhau\n" +
+                    "JOIN HoKhau hk ON nk.MaHoKhau = hk.MaHoKhau\n" +
+                    "ORDER BY nk.HoTen\n";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        String soCCCD = rs.getString("SoCMNDCCCD");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String diaChi = rs.getString("DiaChi");
+                        String hocLuc = rs.getString("HocLuc");
+                        int lop = rs.getInt("Lop");
+
+                        HocSinh hocSinh = new HocSinh(maNhanKhau, hoTen, soCCCD, ngaySinh, gioiTinh, maHoKhau, diaChi, hocLuc, lop);
+                        dsHocSinh.add(hocSinh);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsHocSinh;
+    }
+    public static List<HocSinh> getDsHocSinhByTuoi() {
+        List<HocSinh> dsHocSinh = new ArrayList<>();
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT nk.MaNhanKhau, nk.HoTen, nk.SoCMNDCCCD, nk.NgaySinh, nk.GioiTinh, nk.MaHoKhau, hk.DiaChi, ds.HocLuc, ds.Lop\n" +
+                    "FROM DanhSachHocSinh ds JOIN NhanKhau nk\n" +
+                    "ON ds.MaNhanKhau = nk.MaNhanKhau\n" +
+                    "JOIN HoKhau hk ON nk.MaHoKhau = hk.MaHoKhau\n" +
+                    "ORDER BY nk.NgaySinh\n";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        String soCCCD = rs.getString("SoCMNDCCCD");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String diaChi = rs.getString("DiaChi");
+                        String hocLuc = rs.getString("HocLuc");
+                        int lop = rs.getInt("Lop");
+
+                        HocSinh hocSinh = new HocSinh(maNhanKhau, hoTen, soCCCD, ngaySinh, gioiTinh, maHoKhau, diaChi, hocLuc, lop);
+                        dsHocSinh.add(hocSinh);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsHocSinh;
+    }
+    public static List<HocSinh> getDsHocSinhByMaHK() {
+        List<HocSinh> dsHocSinh = new ArrayList<>();
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT nk.MaNhanKhau, nk.HoTen, nk.SoCMNDCCCD, nk.NgaySinh, nk.GioiTinh, nk.MaHoKhau, hk.DiaChi, ds.HocLuc, ds.Lop\n" +
+                    "FROM DanhSachHocSinh ds JOIN NhanKhau nk\n" +
+                    "ON ds.MaNhanKhau = nk.MaNhanKhau\n" +
+                    "JOIN HoKhau hk ON nk.MaHoKhau = hk.MaHoKhau\n" +
+                    "ORDER BY nk.MaHoKhau\n";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        String soCCCD = rs.getString("SoCMNDCCCD");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String diaChi = rs.getString("DiaChi");
+                        String hocLuc = rs.getString("HocLuc");
+                        int lop = rs.getInt("Lop");
+
+                        HocSinh hocSinh = new HocSinh(maNhanKhau, hoTen, soCCCD, ngaySinh, gioiTinh, maHoKhau, diaChi, hocLuc, lop);
+                        dsHocSinh.add(hocSinh);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsHocSinh;
+    }
+    // 2. Tim kiem hoc sinh
+    public static HocSinh searchHocSinhByMaNK(String maNK) {
+        HocSinh hocSinh = null;
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT nk.MaNhanKhau, nk.HoTen, nk.SoCMNDCCCD, nk.NgaySinh, nk.GioiTinh, nk.MaHoKhau, hk.DiaChi, ds.HocLuc, ds.Lop\n" +
+                    "FROM DanhSachHocSinh ds JOIN NhanKhau nk\n" +
+                    "ON ds.MaNhanKhau = nk.MaNhanKhau\n" +
+                    "JOIN HoKhau hk ON nk.MaHoKhau = hk.MaHoKhau\n" +
+                    "WHERE nk.MaNhanKhau = ? \n";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maNK);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maNhanKhau = rs.getString("MaNhanKhau");
+                        String hoTen = rs.getString("HoTen");
+                        String soCCCD = rs.getString("SoCMNDCCCD");
+                        Date ngaySinh = rs.getDate("NgaySinh");
+                        String gioiTinh = rs.getString("GioiTinh");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String diaChi = rs.getString("DiaChi");
+                        String hocLuc = rs.getString("HocLuc");
+                        int lop = rs.getInt("Lop");
+
+                        hocSinh = new HocSinh(maNhanKhau, hoTen, soCCCD, ngaySinh, gioiTinh, maHoKhau, diaChi, hocLuc, lop);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return hocSinh;
+    }
+    // 2.2. Insert hoc sinh
+    public static boolean insertHocSinh(String maNhanKhau, String hocLuc, int lop) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO DanhSachHocSinh(MaNhanKhau, HocLuc, Lop) \n" +
+                    "VALUES (?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maNhanKhau);
+                pstmt.setString(2, hocLuc);
+                pstmt.setInt(3, lop);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // 3. Xoa hoc sinh
+    public static boolean removeHocSinh(String maNhanKhau) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "DELETE FROM DanhSachHocSinh WHERE MaNhanKhau = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maNhanKhau);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // 4. Cap nhat chinh sach
+
+    // 5. Danh sach chinh sach
+
+    // 6. Thong ke phat thuong
 }
-
-
-
