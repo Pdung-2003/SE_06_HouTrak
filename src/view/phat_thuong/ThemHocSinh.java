@@ -1,6 +1,7 @@
 package view.phat_thuong;
 
 import controller.nhankhau.TimKiemNhanKhauController;
+import model.DatabaseConnector;
 import view.settings.CustomRowHeightRenderer;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
@@ -8,6 +9,8 @@ import view.settings.Colors;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -20,6 +23,7 @@ import java.util.Arrays;
 public class ThemHocSinh extends JPanel {
 	private JTextField text_THS_01;
 	private JButton btn_THS_Yes;
+	private String maNhanKhau;
 
 	public ThemHocSinh(ManHinhChinh mainFrame) {
 		setBackground(Colors.nen_Chung);
@@ -197,6 +201,25 @@ public class ThemHocSinh extends JPanel {
 		table.getColumnModel().getColumn(6).setPreferredWidth(100); // Giới Tính
 		table.getColumnModel().getColumn(7).setPreferredWidth(120); // Mã Hộ Khẩu
 
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int selectedRow = table.getSelectedRow();
+
+					// Ensure a row is actually selected
+					if (selectedRow != -1) {
+						// Retrieve data from the selected row
+						maNhanKhau = (String) table.getValueAt(selectedRow, 0);
+						String hoTen = (String) table.getValueAt(selectedRow, 1);
+
+						// Use the retrieved data as needed
+						System.out.println("Selected row: " + maNhanKhau + " - " + hoTen);
+					}
+				}
+			}
+		});
+
 		// Trong phương thức của TimKiemNhanKhau
 		btn_TKHS_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -268,8 +291,40 @@ public class ThemHocSinh extends JPanel {
 		btn_THS_Yes.setOpaque(true);
 		btn_THS_Yes.setBorderPainted(false);
 		panel_THS_confirm.add(btn_THS_Yes);
-		
-		
+
+		btn_THS_Yes.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int confirmation = JOptionPane.showConfirmDialog(null, "Thêm nhân khẩu "+maNhanKhau+ " vào danh sách", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+				if (confirmation == JOptionPane.YES_OPTION) {
+					String hocLuc = JOptionPane.showInputDialog(null, "Nhập Học Lực:", "Nhập thông tin", JOptionPane.INFORMATION_MESSAGE);
+
+					if (hocLuc != null && !hocLuc.trim().isEmpty()) {
+						String lopStr = JOptionPane.showInputDialog(null, "Nhập Lớp:", "Nhập thông tin", JOptionPane.INFORMATION_MESSAGE);
+
+						if (lopStr != null && !lopStr.trim().isEmpty()) {
+							try {
+								int lop = Integer.parseInt(lopStr);
+								boolean check = DatabaseConnector.insertHocSinh(maNhanKhau, hocLuc, lop);
+								if(check) {
+									JOptionPane.showMessageDialog(null, "Thêm thành công học sinh!");
+								} else {
+									JOptionPane.showMessageDialog(null, "Thêm thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+								}
+							} catch (NumberFormatException ex) {
+								JOptionPane.showMessageDialog(null, "Lớp phải là một số nguyên.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "Lớp không được để trống.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Học Lực không được để trống.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+
 
 		comboBox_THS_Sort.addActionListener(e -> {
 			String selectedItem = comboBox_THS_Sort.getSelectedItem().toString();
