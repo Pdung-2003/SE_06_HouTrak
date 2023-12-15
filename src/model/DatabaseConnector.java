@@ -990,9 +990,24 @@ public class DatabaseConnector {
         return false;
     }
     // 3. Update
-
+    public static boolean updateTaiKhoan(String chucVu, String password, String maUser) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "UPDATE Users\n" +
+                    "SET ChucVu = ?, Password = ?\n" +
+                    "WHERE MaUser = ?;";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, chucVu);
+                pstmt.setString(2, password);
+                pstmt.setString(3, maUser);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     // 4. Search
-    // 5. Search
     public static List<TaiKhoan> searchTaiKhoanByUsername(String userName) {
         List<TaiKhoan> dsTaiKhoan = new ArrayList<>();
 

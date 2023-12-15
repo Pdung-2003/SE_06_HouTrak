@@ -1,34 +1,39 @@
 package view.taikhoan;
 
+import controller.taikhoan.TimKiemTaiKhoanController;
+import controller.taikhoan.XoaTaiKhoanController;
+import model.DatabaseConnector;
+import model.TaiKhoan;
 import view.settings.Colors;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.SwingConstants;
+import view.settings.CustomRowHeightRenderer;
+
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.*;
 import java.util.Arrays;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import java.awt.Color;
-import javax.swing.JPasswordField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 public class XoaTaiKhoan extends JPanel {
+	private JTable table;
 	private JTextField textField;
+	private DefaultTableModel tableModel;
+	private String maTK;
+	private String maNV;
+	private String cV;
+	private String tenTK;
+	private String matKhau;
+	private XoaTaiKhoanController controller;
+	private JComboBox comboBox_XTK_Search_Method;
 	/**
 	 * Create the panel.
 	 */
@@ -42,7 +47,7 @@ public class XoaTaiKhoan extends JPanel {
 		add(panel_XTK_Title, BorderLayout.NORTH);
 		panel_XTK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
-		JLabel lbl_Title_TimKiemTaiKhoan = new JLabel("Tìm kiếm tài khoản          ");
+		JLabel lbl_Title_TimKiemTaiKhoan = new JLabel("Xóa Tài Khoản          ");
 		lbl_Title_TimKiemTaiKhoan.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_Title_TimKiemTaiKhoan.setBackground(Colors.nen_Chung);
 		panel_XTK_Title.add(lbl_Title_TimKiemTaiKhoan);
@@ -72,11 +77,10 @@ public class XoaTaiKhoan extends JPanel {
 		panel_XTK_Search_Method.add(lbl_XTK_Search_Method);
 		
 		// Thêm cách tìm kiếm thì thêm vào đây
-		JComboBox comboBox_XTK_Search_Method = new JComboBox();
+		comboBox_XTK_Search_Method = new JComboBox();
 		comboBox_XTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_XTK_Search_Method.addItem("Tên tài khoản");
 		comboBox_XTK_Search_Method.addItem("Mã nhân viên");
-		comboBox_XTK_Search_Method.addItem("Mã tài khoản");
 		panel_XTK_Search_Method.add(comboBox_XTK_Search_Method);
 		
 		
@@ -111,6 +115,13 @@ public class XoaTaiKhoan extends JPanel {
 		btn_XTK_01_TimKiem.setOpaque(true);
 		btn_XTK_01_TimKiem.setBorderPainted(false);
 		panel_XTK_01_content.add(btn_XTK_01_TimKiem);
+
+		btn_XTK_01_TimKiem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				search();
+			}
+		});
 		
 		// Khu vực hiển thị nội dung tìm kiếm
 		JPanel panel_XTK_Item_Content = new JPanel();
@@ -121,7 +132,62 @@ public class XoaTaiKhoan extends JPanel {
 		// Cho bảng thông tin vào đây (vào center của borderlayout)
 		JPanel panel_XTK_Item_Content_Table = new JPanel();
 		panel_XTK_Item_Content.add(panel_XTK_Item_Content_Table);
+		panel_XTK_Item_Content_Table.setBackground(Colors.khung_Chung);
 		panel_XTK_Item_Content_Table.setLayout(new BorderLayout(0, 0));
+
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Mã Tài Khoản");
+		tableModel.addColumn("Mã Nhân Viên");
+		tableModel.addColumn("Chức Vụ");
+		tableModel.addColumn("Tên Tài Khoản");
+		tableModel.addColumn("Mật Khẩu");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_XTK_Item_Content_Table.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 400));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+
+		// Thêm JScrollPane vào panel
+		panel_XTK_Item_Content_Table.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 		
 		JPanel panel_XTK_dem_1 = new JPanel();
 		panel_XTK_dem_1.setBackground(Colors.khung_Chung);
@@ -140,8 +206,8 @@ public class XoaTaiKhoan extends JPanel {
 		lbl_XTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XTK_Item_Content_MaNhanVien.add(lbl_XTK_Item_Title_MaNhanVien);
 		
-		JLabel lbl_XTK_Item_Content_MaNhanVien = new JLabel("Điền mã nhân viên vào đây");
-		lbl_XTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_XTK_Item_Content_MaNhanVien = new JLabel();
+		lbl_XTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_XTK_Item_Content_MaNhanVien.add(lbl_XTK_Item_Content_MaNhanVien);
 		
 		// Mã tài khoản
@@ -155,8 +221,8 @@ public class XoaTaiKhoan extends JPanel {
 		lbl_XTK_Item_Title_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XTK_Item_Content_MaTaiKhoan.add(lbl_XTK_Item_Title_MaTaiKhoan);
 		
-		JLabel lbl_XTK_Item_Content_MaTaiKhoan = new JLabel("Điền mã user vào đây");
-		lbl_XTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_XTK_Item_Content_MaTaiKhoan = new JLabel();
+		lbl_XTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_XTK_Item_Content_MaTaiKhoan.add(lbl_XTK_Item_Content_MaTaiKhoan);
 		
 		// Tên tài khoản
@@ -170,8 +236,8 @@ public class XoaTaiKhoan extends JPanel {
 		lbl_XTK_Item_Title_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XTK_Item_Content_TenTaiKhoan.add(lbl_XTK_Item_Title_TenTaiKhoan);
 		
-		JLabel lbl_XTK_Item_Content_TenTaiKhoan = new JLabel("Điền tên tài khoản vào đây");
-		lbl_XTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_XTK_Item_Content_TenTaiKhoan = new JLabel();
+		lbl_XTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_XTK_Item_Content_TenTaiKhoan.add(lbl_XTK_Item_Content_TenTaiKhoan);
 		
 		// Mật khẩu
@@ -185,8 +251,8 @@ public class XoaTaiKhoan extends JPanel {
 		lbl_XTK_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XTK_Item_Content_MatKhau.add(lbl_XTK_Item_Title_MatKhau);
 		
-		JLabel lbl_XTK_Item_Content_MatKhau = new JLabel("Điền mật khẩu vào đây");
-		lbl_XTK_Item_Content_MatKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_XTK_Item_Content_MatKhau = new JLabel();
+		lbl_XTK_Item_Content_MatKhau.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_XTK_Item_Content_MatKhau.add(lbl_XTK_Item_Content_MatKhau);
 		
 		// Chức vụ
@@ -200,8 +266,8 @@ public class XoaTaiKhoan extends JPanel {
 		lbl_XTK_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XTK_Item_Content_ChucVu.add(lbl_XTK_Item_Title_ChucVu);
 		
-		JLabel lbl_XTK_Item_Content_ChucVu = new JLabel("Điền chức vụ vào đây");
-		lbl_XTK_Item_Content_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_XTK_Item_Content_ChucVu = new JLabel();
+		lbl_XTK_Item_Content_ChucVu.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_XTK_Item_Content_ChucVu.add(lbl_XTK_Item_Content_ChucVu);
 		
 		// Đệm
@@ -224,5 +290,74 @@ public class XoaTaiKhoan extends JPanel {
 		JButton btn_XTK_Confirm = new JButton("Xóa tài khoản");
 		btn_XTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XTK_Confirm.add(btn_XTK_Confirm);
+
+		btn_XTK_Confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa tài khoản?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					boolean check = DatabaseConnector.removeTaiKhoan(maTK);
+					if(check) {
+						JOptionPane.showMessageDialog(null,"Xóa tài khoản thành công!");
+					} else {
+						JOptionPane.showMessageDialog(null,"Xóa tài khoản thất bại!");
+					}
+				}
+			}
+		});
+
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int selectedRow = table.getSelectedRow();
+
+					// Ensure a row is actually selected
+					if (selectedRow != -1) {
+						// Retrieve data from the selected row
+						maTK = (String) table.getValueAt(selectedRow, 0);
+						maNV = (String) table.getValueAt(selectedRow, 1);
+						cV = (String) table.getValueAt(selectedRow, 2);
+						tenTK = (String) table.getValueAt(selectedRow, 3);
+						matKhau = (String) table.getValueAt(selectedRow, 4);
+
+						// Use the retrieved data as needed
+						lbl_XTK_Item_Content_MaTaiKhoan.setText(maTK);
+						lbl_XTK_Item_Content_MaNhanVien.setText(maNV);
+						lbl_XTK_Item_Content_ChucVu.setText(cV);
+						lbl_XTK_Item_Content_TenTaiKhoan.setText(tenTK);
+						lbl_XTK_Item_Content_MatKhau.setText(matKhau);
+					}
+				}
+			}
+		});
+
+		controller = new XoaTaiKhoanController(this);
+	}
+	public void setController(XoaTaiKhoanController controller) {
+		this.controller = controller;
+	}
+
+	private void search() {
+		String info = textField.getText();
+		String option = comboBox_XTK_Search_Method.getSelectedItem().toString();
+		controller.search(info, option);
+	}
+
+	public void clearTable() {
+		tableModel.setRowCount(0);
+	}
+
+	public void populateTable(List<TaiKhoan> dsTaiKhoan) {
+		for (TaiKhoan taiKhoan : dsTaiKhoan) {
+			Object[] rowData = {
+					taiKhoan.getMaUser(),
+					taiKhoan.getMaNhanVien(),
+					taiKhoan.getChucVu(),
+					taiKhoan.getUserName(),
+					taiKhoan.getPassword()
+			};
+			tableModel.addRow(rowData);
+		}
 	}
 }

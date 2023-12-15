@@ -189,6 +189,11 @@ public class ThemTaiKhoan extends JPanel {
 				: "";
 		String matKhau = passwordField_TTK_Item_Content_MatKhau.getText();
 
+		if(tenTaiKhoan.isEmpty() || maNhanVien.isEmpty() || chucVu.isEmpty() || matKhau.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Không được bỏ trống bất cứ trường thông tin nào!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+			return -1;
+		}
+
 		boolean check = insertTaiKhoan(maNhanVien, chucVu, tenTaiKhoan, matKhau);
 		if (check) {
 			return 1;

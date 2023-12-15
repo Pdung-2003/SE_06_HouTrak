@@ -1,31 +1,34 @@
 package view.taikhoan;
 
+import controller.taikhoan.CapNhatTaiKhoanController;
+import controller.taikhoan.TimKiemTaiKhoanController;
+import model.DatabaseConnector;
+import model.TaiKhoan;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import view.settings.CustomRowHeightRenderer;
+
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import java.awt.Color;
-import javax.swing.JPasswordField;
+import java.util.List;
 
 public class CapNhatTaiKhoan extends JPanel {
+	private JTable table;
 	private JTextField textField;
+	private DefaultTableModel tableModel;
 	private JPasswordField passwordField_CNTK_Item_Content_MatKhau;
+	private CapNhatTaiKhoanController controller;
+	private JComboBox comboBox_CNTK_Search_Method;
 	/**
 	 * Create the panel.
 	 */
@@ -69,11 +72,10 @@ public class CapNhatTaiKhoan extends JPanel {
 		panel_CNTK_Search_Method.add(lbl_CNTK_Search_Method);
 		
 		// Thêm cách tìm kiếm thì thêm vào đây
-		JComboBox comboBox_CNTK_Search_Method = new JComboBox();
+		comboBox_CNTK_Search_Method = new JComboBox();
 		comboBox_CNTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_CNTK_Search_Method.addItem("Tên tài khoản");
 		comboBox_CNTK_Search_Method.addItem("Mã nhân viên");
-		comboBox_CNTK_Search_Method.addItem("Mã tài khoản");
 		panel_CNTK_Search_Method.add(comboBox_CNTK_Search_Method);
 		
 		
@@ -108,6 +110,13 @@ public class CapNhatTaiKhoan extends JPanel {
 		btn_CNTK_01_TimKiem.setOpaque(true);
 		btn_CNTK_01_TimKiem.setBorderPainted(false);
 		panel_CNTK_01_content.add(btn_CNTK_01_TimKiem);
+
+		btn_CNTK_01_TimKiem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				search();
+			}
+		});
 		
 		// Khu vực hiển thị nội dung tìm kiếm
 		JPanel panel_CNTK_Item_Content = new JPanel();
@@ -117,8 +126,63 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		// Cho bảng thông tin vào đây (vào center của borderlayout)
 		JPanel panel_CNTK_Item_Content_Table = new JPanel();
+		panel_CNTK_Item_Content_Table.setBackground(Colors.khung_Chung);
 		panel_CNTK_Item_Content.add(panel_CNTK_Item_Content_Table);
 		panel_CNTK_Item_Content_Table.setLayout(new BorderLayout(0, 0));
+
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Mã Tài Khoản");
+		tableModel.addColumn("Mã Nhân Viên");
+		tableModel.addColumn("Chức Vụ");
+		tableModel.addColumn("Tên Tài Khoản");
+		tableModel.addColumn("Mật Khẩu");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_CNTK_Item_Content_Table.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 400));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+
+		// Thêm JScrollPane vào panel
+		panel_CNTK_Item_Content_Table.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 		
 		JPanel panel_CNTK_dem_1 = new JPanel();
 		panel_CNTK_dem_1.setBackground(Colors.khung_Chung);
@@ -137,7 +201,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		lbl_CNTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Item_Content_MaNhanVien.add(lbl_CNTK_Item_Title_MaNhanVien);
 		
-		JLabel lbl_CNTK_Item_Content_MaNhanVien = new JLabel("Điền mã nhân viên vào đây");
+		JLabel lbl_CNTK_Item_Content_MaNhanVien = new JLabel();
 		lbl_CNTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Item_Content_MaNhanVien.add(lbl_CNTK_Item_Content_MaNhanVien);
 		
@@ -152,7 +216,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		lbl_CNTK_Item_Title_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Item_Content_MaTaiKhoan.add(lbl_CNTK_Item_Title_MaTaiKhoan);
 		
-		JLabel lbl_CNTK_Item_Content_MaTaiKhoan = new JLabel("Điền mã user vào đây");
+		JLabel lbl_CNTK_Item_Content_MaTaiKhoan = new JLabel();
 		lbl_CNTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Item_Content_MaTaiKhoan.add(lbl_CNTK_Item_Content_MaTaiKhoan);
 		
@@ -167,7 +231,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		lbl_CNTK_Item_Title_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Item_Content_TenTaiKhoan.add(lbl_CNTK_Item_Title_TenTaiKhoan);
 		
-		JLabel lbl_CNTK_Item_Content_TenTaiKhoan = new JLabel("Điền tên tài khoản vào đây");
+		JLabel lbl_CNTK_Item_Content_TenTaiKhoan = new JLabel();
 		lbl_CNTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Item_Content_TenTaiKhoan.add(lbl_CNTK_Item_Content_TenTaiKhoan);
 		
@@ -216,6 +280,9 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		// Thêm các chức vụ vào đây
 		JComboBox comboBox_CNTK_Item_Content_ChucVu = new JComboBox();
+		comboBox_CNTK_Item_Content_ChucVu.addItem("Tổ trưởng");
+		comboBox_CNTK_Item_Content_ChucVu.addItem("Tổ phó");
+		comboBox_CNTK_Item_Content_ChucVu.addItem("Kế toán");
 		comboBox_CNTK_Item_Content_ChucVu.setPreferredSize(new Dimension(500, 30));
 		panel_CNTK_Item_Content_ChucVu.add(comboBox_CNTK_Item_Content_ChucVu);
 		
@@ -239,6 +306,84 @@ public class CapNhatTaiKhoan extends JPanel {
 		JButton btn_CNTK_Confirm = new JButton("Cập nhật tài khoản");
 		btn_CNTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTK_Confirm.add(btn_CNTK_Confirm);
-		
+
+		btn_CNTK_Confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Hiển thị JOptionPane cho xác nhận cập nhật
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn cập nhật tài khoản?", "Xác nhận cập nhật", JOptionPane.YES_NO_OPTION);
+				String maTK = lbl_CNTK_Item_Content_MaTaiKhoan.getText();
+				char[] passwordChars = passwordField_CNTK_Item_Content_MatKhau.getPassword();
+				String pw = new String(passwordChars);
+				String cVu = comboBox_CNTK_Item_Content_ChucVu.getSelectedItem().toString();
+				if(pw.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Không được bỏ trống mật khẩu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+				} else {
+					// Nếu người dùng chọn "Yes"
+					if (dialogResult == JOptionPane.YES_OPTION) {
+						// Thực hiện câu lệnh UPDATE ở đây
+						boolean check = DatabaseConnector.updateTaiKhoan(cVu, pw, maTK);
+						if(check) {
+							JOptionPane.showMessageDialog(null, "Cập nhật tài khoản " + maTK + " thành công!");
+						} else {
+							JOptionPane.showMessageDialog(null, "Cập nhật tài khoản thất bại!");
+						}
+					}
+				}
+			}
+		});
+
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int selectedRow = table.getSelectedRow();
+
+					// Ensure a row is actually selected
+					if (selectedRow != -1) {
+						// Retrieve data from the selected row
+						String maTK = (String) table.getValueAt(selectedRow, 0);
+						String maNV = (String) table.getValueAt(selectedRow, 1);
+						String cV = (String) table.getValueAt(selectedRow, 2);
+						String tenTK = (String) table.getValueAt(selectedRow, 3);
+						String matKhau = (String) table.getValueAt(selectedRow, 4);
+
+						// Use the retrieved data as needed
+						lbl_CNTK_Item_Content_MaTaiKhoan.setText(maTK);
+						lbl_CNTK_Item_Content_MaNhanVien.setText(maNV);
+						comboBox_CNTK_Item_Content_ChucVu.setSelectedItem(cV);
+						lbl_CNTK_Item_Content_TenTaiKhoan.setText(tenTK);
+						passwordField_CNTK_Item_Content_MatKhau.setText(matKhau);
+					}
+				}
+			}
+		});
+		controller = new CapNhatTaiKhoanController(this);
+	}
+	public void setController(CapNhatTaiKhoanController controller) {
+		this.controller = controller;
+	}
+
+	private void search() {
+		String info = textField.getText();
+		String option = comboBox_CNTK_Search_Method.getSelectedItem().toString();
+		controller.search(info, option);
+	}
+
+	public void clearTable() {
+		tableModel.setRowCount(0);
+	}
+
+	public void populateTable(List<TaiKhoan> dsTaiKhoan) {
+		for (TaiKhoan taiKhoan : dsTaiKhoan) {
+			Object[] rowData = {
+					taiKhoan.getMaUser(),
+					taiKhoan.getMaNhanVien(),
+					taiKhoan.getChucVu(),
+					taiKhoan.getUserName(),
+					taiKhoan.getPassword()
+			};
+			tableModel.addRow(rowData);
+		}
 	}
 }
