@@ -1,21 +1,29 @@
 package view.taikhoan;
 
+import controller.hokhau.QuanLyHoKhauController;
+import controller.taikhoan.QuanLyTaiKhoanController;
+import model.HoKhau;
+import model.TaiKhoan;
 import view.settings.Colors;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.border.LineBorder;
+import view.settings.CustomRowHeightRenderer;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
+import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Arrays;
-import java.awt.Dimension;
+import java.util.List;
 
 public class QuanLyTaiKhoan extends JPanel {
-
+	private JComboBox comboBox_QLTK_Sort;
+	private JTable table;
+	private DefaultTableModel tableModel;
+	private QuanLyTaiKhoanController controller;
 	/**
 	 * Create the panel.
 	 */
@@ -23,29 +31,29 @@ public class QuanLyTaiKhoan extends JPanel {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLTK_Title = new JPanel();
 		panel_QLTK_Title.setBackground(Colors.nen_Chung);
 		add(panel_QLTK_Title, BorderLayout.NORTH);
 		panel_QLTK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_Title_QuanLyKhoanChi = new JLabel("Thông tin các tài khoản          ");
 		lbl_Title_QuanLyKhoanChi.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_Title_QuanLyKhoanChi.setBackground(Colors.nen_Chung);
 		panel_QLTK_Title.add(lbl_Title_QuanLyKhoanChi);
-		
+
 		JPanel panel_KhungNoiDungQLTK = new JPanel();
 		panel_KhungNoiDungQLTK.setPreferredSize(new Dimension(1463, 10));
 		panel_KhungNoiDungQLTK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungQLTK.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungQLTK, BorderLayout.CENTER);
 		panel_KhungNoiDungQLTK.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLTK_02 = new JPanel();
 		panel_QLTK_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungQLTK.add(panel_QLTK_02, BorderLayout.CENTER);
 		panel_QLTK_02.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLTK_02_BangThongTin = new JPanel();
 		panel_QLTK_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_QLTK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
@@ -64,127 +72,99 @@ public class QuanLyTaiKhoan extends JPanel {
 		lbl_QLTK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_QLTK_Sort.setAlignmentX(0.5f);
 
-		JComboBox comboBox_QLTK_Sort = new JComboBox();
+		comboBox_QLTK_Sort = new JComboBox();
 		comboBox_QLTK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_QLTK_SubTitle.add(comboBox_QLTK_Sort);
 		// Thêm các tùy chọn vào combobox
-		comboBox_QLTK_Sort.addItem("Sắp xếp theo mã tài khoản");
-		comboBox_QLTK_Sort.addItem("Sắp xếp theo mã nhân viên");
-		comboBox_QLTK_Sort.addItem("Sắp xếp theo chức vụ");
-		comboBox_QLTK_Sort.addItem("Sắp xếp theo tên tài khoản");
+		comboBox_QLTK_Sort.addItem("Mã tài khoản");
+		comboBox_QLTK_Sort.addItem("Mã nhân viên");
+		comboBox_QLTK_Sort.addItem("Chức vụ");
+		comboBox_QLTK_Sort.addItem("Tên tài khoản");
 
+		// Tạo bảng và mô hình bảng
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Mã Tài Khoản");
+		tableModel.addColumn("Mã Nhân Viên");
+		tableModel.addColumn("Chức Vụ");
+		tableModel.addColumn("Tên Tài Khoản");
+		tableModel.addColumn("Mật Khẩu");
 
-//		comboBox_QLTK_Sort.addActionListener(e -> {
-//			String selectedItem = comboBox_QLTK_Sort.getSelectedItem().toString();
-//			switch (selectedItem) {
-//				case "Sắp xếp theo mã nhân khẩu":
-//					// Sắp xếp dữ liệu theo mã nhân khẩu (column 0)
-//					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
-//					break;
-//				case "Sắp xếp theo tên":
-//					// Sắp xếp dữ liệu theo tên (column 1)
-//					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
-//					break;
-//				case "Sắp xếp theo ngày sinh":
-//					// Sắp xếp dữ liệu theo ngày sinh (column 2)
-//					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
-//					break;
-//				case "Sắp xếp theo số CMND":
-//					// Sắp xếp dữ liệu theo CMND (column 4)
-//					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.ASCENDING)));
-//					break;
-//				case "Sắp xếp theo giới tính":
-//					// Sắp xếp dữ liệu theo giới tính (column 6)
-//					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(6, SortOrder.ASCENDING)));
-//					break;
-//				case "Sắp xếp theo mã hộ khẩu":
-//					// Sắp xếp dữ liệu theo mã hộ khẩu (column 7)
-//					sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(7, SortOrder.ASCENDING)));
-//					break;
-//			}
-//		});
-//		this.controller = new QuanLyKhoanChiController(this);
-//		this.controller.loadData();
-//	}
-//	private void initializeTable() {
-//		// Khởi tạo tableModel và table ở đây...
-//		tableModel = new DefaultTableModel();
-//		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
-//		tableModel.addColumn("Mã Nhân Khẩu");
-//		tableModel.addColumn("Họ Tên");
-//		tableModel.addColumn("Ngày Sinh");
-//		tableModel.addColumn("Tôn Giáo");
-//		tableModel.addColumn("Số CMND");
-//		tableModel.addColumn("Quê Quán");
-//		tableModel.addColumn("Giới Tính");
-//		tableModel.addColumn("Mã Hộ Khẩu");
-//		// Tạo JTable với mô hình bảng đã tạo
-//		int rowHeight = 30;
-//		table = new JTable(tableModel);
-//		// Đặt màu sắc cho header của bảng
-//		JTableHeader header = table.getTableHeader();
-//
-//		// In đậm chữ ở header và đặt font
-//		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
-//			@Override
-//			public Component getTableCellRendererComponent(
-//					JTable table, Object value,
-//					boolean isSelected, boolean hasFocus,
-//					int row, int column) {
-//				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-//				label.setFont(label.getFont().deriveFont(Font.BOLD));
-//				label.setBackground(Colors.mau_Header);
-//				label.setForeground(Colors.mau_Text_QLHK);
-//				return label;
-//			}
-//		});
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
 
 		// Đặt kích thước của các cột trong bảng
-//		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
-//		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
-//		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
-//		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
-//		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
-//
-//		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
-//		panel_QLTK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
-//
-//		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
-//		JScrollPane scrollPane = new JScrollPane(table);
-//		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
-//
-//		// Đặt màu sắc cho background của bảng
-//		table.setBackground(Colors.mau_Nen_QLHK);
-//		table.setForeground(Colors.mau_Text_QLHK);
-//		scrollPane.setBackground(Colors.khung_Chung);
-//
-//		// Thêm JScrollPane vào panel
-//		panel_QLTK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
-//		JViewport viewport = scrollPane.getViewport();
-//		viewport.setBackground(Colors.khung_Chung);
-//		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
-//
-//	}
-//	public void populateTable(List<NhanKhau> danhSachNhanKhau) {
-//		tableModel.setRowCount(0); // Xóa dữ liệu cũ
-//		for (NhanKhau nk : danhSachNhanKhau) {
-//			tableModel.addRow(new Object[]{
-//					nk.getMaNhanKhau(),
-//					nk.getHoTen(),
-//					nk.getNgaySinh(),
-//					nk.getTonGiao(),
-//					nk.getSoCMNDCCCD(),
-//					nk.getQueQuan(),
-//					nk.getGioiTinh(),
-//					nk.getMaHoKhau()
-//			});
-//		}
-//	}
-//	public void setController(QuanLyKhoanChiController controller) {
-//		this.controller = controller;
-//	}
-//
-//
-	}
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_QLTK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		panel_QLTK_02_BangThongTin.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+
+		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
+		comboBox_QLTK_Sort.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					// Load data again when the selected item changes
+					controller.sortData(comboBox_QLTK_Sort.getSelectedItem().toString());
+				}
+			}
+		});
+		controller = new QuanLyTaiKhoanController(this);
+	}
+	public void setController(QuanLyTaiKhoanController controller){
+
+		this.controller = controller;
+	}
+	// Load data from the database and populate the table
+	public void populateTable(List<TaiKhoan> dsTaiKhoan) {
+		// Clear existing data
+		tableModel.setRowCount(0);
+
+		// Populate the table with the fetched data
+		for (TaiKhoan taiKhoan : dsTaiKhoan) {
+			Object[] rowData = {
+					taiKhoan.getMaUser(),
+					taiKhoan.getMaNhanVien(),
+					taiKhoan.getChucVu(),
+					taiKhoan.getUserName(),
+					taiKhoan.getPassword()
+			};
+			tableModel.addRow(rowData);
+		}
+	}
 }

@@ -12,8 +12,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("123");
-        ds.setServerName("LAPTOP-POT66FBA");
+        ds.setPassword("manhvu123");
+        ds.setServerName("MANHVU");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
@@ -944,4 +944,121 @@ public class DatabaseConnector {
     // 5. Danh sach chinh sach
 
     // 6. Thong ke phat thuong
+
+    // Module 4: Quan ly tai khoan
+    // 1. List
+    public static List<TaiKhoan> getDsUser() {
+        List<TaiKhoan> dsTaiKhoan = new ArrayList<>();
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM Users";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maUser = rs.getString("MaUser");
+                        String maNhanVien = rs.getString("MaNhanVien");
+                        String chucVu = rs.getString("ChucVu");
+                        String userName = rs.getString("UserName");
+                        String password = rs.getString("Password");
+
+                        TaiKhoan taiKhoan = new TaiKhoan(maUser, maNhanVien, chucVu, userName, password);
+                        dsTaiKhoan.add(taiKhoan);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsTaiKhoan;
+    }
+    // 2. Insert
+    public static boolean insertTaiKhoan(String maNhanVien, String chucVu, String userName, String password) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO Users(MaNhanVien, ChucVu, UserName, Password) \n" +
+                    "VALUES (?, ?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maNhanVien);
+                pstmt.setString(2, chucVu);
+                pstmt.setString(3, userName);
+                pstmt.setString(4, password);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // 3. Update
+
+    // 4. Search
+    // 5. Search
+    public static List<TaiKhoan> searchTaiKhoanByUsername(String userName) {
+        List<TaiKhoan> dsTaiKhoan = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM Users WHERE UserName LIKE ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, "%" + userName + "%");
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maUser = rs.getString("MaUser");
+                        String maNhanVien = rs.getString("MaNhanVien");
+                        String chucVu = rs.getString("ChucVu");
+                        String username = rs.getString("Username");
+                        String password = rs.getString("Password");
+
+                        TaiKhoan taiKhoan = new TaiKhoan(maUser, maNhanVien, chucVu, username, password);
+                        dsTaiKhoan.add(taiKhoan);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsTaiKhoan;
+    }
+    public static List<TaiKhoan> searchTaiKhoanByMaNV(String maNV) {
+        List<TaiKhoan> dsTaiKhoan = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM Users WHERE MaNhanVien LIKE ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, "%" + maNV + "%");
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maUser = rs.getString("MaUser");
+                        String maNhanVien = rs.getString("MaNhanVien");
+                        String chucVu = rs.getString("ChucVu");
+                        String username = rs.getString("Username");
+                        String password = rs.getString("Password");
+
+                        TaiKhoan taiKhoan = new TaiKhoan(maUser, maNhanVien, chucVu, username, password);
+                        dsTaiKhoan.add(taiKhoan);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsTaiKhoan;
+    }
+    // 5. Remove
+    public static boolean removeTaiKhoan(String maUser) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "DELETE FROM Users WHERE MaUser = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, maUser);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

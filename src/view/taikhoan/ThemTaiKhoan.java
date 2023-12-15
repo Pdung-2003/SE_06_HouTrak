@@ -1,35 +1,39 @@
 package view.taikhoan;
 
+import controller.hokhau.ThemHoKhauController;
+import controller.taikhoan.ThemTaiKhoanController;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
-import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import java.awt.Color;
-import javax.swing.JPasswordField;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static model.DatabaseConnector.insertTaiKhoan;
 
 public class ThemTaiKhoan extends JPanel {
 	private JTextField textField_TTK_Item_Content_MaNhanVien;
 	private JTextField textField_TTK_Item_Content_TenTaiKhoan;
 	private JPasswordField passwordField_TTK_Item_Content_MatKhau;
+	private JComboBox comboBox_TTK_Item_Content_ChucVu;
+	private ManHinhChinh mainFrame;
+	private ThemTaiKhoanController themTaiKhoanController;
 
 	/**
 	 * Create the panel.
 	 */
 	public ThemTaiKhoan(ManHinhChinh mainFrame) {
+		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new BorderLayout(0, 0));
@@ -130,9 +134,12 @@ public class ThemTaiKhoan extends JPanel {
 		lbl_CNKC_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TTK_Item_Content_ChucVu.add(lbl_CNKC_Item_Title_ChucVu);
 		
-		JComboBox comboBox_TTK_Item_Content_ChucVu = new JComboBox();
+		comboBox_TTK_Item_Content_ChucVu = new JComboBox();
 		panel_TTK_Item_Content_ChucVu.add(comboBox_TTK_Item_Content_ChucVu);
 		comboBox_TTK_Item_Content_ChucVu.setPreferredSize(new Dimension(500, 30));
+		comboBox_TTK_Item_Content_ChucVu.addItem("Tổ trưởng");
+		comboBox_TTK_Item_Content_ChucVu.addItem("Tổ phó");
+		comboBox_TTK_Item_Content_ChucVu.addItem("Kế toán");
 		panel_TTK_Item_Content.add(Box.createVerticalGlue());
 		panel_TTK_Item_Content.add(Box.createVerticalGlue());
 		panel_TTK_Item_Content.add(Box.createVerticalGlue());
@@ -152,5 +159,42 @@ public class ThemTaiKhoan extends JPanel {
 		JButton btn_TTK_Confirm = new JButton("Thêm tài khoản");
 		btn_TTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TTK_Confirm.add(btn_TTK_Confirm);
+		btn_TTK_Confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int confirmation = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thêm tài khoản?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+				if (confirmation == JOptionPane.YES_OPTION) {
+					int check = getData();
+					if(check == 1) {
+						JOptionPane.showMessageDialog(null, "Tài khoản đã được thêm thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "Thêm tài khoản thất bại!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+					}
+
+				}
+			}
+		});
+
+		themTaiKhoanController = new ThemTaiKhoanController(this);
+
+		setVisible(true);
+	}
+
+	public int getData(){
+		String maNhanVien = textField_TTK_Item_Content_MaNhanVien.getText();
+		String tenTaiKhoan = textField_TTK_Item_Content_TenTaiKhoan.getText();
+		// Check if an item is selected before attempting to get its value
+		String chucVu = (comboBox_TTK_Item_Content_ChucVu.getSelectedItem() != null)
+				? comboBox_TTK_Item_Content_ChucVu.getSelectedItem().toString()
+				: "";
+		String matKhau = passwordField_TTK_Item_Content_MatKhau.getText();
+
+		boolean check = insertTaiKhoan(maNhanVien, chucVu, tenTaiKhoan, matKhau);
+		if (check) {
+			return 1;
+		} else return -1;
+	}
+	public ManHinhChinh getMainFrame() {
+		return mainFrame;
 	}
 }

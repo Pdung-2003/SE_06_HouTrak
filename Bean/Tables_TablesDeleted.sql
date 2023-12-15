@@ -144,6 +144,17 @@ CREATE TABLE Users (
     Password NVARCHAR(50),
 );
 
+-- 15. Tạo bảng ChinhSachThuong
+CREATE TABLE ChinhSachThuong (
+	STT INT IDENTITY(1, 1),
+    MaChinhSach AS CONVERT(NVARCHAR(10), 'MCS' + RIGHT('0000' + CAST(STT AS VARCHAR(5)), 5)) PERSISTED PRIMARY KEY,
+	DoiTuong NVARCHAR(50),
+	Lop INT,
+	HocLuc NVARCHAR(20),
+	PhanThuong NVARCHAR(50),
+	SoLuong INT,
+);
+
 -- Insert dữ liệu 
 INSERT INTO HoKhau (HoTenChuHo, NgayLap, DiaChi, KhuVuc)
 VALUES
@@ -187,9 +198,12 @@ VALUES
 
 INSERT INTO DanhSachHocSinh(MaNhanKhau, HocLuc, Lop) 
 VALUES
+('MNK00090', N'Giỏi', 8),
+('MNK00093', NULL, NULL),
 ('MNK00062', 'Khá', 9),
 ('MNK00083', 'Giỏi', 10);
 
+DELETE FROM DanhSachHocSinh WHERE MaNhanKhau = 'MNK00093'
 
 -- Tạo bảng Deleted 
 -- 1. Tạo bảng hộ khẩu 
