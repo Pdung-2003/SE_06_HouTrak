@@ -28,6 +28,8 @@ public class ManHinhChinh extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout cardLayout;
+
+	private CardLayout cardLayout_trung_tam;
 	private JPanel cardPanel; // Panel to hold the CardLayout
 	private JPanel panel_trung_tam; // Main panel in the center
 
@@ -119,7 +121,7 @@ public class ManHinhChinh extends JFrame {
 
 
 		cardLayout = new CardLayout(0,0);
-		CardLayout cardLayout_trung_tam = new CardLayout(30,30);
+		cardLayout_trung_tam = new CardLayout(30,30);
 		cardPanel = new JPanel(cardLayout);
 		JPanel buttonsPanel = createButtonsPanel();
 
