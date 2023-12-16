@@ -82,7 +82,7 @@ public class ThemNhanKhau extends JPanel {
 //
 		JPanel panel_KhungNoiDungTNK = new JPanel();
 		panel_KhungNoiDungTNK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTNK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTNK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTNK.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungTNK, BorderLayout.CENTER);
 		panel_KhungNoiDungTNK.setLayout(new BorderLayout(10, 10));
