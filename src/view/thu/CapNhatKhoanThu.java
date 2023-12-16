@@ -2,23 +2,11 @@ package view.thu;
 
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.CardLayout;
 import javax.swing.border.MatteBorder;
-import java.awt.Color;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+import java.awt.*;
 
 public class CapNhatKhoanThu extends JPanel {
 	private JTextField textField_CNKT_Item_Content_LyDo;
@@ -63,7 +51,7 @@ public class CapNhatKhoanThu extends JPanel {
 		panel_CNKT_SearchBar.add(panel_CNKT_SearchBar_Method, BorderLayout.NORTH);
 		panel_CNKT_SearchBar_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
 		
-		JLabel lbl_CNKT_SearchBar_Method_Title = new JLabel("   Chọn Cách tìm kiếm: ");
+		JLabel lbl_CNKT_SearchBar_Method_Title = new JLabel("   Chọn cách tìm kiếm: ");
 		lbl_CNKT_SearchBar_Method_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKT_SearchBar_Method.add(lbl_CNKT_SearchBar_Method_Title);
 		
