@@ -118,13 +118,15 @@ public class ManHinhChinh extends JFrame {
 		panel.add(lblImage);
 
 
-		cardLayout = new CardLayout(20,20);
+		cardLayout = new CardLayout(0,0);
+		CardLayout cardLayout_trung_tam = new CardLayout(30,30);
 		cardPanel = new JPanel(cardLayout);
 		JPanel buttonsPanel = createButtonsPanel();
 
 
-		panel_trung_tam = new JPanel(cardLayout);
+		panel_trung_tam = new JPanel(cardLayout_trung_tam);
 		contentPane.add(panel_trung_tam, BorderLayout.CENTER);
+		panel_trung_tam.setBackground(Colors.nen_Chung);
 
 		// Cách nhảy sang Jpanel chính
 		quanLyHoKhauPanel = new SideBar_QuanLyHoKhau(this);
