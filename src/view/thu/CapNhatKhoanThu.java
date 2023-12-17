@@ -1,16 +1,28 @@
 package view.thu;
 
+import controller.thu.CapNhatKhoanThuController;
+import model.KhoanThu;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class CapNhatKhoanThu extends JPanel {
+	private CapNhatKhoanThuController controller = new CapNhatKhoanThuController();
+	private DefaultTableModel tableModel;
+	private JTable table;
+	private RowSorter<DefaultTableModel> sorter;
 	private JTextField textField_CNKT_Item_Content_LyDo;
 	private JTextField textField_CNKT_SearchBar_ByReason;
 	private JTextField textField_CNKT_Item_Content_SoTien;
@@ -114,6 +126,7 @@ public class CapNhatKhoanThu extends JPanel {
 			}
 		});
 
+
 		JPanel panel_CNKT_SearchBar_ByTime_Title = new JPanel();
 		panel_CNKT_SearchBar_ByTime_Title.setBackground(Colors.khung_Chung);
 		panel_CNKT_SearchBar_ByTime.add(panel_CNKT_SearchBar_ByTime_Title, BorderLayout.WEST);
@@ -159,6 +172,16 @@ public class CapNhatKhoanThu extends JPanel {
 		panel_CNKT_SearchResults_Sort.setBackground(Colors.khung_Chung);
 		panel_CNKT_SearchResults.add(panel_CNKT_SearchResults_Sort, BorderLayout.NORTH);
 		panel_CNKT_SearchResults_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
+		btn_CNKT_SearchBar_ByReason.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String lyDo = textField_CNKT_SearchBar_ByReason.getText();
+				List<KhoanThu> danhSachKhoanThu = controller.timKiemBangLyDo(lyDo);
+				initializeTable(panel_CNKT_SearchResults);
+				addDataToTable(danhSachKhoanThu);
+			}
+		});
 
 		// Chọn cách sắp xếp thông tin tìm kiếm
 		JLabel lbl_CNKT_SearchResults_Sort = new JLabel("Sắp xếp theo: ");
@@ -221,5 +244,76 @@ public class CapNhatKhoanThu extends JPanel {
 		panel_CNKT_Confirm.add(btn_CNKT_Confirm);
 
 
+	}
+
+	private void initializeTable(JPanel jPanel) {
+		// Khởi tạo tableModel và table ở đây...
+		tableModel = new DefaultTableModel();
+		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
+		tableModel.addColumn("Mã Khoản Thu");
+		tableModel.addColumn("Thời Gian Thu");
+		tableModel.addColumn("Lý Do Thu");
+		tableModel.addColumn("Người Thu");
+		tableModel.addColumn("Số Tiền");
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
+		table.setRowSorter(sorter);
+		// Đặt màu sắc cho header của bảng
+		JTableHeader header = table.getTableHeader();
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		//Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Khoản Thu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Thời Gian Thu
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Lý Do Thu
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Người Thu
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Số Tiền
+
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		jPanel.setLayout(new BorderLayout(10, 10));
+
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+		// Đặt màu sắc cho background của bảng
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		jPanel.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+
+	}
+	private void addDataToTable(List<KhoanThu> khoanThuList) {
+		for (KhoanThu khoanThu : khoanThuList) {
+			// Thêm dòng mới vào bảng với dữ liệu từ đối tượng KhoanThu
+			tableModel.addRow(new Object[]{
+					khoanThu.getMaKhoanThu(),
+					khoanThu.getThoiGianThu(),
+					khoanThu.getLyDoThu(),
+					khoanThu.getNguoiThu(),
+					khoanThu.getSoTien()
+			});
+		}
 	}
 }
