@@ -109,11 +109,11 @@ public class ManHinhChinh extends JFrame {
 		btnThongTin.setOpaque(true);
 
 		JButton btnDangXuat = new JButton("Đăng xuất");
-		btnThongTin.setHorizontalAlignment(SwingConstants.CENTER);
-		btnThongTin.setBackground(Colors.khung_Chung);
-		btnThongTin.setBorderPainted(false);
-		btnThongTin.setForeground(Color.BLACK);
-		btnThongTin.setOpaque(true);
+		btnDangXuat.setHorizontalAlignment(SwingConstants.CENTER);
+		btnDangXuat.setBackground(Colors.khung_Chung);
+		btnDangXuat.setBorderPainted(false);
+		btnDangXuat.setForeground(Color.BLACK);
+		btnDangXuat.setOpaque(true);
 
 		panel.add(btnTrangChu);
 		panel.add(btnHoTro);

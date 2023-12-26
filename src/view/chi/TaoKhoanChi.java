@@ -1,20 +1,12 @@
 package view.chi;
 
+import controller.chi.TaoKhoanChiController;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+import java.awt.*;
 
 public class TaoKhoanChi extends JPanel {
 	private JTextField textField_TKC_Item_Content_LyDo;
@@ -105,5 +97,37 @@ public class TaoKhoanChi extends JPanel {
 		JButton btn_TKC_Confirm = new JButton("Tạo khoản chi");
 		btn_TKC_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKC_Confirm.add(btn_TKC_Confirm);
+
+		btn_TKC_Confirm.addActionListener(e -> {
+			// Lấy thông tin từ các ô nhập liệu
+			String lyDo = textField_TKC_Item_Content_LyDo.getText();
+			String soTien = textField_TKC_Item_Content_SoTien.getText();
+
+			// Hiển thị hộp thoại xác nhận trước khi tạo khoản chi
+			int choice = JOptionPane.showConfirmDialog(null, "Xác nhận tạo khoản chi?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+			if (choice == JOptionPane.YES_OPTION) {
+				// Thực hiện tạo khoản chi hoặc lưu thông tin vào cơ sở dữ liệu tại đây
+				// Ví dụ: gọi phương thức từ controller hoặc thực hiện các xử lý cần thiết
+				TaoKhoanChiController taoKhoanChiController = new TaoKhoanChiController();
+
+				// Hiển thị thông báo khi tạo khoản chi thành công hoặc thất bại
+				// Ví dụ:
+				if (lyDo.isEmpty() || soTien.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
+				} else {
+					// Gọi phương thức từ controller hoặc thực hiện các xử lý cần thiết để tạo khoản chi
+					boolean result = taoKhoanChiController.taoKhoanChi(lyDo,Integer.parseInt(soTien));
+					if ( result == true){
+						// Sau khi tạo thành công:
+						JOptionPane.showMessageDialog(null, "Đã tạo khoản chi thành công!");}
+					else JOptionPane.showMessageDialog(null, "Tạo khoản chi thất bại!");
+					// Xóa nội dung của các ô nhập liệu sau khi tạo thành công (nếu cần)
+					textField_TKC_Item_Content_LyDo.setText("");
+					textField_TKC_Item_Content_SoTien.setText("");
+				}
+			} else {
+				// Nếu người dùng chọn NO hoặc đóng hộp thoại xác nhận, không làm gì cả hoặc có thể xử lý logic khác tùy theo yêu cầu của bạn
+			}
+		});
 	}
 }
