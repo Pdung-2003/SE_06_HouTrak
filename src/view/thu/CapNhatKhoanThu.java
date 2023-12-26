@@ -327,16 +327,19 @@ public class CapNhatKhoanThu extends JPanel {
 				String lydo = textField_CNKT_Item_Content_LyDo.getText();
 				String sotien = textField_CNKT_Item_Content_SoTien.getText();
 
-				int choice = JOptionPane.showConfirmDialog(null, "Xác nhận yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-				if (choice == JOptionPane.YES_OPTION) {
-
-
-					JOptionPane.showMessageDialog(null, "Xác nhận thành công!");
-					textField_CNKT_Item_Content_LyDo.setText("");
-					textField_CNKT_Item_Content_SoTien.setText("");
-				} else {
-					// Hủy thao tác và làm sạch các trường dữ liệu
-					JOptionPane.showMessageDialog(null, "Hủy thao tác!");
+				int selectedRow = table.getSelectedRow(); // Lấy chỉ số của hàng được chọn
+				if (selectedRow != -1) {
+					String maKhoanThu = table.getValueAt(selectedRow, 0).toString();
+					int choice = JOptionPane.showConfirmDialog(null, "Xác nhận yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+					if (choice == JOptionPane.YES_OPTION) {
+						if( controller.capNhatKhoanThu(maKhoanThu, lydo, sotien) == true){
+							JOptionPane.showMessageDialog(null, "Xác nhận thành công!");
+						};
+						textField_CNKT_Item_Content_LyDo.setText("");
+						textField_CNKT_Item_Content_SoTien.setText("");
+					} else {
+						JOptionPane.showMessageDialog(null, "Hủy thao tác!");
+					}
 				}
 			}
 		});

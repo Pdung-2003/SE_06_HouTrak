@@ -41,4 +41,27 @@ public class CapNhatKhoanThuController {
 
         return danhSachKhoanThu;
     }
+
+    public boolean capNhatKhoanThu(String maKhoanThu, String lyDoMoi, String soTienMoi) {
+        boolean capNhatThanhCong = false;
+        try (Connection conn = DatabaseConnector.getConnection()) {
+            if (conn != null) {
+                String query = "UPDATE KhoanThuPhi SET LyDoThu = ?, SoTien = ? WHERE MaKhoanThu = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                    pstmt.setString(1, lyDoMoi);
+                    pstmt.setString(2, soTienMoi);
+                    pstmt.setString(3, maKhoanThu);
+
+                    int rowsUpdated = pstmt.executeUpdate();
+                    if (rowsUpdated > 0) {
+                        capNhatThanhCong = true;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Xử lý exception nếu có
+        }
+        return capNhatThanhCong;
+    }
 }
