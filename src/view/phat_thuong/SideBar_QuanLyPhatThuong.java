@@ -72,7 +72,7 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		});
 		panel_SB_QLPT.add(btn_SB_QLPT_XHS);
 
-		JButton btn_SB_QLPT_CNCS = new JButton("  Cập nhật chính sách");
+		JButton btn_SB_QLPT_CNCS = new JButton("  Tạo chính sách");
 		btn_SB_QLPT_CNCS.setHorizontalAlignment(SwingConstants.LEFT);
 		btn_SB_QLPT_CNCS.setFont(new Font("Arial", Font.BOLD, 20));
 		btn_SB_QLPT_CNCS.setBackground(Colors.menu_Trai);
@@ -80,8 +80,8 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		btn_SB_QLPT_CNCS.setOpaque(true);
 		btn_SB_QLPT_CNCS.setBorder(matteBorder);
 		btn_SB_QLPT_CNCS.addActionListener(e -> {
-			CapNhatChinhSachPhatThuong capNhatChinhSachPhatThuongPanel = new CapNhatChinhSachPhatThuong(mainFrame);
-			mainFrame.switchToMainPanel(capNhatChinhSachPhatThuongPanel);
+			TaoChinhSachPhatThuong taoChinhSachPhatThuongPanel = new TaoChinhSachPhatThuong(mainFrame);
+			mainFrame.switchToMainPanel(taoChinhSachPhatThuongPanel);
 		});
 		panel_SB_QLPT.add(btn_SB_QLPT_CNCS);
 
