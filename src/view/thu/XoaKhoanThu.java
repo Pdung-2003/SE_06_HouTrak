@@ -1,17 +1,33 @@
 package view.thu;
 
+import controller.thu.CapNhatKhoanThuController;
+import controller.thu.XoaKhoanThuController;
+import model.KhoanThu;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class XoaKhoanThu extends JPanel {
 	private JTextField textField_XKT_SearchBar_ByReason;
+	private XoaKhoanThuController xoaKhoanThuController = new XoaKhoanThuController();
+	private CapNhatKhoanThuController capNhatKhoanThuController = new CapNhatKhoanThuController();
+	private DefaultTableModel tableModel;
+	private JTable table;
+	private RowSorter<DefaultTableModel> sorter;
 
 	/**
 	 * Create the panel.
@@ -169,6 +185,12 @@ public class XoaKhoanThu extends JPanel {
 		panel_XKT_SearchResults.add(panel_XKT_SearchResults_Sort, BorderLayout.NORTH);
 		panel_XKT_SearchResults_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
+		JPanel panel_CNKT_SearchResults_TableResult = new JPanel();
+		panel_CNKT_SearchResults_TableResult.setBackground(Colors.khung_Chung);
+		panel_CNKT_SearchResults_TableResult.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		panel_XKT_SearchResults.add(panel_CNKT_SearchResults_TableResult);
+		initializeTable(panel_CNKT_SearchResults_TableResult);
+
 		// Chọn cách sắp xếp thông tin tìm kiếm
 		JLabel lbl_XKT_SearchResults_Sort = new JLabel("Sắp xếp theo: ");
 		lbl_XKT_SearchResults_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -176,9 +198,59 @@ public class XoaKhoanThu extends JPanel {
 
 		JComboBox comboBox_XKT_SearchResults_Sort = new JComboBox();
 		panel_XKT_SearchResults_Sort.add(comboBox_XKT_SearchResults_Sort);
+		// Thêm các tùy chọn sắp xếp vào combobox
+		comboBox_XKT_SearchResults_Sort.addItem("Mặc định");
+		comboBox_XKT_SearchResults_Sort.addItem("Số tiền");
+		comboBox_XKT_SearchResults_Sort.addItem("Mã khoản thu");
+		comboBox_XKT_SearchResults_Sort.addItem("Thời gian thu");
+		comboBox_XKT_SearchResults_Sort.addItem("Lý do thu");
+		comboBox_XKT_SearchResults_Sort.addItem("Người thu");
+		comboBox_XKT_SearchResults_Sort.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedOption = (String) comboBox_XKT_SearchResults_Sort.getSelectedItem();
 
-		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
-		panel_XKT_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
+				if (selectedOption.equals("Số tiền")) {
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.DESCENDING)));
+				} else if (selectedOption.equals("Mã khoản thu")) {
+					// Thực hiện sắp xếp theo mã khoản thu
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Thời gian thu")) {
+					// Thực hiện sắp xếp theo mã khoản thu
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Lý do thu")) {
+					// Thực hiện sắp xếp theo mã khoản thu
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Người thu")) {
+					// Thực hiện sắp xếp theo mã khoản thu
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(3, SortOrder.ASCENDING)));
+				}
+			}
+		});
+
+		btn_XKT_SearchBar_ByTime.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ngay = comboBox_XKT_SearchBar_ByTime_Ngay.getSelectedItem().toString();
+				String thang = comboBox_XKT_SearchBar_ByTime_Thang.getSelectedItem().toString();
+				String nam = comboBox_XKT_SearchBar_ByTime_Nam.getSelectedItem().toString();
+				List<KhoanThu> danhSachKhoanThu = xoaKhoanThuController.timKiemBangThoiGian(ngay, thang, nam);
+				addDataToTable(danhSachKhoanThu);
+			}
+		});
+		btn_XKT_SearchBar_ByReason.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String lyDo = textField_XKT_SearchBar_ByReason.getText();
+				List<KhoanThu> danhSachKhoanThu = capNhatKhoanThuController.timKiemBangLyDo(lyDo);
+				addDataToTable(danhSachKhoanThu); // Thêm dòng này để cập nhật bảng
+			}
+		});
 
 		// Khu vực tiêu đề thông tin của khoản thu cần xóa
 		JPanel panel_XKT_Item_Title = new JPanel();
@@ -232,6 +304,33 @@ public class XoaKhoanThu extends JPanel {
 		lbl_XKT_Item_Content_ThoiGian.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKT_Item_Content.add(lbl_XKT_Item_Content_ThoiGian);
 
+		//Hàm chọn khoản thu để sửa
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				if (selectedRow != -1 && e.getClickCount() == 1) {
+					Object maKhoanThuValue = table.getValueAt(selectedRow, 0);
+					Object thoiGianThuValue = table.getValueAt(selectedRow, 1);
+					Object lyDoValue = table.getValueAt(selectedRow, 2);
+					Object nguoiThuValue = table.getValueAt(selectedRow, 3);
+					Object soTienValue = table.getValueAt(selectedRow, 4);
+
+					String lyDo = lyDoValue != null ? lyDoValue.toString() : "";
+					String soTien = soTienValue != null ? soTienValue.toString() : "";
+					String maKhoanThu = maKhoanThuValue != null ? maKhoanThuValue.toString() : "";
+					String thoiGianThu = thoiGianThuValue != null ? thoiGianThuValue.toString() : "";
+					String nguoiThu = nguoiThuValue != null ? nguoiThuValue.toString() : "";
+
+					lbl_XKT_Item_Content_MaKhoanthu.setText(maKhoanThu);
+					lbl_XKT_Item_Content_ThoiGian.setText(thoiGianThu);
+					lbl_XKT_Item_Content_LyDo.setText(lyDo);
+					lbl_XKT_Item_Content_Nguoithu.setText(nguoiThu);
+					lbl_XKT_Item_Content_SoTien.setText(soTien);
+				}
+			}
+		});
+
 		// Nút confirm
 		JPanel panel_XKT_Confirm = new JPanel();
 		panel_KhungNoiDungXKT.add(panel_XKT_Confirm, BorderLayout.SOUTH);
@@ -242,7 +341,99 @@ public class XoaKhoanThu extends JPanel {
 		btn_XKT_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKT_Confirm.add(btn_XKT_Confirm);
 
+		btn_XKT_Confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					int choice = JOptionPane.showConfirmDialog(null, "Xác nhận yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+					if (choice == JOptionPane.YES_OPTION) {
+						String maKhoanthu = lbl_XKT_Item_Content_MaKhoanthu.getText();
+						if( xoaKhoanThuController.xoaKhoanThu(maKhoanthu)){
+							JOptionPane.showMessageDialog(null, "Xóa thành công!");
+						};
+						lbl_XKT_Item_Content_MaKhoanthu.setText("");
+						lbl_XKT_Item_Content_ThoiGian.setText("");
+						lbl_XKT_Item_Content_LyDo.setText("");
+						lbl_XKT_Item_Content_Nguoithu.setText("");
+						lbl_XKT_Item_Content_SoTien.setText("");
+					} else {
+						JOptionPane.showMessageDialog(null, "Hủy thao tác!");
+					}
+				}
+		});
+	}
 
+	private void initializeTable(JPanel jPanel) {
+		// Khởi tạo hoặc xóa dữ liệu của bảng cũ
+		if (tableModel == null) {
+			// Nếu tableModel chưa được khởi tạo, thực hiện khởi tạo mới
+			tableModel = new DefaultTableModel();
+			tableModel.addColumn("Mã Khoản Thu");
+			tableModel.addColumn("Thời Gian Thu");
+			tableModel.addColumn("Lý Do Thu");
+			tableModel.addColumn("Người Thu");
+			tableModel.addColumn("Số Tiền");
+		} else {
+			// Nếu tableModel đã tồn tại, xóa tất cả các hàng
+			tableModel.setRowCount(0);
+		}
+
+		// Tạo JTable với tableModel
+		table = new JTable(tableModel);
+		sorter = new TableRowSorter<>(tableModel);
+		table.setRowSorter(sorter);
+
+		// Cài đặt renderer cho header của bảng
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Cài đặt kích thước của các cột
+		int[] columnWidths = {120, 200, 100, 250, 100};
+		for (int i = 0; i < columnWidths.length; i++) {
+			table.getColumnModel().getColumn(i).setPreferredWidth(columnWidths[i]);
+		}
+
+		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
+		int rowHeight = 30;
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		// Cài đặt layout cho jPanel và thêm bảng vào panel
+		jPanel.removeAll(); // Xóa các thành phần cũ trong jPanel trước khi thêm mới
+		jPanel.setLayout(new BorderLayout(10, 10));
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 100)); // Đặt kích thước của JScrollPane
+
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+		jPanel.add(scrollPane, BorderLayout.CENTER);
+
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+	}
+
+	private void addDataToTable(List<KhoanThu> khoanThuList) {
+		// Xóa dữ liệu hiện tại trong bảng
+		tableModel.setRowCount(0);
+		for (KhoanThu khoanThu : khoanThuList) {
+			// Thêm dòng mới vào bảng với dữ liệu từ đối tượng KhoanThu
+			tableModel.addRow(new Object[]{
+					khoanThu.getMaKhoanThu(),
+					khoanThu.getThoiGianThu(),
+					khoanThu.getLyDoThu(),
+					khoanThu.getNguoiThu(),
+					khoanThu.getSoTien()
+			});
+		}
 	}
 
 	private void populateYears(JComboBox comboBox) {
