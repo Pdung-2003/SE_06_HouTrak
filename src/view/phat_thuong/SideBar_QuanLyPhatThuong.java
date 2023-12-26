@@ -85,6 +85,19 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		});
 		panel_SB_QLPT.add(btn_SB_QLPT_CNCS);
 
+		JButton btn_SB_QLPT_CNCSPT = new JButton("  Cập nhật chính sách phát thưởng");
+		btn_SB_QLPT_CNCSPT.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLPT_CNCSPT.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_SB_QLPT_CNCSPT.setBackground(Colors.menu_Trai);
+		btn_SB_QLPT_CNCSPT.setForeground(Color.WHITE);
+		btn_SB_QLPT_CNCSPT.setOpaque(true);
+
+		btn_SB_QLPT_CNCSPT.setBorder(matteBorder);
+		btn_SB_QLPT_CNCSPT.addActionListener(e -> {
+			CapNhatChinhSach capNhatChinhSachPhatThuongPanel = new CapNhatChinhSach(mainFrame);
+			mainFrame.switchToMainPanel(capNhatChinhSachPhatThuongPanel);
+		});
+		panel_SB_QLPT.add(btn_SB_QLPT_CNCSPT);
 
 		JButton btn_SB_QLPT_InCSPT = new JButton("  Xem chính sách phát thưởng");
 		btn_SB_QLPT_InCSPT.setHorizontalAlignment(SwingConstants.LEFT);

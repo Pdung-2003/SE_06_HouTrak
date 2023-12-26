@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 import static model.DatabaseConnector.*;
 import java.awt.Component;
 
-public class CapNhatChinhSachPhatThuong extends JPanel {
+public class CapNhatChinhSach extends JPanel {
     private final ManHinhChinh mainFrame;
     private JTextField textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac;
     private JComboBox<Integer> comboBox_CNCS_Content_HocTap_SoLuong;
@@ -29,7 +29,7 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
     private JTextField textField_CNCS_Content_DipLe_PhanThuong;
     private JTextField textField_CNCS_Search_Bar;
 
-    public CapNhatChinhSachPhatThuong(ManHinhChinh mainFrame) {
+    public CapNhatChinhSach(ManHinhChinh mainFrame) {
         this.mainFrame = mainFrame;
         setBackground(Colors.nen_Chung);
         setPreferredSize(new Dimension(1581, 994));
@@ -73,7 +73,7 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
         comboBox_CNCS_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNCS_Search_Method.add(comboBox_CNCS_Search_Method);
 
-        // Khu vực tìm chính 
+        // Khu vực tìm chính
         JPanel panel_CNCS_Search_Bar = new JPanel();
         panel_CNCS_Search.add(panel_CNCS_Search_Bar, BorderLayout.CENTER);
         panel_CNCS_Search_Bar.setLayout(new BorderLayout(0, 0));
