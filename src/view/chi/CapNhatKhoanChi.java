@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.CardLayout;
 
 import javax.swing.border.MatteBorder;
@@ -156,6 +157,7 @@ public class CapNhatKhoanChi extends JPanel {
 		btn_CNKC_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime.add(btn_CNKC_SearchBar_ByTime, BorderLayout.EAST);
 
+		// Khu vực sắp xếp
 		JPanel panel_CNKC_SearchResults_Sort = new JPanel();
 		panel_CNKC_SearchResults_Sort.setBackground(new Color(144, 224, 239));
 		panel_CNKC_SearchBar.add(panel_CNKC_SearchResults_Sort, BorderLayout.SOUTH);
@@ -168,15 +170,16 @@ public class CapNhatKhoanChi extends JPanel {
 		JComboBox comboBox_CNKC_SearchResults_Sort = new JComboBox();
 		comboBox_CNKC_SearchResults_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchResults_Sort.add(comboBox_CNKC_SearchResults_Sort);
+
 		// Bảng thông tin điền vào đây
 		JPanel panel_CNKC_SearchResults = new JPanel();
+		panel_KhungNoiDungCNKC.add(panel_CNKC_SearchResults, BorderLayout.CENTER);
 		panel_CNKC_SearchResults.setBackground(Colors.khung_Chung);
 		panel_CNKC_SearchResults.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_CNKC_Search.add(panel_CNKC_SearchResults, BorderLayout.CENTER);
 		panel_CNKC_SearchResults.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
-		panel_KhungNoiDungCNKC.add(lbl_hahah, BorderLayout.CENTER);
+		panel_CNKC_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
 
 		// Thay đổi thông tin ở khu vực dưới đây
 		JPanel panel_CNKC_Item_Content = new JPanel();
