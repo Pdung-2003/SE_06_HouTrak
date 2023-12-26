@@ -93,10 +93,10 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		btn_SB_QLPT_InCSPT.setForeground(Color.WHITE);
 		btn_SB_QLPT_InCSPT.setOpaque(true);
 		btn_SB_QLPT_InCSPT.setBorder(matteBorder);
-//		btn_SB_QLKC_XKC.addActionListener(e -> {
-//			InRaChinhSachPhatThuong inRaChinhSachPhatThuongPanel = new InRaChinhSachPhatThuong();
-//			mainFrame.switchToMainPanel(inRaChinhSachPhatThuongPanel);
-//		});
+		btn_SB_QLPT_InCSPT.addActionListener(e -> {
+			XemChinhSachPhatThuong xemChinhSachPhatThuongPanel = new XemChinhSachPhatThuong();
+			mainFrame.switchToMainPanel(xemChinhSachPhatThuongPanel);
+		});
 		panel_SB_QLPT.add(btn_SB_QLPT_InCSPT);
 		JButton btn_SB_QLPT_TKPT = new JButton("  Thống kê phát thưởng");
 		btn_SB_QLPT_TKPT.setHorizontalAlignment(SwingConstants.LEFT);
