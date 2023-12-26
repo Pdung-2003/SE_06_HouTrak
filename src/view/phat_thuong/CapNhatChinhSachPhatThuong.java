@@ -70,20 +70,16 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
 		btn_CNCS_Type_MamNon_1.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNCS_Type.add(btn_CNCS_Type_MamNon_1);
 
-		JButton btn_CNCS_Type_MamNon_2 = new JButton("Sinh Viên");
-		btn_CNCS_Type_MamNon_2.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNCS_Type.add(btn_CNCS_Type_MamNon_2);
-
 		// Nội dung chính
-		JPanel panel_CNCS_01 = new JPanel();
-		panel_CNCS_01.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungCNCS.add(panel_CNCS_01, BorderLayout.CENTER);
-		panel_CNCS_01.setLayout(new CardLayout(0, 0));
+		JPanel panel_CNCS_Content = new JPanel();
+		panel_CNCS_Content.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungCNCS.add(panel_CNCS_Content, BorderLayout.CENTER);
+		panel_CNCS_Content.setLayout(new CardLayout(0, 0));
 
 		// Mầm non
 		JPanel panel_CNCS_Content_MamNon = new JPanel();
 		panel_CNCS_Content_MamNon.setBackground(Colors.khung_Chung);
-		panel_CNCS_01.add(panel_CNCS_Content_MamNon);
+		panel_CNCS_Content.add(panel_CNCS_Content_MamNon);
 		panel_CNCS_Content_MamNon.setLayout(new BoxLayout(panel_CNCS_Content_MamNon, BoxLayout.Y_AXIS));
 
 		JPanel panel_CNCS_Content_MamNon_PhanThuong = new JPanel();
@@ -132,7 +128,7 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
 		// Học sinh
 		JPanel panel_CNCS_Content_HocSinh = new JPanel();
 		panel_CNCS_Content_HocSinh.setBackground(Colors.khung_Chung);
-		panel_CNCS_01.add(panel_CNCS_Content_HocSinh);
+		panel_CNCS_Content.add(panel_CNCS_Content_HocSinh);
 		panel_CNCS_Content_HocSinh.setLayout(new BoxLayout(panel_CNCS_Content_HocSinh, BoxLayout.Y_AXIS));
 
 		// Lấy học lực
@@ -196,72 +192,6 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
 		panel_CNCS_Content_HocSinh.add(Box.createVerticalGlue());
 		panel_CNCS_Content_HocSinh.add(Box.createVerticalGlue());
 
-		// Sinh viên
-		JPanel panel_CNCS_Content_SinhVien = new JPanel();
-		panel_CNCS_Content_SinhVien.setBackground(Colors.khung_Chung);
-		panel_CNCS_01.add(panel_CNCS_Content_SinhVien);
-		panel_CNCS_Content_SinhVien.setLayout(new BoxLayout(panel_CNCS_Content_SinhVien, BoxLayout.Y_AXIS));
-
-		// Lấy học lực
-		JPanel panel_CNCS_Content_SinhVien_HocLuc = new JPanel();
-		panel_CNCS_Content_SinhVien_HocLuc.setBackground(Colors.khung_Chung);
-		panel_CNCS_Content_SinhVien.add(panel_CNCS_Content_SinhVien_HocLuc);
-		panel_CNCS_Content_SinhVien_HocLuc.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-
-		JLabel lbl_CNCS_Content_SinhVien_HocLuc = new JLabel("Học lực:");
-		lbl_CNCS_Content_SinhVien_HocLuc.setPreferredSize(new Dimension(150, 19));
-		lbl_CNCS_Content_SinhVien_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNCS_Content_SinhVien_HocLuc.add(lbl_CNCS_Content_SinhVien_HocLuc);
-
-		JComboBox comboBox_CNCS_Content_SinhVien_HocLuc = new JComboBox();
-		comboBox_CNCS_Content_SinhVien_HocLuc.setPreferredSize(new Dimension(500, 30));
-		comboBox_CNCS_Content_SinhVien_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNCS_Content_SinhVien_HocLuc.add(comboBox_CNCS_Content_SinhVien_HocLuc);
-
-		// Lấy phần thưởng
-		JPanel panel_CNCS_Content_SinhVien_HocLuc_1 = new JPanel();
-		panel_CNCS_Content_SinhVien_HocLuc_1.setBackground(Colors.khung_Chung);
-		panel_CNCS_Content_SinhVien.add(panel_CNCS_Content_SinhVien_HocLuc_1);
-		panel_CNCS_Content_SinhVien_HocLuc_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-
-		JLabel lbl_CNCS_Content_SinhVien_PhanThuong = new JLabel("Phần thưởng:");
-		lbl_CNCS_Content_SinhVien_PhanThuong.setPreferredSize(new Dimension(150, 19));
-		lbl_CNCS_Content_SinhVien_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNCS_Content_SinhVien_HocLuc_1.add(lbl_CNCS_Content_SinhVien_PhanThuong);
-
-		textField_CNCS_Content_SinhVien_PhanThuong = new JTextField();
-		textField_CNCS_Content_SinhVien_PhanThuong.setPreferredSize(new Dimension(500, 30));
-		textField_CNCS_Content_SinhVien_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNCS_Content_SinhVien_HocLuc_1.add(textField_CNCS_Content_SinhVien_PhanThuong);
-
-		// Lấy số lượng
-		JPanel panel_CNCS_Content_SinhVien_SoLuong = new JPanel();
-		panel_CNCS_Content_SinhVien_SoLuong.setBackground(Colors.khung_Chung);
-		panel_CNCS_Content_SinhVien.add(panel_CNCS_Content_SinhVien_SoLuong);
-		panel_CNCS_Content_SinhVien_SoLuong.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-
-		JLabel lbl_CNCS_Content_SinhVien_SoLuong = new JLabel("Số lượng:");
-		lbl_CNCS_Content_SinhVien_SoLuong.setPreferredSize(new Dimension(150, 19));
-		lbl_CNCS_Content_SinhVien_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNCS_Content_SinhVien_SoLuong.add(lbl_CNCS_Content_SinhVien_SoLuong);
-
-		comboBox_CNCS_Content_SinhVien_SoLuong = new JComboBox<>();
-		for (int i = 1; i <= 10; i++) {
-			comboBox_CNCS_Content_SinhVien_SoLuong.addItem(i);
-		}
-		comboBox_CNCS_Content_SinhVien_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_CNCS_Content_SinhVien_SoLuong.setPreferredSize(new Dimension(500, 30));
-		panel_CNCS_Content_SinhVien_SoLuong.add(comboBox_CNCS_Content_SinhVien_SoLuong);
-
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
-		panel_CNCS_Content_SinhVien.add(Box.createVerticalGlue());
 
 		JPanel panel_CNCS_confirm = new JPanel();
 		panel_CNCS_confirm.setBackground(Colors.khung_Chung);
