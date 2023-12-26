@@ -15,6 +15,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -170,6 +171,41 @@ public class ThongKeTongThu extends JPanel {
 		JComboBox comboBox_TKTT_Sort = new JComboBox();
 		comboBox_TKTT_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKTT_Content_Sort.add(comboBox_TKTT_Sort);
+
+		comboBox_TKTT_Sort.addItem("Mặc định");
+		comboBox_TKTT_Sort.addItem("Số tiền");
+		comboBox_TKTT_Sort.addItem("Mã khoản thu");
+		comboBox_TKTT_Sort.addItem("Thời gian thu");
+		comboBox_TKTT_Sort.addItem("Lý do thu");
+		comboBox_TKTT_Sort.addItem("Người thu");
+
+		comboBox_TKTT_Sort.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedOption = (String) comboBox_TKTT_Sort.getSelectedItem();
+
+				if (selectedOption.equals("Số tiền")) {
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) khoanThuTable.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.DESCENDING)));
+				} else if (selectedOption.equals("Mã khoản chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) khoanThuTable.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Thời gian chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) khoanThuTable.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Lý do chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) khoanThuTable.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Người chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) khoanThuTable.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(3, SortOrder.ASCENDING)));
+				}
+			}
+		});
 
 		JPanel panel_TKTT_Content_TableKhoanThu = new JPanel();
 		panel_TKTT_Content.add(panel_TKTT_Content_TableKhoanThu, BorderLayout.CENTER);

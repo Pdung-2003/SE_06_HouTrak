@@ -1,30 +1,33 @@
 package view.chi;
 
+import controller.chi.CapNhatKhoanChiController;
+import controller.chi.XoaKhoanChiController;
+import model.KhoanChi;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
+import view.settings.CustomRowHeightRenderer;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import java.awt.CardLayout;
-
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
 
 public class CapNhatKhoanChi extends JPanel {
+	private CapNhatKhoanChiController capNhatKhoanChiController = new CapNhatKhoanChiController();
+	private XoaKhoanChiController xoaKhoanChiController = new XoaKhoanChiController();
+	private DefaultTableModel tableModel;
+	private JTable table;
+	private RowSorter<DefaultTableModel> sorter;
 	private JTextField textField_CNKC_Item_Content_LyDo;
 	private JTextField textField_CNKC_SearchBar_ByReason;
 	private JTextField textField_CNKC_Item_Content_SoTien;
@@ -137,12 +140,21 @@ public class CapNhatKhoanChi extends JPanel {
 		panel_CNKC_SearchBar_ByTime.add(panel_CNKC_SearchBar_ByTime_Content, BorderLayout.CENTER);
 		panel_CNKC_SearchBar_ByTime_Content.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
+		JLabel lbl_CNKC_SearchBar_ByTime_Ngay = new JLabel("Ngày: ");
+		lbl_CNKC_SearchBar_ByTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_CNKC_SearchBar_ByTime_Content.add(lbl_CNKC_SearchBar_ByTime_Ngay);
+
+		JComboBox comboBox_CNKC_SearchBar_ByTime_Ngay = new JComboBox();
+		comboBox_CNKC_SearchBar_ByTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_CNKC_SearchBar_ByTime_Content.add(comboBox_CNKC_SearchBar_ByTime_Ngay);
+
 		JLabel lbl_CNKC_SearchBar_ByTime_Thang = new JLabel("Tháng: ");
 		lbl_CNKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_ByTime_Content.add(lbl_CNKC_SearchBar_ByTime_Thang);
 
 		JComboBox comboBox_CNKC_SearchBar_ByTime_Thang = new JComboBox();
 		comboBox_CNKC_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateMonths(comboBox_CNKC_SearchBar_ByTime_Thang);
 		panel_CNKC_SearchBar_ByTime_Content.add(comboBox_CNKC_SearchBar_ByTime_Thang);
 
 		JLabel lbl_CNKC_SearchBar_ByTime_Nam = new JLabel("     Năm: ");
@@ -151,7 +163,12 @@ public class CapNhatKhoanChi extends JPanel {
 
 		JComboBox comboBox_CNKC_SearchBar_ByTime_Nam = new JComboBox();
 		comboBox_CNKC_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateYears(comboBox_CNKC_SearchBar_ByTime_Nam);
 		panel_CNKC_SearchBar_ByTime_Content.add(comboBox_CNKC_SearchBar_ByTime_Nam);
+
+		comboBox_CNKC_SearchBar_ByTime_Thang.addActionListener(e -> updateDays(comboBox_CNKC_SearchBar_ByTime_Nam, comboBox_CNKC_SearchBar_ByTime_Thang, comboBox_CNKC_SearchBar_ByTime_Ngay));
+		comboBox_CNKC_SearchBar_ByTime_Nam.addActionListener(e -> updateDays(comboBox_CNKC_SearchBar_ByTime_Nam, comboBox_CNKC_SearchBar_ByTime_Thang, comboBox_CNKC_SearchBar_ByTime_Ngay));
+		updateDays(comboBox_CNKC_SearchBar_ByTime_Nam, comboBox_CNKC_SearchBar_ByTime_Thang, comboBox_CNKC_SearchBar_ByTime_Ngay);
 
 		JButton btn_CNKC_SearchBar_ByTime = new JButton("Tìm kiếm");
 		btn_CNKC_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -171,6 +188,43 @@ public class CapNhatKhoanChi extends JPanel {
 		comboBox_CNKC_SearchResults_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchResults_Sort.add(comboBox_CNKC_SearchResults_Sort);
 
+		// Thêm các tùy chọn sắp xếp vào combobox
+		comboBox_CNKC_SearchResults_Sort.addItem("Mặc định");
+		comboBox_CNKC_SearchResults_Sort.addItem("Số tiền");
+		comboBox_CNKC_SearchResults_Sort.addItem("Mã khoản chi");
+		comboBox_CNKC_SearchResults_Sort.addItem("Thời gian chi");
+		comboBox_CNKC_SearchResults_Sort.addItem("Lý do chi");
+		comboBox_CNKC_SearchResults_Sort.addItem("Người chi");
+
+		// Thêm sự kiện để xử lý việc sắp xếp khi lựa chọn thay đổi
+		comboBox_CNKC_SearchResults_Sort.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedOption = (String) comboBox_CNKC_SearchResults_Sort.getSelectedItem();
+
+				if (selectedOption.equals("Số tiền")) {
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(4, SortOrder.DESCENDING)));
+				} else if (selectedOption.equals("Mã khoản chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Thời gian chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Lý do chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
+				} else if (selectedOption.equals("Người chi")) {
+					// Thực hiện sắp xếp theo mã khoản chi
+					TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
+					rowSorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(3, SortOrder.ASCENDING)));
+				}
+			}
+		});
+		
 		// Bảng thông tin điền vào đây
 		JPanel panel_CNKC_SearchResults = new JPanel();
 		panel_KhungNoiDungCNKC.add(panel_CNKC_SearchResults, BorderLayout.CENTER);
@@ -178,8 +232,46 @@ public class CapNhatKhoanChi extends JPanel {
 		panel_CNKC_SearchResults.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		panel_CNKC_SearchResults.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
-		panel_CNKC_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
+		initializeTable(panel_CNKC_SearchResults);
+
+		btn_CNKC_SearchBar_ByReason.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String lyDo = textField_CNKC_SearchBar_ByReason.getText();
+				List<KhoanChi> danhSachKhoanChi = capNhatKhoanChiController.timKiemBangLyDo(lyDo);
+				addDataToTable(danhSachKhoanChi); // Thêm dòng này để cập nhật bảng
+			}
+		});
+
+		btn_CNKC_SearchBar_ByTime.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ngay = comboBox_CNKC_SearchBar_ByTime_Ngay.getSelectedItem().toString();
+				String thang = comboBox_CNKC_SearchBar_ByTime_Thang.getSelectedItem().toString();
+				String nam = comboBox_CNKC_SearchBar_ByTime_Nam.getSelectedItem().toString();
+				List<KhoanChi> danhSachKhoanChi = xoaKhoanChiController.timKiemBangThoiGian(ngay, thang, nam);
+				addDataToTable(danhSachKhoanChi);
+			}
+		});
+		
+		//Hàm chọn khoản chi để sửa
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				if (selectedRow != -1 && e.getClickCount() == 1) {
+					Object lyDoValue = table.getValueAt(selectedRow, 2);
+					Object soTienValue = table.getValueAt(selectedRow, 4);
+
+					String lyDo = lyDoValue != null ? lyDoValue.toString() : "";
+					String soTien = soTienValue != null ? soTienValue.toString() : "";
+
+					// Gán giá trị lý do và số tiền vào textField_CNKT_Item_Content_LyDo và textField_CNKT_Item_Content_SoTien
+					textField_CNKC_Item_Content_LyDo.setText(lyDo);
+					textField_CNKC_Item_Content_SoTien.setText(soTien);
+				}
+			}
+		});
 
 		// Thay đổi thông tin ở khu vực dưới đây
 		JPanel panel_CNKC_Item_Content = new JPanel();
@@ -229,5 +321,130 @@ public class CapNhatKhoanChi extends JPanel {
 		btn_CNKC_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_Confirm.add(btn_CNKC_Confirm);
 
+		btn_CNKC_Confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String lydo = textField_CNKC_Item_Content_LyDo.getText();
+				String sotien = textField_CNKC_Item_Content_SoTien.getText();
+
+				int selectedRow = table.getSelectedRow(); // Lấy chỉ số của hàng được chọn
+				if (selectedRow != -1) {
+					String maKhoanChi = table.getValueAt(selectedRow, 0).toString();
+					int choice = JOptionPane.showConfirmDialog(null, "Xác nhận yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+					if (choice == JOptionPane.YES_OPTION) {
+						if( capNhatKhoanChiController.capNhatKhoanChi(maKhoanChi, lydo, sotien)){
+							JOptionPane.showMessageDialog(null, "Xác nhận thành công!");
+						};
+						textField_CNKC_Item_Content_LyDo.setText("");
+						textField_CNKC_Item_Content_SoTien.setText("");
+					} else {
+						JOptionPane.showMessageDialog(null, "Hủy thao tác!");
+					}
+				}
+			}
+		});
+	}
+	private void initializeTable(JPanel jPanel) {
+		// Khởi tạo hoặc xóa dữ liệu của bảng cũ
+		if (tableModel == null) {
+			// Nếu tableModel chưa được khởi tạo, thực hiện khởi tạo mới
+			tableModel = new DefaultTableModel();
+			tableModel.addColumn("Mã Khoản Chi");
+			tableModel.addColumn("Thời Gian Chi");
+			tableModel.addColumn("Lý Do Chi");
+			tableModel.addColumn("Người Chi");
+			tableModel.addColumn("Số Tiền");
+		} else {
+			// Nếu tableModel đã tồn tại, xóa tất cả các hàng
+			tableModel.setRowCount(0);
+		}
+
+		// Tạo JTable với tableModel
+		table = new JTable(tableModel);
+		sorter = new TableRowSorter<>(tableModel);
+		table.setRowSorter(sorter);
+
+		// Cài đặt renderer cho header của bảng
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Cài đặt kích thước của các cột
+		int[] columnWidths = {120, 200, 100, 250, 100};
+		for (int i = 0; i < columnWidths.length; i++) {
+			table.getColumnModel().getColumn(i).setPreferredWidth(columnWidths[i]);
+		}
+
+		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
+		int rowHeight = 30;
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		// Cài đặt layout cho jPanel và thêm bảng vào panel
+		jPanel.removeAll(); // Xóa các thành phần cũ trong jPanel trước khi thêm mới
+		jPanel.setLayout(new BorderLayout(10, 10));
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 100)); // Đặt kích thước của JScrollPane
+
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		scrollPane.setBackground(Colors.khung_Chung);
+		jPanel.add(scrollPane, BorderLayout.CENTER);
+
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+	}
+
+	private void addDataToTable(List<KhoanChi> khoanChiList) {
+		// Xóa dữ liệu hiện tại trong bảng
+		tableModel.setRowCount(0);
+		for (KhoanChi khoanChi : khoanChiList) {
+			// Thêm dòng mới vào bảng với dữ liệu từ đối tượng KhoanChi
+			tableModel.addRow(new Object[]{
+					khoanChi.getMaKhoanChi(),
+					khoanChi.getThoiGianChi(),
+					khoanChi.getLyDoChi(),
+					khoanChi.getNguoiChi(),
+					khoanChi.getSoTien()
+			});
+		}
+	}
+
+	private void populateYears(JComboBox comboBox) {
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int year = 1900; year <= currentYear; year++) {
+			comboBox.addItem(year);
+		}
+	}
+
+	private void populateMonths(JComboBox comboBox) {
+		for (int month = 1; month <= 12; month++) {
+			comboBox.addItem(month);
+		}
+	}
+
+	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
+		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
+		for (int day = 1; day <= daysInMonth; day++) {
+			dayComboBox.addItem(day);
+		}
+	}
+
+	private int getDaysInMonth(int year, int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month - 1, 1);
+		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 }
