@@ -1,6 +1,7 @@
 package view.thu;
 
 import controller.thu.CapNhatKhoanThuController;
+import controller.thu.XoaKhoanThuController;
 import model.KhoanThu;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
@@ -22,7 +23,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class CapNhatKhoanThu extends JPanel {
-	private CapNhatKhoanThuController controller = new CapNhatKhoanThuController();
+	private CapNhatKhoanThuController capNhatKhoanThuController = new CapNhatKhoanThuController();
+	private XoaKhoanThuController xoaKhoanThuController = new XoaKhoanThuController();
 	private DefaultTableModel tableModel;
 	private JTable table;
 	private RowSorter<DefaultTableModel> sorter;
@@ -200,8 +202,19 @@ public class CapNhatKhoanThu extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String lyDo = textField_CNKT_SearchBar_ByReason.getText();
-				List<KhoanThu> danhSachKhoanThu = controller.timKiemBangLyDo(lyDo);
+				List<KhoanThu> danhSachKhoanThu = capNhatKhoanThuController.timKiemBangLyDo(lyDo);
 				addDataToTable(danhSachKhoanThu); // Thêm dòng này để cập nhật bảng
+			}
+		});
+
+		btn_CNKT_SearchBar_ByTime.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ngay = comboBox_CNKT_SearchBar_ByTime_Ngay.getSelectedItem().toString();
+				String thang = comboBox_CNKT_SearchBar_ByTime_Thang.getSelectedItem().toString();
+				String nam = comboBox_CNKT_SearchBar_ByTime_Nam.getSelectedItem().toString();
+				List<KhoanThu> danhSachKhoanThu = xoaKhoanThuController.timKiemBangThoiGian(ngay, thang, nam);
+				addDataToTable(danhSachKhoanThu);
 			}
 		});
 
@@ -332,7 +345,7 @@ public class CapNhatKhoanThu extends JPanel {
 					String maKhoanThu = table.getValueAt(selectedRow, 0).toString();
 					int choice = JOptionPane.showConfirmDialog(null, "Xác nhận yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
 					if (choice == JOptionPane.YES_OPTION) {
-						if( controller.capNhatKhoanThu(maKhoanThu, lydo, sotien) == true){
+						if( capNhatKhoanThuController.capNhatKhoanThu(maKhoanThu, lydo, sotien) == true){
 							JOptionPane.showMessageDialog(null, "Xác nhận thành công!");
 						};
 						textField_CNKT_Item_Content_LyDo.setText("");
