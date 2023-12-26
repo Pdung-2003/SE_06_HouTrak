@@ -108,16 +108,17 @@ public class ManHinhChinh extends JFrame {
 		btnThongTin.setForeground(Color.WHITE);
 		btnThongTin.setOpaque(true);
 
-
-
-		JLabel lblImage = new JLabel();
-		lblImage.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("/view/image/Imageaccount.png"))));
-		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+		JButton btnDangXuat = new JButton("Đăng xuất");
+		btnThongTin.setHorizontalAlignment(SwingConstants.CENTER);
+		btnThongTin.setBackground(Colors.khung_Chung);
+		btnThongTin.setBorderPainted(false);
+		btnThongTin.setForeground(Color.BLACK);
+		btnThongTin.setOpaque(true);
 
 		panel.add(btnTrangChu);
 		panel.add(btnHoTro);
 		panel.add(btnThongTin);
-		panel.add(lblImage);
+		panel.add(btnDangXuat);
 
 
 		cardLayout = new CardLayout(0,0);
