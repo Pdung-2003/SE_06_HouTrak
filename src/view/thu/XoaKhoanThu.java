@@ -2,27 +2,13 @@ package view.thu;
 
 import view.settings.Colors;
 
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.util.Arrays;
-import java.awt.Dimension;
-import javax.swing.JTextField;
-import java.awt.GridLayout;
+import javax.swing.border.MatteBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import java.awt.CardLayout;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
+import java.util.Calendar;
 
 public class XoaKhoanThu extends JPanel {
 	private JTextField textField_XKT_SearchBar_ByReason;
@@ -138,12 +124,21 @@ public class XoaKhoanThu extends JPanel {
 		panel_XKT_SearchBar_ByTime.add(panel_XKT_SearchBar_ByTime_Content, BorderLayout.CENTER);
 		panel_XKT_SearchBar_ByTime_Content.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
+		JLabel lbl_XKT_SearchBar_ByTime_Ngay = new JLabel("Ngày  :");
+		lbl_XKT_SearchBar_ByTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_XKT_SearchBar_ByTime_Content.add(lbl_XKT_SearchBar_ByTime_Ngay);
+
+		JComboBox comboBox_XKT_SearchBar_ByTime_Ngay = new JComboBox();
+		comboBox_XKT_SearchBar_ByTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_XKT_SearchBar_ByTime_Content.add(comboBox_XKT_SearchBar_ByTime_Ngay);
+
 		JLabel lbl_XKT_SearchBar_ByTime_Thang = new JLabel("Tháng: ");
 		lbl_XKT_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XKT_SearchBar_ByTime_Content.add(lbl_XKT_SearchBar_ByTime_Thang);
 
 		JComboBox comboBox_XKT_SearchBar_ByTime_Thang = new JComboBox();
 		comboBox_XKT_SearchBar_ByTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateMonths(comboBox_XKT_SearchBar_ByTime_Thang);
 		panel_XKT_SearchBar_ByTime_Content.add(comboBox_XKT_SearchBar_ByTime_Thang);
 
 		JLabel lbl_XKT_SearchBar_ByTime_Nam = new JLabel("     Năm: ");
@@ -152,7 +147,11 @@ public class XoaKhoanThu extends JPanel {
 
 		JComboBox comboBox_XKT_SearchBar_ByTime_Nam = new JComboBox();
 		comboBox_XKT_SearchBar_ByTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateYears(comboBox_XKT_SearchBar_ByTime_Nam);
 		panel_XKT_SearchBar_ByTime_Content.add(comboBox_XKT_SearchBar_ByTime_Nam);
+		comboBox_XKT_SearchBar_ByTime_Thang.addActionListener(e -> updateDays(comboBox_XKT_SearchBar_ByTime_Nam, comboBox_XKT_SearchBar_ByTime_Thang, comboBox_XKT_SearchBar_ByTime_Ngay));
+		comboBox_XKT_SearchBar_ByTime_Nam.addActionListener(e -> updateDays(comboBox_XKT_SearchBar_ByTime_Nam, comboBox_XKT_SearchBar_ByTime_Thang, comboBox_XKT_SearchBar_ByTime_Ngay));
+		updateDays(comboBox_XKT_SearchBar_ByTime_Nam, comboBox_XKT_SearchBar_ByTime_Thang, comboBox_XKT_SearchBar_ByTime_Ngay);
 
 		JButton btn_XKT_SearchBar_ByTime = new JButton("Tìm kiếm");
 		btn_XKT_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -244,5 +243,35 @@ public class XoaKhoanThu extends JPanel {
 		panel_XKT_Confirm.add(btn_XKT_Confirm);
 
 
+	}
+
+	private void populateYears(JComboBox comboBox) {
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int year = 1900; year <= currentYear; year++) {
+			comboBox.addItem(year);
+		}
+	}
+
+	private void populateMonths(JComboBox comboBox) {
+		for (int month = 1; month <= 12; month++) {
+			comboBox.addItem(month);
+		}
+	}
+
+	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
+		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
+		for (int day = 1; day <= daysInMonth; day++) {
+			dayComboBox.addItem(day);
+		}
+	}
+
+	private int getDaysInMonth(int year, int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month - 1, 1);
+		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 }
