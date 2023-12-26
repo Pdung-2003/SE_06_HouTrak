@@ -1,5 +1,4 @@
 package view.thu;
-
 import controller.thu.CapNhatKhoanThuController;
 import model.KhoanThu;
 import view.dangnhap.ManHinhChinh;
@@ -79,7 +78,7 @@ public class CapNhatKhoanThu extends JPanel {
 		panel_CNKT_SearchBar_Method.add(btn_CNKT_SearchBar_Method_Time);
 
 		JPanel panel_CNKT_SearchBar_Content = new JPanel();
-		panel_CNKT_SearchBar.add(panel_CNKT_SearchBar_Content, BorderLayout.SOUTH);
+		panel_CNKT_SearchBar.add(panel_CNKT_SearchBar_Content, BorderLayout.CENTER);
 		panel_CNKT_SearchBar_Content.setLayout(new CardLayout(0, 0));
 
 		// Tìm kiếm theo lý do
@@ -161,17 +160,24 @@ public class CapNhatKhoanThu extends JPanel {
 		btn_CNKT_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKT_SearchBar_ByTime.add(btn_CNKT_SearchBar_ByTime, BorderLayout.EAST);
 
+		JPanel panel_CNKT_SearchResults_Sort = new JPanel();
+		panel_CNKT_SearchResults_Sort.setBackground(new Color(144, 224, 239));
+		panel_CNKT_SearchBar.add(panel_CNKT_SearchResults_Sort, BorderLayout.SOUTH);
+		panel_CNKT_SearchResults_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
+		JLabel lbl_CNKT_SearchResults_Sort = new JLabel("Sắp xếp theo: ");
+		lbl_CNKT_SearchResults_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_CNKT_SearchResults_Sort.add(lbl_CNKT_SearchResults_Sort);
+
+		JComboBox comboBox_CNKT_SearchResults_Sort = new JComboBox();
+		panel_CNKT_SearchResults_Sort.add(comboBox_CNKT_SearchResults_Sort);
+
 		// Bảng thông tin điền vào đây
 		JPanel panel_CNKT_SearchResults = new JPanel();
 		panel_CNKT_SearchResults.setBackground(Colors.khung_Chung);
 		panel_CNKT_SearchResults.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		panel_CNKT_Search.add(panel_CNKT_SearchResults, BorderLayout.CENTER);
 		panel_CNKT_SearchResults.setLayout(new BorderLayout(0, 0));
-
-		JPanel panel_CNKT_SearchResults_Sort = new JPanel();
-		panel_CNKT_SearchResults_Sort.setBackground(Colors.khung_Chung);
-		panel_CNKT_SearchResults.add(panel_CNKT_SearchResults_Sort, BorderLayout.NORTH);
-		panel_CNKT_SearchResults_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		btn_CNKT_SearchBar_ByReason.addActionListener(new ActionListener() {
 			@Override
@@ -183,23 +189,16 @@ public class CapNhatKhoanThu extends JPanel {
 			}
 		});
 
-		// Chọn cách sắp xếp thông tin tìm kiếm
-		JLabel lbl_CNKT_SearchResults_Sort = new JLabel("Sắp xếp theo: ");
-		lbl_CNKT_SearchResults_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_CNKT_SearchResults_Sort.add(lbl_CNKT_SearchResults_Sort);
-
-		JComboBox comboBox_CNKT_SearchResults_Sort = new JComboBox();
-		panel_CNKT_SearchResults_Sort.add(comboBox_CNKT_SearchResults_Sort);
-
 		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
 		panel_CNKT_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
 
+		// Nội dung thay đổi ở cập nhật ở dưới
 		JPanel panel_CNKT_Item_Content = new JPanel();
 		panel_KhungNoiDungCNKT.add(panel_CNKT_Item_Content, BorderLayout.CENTER);
 		panel_CNKT_Item_Content.setBackground(Colors.khung_Chung);
-
 		panel_CNKT_Item_Content.setLayout(new BoxLayout(panel_CNKT_Item_Content, BoxLayout.Y_AXIS));
 
+		// Lý do
 		JPanel panel_CNKT_Item_Content_LyDo = new JPanel();
 		panel_CNKT_Item_Content.add(panel_CNKT_Item_Content_LyDo);
 		panel_CNKT_Item_Content_LyDo.setBackground(Colors.khung_Chung);
@@ -215,6 +214,7 @@ public class CapNhatKhoanThu extends JPanel {
 		textField_CNKT_Item_Content_LyDo.setPreferredSize(new Dimension(500, 30));
 		panel_CNKT_Item_Content_LyDo.add(textField_CNKT_Item_Content_LyDo);
 
+		// Số tiền
 		JPanel panel_CNKT_Item_Content_SoTien = new JPanel();
 		panel_CNKT_Item_Content.add(panel_CNKT_Item_Content_SoTien);
 		panel_CNKT_Item_Content_SoTien.setBackground(Colors.khung_Chung);
@@ -229,8 +229,6 @@ public class CapNhatKhoanThu extends JPanel {
 		textField_CNKT_Item_Content_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
 		textField_CNKT_Item_Content_SoTien.setPreferredSize(new Dimension(500, 30));
 		panel_CNKT_Item_Content_SoTien.add(textField_CNKT_Item_Content_SoTien);
-
-		panel_CNKT_Item_Content.add(Box.createVerticalGlue());
 
 
 		// Nút confirm
