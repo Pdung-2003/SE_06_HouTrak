@@ -1,4 +1,5 @@
 package view.thu;
+
 import controller.thu.CapNhatKhoanThuController;
 import model.KhoanThu;
 import view.dangnhap.ManHinhChinh;
@@ -160,6 +161,7 @@ public class CapNhatKhoanThu extends JPanel {
 		btn_CNKT_SearchBar_ByTime.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKT_SearchBar_ByTime.add(btn_CNKT_SearchBar_ByTime, BorderLayout.EAST);
 
+		// Khu vực sắp xếp kết quả tìm kiếm
 		JPanel panel_CNKT_SearchResults_Sort = new JPanel();
 		panel_CNKT_SearchResults_Sort.setBackground(new Color(144, 224, 239));
 		panel_CNKT_SearchBar.add(panel_CNKT_SearchResults_Sort, BorderLayout.SOUTH);
@@ -174,10 +176,13 @@ public class CapNhatKhoanThu extends JPanel {
 
 		// Bảng thông tin điền vào đây
 		JPanel panel_CNKT_SearchResults = new JPanel();
+		panel_KhungNoiDungCNKT.add(panel_CNKT_SearchResults, BorderLayout.CENTER);
 		panel_CNKT_SearchResults.setBackground(Colors.khung_Chung);
 		panel_CNKT_SearchResults.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_CNKT_Search.add(panel_CNKT_SearchResults, BorderLayout.CENTER);
 		panel_CNKT_SearchResults.setLayout(new BorderLayout(0, 0));
+
+		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
+		panel_CNKT_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
 
 		btn_CNKT_SearchBar_ByReason.addActionListener(new ActionListener() {
 			@Override
@@ -189,12 +194,9 @@ public class CapNhatKhoanThu extends JPanel {
 			}
 		});
 
-		JLabel lbl_hahah = new JLabel("Chỗ điền bảng thông tin");
-		panel_CNKT_SearchResults.add(lbl_hahah, BorderLayout.CENTER);
-
 		// Nội dung thay đổi ở cập nhật ở dưới
 		JPanel panel_CNKT_Item_Content = new JPanel();
-		panel_KhungNoiDungCNKT.add(panel_CNKT_Item_Content, BorderLayout.CENTER);
+		panel_KhungNoiDungCNKT.add(panel_CNKT_Item_Content, BorderLayout.SOUTH);
 		panel_CNKT_Item_Content.setBackground(Colors.khung_Chung);
 		panel_CNKT_Item_Content.setLayout(new BoxLayout(panel_CNKT_Item_Content, BoxLayout.Y_AXIS));
 
@@ -230,11 +232,9 @@ public class CapNhatKhoanThu extends JPanel {
 		textField_CNKT_Item_Content_SoTien.setPreferredSize(new Dimension(500, 30));
 		panel_CNKT_Item_Content_SoTien.add(textField_CNKT_Item_Content_SoTien);
 
-
-		// Nút confirm
 		JPanel panel_CNKT_Confirm = new JPanel();
-		panel_KhungNoiDungCNKT.add(panel_CNKT_Confirm, BorderLayout.SOUTH);
-		panel_CNKT_Confirm.setBackground(Colors.khung_Chung);
+		panel_CNKT_Confirm.setBackground(new Color(144, 224, 239));
+		panel_CNKT_Item_Content.add(panel_CNKT_Confirm);
 		panel_CNKT_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
 		JButton btn_CNKT_Confirm = new JButton("Cập nhật khoản thu");
