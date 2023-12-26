@@ -78,16 +78,6 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
 		
 		JLabel lbl_CNCS_CotTrai_2_2_2 = new JLabel("   Học lực khá");
 		panel_CNCS_CotTrai.add(lbl_CNCS_CotTrai_2_2_2);
-		
-				JLabel lbl_CNCS_CotTrai_2 = new JLabel("- Đối với sinh viên");
-				lbl_CNCS_CotTrai_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-				panel_CNCS_CotTrai.add(lbl_CNCS_CotTrai_2);
-		
-		JLabel lbl_CNCS_CotTrai_2_2_1_2 = new JLabel("   Học lực xuất sắc");
-		panel_CNCS_CotTrai.add(lbl_CNCS_CotTrai_2_2_1_2);
-		
-		JLabel lbl_TNK_CotTrai_2_2_1_3 = new JLabel("   Học lực giỏi ");
-		panel_CNCS_CotTrai.add(lbl_TNK_CotTrai_2_2_1_3);
 
 		JPanel panel_CNCS_CotPhai = new JPanel();
 		panel_CNCS_CotPhai.setBackground(Colors.khung_Chung);
@@ -193,65 +183,6 @@ public class CapNhatChinhSachPhatThuong extends JPanel {
 		b1.setBackground(Colors.khung_Chung);
 		panel_CNCS_CotPhai.add(b1);
 		b1.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac = new JPanel();
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac.setBackground(new Color(144, 224, 239));
-		panel_CNCS_CotPhai.add(panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac);
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac.setLayout(new GridLayout(1, 4));
-	
-		JLabel lbl_CNCS_CotPhai_011_1_1 = new JLabel("   Phần thưởng ( Điền tên) : ");
-		lbl_CNCS_CotPhai_011_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac.add(lbl_CNCS_CotPhai_011_1_1);
-		
-		// text tên phần thưởng cho sv xuất sắc
-		textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac = new JTextField();
-		textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac.setColumns(10);
-		textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac.setBackground(new Color(217, 217, 217));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac.add(textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac);
-		
-		JLabel lbl_CNCS_CotPhai_022_1_1 = new JLabel(" Số lượng *:  ");
-		lbl_CNCS_CotPhai_022_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac.add(lbl_CNCS_CotPhai_022_1_1);
-		
-		// Đối với sinh viên xuất sắc số lượng
-		comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_XuatSac = new JComboBox<>();
-		for (int i = 1; i <= 10; i++) {
-		    comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_XuatSac.addItem(i);
-		}
-		comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_XuatSac.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_XuatSac.setBackground(new Color(217, 217, 217));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_XuatSac.add(comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_XuatSac);
-
-		
-		JPanel panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi = new JPanel();
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi.setBackground(Colors.khung_Chung);
-		panel_CNCS_CotPhai.add(panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi);
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi.setLayout(new GridLayout(1, 4));
-		
-		JLabel lbl_CNCS_CotPhai_011_1_1_1 = new JLabel("   Phần thưởng ( Điền tên) : ");
-		lbl_CNCS_CotPhai_011_1_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi.add(lbl_CNCS_CotPhai_011_1_1_1);
-		
-		// text tên phần thưởng cho sv giỏi
-		textField_CNCSPT_CotPhai_Ten_SinhVien_Gioi = new JTextField();
-		textField_CNCSPT_CotPhai_Ten_SinhVien_Gioi.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_CNCSPT_CotPhai_Ten_SinhVien_Gioi.setColumns(10);
-		textField_CNCSPT_CotPhai_Ten_SinhVien_Gioi.setBackground(new Color(217, 217, 217));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi.add(textField_CNCSPT_CotPhai_Ten_SinhVien_Gioi);
-		
-		JLabel lbl_CNCS_CotPhai_022_1_1_1 = new JLabel(" Số lượng *:  ");
-		lbl_CNCS_CotPhai_022_1_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi.add(lbl_CNCS_CotPhai_022_1_1_1);
-		
-		comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_Gioi = new JComboBox<>();
-		for (int i = 1; i <= 10; i++) {
-		    comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_Gioi.addItem(i);
-		}
-		comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_Gioi.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_Gioi.setBackground(new Color(217, 217, 217));
-		panel_CNCS_CotPhai_ChinhSach_SinhVien_Gioi.add(comboBox_CNCSPT_CotPhai_SoLuong_SinhVien_Gioi);
-
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Colors.khung_Chung);
