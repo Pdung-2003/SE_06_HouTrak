@@ -19,28 +19,24 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 public class ThongBaoTamVang extends JPanel {
-	private JTextField text_TBTV_01;
-	private JTextField textField_TBTV_01;
-	private JTextField textField_TBTV_02;
+	private JTextField text_TBTV_Content_Search;
+	private JTextField textField_TBTV_Content_ThongTinTamVang_DiaChi;
+	private JTextField textField_TBTV_Content_ThongTinTamVang_LyDo;
 
 	private  JTextField TextField_TBTV_03;
 
 	private ManHinhChinh mainFrame;
 
 	public ThongBaoTamVang(ManHinhChinh mainFrame) {
-
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_ThongBaoTamVang = new JPanel();
-		add(panel_ThongBaoTamVang, "name_183458254961500");
-		panel_ThongBaoTamVang.setLayout(new BorderLayout(0, 0));
-
+		// Tiêu đề trang
 		JPanel panel_TBTV_Title = new JPanel();
 		panel_TBTV_Title.setBackground(Colors.nen_Chung);
-		panel_ThongBaoTamVang.add(panel_TBTV_Title, BorderLayout.NORTH);
+		add(panel_TBTV_Title, BorderLayout.NORTH);
 		panel_TBTV_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_ThongBaoTamVang = new JLabel("Thông báo tạm vắng   ");
@@ -48,214 +44,237 @@ public class ThongBaoTamVang extends JPanel {
 		lbl_Title_ThongBaoTamVang.setBackground(Colors.nen_Chung);
 		panel_TBTV_Title.add(lbl_Title_ThongBaoTamVang);
 
+		// Nội dung trang
 		JPanel panel_KhungNoiDungTBTV = new JPanel();
 		panel_KhungNoiDungTBTV.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTBTV.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTBTV.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTBTV.setBackground(Colors.khung_Chung);
-		panel_ThongBaoTamVang.add(panel_KhungNoiDungTBTV, BorderLayout.CENTER);
+		add(panel_KhungNoiDungTBTV, BorderLayout.CENTER);
 		panel_KhungNoiDungTBTV.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TBTV_01 = new JPanel();
-		panel_TBTV_01.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_TBTV_01.setBackground(Colors.input_Colors);
-		panel_KhungNoiDungTBTV.add(panel_TBTV_01, BorderLayout.NORTH);
-		panel_TBTV_01.setLayout(new BorderLayout(0, 0));
+		// Khu vực tìm kiếm
+		JPanel panel_TBTV_Search = new JPanel();
+		panel_TBTV_Search.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		panel_KhungNoiDungTBTV.add(panel_TBTV_Search, BorderLayout.NORTH);
+		panel_TBTV_Search.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TBTV_01_content = new JPanel();
-		panel_TBTV_01_content.setBackground(Colors.input_Colors);
-		panel_TBTV_01.add(panel_TBTV_01_content, BorderLayout.CENTER);
-		panel_TBTV_01_content.setLayout(new BoxLayout(panel_TBTV_01_content, BoxLayout.X_AXIS));
+		JPanel panel_TBTV_Content_Search = new JPanel();
+		panel_TBTV_Search.add(panel_TBTV_Content_Search, BorderLayout.CENTER);
+		panel_TBTV_Content_Search.setLayout(new BorderLayout(0, 0));
 
-		text_TBTV_01 = new JTextField();
-		text_TBTV_01.setPreferredSize(new Dimension(1389, 48));
-		text_TBTV_01.setMargin(new Insets(2, 20, 2, 2));
-		text_TBTV_01.setHorizontalAlignment(SwingConstants.LEFT);
-		text_TBTV_01.setForeground(Color.BLACK);
-		text_TBTV_01.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		text_TBTV_01.setColumns(10);
-		text_TBTV_01.setCaretColor(new Color(103, 103, 103));
-		text_TBTV_01.setBorder(null);
-		text_TBTV_01.setBackground(Colors.input_Colors);
-		panel_TBTV_01_content.add(text_TBTV_01);
+		// Chọn cách tìm kiếm
+		JPanel panel_TBTV_Content_Search_Method = new JPanel();
+		panel_TBTV_Content_Search_Method.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_Search.add(panel_TBTV_Content_Search_Method, BorderLayout.NORTH);
+		panel_TBTV_Content_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JButton btn_TBTV_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TBTV_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
-		btn_TBTV_01_TimKiem.setBackground(Colors.button_Chung);
-		btn_TBTV_01_TimKiem.setForeground(Color.WHITE);
-		btn_TBTV_01_TimKiem.setOpaque(true);
-		btn_TBTV_01_TimKiem.setBorderPainted(false);
-		panel_TBTV_01_content.add(btn_TBTV_01_TimKiem);
+		JLabel lbl_TBTV_Content_Search_Method = new JLabel("Tìm kiếm theo:");
+		lbl_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TBTV_Content_Search_Method.add(lbl_TBTV_Content_Search_Method);
 
-		JPanel panel_TBTV_02 = new JPanel();
-		panel_TBTV_02.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTBTV.add(panel_TBTV_02, BorderLayout.CENTER);
-		panel_TBTV_02.setLayout(new BorderLayout(0, 0));
+		JComboBox comboBox_TBTV_Content_Search_Method = new JComboBox();
+		comboBox_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_Search_Method.add(comboBox_TBTV_Content_Search_Method);
 
-		JPanel panel_TBTV_02_BangThongTin = new JPanel();
-		panel_TBTV_02_BangThongTin.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin.setBounds(new Rectangle(20, 0, 0, 0));
-		panel_TBTV_02.add(panel_TBTV_02_BangThongTin, BorderLayout.CENTER);
-		panel_TBTV_02_BangThongTin.setLayout(new BorderLayout(0, 0));
+		// Tiêu đề tìm kiếm
+		JPanel panel_TBTV_Content_Search_Title = new JPanel();
+		panel_TBTV_Content_Search_Title.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_Search.add(panel_TBTV_Content_Search_Title, BorderLayout.WEST);
+		panel_TBTV_Content_Search_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JPanel panel_TBTV_02_BangThongTin_CotTrai = new JPanel();
-		panel_TBTV_02_BangThongTin_CotTrai.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_CotTrai, BorderLayout.WEST);
-		panel_TBTV_02_BangThongTin_CotTrai.setLayout(new GridLayout(6, 1, 25, 25));
+		JLabel lbl_TBTV_Content_Search_Title = new JLabel("Nhập thông tin:");
+		lbl_TBTV_Content_Search_Title.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TBTV_Content_Search_Title.add(lbl_TBTV_Content_Search_Title);
 
-		JPanel panel_TBTV_02_BangThongTin_CotPhai = new JPanel();
-		panel_TBTV_02_BangThongTin_CotPhai.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_CotPhai, BorderLayout.CENTER);
-		panel_TBTV_02_BangThongTin_CotPhai.setLayout(new GridLayout(6, 1, 25, 25));
+		// Thanh tìm kiếm
+		text_TBTV_Content_Search = new JTextField();
+		text_TBTV_Content_Search.setMargin(new Insets(2, 20, 2, 2));
+		text_TBTV_Content_Search.setHorizontalAlignment(SwingConstants.LEFT);
+		text_TBTV_Content_Search.setForeground(Color.BLACK);
+		text_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_TBTV_Content_Search.setBorder(null);
+		text_TBTV_Content_Search.setBackground(Colors.input_Colors);
+		panel_TBTV_Content_Search.add(text_TBTV_Content_Search, BorderLayout.CENTER);
 
-		JLabel lbl_TBTV_02_CotTrai_04 = new JLabel("   Địa chỉ chuyển tới: ");
-		lbl_TBTV_02_CotTrai_04.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_TBTV_02_BangThongTin_CotTrai.add(lbl_TBTV_02_CotTrai_04);
+		JButton btn_TBTV_Content_Search = new JButton("Tìm kiếm");
+		btn_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTV_Content_Search.setMargin(new Insets(10, 16, 10, 16));
+		btn_TBTV_Content_Search.setBackground(Colors.button_Chung);
+		btn_TBTV_Content_Search.setForeground(Color.WHITE);
+		btn_TBTV_Content_Search.setOpaque(true);
+		btn_TBTV_Content_Search.setBorderPainted(false);
+		panel_TBTV_Content_Search.add(btn_TBTV_Content_Search, BorderLayout.EAST);
 
-		JPanel panel_TBTV_02_CotPhai_01 = new JPanel();
-		panel_TBTV_02_CotPhai_01.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin_CotPhai.add(panel_TBTV_02_CotPhai_01);
-		panel_TBTV_02_CotPhai_01.setLayout(new BorderLayout(0, 0));
-//
-//		JTextPane text_TBTV_02_CotPhai_01 = new JTextPane();
-//		text_TBTV_02_CotPhai_01.setBackground(Colors.input_Colors);
-//		panel_TBTV_02_CotPhai_01.add(text_TBTV_02_CotPhai_01, BorderLayout.CENTER);
+		JPanel panel_TBTV_Content_Search_dem = new JPanel();
+		panel_TBTV_Content_Search_dem.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_Search.add(panel_TBTV_Content_Search_dem, BorderLayout.SOUTH);
 
-		JLabel lbl_TBTV_02_CotTrai_03 = new JLabel("   Lí do: ");
-		lbl_TBTV_02_CotTrai_03.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_TBTV_02_BangThongTin_CotTrai.add(lbl_TBTV_02_CotTrai_03);
+		// Khu vực bảng thông tin và lấy thông tin
+		JPanel panel_TBTV_Content_ThayDoiThongTin = new JPanel();
+		panel_TBTV_Content_ThayDoiThongTin.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTBTV.add(panel_TBTV_Content_ThayDoiThongTin, BorderLayout.CENTER);
+		panel_TBTV_Content_ThayDoiThongTin.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TBTV_02_CotPhai_02 = new JPanel();
-		panel_TBTV_02_CotPhai_02.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin_CotPhai.add(panel_TBTV_02_CotPhai_02);
-		panel_TBTV_02_CotPhai_02.setLayout(new BorderLayout(0, 0));
+		// Phần sắp xếp bảng
+		JPanel panel_TBTV_Content_SearchResult_Title = new JPanel();
+		panel_TBTV_Content_SearchResult_Title.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThayDoiThongTin.add(panel_TBTV_Content_SearchResult_Title, BorderLayout.NORTH);
+		panel_TBTV_Content_SearchResult_Title.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
-//		JTextPane text_TBTV_02_CotPhai_02 = new JTextPane();
-//		text_TBTV_02_CotPhai_02.setBackground(Colors.input_Colors);
-//		panel_TBTV_02_CotPhai_02.add(text_TBTV_02_CotPhai_02, BorderLayout.CENTER);
+		JLabel lbl_TBTV_Content_Search_Method_1_1 = new JLabel("Sắp xếp theo:");
+		lbl_TBTV_Content_Search_Method_1_1.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TBTV_Content_SearchResult_Title.add(lbl_TBTV_Content_Search_Method_1_1);
 
-		textField_TBTV_01 = new JTextField();
-		textField_TBTV_01.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TBTV_01.setColumns(5);
-		textField_TBTV_01.setBackground(new Color(217, 217, 217));
-		panel_TBTV_02_CotPhai_01.add(textField_TBTV_01, BorderLayout.CENTER);
+		JComboBox comboBox_TBTV_Content_SortTable = new JComboBox();
+		comboBox_TBTV_Content_SortTable.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_SearchResult_Title.add(comboBox_TBTV_Content_SortTable);
 
-		textField_TBTV_02 = new JTextField();
-		textField_TBTV_02.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TBTV_02.setColumns(5);
-		textField_TBTV_02.setBackground(new Color(217, 217, 217));
-		panel_TBTV_02_CotPhai_02.add(textField_TBTV_02, BorderLayout.CENTER);
+		// In thông tin tìm kiếm
+		JPanel panel_TBTV_Content_SearchResult_Table = new JPanel();
+		panel_TBTV_Content_ThayDoiThongTin.add(panel_TBTV_Content_SearchResult_Table, BorderLayout.CENTER);
 
-		JLabel lbl_TBTV_02_CotTrai_05 = new JLabel("   Ngày bắt đầu: ");
-		lbl_TBTV_02_CotTrai_05.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_TBTV_02_BangThongTin_CotTrai.add(lbl_TBTV_02_CotTrai_05);
+		// Lấy thông tin trong khu vực này
 
-		JLabel lbl_TBTV_02_CotTrai_06 = new JLabel("   Ngày kết thúc: ");
-		lbl_TBTV_02_CotTrai_06.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_TBTV_02_BangThongTin_CotTrai.add(lbl_TBTV_02_CotTrai_06);
+		JPanel panel_TBTV_Content_ThayDoiThongTin_Form = new JPanel();
+		panel_TBTV_Content_ThayDoiThongTin.add(panel_TBTV_Content_ThayDoiThongTin_Form, BorderLayout.SOUTH);
+		panel_TBTV_Content_ThayDoiThongTin_Form.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TBTV_02_CotPhai_05 = new JPanel();
-		panel_TBTV_02_CotPhai_05.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin_CotPhai.add(panel_TBTV_02_CotPhai_05);
-		panel_TBTV_02_CotPhai_05.setLayout(new GridLayout(1, 2, 0, 0));
+		JPanel panel_TBTV_Content_ThongTinTamVang = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang.setBackground(Colors.khung_Chung);
+//		panel_TBTV_Content_ThayDoiThongTin.add(panel_TBTV_Content_ThongTinTamVang, BorderLayout.SOUTH);
+		panel_TBTV_Content_ThongTinTamVang.setLayout(new BoxLayout(panel_TBTV_Content_ThongTinTamVang, BoxLayout.Y_AXIS));
 
-		JPanel panel_TBTV_02_CotPhai_05_NoiDung = new JPanel();
-		panel_TBTV_02_CotPhai_05_NoiDung.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_CotPhai_05.add(panel_TBTV_02_CotPhai_05_NoiDung);
-		panel_TBTV_02_CotPhai_05_NoiDung.setLayout(new BoxLayout(panel_TBTV_02_CotPhai_05_NoiDung, BoxLayout.X_AXIS));
+		JScrollPane scrollpane_KhungNoiDungTBTV = new JScrollPane(panel_TBTV_Content_ThongTinTamVang);
+		panel_TBTV_Content_ThayDoiThongTin_Form.add(scrollpane_KhungNoiDungTBTV);
+		scrollpane_KhungNoiDungTBTV.setBackground(Colors.khung_Chung);
+		// Lấy địa chỉ
+		JPanel panel_TBTV_Content_ThongTinTamVang_DiaChi = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang_DiaChi.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThongTinTamVang.add(panel_TBTV_Content_ThongTinTamVang_DiaChi);
+		panel_TBTV_Content_ThongTinTamVang_DiaChi.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TBTV_02_CotPhai_05_NoiDung_Nam = new JLabel("Năm:  ");
-		panel_TBTV_02_CotPhai_05_NoiDung.add(lbl_TBTV_02_CotPhai_05_NoiDung_Nam);
+		JLabel lbl_TBTV_Content_ThongTinTamVang_DiaChi = new JLabel("Địa chỉ chuyển tới:");
+		lbl_TBTV_Content_ThongTinTamVang_DiaChi.setPreferredSize(new Dimension(150, 19));
+		lbl_TBTV_Content_ThongTinTamVang_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_DiaChi.add(lbl_TBTV_Content_ThongTinTamVang_DiaChi);
 
-		JComboBox comboBox_TBTV_02_CotPhai_05_NoiDung_Nam = new JComboBox();
-		populateYears(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam);
-		panel_TBTV_02_CotPhai_05_NoiDung.add(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam);
+		textField_TBTV_Content_ThongTinTamVang_DiaChi = new JTextField();
+		textField_TBTV_Content_ThongTinTamVang_DiaChi.setPreferredSize(new Dimension(500, 30));
+		textField_TBTV_Content_ThongTinTamVang_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTV_Content_ThongTinTamVang_DiaChi.setBackground(new Color(217, 217, 217));
+		panel_TBTV_Content_ThongTinTamVang_DiaChi.add(textField_TBTV_Content_ThongTinTamVang_DiaChi);
 
-		JLabel lbl_TBTV_02_CotPhai_05_NoiDung_Thang = new JLabel("   Tháng:  ");
-		panel_TBTV_02_CotPhai_05_NoiDung.add(lbl_TBTV_02_CotPhai_05_NoiDung_Thang);
+		// Lấy lý do
+		JPanel panel_TBTV_Content_ThongTinTamVang_LyDo = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang_LyDo.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThongTinTamVang.add(panel_TBTV_Content_ThongTinTamVang_LyDo);
+		panel_TBTV_Content_ThongTinTamVang_LyDo.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JComboBox comboBox_TBTV_02_CotPhai_05_NoiDung_Thang = new JComboBox();
-		populateMonths(comboBox_TBTV_02_CotPhai_05_NoiDung_Thang);
-		panel_TBTV_02_CotPhai_05_NoiDung.add(comboBox_TBTV_02_CotPhai_05_NoiDung_Thang);
+		JLabel lbl_TBTV_Content_ThongTinTamVang_LyDo = new JLabel("Lý do:");
+		lbl_TBTV_Content_ThongTinTamVang_LyDo.setPreferredSize(new Dimension(150, 19));
+		lbl_TBTV_Content_ThongTinTamVang_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_LyDo.add(lbl_TBTV_Content_ThongTinTamVang_LyDo);
 
-		JLabel lbl_TBTV_02_CotPhai_05_NoiDung_Ngay = new JLabel("   Ngày:  ");
-		panel_TBTV_02_CotPhai_05_NoiDung.add(lbl_TBTV_02_CotPhai_05_NoiDung_Ngay);
+		textField_TBTV_Content_ThongTinTamVang_LyDo = new JTextField();
+		textField_TBTV_Content_ThongTinTamVang_LyDo.setPreferredSize(new Dimension(500, 30));
+		textField_TBTV_Content_ThongTinTamVang_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTV_Content_ThongTinTamVang_LyDo.setBackground(new Color(217, 217, 217));
+		panel_TBTV_Content_ThongTinTamVang_LyDo.add(textField_TBTV_Content_ThongTinTamVang_LyDo, BorderLayout.CENTER);
 
-		JComboBox comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay = new JComboBox();
-		panel_TBTV_02_CotPhai_05_NoiDung.add(comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay);
-		comboBox_TBTV_02_CotPhai_05_NoiDung_Thang.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam, comboBox_TBTV_02_CotPhai_05_NoiDung_Thang, comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay));
-		comboBox_TBTV_02_CotPhai_05_NoiDung_Nam.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam, comboBox_TBTV_02_CotPhai_05_NoiDung_Thang, comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay));
-		updateDays(comboBox_TBTV_02_CotPhai_05_NoiDung_Nam, comboBox_TBTV_02_CotPhai_05_NoiDung_Thang, comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay);
+		// Lấy ngày bắt đầu tạm vắng
+		JPanel panel_TBTV_Content_ThongTinTamVang_BatDau = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang_BatDau.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThongTinTamVang.add(panel_TBTV_Content_ThongTinTamVang_BatDau);
+		panel_TBTV_Content_ThongTinTamVang_BatDau.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
+		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau = new JLabel("Ngày bắt đầu:");
+		lbl_TBTV_Content_ThongTinTamVang_BatDau.setPreferredSize(new Dimension(150, 19));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau.add(lbl_TBTV_Content_ThongTinTamVang_BatDau);
 
+		JPanel panel_TBTV_Content_ThongTinTamVang_BatDau_Group = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThongTinTamVang_BatDau.add(panel_TBTV_Content_ThongTinTamVang_BatDau_Group);
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JPanel panel_TBTV_02_CotPhai_06 = new JPanel();
-		panel_TBTV_02_CotPhai_06.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin_CotPhai.add(panel_TBTV_02_CotPhai_06);
-		panel_TBTV_02_CotPhai_06.setLayout(new GridLayout(1, 2, 0, 0));
+		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam = new JLabel("Năm:");
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam.setPreferredSize(new Dimension(60, 19));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam);
 
-		JPanel panel_TBTV_02_CotPhai_06_NoiDung = new JPanel();
-		panel_TBTV_02_CotPhai_06_NoiDung.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_CotPhai_06.add(panel_TBTV_02_CotPhai_06_NoiDung);
-		panel_TBTV_02_CotPhai_06_NoiDung.setLayout(new BoxLayout(panel_TBTV_02_CotPhai_06_NoiDung, BoxLayout.X_AXIS));
+		JComboBox comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam = new JComboBox();
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.getPreferredSize().height));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam);
 
-		JLabel lbl_TBTV_02_CotPhai_06_NoiDung_Nam = new JLabel("Năm:  ");
-		panel_TBTV_02_CotPhai_06_NoiDung.add(lbl_TBTV_02_CotPhai_06_NoiDung_Nam);
+		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang = new JLabel("Tháng:");
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang.setPreferredSize(new Dimension(60, 19));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang);
 
-		JComboBox comboBox_TBTV_02_CotPhai_06_NoiDung_Nam = new JComboBox();
-		populateYears(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam);
-		panel_TBTV_02_CotPhai_06_NoiDung.add(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam);
+		JComboBox comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang = new JComboBox();
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.getPreferredSize().height));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang);
 
-		JLabel lbl_TBTV_02_CotPhai_06_NoiDung_Thang = new JLabel("   Tháng:  ");
-		panel_TBTV_02_CotPhai_06_NoiDung.add(lbl_TBTV_02_CotPhai_06_NoiDung_Thang);
+		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay = new JLabel("Ngày:");
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setPreferredSize(new Dimension(60, 19));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay);
 
-		JComboBox comboBox_TBTV_02_CotPhai_06_NoiDung_Thang = new JComboBox();
-		populateMonths(comboBox_TBTV_02_CotPhai_06_NoiDung_Thang);
-		panel_TBTV_02_CotPhai_06_NoiDung.add(comboBox_TBTV_02_CotPhai_06_NoiDung_Thang);
+		JComboBox comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay = new JComboBox();
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.getPreferredSize().height));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay);
 
-		JLabel lbl_TBTV_02_CotPhai_06_NoiDung_Ngay = new JLabel("   Ngày:  ");
-		panel_TBTV_02_CotPhai_06_NoiDung.add(lbl_TBTV_02_CotPhai_06_NoiDung_Ngay);
+		// Lấy ngày kết thúc
+		JPanel panel_TBTV_Content_ThongTinTamVang_KetThuc = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang_KetThuc.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThongTinTamVang.add(panel_TBTV_Content_ThongTinTamVang_KetThuc);
+		panel_TBTV_Content_ThongTinTamVang_KetThuc.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JComboBox comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay = new JComboBox();
-		panel_TBTV_02_CotPhai_06_NoiDung.add(comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay);
+		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc = new JLabel("Ngày kết thúc:");
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc.setPreferredSize(new Dimension(150, 19));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc);
 
-		comboBox_TBTV_02_CotPhai_06_NoiDung_Thang.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam, comboBox_TBTV_02_CotPhai_06_NoiDung_Thang, comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay));
-		comboBox_TBTV_02_CotPhai_06_NoiDung_Nam.addActionListener(e -> updateDays(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam, comboBox_TBTV_02_CotPhai_06_NoiDung_Thang, comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay));
-		updateDays(comboBox_TBTV_02_CotPhai_06_NoiDung_Nam, comboBox_TBTV_02_CotPhai_06_NoiDung_Thang, comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay);
+		JPanel panel_TBTV_Content_ThongTinTamVang_KetThuc_Group = new JPanel();
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.setBackground(Colors.khung_Chung);
+		panel_TBTV_Content_ThongTinTamVang_KetThuc.add(panel_TBTV_Content_ThongTinTamVang_KetThuc_Group);
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JPanel panel_TBTV_02_BangThongTin_Title = new JPanel();
-		panel_TBTV_02_BangThongTin_Title.setBackground(Colors.khung_Chung);
-		panel_TBTV_02_BangThongTin.add(panel_TBTV_02_BangThongTin_Title, BorderLayout.NORTH);
-		panel_TBTV_02_BangThongTin_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 10));
+		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam = new JLabel("Năm:");
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setPreferredSize(new Dimension(60, 19));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam);
 
-		JLabel lblNewLabel = new JLabel("Thông tin nhân khẩu tạm vắng:  ");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		panel_TBTV_02_BangThongTin_Title.add(lblNewLabel);
+		JComboBox comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam = new JComboBox();
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.getPreferredSize().height));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam);
 
-		JPanel panel_TBTV_SubTitle = new JPanel();
-		panel_TBTV_SubTitle.setBackground(Colors.khung_Chung);
-		panel_TBTV_02.add(panel_TBTV_SubTitle, BorderLayout.NORTH);
-		panel_TBTV_SubTitle.setLayout(new BorderLayout(0, 0));
+		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang = new JLabel("Tháng:");
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setPreferredSize(new Dimension(60, 19));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang);
 
-		JPanel panel_TBTV_SubTitle_main = new JPanel();
-		panel_TBTV_SubTitle_main.setBackground(Colors.khung_Chung);
-		panel_TBTV_SubTitle.add(panel_TBTV_SubTitle_main, BorderLayout.NORTH);
-		panel_TBTV_SubTitle_main.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 10));
+		JComboBox comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang = new JComboBox();
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.getPreferredSize().height));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang);
 
-		JLabel lbl_TBTV_Subtitle = new JLabel("Thông tin nhân khẩu:");
-		lbl_TBTV_Subtitle.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_TBTV_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_TBTV_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
-		lbl_TBTV_Subtitle.setAlignmentX(0.5f);
-		panel_TBTV_SubTitle_main.add(lbl_TBTV_Subtitle);
+		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay = new JLabel("Ngày:");
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setPreferredSize(new Dimension(60, 19));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay);
 
-		JPanel panel_TBTV_SubTitle_sort = new JPanel();
-		panel_TBTV_SubTitle_sort.setBackground(new Color(144, 224, 239));
-		panel_TBTV_SubTitle_main.add(panel_TBTV_SubTitle_sort);
-		panel_TBTV_SubTitle_sort.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		JComboBox comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay = new JComboBox();
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.getPreferredSize().height));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay);
 
-		JPanel panel_TBTV_SubTitle_BangThongTin = new JPanel();
-		panel_TBTV_SubTitle_BangThongTin.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_TBTV_SubTitle.add(panel_TBTV_SubTitle_BangThongTin, BorderLayout.CENTER);
+		Component verticalGlue = Box.createVerticalGlue();
+		panel_TBTV_Content_ThongTinTamVang.add(verticalGlue);
 
 		//Tạo model cho Table
 		DefaultTableModel tableModel = new DefaultTableModel();
@@ -282,7 +301,7 @@ public class ThongBaoTamVang extends JPanel {
 		});
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
-		panel_TBTV_SubTitle_BangThongTin.setLayout(new BorderLayout(10, 10));
+		panel_TBTV_Content_SearchResult_Table.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -294,7 +313,7 @@ public class ThongBaoTamVang extends JPanel {
 		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
-		panel_TBTV_SubTitle_BangThongTin.add(scrollPane, BorderLayout.CENTER);
+		panel_TBTV_Content_SearchResult_Table.add(scrollPane, BorderLayout.WEST);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
@@ -330,9 +349,9 @@ public class ThongBaoTamVang extends JPanel {
 		table.getColumnModel().getColumn(7).setPreferredWidth(120); // Mã Hộ Khẩu
 
 		//Thêm chức năng tìm kiếm vào nút Tìm kiếm
-		btn_TBTV_01_TimKiem.addActionListener(new ActionListener() {
+		btn_TBTV_Content_Search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String maNhanKhau = text_TBTV_01.getText();
+				String maNhanKhau = text_TBTV_Content_Search.getText();
 				ThongBaoTamVangController.hienThiBangNhanKhau(maNhanKhau, table);
 			}
 		});
@@ -340,53 +359,53 @@ public class ThongBaoTamVang extends JPanel {
 
 		JPanel panel_TBTV_confirm = new JPanel();
 		panel_TBTV_confirm.setBackground(Colors.khung_Chung);
-		panel_TBTV_02.add(panel_TBTV_confirm, BorderLayout.SOUTH);
+		panel_KhungNoiDungTBTV.add(panel_TBTV_confirm, BorderLayout.SOUTH);
 		panel_TBTV_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
-		JButton btnNewButton_1 = new JButton("Xác Nhận");
-		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnNewButton_1.setToolTipText("");
-		btnNewButton_1.setBackground(Colors.button_XacNhan);
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setOpaque(true);
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btn_TBTV_Yes = new JButton("Xác Nhận");
+		btn_TBTV_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTV_Yes.setToolTipText("");
+		btn_TBTV_Yes.setBackground(Colors.button_XacNhan);
+		btn_TBTV_Yes.setForeground(Color.WHITE);
+		btn_TBTV_Yes.setOpaque(true);
+		btn_TBTV_Yes.setBorderPainted(false);
+		btn_TBTV_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirmResult = JOptionPane.showConfirmDialog(mainFrame,
 						"Bạn có chắc chắn muốn xác nhận ? ", "Xác nhận ",
 						JOptionPane.YES_NO_OPTION);
 
 				if (confirmResult == JOptionPane.YES_OPTION) {
-					String maNhanKhau = text_TBTV_01.getText();
-					String liDo = textField_TBTV_02.getText(); // Lí do từ JTextPane
-					int nambatdau = (int) comboBox_TBTV_02_CotPhai_05_NoiDung_Nam.getSelectedItem();
-					int thangbatdau = (int) comboBox_TBTV_02_CotPhai_05_NoiDung_Thang.getSelectedItem();
-					int ngaybatdau = (int) comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay.getSelectedItem();
-					int namketthuc = (int) comboBox_TBTV_02_CotPhai_06_NoiDung_Nam.getSelectedItem();
-					int thangketthuc = (int) comboBox_TBTV_02_CotPhai_06_NoiDung_Thang.getSelectedItem();
-					int ngayketthuc = (int) comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay.getSelectedItem();
+					String maNhanKhau = text_TBTV_Content_Search.getText();
+					String liDo = textField_TBTV_Content_ThongTinTamVang_LyDo.getText(); // Lí do từ JTextPane
+					int nambatdau = (int) comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.getSelectedItem();
+					int thangbatdau = (int) comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.getSelectedItem();
+					int ngaybatdau = (int) comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.getSelectedItem();
+					int namketthuc = (int) comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.getSelectedItem();
+					int thangketthuc = (int) comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.getSelectedItem();
+					int ngayketthuc = (int) comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.getSelectedItem();
 					LocalDate ngayBatDau = LocalDate.of(nambatdau, thangbatdau, ngaybatdau);
 					LocalDate ngayKetThuc = LocalDate.of(namketthuc, thangketthuc, ngayketthuc);
 					java.sql.Date ngayBatDauSQL = java.sql.Date.valueOf(ngayBatDau);
 					java.sql.Date ngayKetThucSQL = java.sql.Date.valueOf(ngayKetThuc);
-					String noiTamTru = textField_TBTV_01.getText(); // địa chỉ tạm trú từ JTextPane
+					String noiTamTru = textField_TBTV_Content_ThongTinTamVang_DiaChi.getText(); // địa chỉ tạm trú từ JTextPane
 
 					ThongBaoTamVangController.thongBaoTamVang(maNhanKhau, liDo, ngayBatDau, ngayKetThuc, noiTamTru);
 					ThongBaoTamVangController.resetUIComponents(
-							textField_TBTV_01,textField_TBTV_02,
-							comboBox_TBTV_02_CotPhai_05_NoiDung_Nam,
-							comboBox_TBTV_02_CotPhai_05_NoiDung_Thang,
-							comboBox_TBTV_02_CotPhai_05_NoiDung_Ngay,
-							comboBox_TBTV_02_CotPhai_06_NoiDung_Nam,
-							comboBox_TBTV_02_CotPhai_06_NoiDung_Thang,
-							comboBox_TBTV_02_CotPhai_06_NoiDung_Ngay);
+							textField_TBTV_Content_ThongTinTamVang_DiaChi,textField_TBTV_Content_ThongTinTamVang_LyDo,
+							comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam,
+							comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang,
+							comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay,
+							comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam,
+							comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang,
+							comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay);
 				} else if (confirmResult == JOptionPane.NO_OPTION) {
 					JOptionPane.showMessageDialog(mainFrame, "Thông báo tạm vắng đã bị hủy.");
 				}
 			}
 		});
 
-		panel_TBTV_confirm.add(btnNewButton_1);
+		panel_TBTV_confirm.add(btn_TBTV_Yes);
 
 		JButton btn_TBTV_No = new JButton("Hủy");
 		btn_TBTV_No.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -417,11 +436,7 @@ public class ThongBaoTamVang extends JPanel {
 	}
 
 	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
-		int year = (int) yearComboBox.getSelectedItem();
-		int month = (int) monthComboBox.getSelectedItem();
 		int daysInMonth = getDaysInMonth(year, month);
-
-		dayComboBox.setModel(new DefaultComboBoxModel());
 		for (int day = 1; day <= daysInMonth; day++) {
 			dayComboBox.addItem(day);
 		}
