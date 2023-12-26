@@ -28,6 +28,8 @@ public class ManHinhChinh extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout cardLayout;
+
+	private CardLayout cardLayout_trung_tam;
 	private JPanel cardPanel; // Panel to hold the CardLayout
 	private JPanel panel_trung_tam; // Main panel in the center
 
@@ -106,25 +108,28 @@ public class ManHinhChinh extends JFrame {
 		btnThongTin.setForeground(Color.WHITE);
 		btnThongTin.setOpaque(true);
 
-
-
-		JLabel lblImage = new JLabel();
-		lblImage.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("/view/image/Imageaccount.png"))));
-		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+		JButton btnDangXuat = new JButton("Đăng xuất");
+		btnThongTin.setHorizontalAlignment(SwingConstants.CENTER);
+		btnThongTin.setBackground(Colors.khung_Chung);
+		btnThongTin.setBorderPainted(false);
+		btnThongTin.setForeground(Color.BLACK);
+		btnThongTin.setOpaque(true);
 
 		panel.add(btnTrangChu);
 		panel.add(btnHoTro);
 		panel.add(btnThongTin);
-		panel.add(lblImage);
+		panel.add(btnDangXuat);
 
 
-		cardLayout = new CardLayout(20,20);
+		cardLayout = new CardLayout(0,0);
+		cardLayout_trung_tam = new CardLayout(30,30);
 		cardPanel = new JPanel(cardLayout);
 		JPanel buttonsPanel = createButtonsPanel();
 
 
-		panel_trung_tam = new JPanel(cardLayout);
+		panel_trung_tam = new JPanel(cardLayout_trung_tam);
 		contentPane.add(panel_trung_tam, BorderLayout.CENTER);
+		panel_trung_tam.setBackground(Colors.nen_Chung);
 
 		// Cách nhảy sang Jpanel chính
 		quanLyHoKhauPanel = new SideBar_QuanLyHoKhau(this);

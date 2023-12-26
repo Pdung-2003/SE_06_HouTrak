@@ -36,24 +36,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static model.DatabaseConnector.*;
+import javax.swing.border.MatteBorder;
 
 public class ThemNhanKhau extends JPanel {
-	private JTextField textField_TNK_CotPhai_02;
-	private JTextField textField_TNK_CotPhai_03;
-	private JTextField textField_TNK_CotPhai_04;
-	private JTextField textField_TNK_CotPhai_05;
-	private JTextField textField_TNK_CotPhai_06;
+	private JTextField textField_TNK_Content_HoTen;
+	private JTextField textField_TNK_Content_CCCD;
+	private JTextField textField_TNK_Content_TonGiao;
+	private JTextField textField_TNK_Content_QueQuan;
+	private JTextField textField_TNK_Content_MaHoKhau;
 	private JTextField textField_TNK_CotPhai_07;
 
 	private JButton btn_TNK_Yes;
 	private JButton btn_TNK_No;
 	private JButton btn_TNK_NhapFile;
-	private JComboBox comboBox_TNK_CotPhai_NhanKhau_Nam;
-	private JComboBox comboBox_TNK_CotPhai_NhanKhau_Thang;
-	private JComboBox comboBox_TNK_CotPhai_NhanKhau_Ngay;
+	private JComboBox comboBox_TNK_Content_NgaySinh_Nam;
+	private JComboBox comboBox_TNK_Content_NgaySinh_Thang;
+	private JComboBox comboBox_TNK_Content_NgaySinh_Ngay;
 
-	private JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01;
-	private JRadioButton rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02;
+	private JRadioButton rdbtn_TNK_Content_GioiTinh_Nam;
+	private JRadioButton rdbtn_TNK_Content_GioiTinh_Nu;
 	private final ManHinhChinh mainFrame;
 	private ThemNhanKhauController themNhanKhauController;
 	private static JLabel lblTenFileDaChon;
@@ -62,111 +63,129 @@ public class ThemNhanKhau extends JPanel {
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0 ,0));
 
-		JPanel panel_ThemNhanKhau = new JPanel();
-		add(panel_ThemNhanKhau, "name_403370082461900");
-		panel_ThemNhanKhau.setLayout(new BorderLayout(0, 0));
+		JPanel panel_TNK_Title = new JPanel();
+		panel_TNK_Title.setBackground(Colors.nen_Chung);
+		add(panel_TNK_Title, BorderLayout.NORTH);
+		panel_TNK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
+		JLabel lbl_Title_ThemNhanKhau = new JLabel("Thêm nhân khẩu");
+		lbl_Title_ThemNhanKhau.setBackground(Colors.nen_Chung);
+		lbl_Title_ThemNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		panel_TNK_Title.add(lbl_Title_ThemNhanKhau);
+//
+//		JPanel panel_ThemNhanKhau = new JPanel();
+//		add(panel_ThemNhanKhau, "name_403370082461900");
+//		panel_ThemNhanKhau.setLayout(new BorderLayout(0, 0));
+//
 		JPanel panel_KhungNoiDungTNK = new JPanel();
 		panel_KhungNoiDungTNK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTNK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTNK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTNK.setBackground(Colors.khung_Chung);
-		panel_ThemNhanKhau.add(panel_KhungNoiDungTNK, BorderLayout.CENTER);
-		panel_KhungNoiDungTNK.setLayout(new BorderLayout(0, 0));
+		add(panel_KhungNoiDungTNK, BorderLayout.CENTER);
+		panel_KhungNoiDungTNK.setLayout(new BorderLayout(10, 10));
 
-		JPanel panel_TNK_01 = new JPanel();
-		panel_TNK_01.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTNK.add(panel_TNK_01, BorderLayout.CENTER);
-		panel_TNK_01.setLayout(new BorderLayout(0, 0));
+		// Chọn File
+		JPanel panel_TNK_FileChooser = new JPanel();
+		panel_TNK_FileChooser.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTNK.add(panel_TNK_FileChooser, BorderLayout.NORTH);
+		panel_TNK_FileChooser.setLayout(new BorderLayout(10, 0));
 
-		JPanel panel_TNK_CotTrai = new JPanel();
-		panel_TNK_CotTrai.setBackground(Colors.khung_Chung);
-		panel_TNK_01.add(panel_TNK_CotTrai, BorderLayout.WEST);
-		panel_TNK_CotTrai.setLayout(new GridLayout(10, 1, 5, 10));
+		btn_TNK_NhapFile = new JButton("Chọn file");
+		btn_TNK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel_TNK_FileChooser.add(btn_TNK_NhapFile, BorderLayout.WEST);
 
-		JLabel lbl_TNK_CotTrai_2 = new JLabel("     Thông tin nhân khẩu      ");
-		panel_TNK_CotTrai.add(lbl_TNK_CotTrai_2);
+		JPanel panel_TNK_NhapFile_dem2 = new JPanel();
+		panel_TNK_NhapFile_dem2.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		panel_TNK_NhapFile_dem2.setBackground(Colors.khung_Chung);
+		panel_TNK_FileChooser.add(panel_TNK_NhapFile_dem2, BorderLayout.SOUTH);
 
-		JPanel panel_TNK_CotPhai = new JPanel();
-		panel_TNK_CotPhai.setBackground(Colors.khung_Chung);
-		panel_TNK_01.add(panel_TNK_CotPhai, BorderLayout.CENTER);
-		panel_TNK_CotPhai.setLayout(new GridLayout(10, 1, 5, 10));
+		lblTenFileDaChon = new JLabel("Chưa chọn file");
+		lblTenFileDaChon.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_FileChooser.add(lblTenFileDaChon, BorderLayout.CENTER);
 
-		//Tạo label và trường nhập cho Họ tên
-		JPanel panel_TNK_CotPhai_NhanKhau_01 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_01.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_01);
-		panel_TNK_CotPhai_NhanKhau_01.setLayout(new BorderLayout(0, 0));
+		JPanel panel_TNK_Content = new JPanel();
+		panel_TNK_Content.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTNK.add(panel_TNK_Content, BorderLayout.CENTER);
+		panel_TNK_Content.setLayout(new BoxLayout(panel_TNK_Content, BoxLayout.Y_AXIS));
 
-		JLabel lbl_TNK_CotPhai_01 = new JLabel("   Họ và tên*              ");
-		lbl_TNK_CotPhai_01.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_01.add(lbl_TNK_CotPhai_01, BorderLayout.WEST);
+		// Lấy họ và tên
+		JPanel panel_TNK_Content_HoTen = new JPanel();
+		panel_TNK_Content_HoTen.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_HoTen);
+		panel_TNK_Content_HoTen.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		textField_TNK_CotPhai_02 = new JTextField();
-		textField_TNK_CotPhai_02.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_01.add(textField_TNK_CotPhai_02, BorderLayout.CENTER);
-		textField_TNK_CotPhai_02.setColumns(10);
+		JLabel lbl_TNK_Content_HoTen = new JLabel("Họ và tên*:");
+		lbl_TNK_Content_HoTen.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TNK_Content_HoTen.setPreferredSize(new Dimension(150, 19));
+		panel_TNK_Content_HoTen.add(lbl_TNK_Content_HoTen, BorderLayout.WEST);
 
-		//Tạo label và trường nhập cho CCCD
-		JPanel panel_TNK_CotPhai_NhanKhau_02 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_02.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_02);
-		panel_TNK_CotPhai_NhanKhau_02.setLayout(new BorderLayout(0, 0));
+		textField_TNK_Content_HoTen = new JTextField();
+		textField_TNK_Content_HoTen.setPreferredSize(new Dimension(500, 30));
+		textField_TNK_Content_HoTen.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_Content_HoTen.add(textField_TNK_Content_HoTen);
 
-		JLabel lbl_TNK_CotPhai_02 = new JLabel("   CCCD/CMND*      ");
-		lbl_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_02.add(lbl_TNK_CotPhai_02, BorderLayout.WEST);
+		// Lấy CCCD/CMND
+		JPanel panel_TNK_Content_CCCD = new JPanel();
+		panel_TNK_Content_CCCD.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_CCCD);
+		panel_TNK_Content_CCCD.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		textField_TNK_CotPhai_03 = new JTextField();
-		textField_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_03.setColumns(10);
-		textField_TNK_CotPhai_03.setBackground(new Color(217, 217, 217));
-		panel_TNK_CotPhai_NhanKhau_02.add(textField_TNK_CotPhai_03, BorderLayout.CENTER);
+		JLabel lbl_TNK_CotPhai_02 = new JLabel("CCCD/CMND*:");
+		lbl_TNK_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TNK_CotPhai_02.setPreferredSize(new Dimension(150, 19));
+		panel_TNK_Content_CCCD.add(lbl_TNK_CotPhai_02);
 
-		//Tạo label và trường nhập cho Giới tính
-		JPanel panel_TNK_CotPhai_NhanKhau_03 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_03.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_03);
-		panel_TNK_CotPhai_NhanKhau_03.setLayout(new BorderLayout(0, 0));
+		textField_TNK_Content_CCCD = new JTextField();
+		textField_TNK_Content_CCCD.setPreferredSize(new Dimension(500, 30));
+		textField_TNK_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_Content_CCCD.add(textField_TNK_Content_CCCD);
 
-		JLabel lbl_TNK_CotPhai_03 = new JLabel("   Giới tính*              ");
-		lbl_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_03.add(lbl_TNK_CotPhai_03, BorderLayout.WEST);
+		// Lấy giới tính
+		JPanel panel_TNK_Content_GioiTinh = new JPanel();
+		panel_TNK_Content_GioiTinh.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_GioiTinh);
+		panel_TNK_Content_GioiTinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+		JLabel lbl_TNK_CotPhai_03 = new JLabel("Giới tính*:");
+		lbl_TNK_CotPhai_03.setPreferredSize(new Dimension(150, 19));
+		lbl_TNK_CotPhai_03.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_Content_GioiTinh.add(lbl_TNK_CotPhai_03, BorderLayout.WEST);
 
 		JPanel panel_TNK_CotPhai_NhanKhau_GioiTinh = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_GioiTinh.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai_NhanKhau_03.add(panel_TNK_CotPhai_NhanKhau_GioiTinh, BorderLayout.CENTER);
+		panel_TNK_Content_GioiTinh.add(panel_TNK_CotPhai_NhanKhau_GioiTinh, BorderLayout.CENTER);
 		panel_TNK_CotPhai_NhanKhau_GioiTinh.setLayout(new BoxLayout(panel_TNK_CotPhai_NhanKhau_GioiTinh, BoxLayout.X_AXIS));
 
-		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01 = new JRadioButton("Nam");
-		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.setFont(new Font("Arial", Font.PLAIN, 12));
-		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01);
+		rdbtn_TNK_Content_GioiTinh_Nam = new JRadioButton("Nam");
+		rdbtn_TNK_Content_GioiTinh_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		rdbtn_TNK_Content_GioiTinh_Nam.setBackground(Colors.khung_Chung);
+		panel_TNK_CotPhai_NhanKhau_GioiTinh.add(rdbtn_TNK_Content_GioiTinh_Nam);
 
-		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02 = new JRadioButton("Nữ");
-		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02.setFont(new Font("Arial", Font.PLAIN, 12));
-		rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02);
+		rdbtn_TNK_Content_GioiTinh_Nu = new JRadioButton("Nữ");
+		rdbtn_TNK_Content_GioiTinh_Nu.setFont(new Font("Arial", Font.PLAIN, 16));
+		rdbtn_TNK_Content_GioiTinh_Nu.setBackground(Colors.khung_Chung);
+		panel_TNK_CotPhai_NhanKhau_GioiTinh.add(rdbtn_TNK_Content_GioiTinh_Nu);
 
 		ButtonGroup bg_NhanKhau_GioiTinh = new ButtonGroup();
-		bg_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01);
-		bg_NhanKhau_GioiTinh.add(rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02);
+		bg_NhanKhau_GioiTinh.add(rdbtn_TNK_Content_GioiTinh_Nam);
+		bg_NhanKhau_GioiTinh.add(rdbtn_TNK_Content_GioiTinh_Nu);
 
-		//Tạo label và trường nhập cho Ngày sinh
-		JPanel panel_TNK_CotPhai_NhanKhau_04 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_04.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_04);
-		panel_TNK_CotPhai_NhanKhau_04.setLayout(new BorderLayout(0, 0));
+		// Lấy ngày sinh
+		JPanel panel_TNK_Content_NgaySinh = new JPanel();
+		panel_TNK_Content_NgaySinh.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_NgaySinh);
+		panel_TNK_Content_NgaySinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TNK_CotPhai_04 = new JLabel("   Ngày sinh*            ");
-		lbl_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_04.add(lbl_TNK_CotPhai_04, BorderLayout.WEST);
+		JLabel lbl_TNK_CotPhai_04 = new JLabel("Ngày sinh*");
+		lbl_TNK_CotPhai_04.setPreferredSize(new Dimension(150, 19));
+		lbl_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_Content_NgaySinh.add(lbl_TNK_CotPhai_04, BorderLayout.WEST);
 
 		JPanel panel_TNK_CotPhai_NhanKhau_NgaySinh = new JPanel();
 		panel_TNK_CotPhai_NhanKhau_NgaySinh.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai_NhanKhau_04.add(panel_TNK_CotPhai_NhanKhau_NgaySinh, BorderLayout.CENTER);
+		panel_TNK_Content_NgaySinh.add(panel_TNK_CotPhai_NhanKhau_NgaySinh, BorderLayout.CENTER);
 		panel_TNK_CotPhai_NhanKhau_NgaySinh.setLayout(new GridLayout(1, 2, 0, 0));
 
 		JPanel panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung = new JPanel();
@@ -174,96 +193,107 @@ public class ThemNhanKhau extends JPanel {
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.setBackground(Colors.khung_Chung);
 		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.setLayout(new BoxLayout(panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung, BoxLayout.X_AXIS));
 
-		JLabel lbl_TNK_CotPhai_NhanKhau_Nam = new JLabel("Năm:        ");
-		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Nam);
-		lbl_TNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
+		JLabel lbl_TNK_Content_NgaySinh_Nam = new JLabel("Năm:");
+		lbl_TNK_Content_NgaySinh_Nam.setPreferredSize(new Dimension(80, 19));
+		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_Content_NgaySinh_Nam);
+		lbl_TNK_Content_NgaySinh_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		comboBox_TNK_CotPhai_NhanKhau_Nam = new JComboBox();
-		populateYears(comboBox_TNK_CotPhai_NhanKhau_Nam);
-		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_CotPhai_NhanKhau_Nam);
+		comboBox_TNK_Content_NgaySinh_Nam = new JComboBox();
+		comboBox_TNK_Content_NgaySinh_Nam.setPreferredSize(new Dimension(80, comboBox_TNK_Content_NgaySinh_Nam.getPreferredSize().height));
+		comboBox_TNK_Content_NgaySinh_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateYears(comboBox_TNK_Content_NgaySinh_Nam);
+		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_Content_NgaySinh_Nam);
 
-		JLabel lbl_TNK_CotPhai_NhanKhau_Thang = new JLabel("     Tháng:        ");
-		lbl_TNK_CotPhai_NhanKhau_Thang.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Thang);
+		JLabel lbl_TNK_Content_NgaySinh_Thang = new JLabel("   Tháng:");
+		lbl_TNK_Content_NgaySinh_Thang.setPreferredSize(new Dimension(80, 19));
+		lbl_TNK_Content_NgaySinh_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_Content_NgaySinh_Thang);
 
-		comboBox_TNK_CotPhai_NhanKhau_Thang = new JComboBox();
-		populateMonths(comboBox_TNK_CotPhai_NhanKhau_Thang);
-		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_CotPhai_NhanKhau_Thang);
+		comboBox_TNK_Content_NgaySinh_Thang = new JComboBox();
+		comboBox_TNK_Content_NgaySinh_Thang.setPreferredSize(new Dimension(80, comboBox_TNK_Content_NgaySinh_Nam.getPreferredSize().height));
+		comboBox_TNK_Content_NgaySinh_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateMonths(comboBox_TNK_Content_NgaySinh_Thang);
+		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_Content_NgaySinh_Thang);
 
-		JLabel lbl_TNK_CotPhai_NhanKhau_Ngay = new JLabel("     Ngày:        \r\n");
-		lbl_TNK_CotPhai_NhanKhau_Ngay.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_CotPhai_NhanKhau_Ngay);
+		JLabel lbl_TNK_Content_NgaySinh_Ngay = new JLabel("   Ngày:");
+		lbl_TNK_Content_NgaySinh_Ngay.setPreferredSize(new Dimension(80, 19));
+		lbl_TNK_Content_NgaySinh_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(lbl_TNK_Content_NgaySinh_Ngay);
 
-		comboBox_TNK_CotPhai_NhanKhau_Ngay = new JComboBox();
-		comboBox_TNK_CotPhai_NhanKhau_Ngay.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_TNK_CotPhai_NhanKhau_Thang.setFont(new Font("Arial", Font.PLAIN, 12));
-		comboBox_TNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_CotPhai_NhanKhau_Ngay);
-		comboBox_TNK_CotPhai_NhanKhau_Thang.addActionListener(e -> updateDays(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay));
-		comboBox_TNK_CotPhai_NhanKhau_Nam.addActionListener(e -> updateDays(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay));
-
-
+		comboBox_TNK_Content_NgaySinh_Ngay = new JComboBox();
+		comboBox_TNK_Content_NgaySinh_Ngay.setPreferredSize(new Dimension(80, comboBox_TNK_Content_NgaySinh_Nam.getPreferredSize().height));
+		comboBox_TNK_Content_NgaySinh_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TNK_CotPhai_NhanKhau_NgaySinh_NoiDung.add(comboBox_TNK_Content_NgaySinh_Ngay);
+		comboBox_TNK_Content_NgaySinh_Thang.addActionListener(e -> updateDays(comboBox_TNK_Content_NgaySinh_Nam, comboBox_TNK_Content_NgaySinh_Thang, comboBox_TNK_Content_NgaySinh_Ngay));
+		comboBox_TNK_Content_NgaySinh_Nam.addActionListener(e -> updateDays(comboBox_TNK_Content_NgaySinh_Nam, comboBox_TNK_Content_NgaySinh_Thang, comboBox_TNK_Content_NgaySinh_Ngay));
 
 		// Initial population of days
-		updateDays(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay);
+		updateDays(comboBox_TNK_Content_NgaySinh_Nam, comboBox_TNK_Content_NgaySinh_Thang, comboBox_TNK_Content_NgaySinh_Ngay);
 
-		//Tạo label và trường nhập cho Tôn giáo
-		JPanel panel_TNK_CotPhai_NhanKhau_05 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_05.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_05);
-		panel_TNK_CotPhai_NhanKhau_05.setLayout(new BorderLayout(0, 0));
+		//Lấy tôn giáo
+		JPanel panel_TNK_Content_TonGiao = new JPanel();
+		panel_TNK_Content_TonGiao.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_TonGiao);
+		panel_TNK_Content_TonGiao.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TNK_CotPhai_05 = new JLabel("   Tôn giáo               ");
-		panel_TNK_CotPhai_NhanKhau_05.add(lbl_TNK_CotPhai_05, BorderLayout.WEST);
-		lbl_TNK_CotPhai_05.setFont(new Font("Arial", Font.PLAIN, 12));
+		JLabel lbl_TNK_CotPhai_05 = new JLabel("Tôn giáo:");
+		lbl_TNK_CotPhai_05.setPreferredSize(new Dimension(150, 19));
+		panel_TNK_Content_TonGiao.add(lbl_TNK_CotPhai_05);
+		lbl_TNK_CotPhai_05.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		textField_TNK_CotPhai_04 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_05.add(textField_TNK_CotPhai_04, BorderLayout.CENTER);
-		textField_TNK_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_04.setColumns(10);
-		textField_TNK_CotPhai_04.setBackground(Colors.input_Colors);
+		textField_TNK_Content_TonGiao = new JTextField();
+		textField_TNK_Content_TonGiao.setPreferredSize(new Dimension(500, 30));
+		panel_TNK_Content_TonGiao.add(textField_TNK_Content_TonGiao);
+		textField_TNK_Content_TonGiao.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		//Tạo label và trường nhập cho Quê quán
-		JPanel panel_TNK_CotPhai_NhanKhau_06 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_06.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_06);
-		panel_TNK_CotPhai_NhanKhau_06.setLayout(new BorderLayout(0, 0));
+		// Lấy quê quán
+		JPanel panel_TNK_Content_QueQuan = new JPanel();
+		panel_TNK_Content_QueQuan.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_QueQuan);
+		panel_TNK_Content_QueQuan.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TNK_CotPhai_06 = new JLabel("   Quê quán             ");
-		panel_TNK_CotPhai_NhanKhau_06.add(lbl_TNK_CotPhai_06, BorderLayout.WEST);
-		lbl_TNK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
+		JLabel lbl_TNK_CotPhai_06 = new JLabel("Quê quán:");
+		lbl_TNK_CotPhai_06.setPreferredSize(new Dimension(150, 19));
+		panel_TNK_Content_QueQuan.add(lbl_TNK_CotPhai_06);
+		lbl_TNK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		textField_TNK_CotPhai_05 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_06.add(textField_TNK_CotPhai_05, BorderLayout.CENTER);
-		textField_TNK_CotPhai_05.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_05.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_05.setColumns(10);
+		textField_TNK_Content_QueQuan = new JTextField();
+		textField_TNK_Content_QueQuan.setPreferredSize(new Dimension(500, 30));
+		panel_TNK_Content_QueQuan.add(textField_TNK_Content_QueQuan);
+		textField_TNK_Content_QueQuan.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		//Tạo label và trường nhập cho Địa chỉ
-		JPanel panel_TNK_CotPhai_NhanKhau_07 = new JPanel();
-		panel_TNK_CotPhai_NhanKhau_07.setBackground(Colors.khung_Chung);
-		panel_TNK_CotPhai.add(panel_TNK_CotPhai_NhanKhau_07);
-		panel_TNK_CotPhai_NhanKhau_07.setLayout(new BorderLayout(5, 5));
+		// Lấy địa chỉ
+		JPanel panel_TNK_Content_MaHoKhau = new JPanel();
+		panel_TNK_Content_MaHoKhau.setBackground(Colors.khung_Chung);
+		panel_TNK_Content.add(panel_TNK_Content_MaHoKhau);
+		panel_TNK_Content_MaHoKhau.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TNK_CotPhai_07 = new JLabel("   Mã hộ khẩu*       ");
-		panel_TNK_CotPhai_NhanKhau_07.add(lbl_TNK_CotPhai_07, BorderLayout.WEST);
-		lbl_TNK_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 12));
+		JLabel lbl_TNK_CotPhai_07 = new JLabel("Mã hộ khẩu*:");
+		lbl_TNK_CotPhai_07.setPreferredSize(new Dimension(150, 19));
+		panel_TNK_Content_MaHoKhau.add(lbl_TNK_CotPhai_07);
+		lbl_TNK_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		textField_TNK_CotPhai_06 = new JTextField();
-		panel_TNK_CotPhai_NhanKhau_07.add(textField_TNK_CotPhai_06, BorderLayout.CENTER);
-		textField_TNK_CotPhai_06.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_TNK_CotPhai_06.setBackground(Colors.input_Colors);
-		textField_TNK_CotPhai_06.setColumns(10);
-		textField_TNK_CotPhai_06.setToolTipText("VD: MHK00001");
+		textField_TNK_Content_MaHoKhau = new JTextField();
+		textField_TNK_Content_MaHoKhau.setPreferredSize(new Dimension(500, 30));
+		panel_TNK_Content_MaHoKhau.add(textField_TNK_Content_MaHoKhau);
+		textField_TNK_Content_MaHoKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TNK_Content_MaHoKhau.setToolTipText("VD: MHK00001");
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Colors.khung_Chung);
-		panel_TNK_01.add(panel, BorderLayout.EAST);
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
+		panel_TNK_Content.add(Box.createVerticalGlue());
 
-		JPanel panel_TNK_confirm = new JPanel();
-		panel_TNK_confirm.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTNK.add(panel_TNK_confirm, BorderLayout.SOUTH);
-		panel_TNK_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		// Khu vực confirm
+		JPanel panel_TNK_Confirm = new JPanel();
+		panel_TNK_Confirm.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTNK.add(panel_TNK_Confirm, BorderLayout.SOUTH);
+		panel_TNK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
 		btn_TNK_Yes = new JButton("Thêm");
 		btn_TNK_Yes.setToolTipText("");
@@ -271,7 +301,7 @@ public class ThemNhanKhau extends JPanel {
 		btn_TNK_Yes.setForeground(Color.WHITE);
 		btn_TNK_Yes.setOpaque(true);
 		btn_TNK_Yes.setBorderPainted(false);
-		panel_TNK_confirm.add(btn_TNK_Yes);
+		panel_TNK_Confirm.add(btn_TNK_Yes);
 
 		btn_TNK_No = new JButton("Hủy");
 		btn_TNK_No.setToolTipText("");
@@ -285,40 +315,7 @@ public class ThemNhanKhau extends JPanel {
 				mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
 			}
 		});
-		panel_TNK_confirm.add(btn_TNK_No);
-
-		JPanel panel_TNK_Dem = new JPanel();
-		panel_TNK_Dem.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTNK.add(panel_TNK_Dem, BorderLayout.NORTH);
-		panel_TNK_Dem.setLayout(new BorderLayout(10, 10));
-
-		btn_TNK_NhapFile = new JButton("Chọn file");
-		btn_TNK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel_TNK_Dem.add(btn_TNK_NhapFile, BorderLayout.WEST);
-
-		JPanel panel_TNK_NhapFile_dem = new JPanel();
-		panel_TNK_NhapFile_dem.setBackground(Colors.khung_Chung);
-		panel_TNK_Dem.add(panel_TNK_NhapFile_dem, BorderLayout.NORTH);
-
-		JPanel panel_TNK_NhapFile_dem2 = new JPanel();
-		panel_TNK_NhapFile_dem2.setBackground(Colors.khung_Chung);
-		panel_TNK_Dem.add(panel_TNK_NhapFile_dem2, BorderLayout.SOUTH);
-
-		lblTenFileDaChon = new JLabel("Chưa chọn file");
-		lblTenFileDaChon.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel_TNK_Dem.add(lblTenFileDaChon, BorderLayout.CENTER);
-
-
-
-		JPanel panel_TNK_title = new JPanel();
-		panel_TNK_title.setBackground(Colors.nen_Chung);
-		panel_ThemNhanKhau.add(panel_TNK_title, BorderLayout.NORTH);
-		panel_TNK_title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-
-		JLabel lbl_Title_ThemNhanKhau = new JLabel("Thêm nhân khẩu");
-		lbl_Title_ThemNhanKhau.setBackground(Colors.nen_Chung);
-		lbl_Title_ThemNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
-		panel_TNK_title.add(lbl_Title_ThemNhanKhau);
+		panel_TNK_Confirm.add(btn_TNK_No);
 
 		themNhanKhauController = new ThemNhanKhauController(this);
 		setVisible(true);
@@ -338,7 +335,6 @@ public class ThemNhanKhau extends JPanel {
 	public static JLabel getLblTenFileDaChon() {
 		return lblTenFileDaChon;
 	}
-
 	private void populateYears(JComboBox comboBox) {
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 		for (int year = 1900; year <= currentYear; year++) {
@@ -386,18 +382,18 @@ public class ThemNhanKhau extends JPanel {
 
 	public int getData() {
 		// Lấy dữ liệu từ các trường nhập liệu
-		String hoTen = textField_TNK_CotPhai_02.getText();
-		String soCMNDCCCD = textField_TNK_CotPhai_03.getText();
+		String hoTen = textField_TNK_Content_HoTen.getText();
+		String soCMNDCCCD = textField_TNK_Content_CCCD.getText();
 		String gioiTinh = "";
-		if (rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_01.isSelected()) {
+		if (rdbtn_TNK_Content_GioiTinh_Nam.isSelected()) {
 			gioiTinh = "Nam";
-		} else if (rdbtn_TNK_CotPhai_NhanKhau_GioiTinh_02.isSelected()) {
+		} else if (rdbtn_TNK_Content_GioiTinh_Nu.isSelected()) {
 			gioiTinh = "Nữ";
 		}
-		String ngaySinh = getFormattedDate(comboBox_TNK_CotPhai_NhanKhau_Nam, comboBox_TNK_CotPhai_NhanKhau_Thang, comboBox_TNK_CotPhai_NhanKhau_Ngay);
-		String tonGiao = textField_TNK_CotPhai_04.getText();
-		String queQuan = textField_TNK_CotPhai_05.getText();
-		String maHoKhau = textField_TNK_CotPhai_06.getText();
+		String ngaySinh = getFormattedDate(comboBox_TNK_Content_NgaySinh_Nam, comboBox_TNK_Content_NgaySinh_Thang, comboBox_TNK_Content_NgaySinh_Ngay);
+		String tonGiao = textField_TNK_Content_TonGiao.getText();
+		String queQuan = textField_TNK_Content_QueQuan.getText();
+		String maHoKhau = textField_TNK_Content_MaHoKhau.getText();
 
 		// Kiểm tra các trường thông tin bắt buộc
 		if (hoTen.isEmpty() || soCMNDCCCD.isEmpty() || gioiTinh.isEmpty() || maHoKhau.isEmpty()) {
