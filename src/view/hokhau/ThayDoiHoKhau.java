@@ -268,7 +268,6 @@ public class ThayDoiHoKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 30;
 		panel_TDHK_02_ThongTinHienTai.setLayout(new BorderLayout(10, 10));
-		viewport.setBackground(Colors.khung_Chung);
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
 		// loadDataFromDatabase();
@@ -321,6 +320,7 @@ public class ThayDoiHoKhau extends JPanel {
 		table.setForeground(Colors.mau_Text_QLHK);
 		JViewport viewport = scrollPane.getViewport();
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
+		viewport.setBackground(Colors.khung_Chung);
 
 		JButton btn_THK_Yes = new JButton("Thêm");
 		btn_THK_Yes.setMinimumSize(new Dimension(50, 23));
