@@ -27,7 +27,7 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 
 		JPanel panel_SB_QLPT = new JPanel();
 		add(panel_SB_QLPT, "name_422097596483300");
-		panel_SB_QLPT.setLayout(new GridLayout(11, 1, 0, 0));
+		panel_SB_QLPT.setLayout(new GridLayout(12, 1, 0, 0));
 		panel_SB_QLPT.setBackground(Colors.menu_Trai);
 
 		JButton btn_SB_QLPT = new JButton("  Quản lý phát thưởng");
@@ -133,6 +133,14 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		panel_SB_QLKC_dem_1.setBackground(Colors.menu_Trai);
 		panel_SB_QLPT.add(panel_SB_QLKC_dem_1);
 
+		JPanel panel_SB_QLKC_dem_3 = new JPanel();
+		panel_SB_QLKC_dem_3.setBackground((Color) null);
+		panel_SB_QLPT.add(panel_SB_QLKC_dem_3);
+
+		JPanel panel_SB_QLKC_dem_4 = new JPanel();
+		panel_SB_QLKC_dem_4.setBackground((Color) null);
+		panel_SB_QLPT.add(panel_SB_QLKC_dem_4);
+
 		JButton btn_SB_QLKC_Back = new JButton("Quay lại");
 		btn_SB_QLKC_Back.setHorizontalAlignment(SwingConstants.CENTER);
 		btn_SB_QLKC_Back.setFont(new Font("Arial", Font.BOLD, 20));
@@ -145,14 +153,6 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 				mainFrame.switchPanel("ButtonsPanel");
 			}
 		});
-		
-		JPanel panel_SB_QLKC_dem_3 = new JPanel();
-		panel_SB_QLKC_dem_3.setBackground((Color) null);
-		panel_SB_QLPT.add(panel_SB_QLKC_dem_3);
-		
-		JPanel panel_SB_QLKC_dem_4 = new JPanel();
-		panel_SB_QLKC_dem_4.setBackground((Color) null);
-		panel_SB_QLPT.add(panel_SB_QLKC_dem_4);
 
 		panel_SB_QLPT.add(btn_SB_QLKC_Back);
 	}

@@ -229,9 +229,7 @@ public class CapNhatChinhSach extends JPanel {
         panel_CNCS_Content_HocTap.setBackground(Colors.khung_Chung);
         panel_CNCS_Content.add(panel_CNCS_Content_HocTap);
         panel_CNCS_Content_HocTap.setLayout(new BoxLayout(panel_CNCS_Content_HocTap, BoxLayout.Y_AXIS));
-        for (int i = 1; i <= 10; i++) {
-            comboBox_CNCS_Content_HocTap_SoLuong.addItem(i);
-        }
+
 
         // In lớp
         JPanel panel_CNCS_Content_HocTap_Lop = new JPanel();
