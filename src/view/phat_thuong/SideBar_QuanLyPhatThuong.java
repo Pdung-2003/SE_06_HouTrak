@@ -27,7 +27,7 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 
 		JPanel panel_SB_QLPT = new JPanel();
 		add(panel_SB_QLPT, "name_422097596483300");
-		panel_SB_QLPT.setLayout(new GridLayout(11, 1, 0, 0));
+		panel_SB_QLPT.setLayout(new GridLayout(12, 1, 0, 0));
 		panel_SB_QLPT.setBackground(Colors.menu_Trai);
 
 		JButton btn_SB_QLPT = new JButton("  Quản lý phát thưởng");
@@ -72,19 +72,32 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		});
 		panel_SB_QLPT.add(btn_SB_QLPT_XHS);
 
-		JButton btn_SB_QLPT_CNCS = new JButton("  Cập nhật chính sách");
-		btn_SB_QLPT_CNCS.setHorizontalAlignment(SwingConstants.LEFT);
-		btn_SB_QLPT_CNCS.setFont(new Font("Arial", Font.BOLD, 20));
-		btn_SB_QLPT_CNCS.setBackground(Colors.menu_Trai);
-		btn_SB_QLPT_CNCS.setForeground(Color.WHITE);
-		btn_SB_QLPT_CNCS.setOpaque(true);
-		btn_SB_QLPT_CNCS.setBorder(matteBorder);
-		btn_SB_QLPT_CNCS.addActionListener(e -> {
-			CapNhatChinhSachPhatThuong capNhatChinhSachPhatThuongPanel = new CapNhatChinhSachPhatThuong(mainFrame);
+		JButton btn_SB_QLPT_TCS = new JButton("  Tạo chính sách");
+		btn_SB_QLPT_TCS.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLPT_TCS.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_SB_QLPT_TCS.setBackground(Colors.menu_Trai);
+		btn_SB_QLPT_TCS.setForeground(Color.WHITE);
+		btn_SB_QLPT_TCS.setOpaque(true);
+		btn_SB_QLPT_TCS.setBorder(matteBorder);
+		btn_SB_QLPT_TCS.addActionListener(e -> {
+			TaoChinhSachPhatThuong taoChinhSachPhatThuongPanel = new TaoChinhSachPhatThuong(mainFrame);
+			mainFrame.switchToMainPanel(taoChinhSachPhatThuongPanel);
+		});
+		panel_SB_QLPT.add(btn_SB_QLPT_TCS);
+
+		JButton btn_SB_QLPT_CNCSPT = new JButton("  Cập nhật chính sách phát thưởng");
+		btn_SB_QLPT_CNCSPT.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLPT_CNCSPT.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_SB_QLPT_CNCSPT.setBackground(Colors.menu_Trai);
+		btn_SB_QLPT_CNCSPT.setForeground(Color.WHITE);
+		btn_SB_QLPT_CNCSPT.setOpaque(true);
+
+		btn_SB_QLPT_CNCSPT.setBorder(matteBorder);
+		btn_SB_QLPT_CNCSPT.addActionListener(e -> {
+			CapNhatChinhSach capNhatChinhSachPhatThuongPanel = new CapNhatChinhSach(mainFrame);
 			mainFrame.switchToMainPanel(capNhatChinhSachPhatThuongPanel);
 		});
-		panel_SB_QLPT.add(btn_SB_QLPT_CNCS);
-
+		panel_SB_QLPT.add(btn_SB_QLPT_CNCSPT);
 
 		JButton btn_SB_QLPT_InCSPT = new JButton("  Xem chính sách phát thưởng");
 		btn_SB_QLPT_InCSPT.setHorizontalAlignment(SwingConstants.LEFT);
@@ -93,10 +106,10 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		btn_SB_QLPT_InCSPT.setForeground(Color.WHITE);
 		btn_SB_QLPT_InCSPT.setOpaque(true);
 		btn_SB_QLPT_InCSPT.setBorder(matteBorder);
-//		btn_SB_QLKC_XKC.addActionListener(e -> {
-//			InRaChinhSachPhatThuong inRaChinhSachPhatThuongPanel = new InRaChinhSachPhatThuong();
-//			mainFrame.switchToMainPanel(inRaChinhSachPhatThuongPanel);
-//		});
+		btn_SB_QLPT_InCSPT.addActionListener(e -> {
+			XemChinhSachPhatThuong xemChinhSachPhatThuongPanel = new XemChinhSachPhatThuong();
+			mainFrame.switchToMainPanel(xemChinhSachPhatThuongPanel);
+		});
 		panel_SB_QLPT.add(btn_SB_QLPT_InCSPT);
 		JButton btn_SB_QLPT_TKPT = new JButton("  Thống kê phát thưởng");
 		btn_SB_QLPT_TKPT.setHorizontalAlignment(SwingConstants.LEFT);
@@ -120,6 +133,14 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		panel_SB_QLKC_dem_1.setBackground(Colors.menu_Trai);
 		panel_SB_QLPT.add(panel_SB_QLKC_dem_1);
 
+		JPanel panel_SB_QLKC_dem_3 = new JPanel();
+		panel_SB_QLKC_dem_3.setBackground((Color) null);
+		panel_SB_QLPT.add(panel_SB_QLKC_dem_3);
+
+		JPanel panel_SB_QLKC_dem_4 = new JPanel();
+		panel_SB_QLKC_dem_4.setBackground((Color) null);
+		panel_SB_QLPT.add(panel_SB_QLKC_dem_4);
+
 		JButton btn_SB_QLKC_Back = new JButton("Quay lại");
 		btn_SB_QLKC_Back.setHorizontalAlignment(SwingConstants.CENTER);
 		btn_SB_QLKC_Back.setFont(new Font("Arial", Font.BOLD, 20));
@@ -132,14 +153,6 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 				mainFrame.switchPanel("ButtonsPanel");
 			}
 		});
-		
-		JPanel panel_SB_QLKC_dem_3 = new JPanel();
-		panel_SB_QLKC_dem_3.setBackground((Color) null);
-		panel_SB_QLPT.add(panel_SB_QLKC_dem_3);
-		
-		JPanel panel_SB_QLKC_dem_4 = new JPanel();
-		panel_SB_QLKC_dem_4.setBackground((Color) null);
-		panel_SB_QLPT.add(panel_SB_QLKC_dem_4);
 
 		panel_SB_QLPT.add(btn_SB_QLKC_Back);
 	}

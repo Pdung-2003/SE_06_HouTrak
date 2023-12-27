@@ -154,6 +154,25 @@ CREATE TABLE ChinhSachThuong (
 	PhanThuong NVARCHAR(50),
 	SoLuong INT,
 );
+ALTER TABLE ChinhSachThuong
+DROP COLUMN DoiTuong;
+ALTER TABLE ChinhSachThuong
+ADD Date DATE
+ALTER TABLE ChinhSachThuong
+ADD SoTien DECIMAL(10,2)
+-- 16. Tạo bảng ChinhSachThuong ngay le
+CREATE TABLE ChinhSachThuongLe (
+	STT INT IDENTITY(1, 1),
+    MaChinhSach AS CONVERT(NVARCHAR(10), 'MTL' + RIGHT('0000' + CAST(STT AS VARCHAR(5)), 5)) PERSISTED PRIMARY KEY,
+	NgayLe NVARCHAR(50),
+	Tuoi INT,
+	PhanThuong NVARCHAR(50),
+	SoLuong INT,
+);
+ALTER TABLE ChinhSachThuongLe
+ADD SoTien DECIMAL(10,2)
+ALTER TABLE ChinhSachThuongLe
+ADD Date DATE
 
 -- Insert dữ liệu 
 INSERT INTO HoKhau (HoTenChuHo, NgayLap, DiaChi, KhuVuc)
