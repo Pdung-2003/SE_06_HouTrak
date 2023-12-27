@@ -1,28 +1,25 @@
 package view.dangnhap;
 
-import java.awt.*;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
 import view.chi.QuanLyKhoanChi;
 import view.chi.SideBar_QuanLyKhoanChi;
 import view.hokhau.QuanLyHoKhau;
-import view.nhankhau.QuanLyNhanKhau;
 import view.hokhau.SideBar_QuanLyHoKhau;
+import view.nhankhau.QuanLyNhanKhau;
 import view.nhankhau.SideBar_QuanLyNhanKhau;
-import view.phat_thuong.*;
+import view.phat_thuong.QuanLyPhatThuong;
+import view.phat_thuong.SideBar_QuanLyPhatThuong;
 import view.settings.Colors;
 import view.taikhoan.QuanLyTaiKhoan;
 import view.taikhoan.SideBar_QuanLyTaiKhoan;
 import view.thu.QuanLyKhoanThu;
 import view.thu.SideBar_QuanLyKhoanThu;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ManHinhChinh extends JFrame {
 
@@ -119,7 +116,17 @@ public class ManHinhChinh extends JFrame {
 		panel.add(btnHoTro);
 		panel.add(btnThongTin);
 		panel.add(btnDangXuat);
-
+		btnDangXuat.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất?", "Xác nhận đăng xuất", JOptionPane.YES_NO_OPTION);
+				if (choice == JOptionPane.YES_OPTION) {
+					dispose();
+					SignIn signIn = new SignIn(); // Tạo instance của lớp SignIn
+					signIn.setVisible(true); // Hiển thị lớp SignIn
+				}
+			}
+		});
 
 		cardLayout = new CardLayout(0,0);
 		cardLayout_trung_tam = new CardLayout(30,30);
