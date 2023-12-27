@@ -71,10 +71,10 @@ public class ThemHoKhau extends JPanel {
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new CardLayout(0, 0));
 
 		JPanel panel_ThemHoKhau = new JPanel();
-		add(panel_ThemHoKhau, "name_164133985078600");
+		add(panel_ThemHoKhau, "name_1099989259338400");
 		panel_ThemHoKhau.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_KhungNoiDungTHK = new JPanel();
