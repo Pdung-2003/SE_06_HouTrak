@@ -1,10 +1,19 @@
 package view.phat_thuong;
 
+import model.CsThuongHS;
+import model.CsThuongLe;
+import model.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -12,27 +21,27 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import static model.DatabaseConnector.*;
 import java.awt.Component;
+import java.util.List;
 
 public class CapNhatChinhSach extends JPanel {
     private final ManHinhChinh mainFrame;
-    private JTextField textField_CNCSPT_CotPhai_Ten_SinhVien_XuatSac;
     private JComboBox<Integer> comboBox_CNCS_Content_HocTap_SoLuong;
-    private JComboBox<Integer> comboBox_CNCS_Content_SinhVien_SoLuong;
     private JTextField textField_CNCS_Content_HocTap_PhanThuong;
-    private JTextField textField_CNCS_Content_SinhVien_PhanThuong;
     private JTextField textField_CNCS_Content_DipLe_PhanThuong;
     private JTextField textField_CNCS_Search_Bar;
     private CardLayout cardLayout;
     private JPanel panel_CNCS_Content;
     private JTextField textField_CNCS_Content_DipLe_TienTuongUng;
     private JTextField textField_CNCS_Content_HocTap_TienTuongUng;
+    private JTable table;
+    private DefaultTableModel tableModel;
 
     public CapNhatChinhSach(ManHinhChinh mainFrame) {
         cardLayout = new CardLayout();
@@ -83,6 +92,7 @@ public class CapNhatChinhSach extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedItem = (String) comboBox_CNCS_Search_Method.getSelectedItem();
+                setTableColumns(selectedItem);
                 if (selectedItem.equals("Dịp lễ")) {
                     cardLayout.show(panel_CNCS_Content, "DipLe");
                 } else if (selectedItem.equals("Học tập")) {
@@ -117,6 +127,18 @@ public class CapNhatChinhSach extends JPanel {
         btn_CNCS_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNCS_Search_Bar.add(btn_CNCS_Search_Bar, BorderLayout.EAST);
 
+        btn_CNCS_Search_Bar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                String selectedItem = (String) comboBox_CNCS_Search_Method.getSelectedItem();
+                setTableColumns(selectedItem);
+                if (selectedItem.equals("Dịp lễ")) {
+                    populateTable(tableModel);
+                } else if (selectedItem.equals("Học tập")) {
+                    populateTableThuongHs(tableModel);
+                }
+            }
+        });
+
         // Khu vực sắp xếp
         JPanel panel_CNCS_Search_Sort = new JPanel();
         panel_CNCS_Search.add(panel_CNCS_Search_Sort, BorderLayout.SOUTH);
@@ -125,6 +147,49 @@ public class CapNhatChinhSach extends JPanel {
         // In bảng kết quả tìm kiếm
         JPanel panel_CNCS_Table = new JPanel();
         panel_KhungNoiDungCNCS.add(panel_CNCS_Table, BorderLayout.CENTER);
+
+        // Tạo bảng và mô hình bảng
+        tableModel = new DefaultTableModel();
+
+        // Tạo JTable với mô hình bảng đã tạo
+        int rowHeight = 40;
+        table = new JTable(tableModel);
+        // Đặt màu sắc cho header của bảng
+        JTableHeader header = table.getTableHeader();
+
+        // In đậm chữ ở header và đặt font
+        table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(
+                    JTable table, Object value,
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                label.setFont(label.getFont().deriveFont(Font.BOLD));
+                label.setBackground(Colors.mau_Header);
+                label.setForeground(Colors.mau_Text_QLHK);
+                return label;
+            }
+        });
+
+        table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+        panel_CNCS_Table.setLayout(new BorderLayout(10, 10));
+        table.setFont(new Font("Arial", Font.PLAIN, 15));
+
+        // Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(1400, 700));
+
+        // Đặt màu sắc cho background của bảng
+        table.setBackground(Colors.mau_Nen_QLHK);
+        table.setForeground(Colors.mau_Text_QLHK);
+        scrollPane.setBackground(Colors.khung_Chung);
+
+        // Thêm JScrollPane vào panel
+        panel_CNCS_Table.add(scrollPane, BorderLayout.CENTER);
+        JViewport viewport = scrollPane.getViewport();
+        viewport.setBackground(Colors.khung_Chung);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
         // Nội dung chính
         panel_CNCS_Content = new JPanel();
@@ -434,12 +499,68 @@ public class CapNhatChinhSach extends JPanel {
         add(panel_CNCS_Dem_2, BorderLayout.EAST);
 
         setVisible(true);
-    }
-    /*public JButton getBtn_TNK_Yes() {return btn_CNCS_Yes;}
-    public JButton getBtn_TNK_No() {
-        return btn_CNCS_No;
-    }*/
 
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String selectedItem = (String) comboBox_CNCS_Search_Method.getSelectedItem();
+                    int selectedRow = table.getSelectedRow();
+
+                    // Ensure a row is actually selected
+                    if (selectedRow != -1) {
+                        // Use the retrieved data as needed
+                        if (selectedItem.equals("Dịp lễ")) {
+                            String col1 = (String) table.getValueAt(selectedRow, 0);
+                            String col2 = (String) table.getValueAt(selectedRow, 1);
+                            Date col3 = (Date) table.getValueAt(selectedRow, 2);
+                            int col4 = (int) table.getValueAt(selectedRow, 3);
+                            String col5 = (String) table.getValueAt(selectedRow, 4);
+                            int col6 = (int) table.getValueAt(selectedRow, 5);
+                            float col7 = (float) table.getValueAt(selectedRow, 6);
+                            String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(col3);
+                            String[] parts = formattedDate.split("-");
+                            String nam = parts[0];
+                            String thang = parts[1];
+                            String ngay = parts[2];
+
+                            lbl_CNCS_Content_DipLe_Ten_TraVe.setText(col2);
+                            lbl_CNCS_Content_DipLe_Tuoi_TraVe.setText(String.valueOf(col4));
+                            textField_CNCS_Content_DipLe_PhanThuong.setText(col5);
+                            textField_CNCS_Content_DipLe_TienTuongUng.setText(String.valueOf(col7));
+                            comboBox_CNCS_Content_DipLe_SoLuong.setSelectedItem(col6);
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setSelectedItem(Integer.parseInt(nam));
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.setSelectedItem(Integer.parseInt(thang));
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay.setSelectedItem(Integer.parseInt(ngay));
+
+                        } else if (selectedItem.equals("Học tập")) {
+                            String col1 = (String) table.getValueAt(selectedRow, 0);
+                            String col2 = (String) table.getValueAt(selectedRow, 1);
+                            Date col3 = (Date) table.getValueAt(selectedRow, 2);
+                            int col4 = (int) table.getValueAt(selectedRow, 3);
+                            String col5 = (String) table.getValueAt(selectedRow, 4);
+                            int col6 = (int) table.getValueAt(selectedRow, 5);
+                            float col7 = (float) table.getValueAt(selectedRow, 6);
+                            String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(col3);
+                            String[] parts = formattedDate.split("-");
+                            String nam = parts[0];
+                            String thang = parts[1];
+                            String ngay = parts[2];
+
+                            lbl_CNCS_Content_DipLe_Ten_TraVe.setText(col2);
+                            lbl_CNCS_Content_DipLe_Tuoi_TraVe.setText(String.valueOf(col4));
+                            textField_CNCS_Content_DipLe_PhanThuong.setText(col5);
+                            textField_CNCS_Content_DipLe_TienTuongUng.setText(String.valueOf(col7));
+                            comboBox_CNCS_Content_DipLe_SoLuong.setSelectedItem(col6);
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setSelectedItem(Integer.parseInt(nam));
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.setSelectedItem(Integer.parseInt(thang));
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay.setSelectedItem(Integer.parseInt(ngay));
+                        }
+                    }
+                }
+            }
+        });
+    }
     public ManHinhChinh getMainFrame() {
         return mainFrame;
     }
@@ -449,7 +570,6 @@ public class CapNhatChinhSach extends JPanel {
             comboBox.addItem(year);
         }
     }
-
     private void populateMonths(JComboBox comboBox) {
         for (int month = 1; month <= 12; month++) {
             comboBox.addItem(month);
@@ -471,5 +591,70 @@ public class CapNhatChinhSach extends JPanel {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    private void setTableColumns(String selectedNenTang) {
+        tableModel.setRowCount(0);
+        tableModel.setColumnCount(0);
+        // Thêm các cột mới tùy thuộc vào giá trị được chọn
+        switch (selectedNenTang) {
+            case "Dịp lễ" -> {
+                tableModel.addColumn("Mã chính sách");
+                tableModel.addColumn("Ngày lễ");
+                tableModel.addColumn("Thời gian");
+                tableModel.addColumn("Trẻ em (tuổi)");
+                tableModel.addColumn("Phần thưởng");
+                tableModel.addColumn("Số lượng");
+                tableModel.addColumn("Số tiền");
+            }
+            case "Học tập" -> {
+                tableModel.addColumn("Mã chính sách");
+                tableModel.addColumn("Học sinh (lớp)");
+                tableModel.addColumn("Học lực");
+                tableModel.addColumn("Phần thưởng");
+                tableModel.addColumn("Số lượng");
+                tableModel.addColumn("Số tiền");
+                tableModel.addColumn("Thời gian");
+            }
+            default -> System.out.println("Không xác định được nền tảng.");
+        }
+    }
+    public void populateTable(DefaultTableModel tableModel) {
+        // Clear existing data
+        tableModel.setRowCount(0);
+        List<CsThuongLe> dsCs = DatabaseConnector.searchThuongLe(textField_CNCS_Search_Bar.getText());
+
+        // Populate the table with the fetched data
+        for (CsThuongLe csThuong : dsCs) {
+            Object[] rowData = {
+                    csThuong.getMaChinhSach(),
+                    csThuong.getNgayLe(),
+                    csThuong.getThoiGian(),
+                    csThuong.getTuoi(),
+                    csThuong.getPhanThuong(),
+                    csThuong.getSoLuong(),
+                    csThuong.getSoTien()
+            };
+            tableModel.addRow(rowData);
+        }
+    }
+    public void populateTableThuongHs(DefaultTableModel tableModel) {
+        // Clear existing data
+        tableModel.setRowCount(0);
+        List<CsThuongHS> dsCs = DatabaseConnector.searchThuongHS(Integer.parseInt(textField_CNCS_Search_Bar.getText()));
+
+        // Populate the table with the fetched data
+        for (CsThuongHS csThuong : dsCs) {
+            Object[] rowData = {
+                    csThuong.getMaChinhSach(),
+                    csThuong.getLop(),
+                    csThuong.getHocLuc(),
+                    csThuong.getPhanThuong(),
+                    csThuong.getSoLuong(),
+                    csThuong.getSoTien(),
+                    csThuong.getThoiGian()
+            };
+            tableModel.addRow(rowData);
+        }
     }
 }

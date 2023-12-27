@@ -1215,11 +1215,11 @@ public class DatabaseConnector {
         return false;
     }
     // 4. Search
-    public static List<CsThuongLe> searchThuongHS(String le) {
+    public static List<CsThuongLe> searchThuongLe(String le) {
         List<CsThuongLe> dsThuong = new ArrayList<>();
 
         try (Connection conn = ds.getConnection()) {
-            String query = "SELECT * FROM ChinhSachThuong WHERE NgayLe LIKE ?";
+            String query = "SELECT * FROM ChinhSachThuongLe WHERE NgayLe LIKE ?";
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, "%" + le + "%");
@@ -1249,7 +1249,7 @@ public class DatabaseConnector {
         List<CsThuongHS> dsThuong = new ArrayList<>();
 
         try (Connection conn = ds.getConnection()) {
-            String query = "SELECT * FROM ChinhSachThuongLe WHERE Lop = ?";
+            String query = "SELECT * FROM ChinhSachThuong WHERE Lop = ?";
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setInt(1, x);

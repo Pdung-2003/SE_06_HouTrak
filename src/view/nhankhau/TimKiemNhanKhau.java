@@ -138,7 +138,7 @@ public class TimKiemNhanKhau extends JPanel {
 			}
 		});
 
-//		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 		panel_TKNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
@@ -197,26 +197,26 @@ public class TimKiemNhanKhau extends JPanel {
 					return;
 				}
 
-//				switch (selectedItem) {
-//					case "Tìm kiếm theo tên":
-//						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo ngày sinh":
-//						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo số CMND":
-//						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo mã nhân khẩu":
-//						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo mã hộ khẩu":
-//						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
-//						break;
-//						default:
-//						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
-//						break;
-//				}
+				switch (selectedItem) {
+					case "Tìm kiếm theo tên":
+						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo ngày sinh":
+						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo số CMND":
+						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo mã nhân khẩu":
+						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo mã hộ khẩu":
+						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
+						break;
+						default:
+						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
+						break;
+				}
 			}
 		});
 
