@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -56,6 +58,27 @@ public class XemChinhSachPhatThuong extends JPanel {
         panel_XCSPT_Content_Title.setBackground(Colors.khung_Chung);
         panel_XCSPT_Content.add(panel_XCSPT_Content_Title, BorderLayout.NORTH);
         panel_XCSPT_Content_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+        JLabel lbl_CNCS_XemTheo = new JLabel("Xem theo: ");
+        lbl_CNCS_XemTheo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel_XCSPT_Content_Title.add(lbl_CNCS_XemTheo);
+
+        JComboBox comboBox_XemCS_XemTheo = new JComboBox();
+        comboBox_XemCS_XemTheo.addItem("Dịp lễ");
+        comboBox_XemCS_XemTheo.addItem("Học tập");
+        comboBox_XemCS_XemTheo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) comboBox_XemCS_XemTheo.getSelectedItem();
+                if (selectedItem.equals("Dịp lễ")) {
+                    // nếu là dịp lễ thao tác ở đây ....
+                } else if (selectedItem.equals("Học tập")) {
+                    // nếu là học tập thao tác ở đây
+                }
+            }
+        });
+        comboBox_XemCS_XemTheo.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel_XCSPT_Content_Title.add(comboBox_XemCS_XemTheo);
 
         JLabel lbl_XCSPT_Content_Title = new JLabel("Danh sách chính sách hiện tại: ");
         lbl_XCSPT_Content_Title.setFont(new Font("Arial", Font.PLAIN, 16));
