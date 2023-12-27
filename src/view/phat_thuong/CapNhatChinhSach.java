@@ -24,7 +24,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.awt.Component;
@@ -42,6 +44,7 @@ public class CapNhatChinhSach extends JPanel {
     private JTextField textField_CNCS_Content_HocTap_TienTuongUng;
     private JTable table;
     private DefaultTableModel tableModel;
+    private String maChinhSach;
 
     public CapNhatChinhSach(ManHinhChinh mainFrame) {
         cardLayout = new CardLayout();
@@ -329,6 +332,42 @@ public class CapNhatChinhSach extends JPanel {
         btn_CNCS_Yes.setBorderPainted(false);
         btn_CNCS_Yes.setBackground(Colors.button_XacNhan);
         panel_CNCS_DipLe_Confirm.add(btn_CNCS_Yes);
+        btn_CNCS_Yes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textField_CNCS_Content_DipLe_PhanThuong.getText().isEmpty() || textField_CNCS_Content_DipLe_TienTuongUng.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Không được bỏ trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn cập nhật chính sách?", "Xác nhận cập nhật", JOptionPane.YES_NO_OPTION);
+                    String phanThuong = textField_CNCS_Content_DipLe_PhanThuong.getText();
+                    float soTien = Float.parseFloat(textField_CNCS_Content_DipLe_TienTuongUng.getText());
+                    int soLuong = Integer.parseInt(String.valueOf(comboBox_CNCS_Content_DipLe_SoLuong.getSelectedIndex())) + 1;
+                    int nam = Integer.parseInt(String.valueOf(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.getSelectedIndex())) + 1900;
+                    System.out.println(nam);
+                    int thang = Integer.parseInt(String.valueOf(comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.getSelectedItem()));
+                    int ngay = Integer.parseInt(String.valueOf(comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay.getSelectedItem()));
+                    // Sử dụng Calendar để tạo java.sql.Date
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.YEAR, nam);
+                    calendar.set(Calendar.MONTH, thang - 1); // Tháng trong Calendar bắt đầu từ 0
+                    calendar.set(Calendar.DAY_OF_MONTH, ngay);
+
+                    java.sql.Date sqlDate = new java.sql.Date(calendar.getTimeInMillis());
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String thoiGian = dateFormat.format(sqlDate);
+                    if (dialogResult == JOptionPane.YES_OPTION) {
+                        // Thực hiện câu lệnh UPDATE ở đây
+                        boolean check = DatabaseConnector.updateThuongLe(phanThuong, soLuong, soTien, Date.valueOf(thoiGian), maChinhSach);
+                        if(check) {
+                            JOptionPane.showMessageDialog(null, "Cập nhật chính sách thành công!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Cập nhật chính sách thất bại!");
+                        }
+                    }
+                }
+            }
+        });
 
         JButton btn_CNCS_No = new JButton("Hủy");
         btn_CNCS_No.setOpaque(true);
@@ -450,7 +489,7 @@ public class CapNhatChinhSach extends JPanel {
 
         comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.addActionListener(e -> updateDays(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap, comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap, comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap));
         comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.addActionListener(e -> updateDays(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap, comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap, comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap));
-        updateDays(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam, comboBox_TKPT_Filter_Content_TimePhatThuong_Thang, comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay);
+        updateDays(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap, comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap, comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap);
         panel_CNCS_Content_HocTap.add(Box.createVerticalGlue());
         panel_CNCS_Content_HocTap.add(Box.createVerticalGlue());
         panel_CNCS_Content_HocTap.add(Box.createVerticalGlue());
@@ -474,6 +513,42 @@ public class CapNhatChinhSach extends JPanel {
         btn_CNCS_HocTap_Yes.setBackground(Colors.button_XacNhan);
         panel_CNCS_HocTap_Confirm.add(btn_CNCS_HocTap_Yes);
 
+        btn_CNCS_HocTap_Yes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textField_CNCS_Content_HocTap_TienTuongUng.getText().isEmpty() || textField_CNCS_Content_HocTap_PhanThuong.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Không được bỏ trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn cập nhật chính sách?", "Xác nhận cập nhật", JOptionPane.YES_NO_OPTION);
+                    String phanThuong = textField_CNCS_Content_HocTap_PhanThuong.getText();
+                    float soTien = Float.parseFloat(textField_CNCS_Content_HocTap_TienTuongUng.getText());
+                    int soLuong = Integer.parseInt(String.valueOf(comboBox_CNCS_Content_HocTap_SoLuong.getSelectedIndex())) + 1;
+                    int nam = Integer.parseInt(String.valueOf(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap.getSelectedIndex())) + 1900;
+                    System.out.println(nam);
+                    int thang = Integer.parseInt(String.valueOf(comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.getSelectedItem()));
+                    int ngay = Integer.parseInt(String.valueOf(comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap.getSelectedItem()));
+                    // Sử dụng Calendar để tạo java.sql.Date
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.YEAR, nam);
+                    calendar.set(Calendar.MONTH, thang - 1); // Tháng trong Calendar bắt đầu từ 0
+                    calendar.set(Calendar.DAY_OF_MONTH, ngay);
+
+                    java.sql.Date sqlDate = new java.sql.Date(calendar.getTimeInMillis());
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String thoiGian = dateFormat.format(sqlDate);
+                    if (dialogResult == JOptionPane.YES_OPTION) {
+                        // Thực hiện câu lệnh UPDATE ở đây
+                        boolean check = DatabaseConnector.updateThuongHS(phanThuong, soLuong, soTien, Date.valueOf(thoiGian), maChinhSach);
+                        if(check) {
+                            JOptionPane.showMessageDialog(null, "Cập nhật chính sách thành công!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Cập nhật chính sách thất bại!");
+                        }
+                    }
+                }
+            }
+        });
 
 
         JButton btn_CNCS_HocTap_No = new JButton("Hủy");
@@ -510,31 +585,31 @@ public class CapNhatChinhSach extends JPanel {
                     // Ensure a row is actually selected
                     if (selectedRow != -1) {
                         // Use the retrieved data as needed
-                        if (selectedItem.equals("Dịp lễ")) {
-                            String col1 = (String) table.getValueAt(selectedRow, 0);
-                            String col2 = (String) table.getValueAt(selectedRow, 1);
-                            Date col3 = (Date) table.getValueAt(selectedRow, 2);
-                            int col4 = (int) table.getValueAt(selectedRow, 3);
-                            String col5 = (String) table.getValueAt(selectedRow, 4);
-                            int col6 = (int) table.getValueAt(selectedRow, 5);
-                            float col7 = (float) table.getValueAt(selectedRow, 6);
-                            String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(col3);
+                        if (selectedItem.equals("Học tập")) {
+                            maChinhSach = (String) table.getValueAt(selectedRow, 0);
+                            int col2 = (int) table.getValueAt(selectedRow, 1);
+                            Date col7 = (Date) table.getValueAt(selectedRow, 6);
+                            String col4 = (String) table.getValueAt(selectedRow, 3);
+                            int col5 = (int) table.getValueAt(selectedRow, 4);
+                            String col3 = (String) table.getValueAt(selectedRow, 2);
+                            float col6 = (float) table.getValueAt(selectedRow, 5);
+                            String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(col7);
                             String[] parts = formattedDate.split("-");
                             String nam = parts[0];
                             String thang = parts[1];
                             String ngay = parts[2];
 
-                            lbl_CNCS_Content_DipLe_Ten_TraVe.setText(col2);
-                            lbl_CNCS_Content_DipLe_Tuoi_TraVe.setText(String.valueOf(col4));
-                            textField_CNCS_Content_DipLe_PhanThuong.setText(col5);
-                            textField_CNCS_Content_DipLe_TienTuongUng.setText(String.valueOf(col7));
-                            comboBox_CNCS_Content_DipLe_SoLuong.setSelectedItem(col6);
-                            comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setSelectedItem(Integer.parseInt(nam));
-                            comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.setSelectedItem(Integer.parseInt(thang));
-                            comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay.setSelectedItem(Integer.parseInt(ngay));
+                            lbl_CNCS_Content_HocTap_Lop_Ten.setText(String.valueOf(col2));
+                            lbl_CNCS_Content_HocTap_HocLuc_Ten.setText(String.valueOf(col3));
+                            textField_CNCS_Content_HocTap_PhanThuong.setText(col4);
+                            textField_CNCS_Content_HocTap_TienTuongUng.setText(String.valueOf(col6));
+                            comboBox_CNCS_Content_HocTap_SoLuong.setSelectedItem(col5);
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap.setSelectedItem(Integer.parseInt(nam));
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setSelectedItem(Integer.parseInt(thang));
+                            comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap.setSelectedItem(Integer.parseInt(ngay));
 
-                        } else if (selectedItem.equals("Học tập")) {
-                            String col1 = (String) table.getValueAt(selectedRow, 0);
+                        } else if (selectedItem.equals("Dịp lễ")) {
+                            maChinhSach = (String) table.getValueAt(selectedRow, 0);
                             String col2 = (String) table.getValueAt(selectedRow, 1);
                             Date col3 = (Date) table.getValueAt(selectedRow, 2);
                             int col4 = (int) table.getValueAt(selectedRow, 3);
@@ -641,7 +716,12 @@ public class CapNhatChinhSach extends JPanel {
     public void populateTableThuongHs(DefaultTableModel tableModel) {
         // Clear existing data
         tableModel.setRowCount(0);
-        List<CsThuongHS> dsCs = DatabaseConnector.searchThuongHS(Integer.parseInt(textField_CNCS_Search_Bar.getText()));
+        List<CsThuongHS> dsCs = new ArrayList<>();
+        if (textField_CNCS_Search_Bar.getText().isEmpty()) {
+            dsCs = DatabaseConnector.getDsThuongHs();
+        } else {
+            dsCs = DatabaseConnector.searchThuongHS(Integer.parseInt(textField_CNCS_Search_Bar.getText()));
+        }
 
         // Populate the table with the fetched data
         for (CsThuongHS csThuong : dsCs) {

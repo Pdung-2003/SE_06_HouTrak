@@ -2,6 +2,7 @@ package view.nhankhau;
 
 import controller.nhankhau.TimKiemNhanKhauController;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
