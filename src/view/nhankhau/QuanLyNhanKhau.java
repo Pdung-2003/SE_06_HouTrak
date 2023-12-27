@@ -1,4 +1,4 @@
- package view.nhankhau;
+package view.nhankhau;
 
 import controller.nhankhau.QuanLyNhanKhauController;
 import model.DatabaseConnector;
@@ -41,34 +41,34 @@ public class QuanLyNhanKhau extends JPanel {
 	public QuanLyNhanKhau() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
-		
+		setLayout(new BorderLayout(0, 0));
+
 		JPanel panel_QuanLyNhanKhau = new JPanel();
-		add(panel_QuanLyNhanKhau, "name_191092971211800");
+		add(panel_QuanLyNhanKhau);
 		panel_QuanLyNhanKhau.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLNK_Title = new JPanel();
 		panel_QLNK_Title.setBackground(Colors.nen_Chung);
 		panel_QuanLyNhanKhau.add(panel_QLNK_Title, BorderLayout.NORTH);
 		panel_QLNK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_Title_QuanLyNhanKhau = new JLabel("Thông tin các nhân khẩu      ");
 		lbl_Title_QuanLyNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_Title_QuanLyNhanKhau.setBackground(Colors.nen_Chung);
 		panel_QLNK_Title.add(lbl_Title_QuanLyNhanKhau);
-		
+
 		JPanel panel_KhungNoiDungQLNK = new JPanel();
 		panel_KhungNoiDungQLNK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungQLNK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungQLNK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungQLNK.setBackground(Colors.khung_Chung);
 		panel_QuanLyNhanKhau.add(panel_KhungNoiDungQLNK, BorderLayout.CENTER);
 		panel_KhungNoiDungQLNK.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLNK_02 = new JPanel();
 		panel_QLNK_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungQLNK.add(panel_QLNK_02, BorderLayout.CENTER);
 		panel_QLNK_02.setLayout(new BorderLayout(0, 0));
-		
+
 		panel_QLNK_02_BangThongTin = new JPanel();
 		panel_QLNK_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_QLNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
@@ -88,7 +88,7 @@ public class QuanLyNhanKhau extends JPanel {
 		lbl_QLNK_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLNK_Sort = new JComboBox();
-		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_QLNK_SubTitle.add(comboBox_QLNK_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLNK_Sort.addItem("Sắp xếp theo mã nhân khẩu");
