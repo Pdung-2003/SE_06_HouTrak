@@ -1145,8 +1145,8 @@ public class DatabaseConnector {
                 pstmt.setString(2, hocLuc);
                 pstmt.setString(3, phanThuong);
                 pstmt.setInt(4, soLuong);
-                pstmt.setInt(5, soLuong);
-                pstmt.setInt(6, soLuong);
+                pstmt.setDate(5, thoiGian);
+                pstmt.setFloat(6, soTien);
                 int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
                 return rowsAffected > 0;
             }

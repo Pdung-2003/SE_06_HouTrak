@@ -69,6 +69,7 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_KhoangTrang2.add(lbl_TKHK_CachTim);
 
 		comboBox_TKHK_CachTim = new JComboBox();
+		comboBox_TKHK_CachTim.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo tên chủ hộ");
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo mã hộ khẩu");
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo địa chỉ");
@@ -79,18 +80,10 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_01.add(panel_TKHK_KhoangTrang1, BorderLayout.WEST);
 		panel_TKHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_TKHK_01 = new JLabel("   Nhập thông tin tìm kiếm hộ khẩu: ");
+		JLabel lbl_TKHK_01 = new JLabel("   Nhập thông tin: ");
 		lbl_TKHK_01.setBackground(Colors.khung_Chung);
 		lbl_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKHK_KhoangTrang1.add(lbl_TKHK_01, BorderLayout.CENTER);
-
-		JPanel panel_TKHK_01_dem = new JPanel();
-		panel_TKHK_01_dem.setBackground(Colors.input_Colors);
-		panel_TKHK_KhoangTrang1.add(panel_TKHK_01_dem, BorderLayout.EAST);
-
-		JPanel panel_TKHK_KhoangTrang4 = new JPanel();
-		panel_TKHK_KhoangTrang4.setBackground(Colors.input_Colors);
-		panel_TKHK_01.add(panel_TKHK_KhoangTrang4, BorderLayout.EAST);
 
 		JPanel panel_TKHK_KhoangTrang3 = new JPanel();
 		panel_TKHK_KhoangTrang3.setBackground(Colors.khung_Chung);
@@ -99,28 +92,25 @@ public class TimKiemHoKhau extends JPanel {
 		JPanel panel_TKHK_01_content = new JPanel();
 		panel_TKHK_01_content.setBackground(Colors.input_Colors);
 		panel_TKHK_01.add(panel_TKHK_01_content, BorderLayout.CENTER);
-		panel_TKHK_01_content.setLayout(new BoxLayout(panel_TKHK_01_content, BoxLayout.X_AXIS));
+		panel_TKHK_01_content.setLayout(new BorderLayout(0, 0));
 
 		text_TKHK_01 = new JTextField();
-//		text_TKHK_01.setText("Nhập địa chỉ hộ khẩu muốn tìm");
-		text_TKHK_01.setPreferredSize(new Dimension(1389, 48));
 		text_TKHK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TKHK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKHK_01.setForeground(Color.BLACK);
-		text_TKHK_01.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		text_TKHK_01.setColumns(10);
-		text_TKHK_01.setCaretColor(new Color(103, 103, 103));
+		text_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		text_TKHK_01.setBorder(null);
 		text_TKHK_01.setBackground(Colors.input_Colors);
 		panel_TKHK_01_content.add(text_TKHK_01);
 
 		JButton btn_TKHK_01_TimKiem = new JButton("Tìm kiếm");
+		btn_TKHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TKHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKHK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TKHK_01_TimKiem.setForeground(Color.WHITE);
 		btn_TKHK_01_TimKiem.setOpaque(true);
 		btn_TKHK_01_TimKiem.setBorderPainted(false);
-		panel_TKHK_01_content.add(btn_TKHK_01_TimKiem);
+		panel_TKHK_01_content.add(btn_TKHK_01_TimKiem, BorderLayout.EAST);
 
 		btn_TKHK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -133,37 +123,10 @@ public class TimKiemHoKhau extends JPanel {
 		panel_KhungNoiDungTKHK.add(panel_TKHK_02, BorderLayout.CENTER);
 		panel_TKHK_02.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TKHK_CotTrai = new JPanel();
-		panel_TKHK_CotTrai.setSize(new Dimension(200, 100));
-		panel_TKHK_CotTrai.setBackground(Colors.khung_Chung);
-		panel_TKHK_02.add(panel_TKHK_CotTrai, BorderLayout.WEST);
-		panel_TKHK_CotTrai.setLayout(new GridLayout(10, 1, 0, 0));
-
-
-		JPanel panel_TKHK_CotPhai = new JPanel();
-		panel_TKHK_CotPhai.setBackground(Colors.khung_Chung);
-		panel_TKHK_CotPhai.setBounds(new Rectangle(20, 0, 0, 0));
-		panel_TKHK_02.add(panel_TKHK_CotPhai, BorderLayout.CENTER);
-		panel_TKHK_CotPhai.setLayout(new GridLayout(2, 1, 0, 0));
-
-		JPanel panel_TKHK_CotPhai_01 = new JPanel();
-		panel_TKHK_CotPhai.add(panel_TKHK_CotPhai_01);
-		panel_TKHK_CotPhai_01.setBackground(Colors.khung_Chung);
-		panel_TKHK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
-
-		JPanel panel_TKHK_CotPhai_02 = new JPanel();// cho nay cho mot bang thong tin thanh vien thuoc ho khau
-		panel_TKHK_CotPhai_02.setBackground(Colors.khung_Chung);
-		panel_TKHK_CotPhai.add(panel_TKHK_CotPhai_02);
-
-		JPanel panel_TKHK_Confirm = new JPanel();
-		panel_TKHK_Confirm.setBackground(Colors.khung_Chung);
-		panel_TKHK_02.add(panel_TKHK_Confirm, BorderLayout.SOUTH);
-		panel_TKHK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-
 		JPanel panel_TKHK_SubTitle = new JPanel();
 		panel_TKHK_SubTitle.setBackground(Colors.khung_Chung);
 		panel_TKHK_SubTitle.setBounds(new Rectangle(20, 0, 0, 0));
-		panel_TKHK_02.add(panel_TKHK_SubTitle, BorderLayout.NORTH);
+		panel_TKHK_02.add(panel_TKHK_SubTitle, BorderLayout.CENTER);
 
 		JLabel lbl_TKHK_Subtitle = new JLabel("Thông tin hộ khẩu:");
 		panel_TKHK_SubTitle.add(lbl_TKHK_Subtitle);
