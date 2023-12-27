@@ -12,8 +12,8 @@ public class DatabaseConnector {
     static {
         ds = new SQLServerDataSource();
         ds.setUser("sa");
-        ds.setPassword("123");
-        ds.setServerName("LAPTOP-POT66FBA");
+        ds.setPassword("manhvu123");
+        ds.setServerName("MANHVU");
         ds.setPortNumber(1433);
         ds.setDatabaseName("HouTrak");
         ds.setTrustServerCertificate(true);
@@ -1075,5 +1075,66 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
         return false;
+    }
+
+    // Module phát thưởng
+    // 1. List ds chinh sach phat thuong le
+    // 1. Hien thi danh sach cac ho khau
+    public static List<CsThuongHS> getDsThuongHs() {
+        List<CsThuongHS> dsCS = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM ChinhSachThuong";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maChinhSach = rs.getString("MaChinhSach");
+                        int lop = rs.getInt("Lop");
+                        String hocLuc = rs.getString("HocLuc");
+                        String phanThuong = rs.getString("PhanThuong");
+                        int soLuong = rs.getInt("SoLuong");
+                        Date thoiGian = rs.getDate("Date");
+                        float soTien = rs.getFloat("SoTien");
+
+                        CsThuongHS csThuong = new CsThuongHS(maChinhSach, phanThuong, soLuong, soTien, thoiGian, lop, hocLuc);
+                        dsCS.add(csThuong);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsCS;
+    }
+    // 1. List ds chinh sach phat thuong hoc sinh
+    // 1. Hien thi danh sach cac chinh sach thuong le va hoc sinh
+    public static List<CsThuongLe> getDsThuongLe() {
+        List<CsThuongLe> dsCs = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM ChinhSachThuongLe";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maChinhSach = rs.getString("MaChinhSach");
+                        String ngayLe = rs.getString("NgayLe");
+                        int tuoi = rs.getInt("Tuoi");
+                        String phanThuong = rs.getString("PhanThuong");
+                        int soLuong = rs.getInt("SoLuong");
+                        Date thoiGian = rs.getDate("Date");
+                        float soTien = rs.getFloat("SoTien");
+
+                        CsThuongLe csThuong = new CsThuongLe(maChinhSach, phanThuong, soLuong, soTien, thoiGian, ngayLe, tuoi);
+                        dsCs.add(csThuong);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsCs;
     }
 }
