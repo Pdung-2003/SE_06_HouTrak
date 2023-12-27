@@ -137,7 +137,7 @@ public class TimKiemNhanKhau extends JPanel {
 			}
 		});
 
-//		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 		panel_TKNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
