@@ -1108,7 +1108,6 @@ public class DatabaseConnector {
 
         return dsCS;
     }
-    // 1. List ds chinh sach phat thuong hoc sinh
     // 1. Hien thi danh sach cac chinh sach thuong le va hoc sinh
     public static List<CsThuongLe> getDsThuongLe() {
         List<CsThuongLe> dsCs = new ArrayList<>();
@@ -1136,5 +1135,142 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
         return dsCs;
+    }
+    public static boolean insertThuongHS(int lop, String hocLuc, String phanThuong, int soLuong, Date thoiGian, float soTien) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO ChinhSachThuong(Lop, HocLuc, PhanThuong, SoLuong, Date, SoTien) \n" +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setInt(1, lop);
+                pstmt.setString(2, hocLuc);
+                pstmt.setString(3, phanThuong);
+                pstmt.setInt(4, soLuong);
+                pstmt.setInt(5, soLuong);
+                pstmt.setInt(6, soLuong);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // 3. Update
+    public static boolean updateThuongHS(String phanThuong, int soLuong, float soTien, Date thoiGian, String maChinhSach) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "UPDATE ChinhSachThuong\n" +
+                    "SET PhanThuong = ?, SoLuong = ?, SoTien = ?, Date = ?\n" +
+                    "WHERE MaChinhSach = ?;";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, phanThuong);
+                pstmt.setInt(2, soLuong);
+                pstmt.setFloat(3, soTien);
+                pstmt.setDate(4, thoiGian);
+                pstmt.setString(5, maChinhSach);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public static boolean insertThuongLe(String ngayLe, int tuoi, String phanThuong, int soLuong, Date thoiGian, float soTien) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "INSERT INTO ChinhSachThuongLe(NgayLe, Tuoi, PhanThuong, SoLuong, Date, SoTien) \n" +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, ngayLe);
+                pstmt.setInt(2, tuoi);
+                pstmt.setString(3, phanThuong);
+                pstmt.setInt(4, soLuong);
+                pstmt.setDate(5, thoiGian);
+                pstmt.setFloat(6, soTien);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // 3. Update
+    public static boolean updateThuongLe(String phanThuong, int soLuong, float soTien, Date thoiGian, String maChinhSach) {
+        try (Connection conn = ds.getConnection()) {
+            String query = "UPDATE ChinhSachThuongLe\n" +
+                    "SET PhanThuong = ?, SoLuong = ?, SoTien = ?, Date = ?\n" +
+                    "WHERE MaChinhSach = ?;";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, phanThuong);
+                pstmt.setInt(2, soLuong);
+                pstmt.setFloat(3, soTien);
+                pstmt.setDate(4, thoiGian);
+                pstmt.setString(5, maChinhSach);
+                int rowsAffected = pstmt.executeUpdate(); // Sử dụng executeUpdate thay vì executeQuery
+                return rowsAffected > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    // 4. Search
+    public static List<CsThuongLe> searchThuongHS(String le) {
+        List<CsThuongLe> dsThuong = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM ChinhSachThuong WHERE NgayLe LIKE ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, "%" + le + "%");
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maChinhSach = rs.getString("MaChinhSach");
+                        String ngayLe = rs.getString("NgayLe");
+                        int tuoi = rs.getInt("Tuoi");
+                        String phanThuong = rs.getString("PhanThuong");
+                        int soLuong = rs.getInt("SoLuong");
+                        Date thoiGian = rs.getDate("Date");
+                        float soTien = rs.getFloat("SoTien");
+
+                        CsThuongLe csThuong = new CsThuongLe(maChinhSach, phanThuong, soLuong, soTien, thoiGian, ngayLe, tuoi);
+                        dsThuong.add(csThuong);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsThuong;
+    }
+
+    public static List<CsThuongHS> searchThuongHS(int x) {
+        List<CsThuongHS> dsThuong = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT * FROM ChinhSachThuongLe WHERE Lop = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setInt(1, x);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maChinhSach = rs.getString("MaChinhSach");
+                        int lop = rs.getInt("Lop");
+                        String hocLuc = rs.getString("HocLuc");
+                        String phanThuong = rs.getString("PhanThuong");
+                        int soLuong = rs.getInt("SoLuong");
+                        Date thoiGian = rs.getDate("Date");
+                        float soTien = rs.getFloat("SoTien");
+
+                        CsThuongHS csThuong = new CsThuongHS(maChinhSach, phanThuong, soLuong, soTien, thoiGian, lop, hocLuc);
+                        dsThuong.add(csThuong);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dsThuong;
     }
 }
