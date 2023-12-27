@@ -429,7 +429,7 @@ public class ThongBaoTamVang extends JPanel {
 		}
 	}
 
-	private void populateMonths(JComboBox comboBox) {
+	/*private void populateMonths(JComboBox comboBox) {
 		for (int month = 1; month <= 12; month++) {
 			comboBox.addItem(month);
 		}
@@ -441,7 +441,7 @@ public class ThongBaoTamVang extends JPanel {
 			dayComboBox.addItem(day);
 		}
 	}
-
+*/
 	private int getDaysInMonth(int year, int month) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month - 1, 1);

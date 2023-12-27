@@ -346,10 +346,10 @@ public class CapNhatChinhSach extends JPanel {
 
 
     }
-    public JButton getBtn_TNK_Yes() {return btn_CNCS_Yes;}
+    /*public JButton getBtn_TNK_Yes() {return btn_CNCS_Yes;}
     public JButton getBtn_TNK_No() {
         return btn_CNCS_No;
-    }
+    }*/
 
     public ManHinhChinh getMainFrame() {
         return mainFrame;

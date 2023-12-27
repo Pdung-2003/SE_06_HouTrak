@@ -158,7 +158,8 @@ ALTER TABLE ChinhSachThuong
 DROP COLUMN DoiTuong;
 ALTER TABLE ChinhSachThuong
 ADD Date DATE
-
+ALTER TABLE ChinhSachThuong
+ADD SoTien DECIMAL(10,2)
 -- 16. Tạo bảng ChinhSachThuong ngay le
 CREATE TABLE ChinhSachThuongLe (
 	STT INT IDENTITY(1, 1),
@@ -168,6 +169,8 @@ CREATE TABLE ChinhSachThuongLe (
 	PhanThuong NVARCHAR(50),
 	SoLuong INT,
 );
+ALTER TABLE ChinhSachThuongLe
+ADD SoTien DECIMAL(10,2)
 ALTER TABLE ChinhSachThuongLe
 ADD Date DATE
 
