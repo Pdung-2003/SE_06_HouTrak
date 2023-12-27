@@ -1,7 +1,6 @@
 package view.nhankhau;
 
 import controller.nhankhau.TimKiemNhanKhauController;
-import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
@@ -197,26 +196,26 @@ public class TimKiemNhanKhau extends JPanel {
 					return;
 				}
 
-//				switch (selectedItem) {
-//					case "Tìm kiếm theo tên":
-//						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo ngày sinh":
-//						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo số CMND":
-//						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo mã nhân khẩu":
-//						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
-//						break;
-//					case "Tìm kiếm theo mã hộ khẩu":
-//						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
-//						break;
-//						default:
-//						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
-//						break;
-//				}
+				switch (selectedItem) {
+					case "Tìm kiếm theo tên":
+						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo ngày sinh":
+						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo số CMND":
+						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo mã nhân khẩu":
+						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
+						break;
+					case "Tìm kiếm theo mã hộ khẩu":
+						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
+						break;
+						default:
+						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
+						break;
+				}
 			}
 		});
 
