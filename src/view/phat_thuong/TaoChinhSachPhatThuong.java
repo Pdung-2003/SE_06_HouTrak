@@ -31,9 +31,10 @@ public class TaoChinhSachPhatThuong extends JPanel {
 	private JTextField textField_TCS_Content_HocTap_PhanThuong;
 	private JTextField textField_TCS_Content_SinhVien_PhanThuong;
 	private JTextField textField_TCS_Content_DipLe_PhanThuong;
+	private CardLayout cardLayout;
+	private JPanel panel_TCS_Content;
 
 	public TaoChinhSachPhatThuong(ManHinhChinh mainFrame) {
-
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
@@ -45,7 +46,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		add(panel_TCS_Title, BorderLayout.NORTH);
 		panel_TCS_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TCS_Title = new JLabel("Cập nhật chính sách phát thưởng  ");
+		JLabel lbl_TCS_Title = new JLabel("Tạo chính sách phát thưởng  ");
 		lbl_TCS_Title.setBackground(Colors.nen_Chung);
 		lbl_TCS_Title.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_TCS_Title.add(lbl_TCS_Title);
@@ -62,26 +63,39 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		JPanel panel_TCS_Type = new JPanel();
 		panel_TCS_Type.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTCS.add(panel_TCS_Type, BorderLayout.NORTH);
-		panel_TCS_Type.setLayout(new GridLayout(1, 3, 20, 0));
+		panel_TCS_Type.setLayout(new BoxLayout(panel_TCS_Type, BoxLayout.X_AXIS));
+
 
 		JButton btn_TCS_Type_DipLe = new JButton("Dịp Lễ");
+		btn_TCS_Type_DipLe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel_TCS_Content, "DipLe");
+			}
+		});
 		btn_TCS_Type_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Type.add(btn_TCS_Type_DipLe);
 
 		JButton btn_TCS_Type_HocTap = new JButton("Học Tập");
 		btn_TCS_Type_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TCS_Type_HocTap.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel_TCS_Content, "HocTap");
+			}
+		});
 		panel_TCS_Type.add(btn_TCS_Type_HocTap);
 
 		// Nội dung chính
-		JPanel panel_TCS_Content = new JPanel();
+		cardLayout = new CardLayout();
+		panel_TCS_Content = new JPanel();
 		panel_TCS_Content.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTCS.add(panel_TCS_Content, BorderLayout.CENTER);
-		panel_TCS_Content.setLayout(new CardLayout(0, 0));
+		panel_TCS_Content.setLayout(cardLayout);
 
 		// Dịp lễ
 		JPanel panel_TCS_Content_DipLe = new JPanel();
 		panel_TCS_Content_DipLe.setBackground(Colors.khung_Chung);
-		panel_TCS_Content.add(panel_TCS_Content_DipLe);
+		panel_TCS_Content.add(panel_TCS_Content_DipLe,"DipLe");
 		panel_TCS_Content_DipLe.setLayout(new BoxLayout(panel_TCS_Content_DipLe, BoxLayout.Y_AXIS));
 
 		// Lấy tên dịp lễ
@@ -168,8 +182,9 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		// Học tập
 		JPanel panel_TCS_Content_HocTap = new JPanel();
 		panel_TCS_Content_HocTap.setBackground(Colors.khung_Chung);
-		panel_TCS_Content.add(panel_TCS_Content_HocTap);
+		panel_TCS_Content.add(panel_TCS_Content_HocTap,"HocTap");
 		panel_TCS_Content_HocTap.setLayout(new BoxLayout(panel_TCS_Content_HocTap, BoxLayout.Y_AXIS));
+
 
 		// Lấy lớp
 		JPanel panel_TCS_Content_HocTap_Lop = new JPanel();

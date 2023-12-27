@@ -221,16 +221,16 @@ public class CapNhatChinhSach extends JPanel {
         btn_CNCS_Yes.setOpaque(true);
         btn_CNCS_Yes.setForeground(Color.WHITE);
         btn_CNCS_Yes.setBorderPainted(false);
-        btn_CNCS_Yes.setBackground((Color) null);
+        btn_CNCS_Yes.setBackground(Colors.button_XacNhan);
         panel_CNCS_DipLe_Confirm.add(btn_CNCS_Yes);
 
         JButton btn_CNCS_No = new JButton("Hủy");
-        btn_CNCS_No.setToolTipText("");
         btn_CNCS_No.setOpaque(true);
         btn_CNCS_No.setForeground(Color.WHITE);
         btn_CNCS_No.setBorderPainted(false);
-        btn_CNCS_No.setBackground((Color) null);
+        btn_CNCS_No.setBackground(Colors.button_Huy);
         panel_CNCS_DipLe_Confirm.add(btn_CNCS_No);
+
 
         // Học tập
         JPanel panel_CNCS_Content_HocTap = new JPanel();
@@ -324,16 +324,19 @@ public class CapNhatChinhSach extends JPanel {
         btn_CNCS_HocTap_Yes.setOpaque(true);
         btn_CNCS_HocTap_Yes.setForeground(Color.WHITE);
         btn_CNCS_HocTap_Yes.setBorderPainted(false);
-        btn_CNCS_HocTap_Yes.setBackground((Color) null);
+        btn_CNCS_HocTap_Yes.setBackground(Colors.button_XacNhan);
         panel_CNCS_HocTap_Confirm.add(btn_CNCS_HocTap_Yes);
+
+
 
         JButton btn_CNCS_HocTap_No = new JButton("Hủy");
         btn_CNCS_HocTap_No.setToolTipText("");
         btn_CNCS_HocTap_No.setOpaque(true);
         btn_CNCS_HocTap_No.setForeground(Color.WHITE);
         btn_CNCS_HocTap_No.setBorderPainted(false);
-        btn_CNCS_HocTap_No.setBackground((Color) null);
+        btn_CNCS_HocTap_No.setBackground(Colors.button_Huy);
         panel_CNCS_HocTap_Confirm.add(btn_CNCS_HocTap_No);
+
 
         // Đặt panel mặc định
         cardLayout.show(panel_CNCS_Content, "Default");

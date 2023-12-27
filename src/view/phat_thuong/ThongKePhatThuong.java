@@ -14,7 +14,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Calendar;
+
 import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 
 public class ThongKePhatThuong extends JPanel {
 
@@ -43,69 +47,147 @@ public class ThongKePhatThuong extends JPanel {
 		lbl_Title_ThongKePhatThuong.setBackground(Colors.nen_Chung);
 		panel_TKPT_Title.add(lbl_Title_ThongKePhatThuong);
 
+		JPanel panel_TKPT_Filter = new JPanel();
+		panel_KhungNoiDungTKPT.add(panel_TKPT_Filter, BorderLayout.NORTH);
+		panel_TKPT_Filter.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_VoVan = new JPanel();
-		panel_KhungNoiDungTKPT.add(panel_VoVan, BorderLayout.NORTH);
-		panel_VoVan.setLayout(new BorderLayout(0, 0));
+		JPanel panel_TKPT_Filter_Title = new JPanel();
+		panel_TKPT_Filter_Title.setBackground(Colors.khung_Chung);
+		panel_TKPT_Filter.add(panel_TKPT_Filter_Title, BorderLayout.WEST);
+		panel_TKPT_Filter_Title.setLayout(new GridLayout(2, 1, 0, 0));
 
-		JPanel panel_TKTC_Filter_Title = new JPanel();
-		panel_TKTC_Filter_Title.setBackground(Colors.khung_Chung);
-		panel_VoVan.add(panel_TKTC_Filter_Title, BorderLayout.WEST);
-		panel_TKTC_Filter_Title.setLayout(new GridLayout(2, 1, 0, 0));
+		JLabel lbl_TKPT_Filter_StartTime = new JLabel("Thời gian bắt đầu: ");
+		lbl_TKPT_Filter_StartTime.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Title.add(lbl_TKPT_Filter_StartTime);
 
-		JPanel panel_TKTC_Filter_Content = new JPanel();
-		panel_VoVan.add(panel_TKTC_Filter_Content, BorderLayout.CENTER);
-		panel_TKTC_Filter_Content.setLayout(new GridLayout(2, 1, 0, 0));
+		JLabel lbl_TKPT_Filter_EndTime = new JLabel("Thời gian kết thúc: ");
+		lbl_TKPT_Filter_EndTime.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Title.add(lbl_TKPT_Filter_EndTime);
 
-		// Nơi điền bảng thông tin
-		JPanel panel_TKTC_Content = new JPanel();
-		panel_TKTC_Content.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTKPT.add(panel_TKTC_Content, BorderLayout.CENTER);
-		panel_TKTC_Content.setLayout(new BorderLayout(0, 0));
+		JPanel panel_TKPT_Filter_Content = new JPanel();
+		panel_TKPT_Filter.add(panel_TKPT_Filter_Content, BorderLayout.CENTER);
+		panel_TKPT_Filter_Content.setLayout(new GridLayout(2, 1, 0, 0));
 
-		// Sắp xếp thông tin
-		JPanel panel_TKPT_Content_Sort = new JPanel();
-		panel_TKTC_Content.add(panel_TKPT_Content_Sort, BorderLayout.NORTH);
-		panel_TKPT_Content_Sort.setBackground(Colors.khung_Chung);
-		panel_TKPT_Content_Sort.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		// Thời gian bắt đầu thống kê
+		JPanel panel_TKPT_Filter_Content_StartTime = new JPanel();
+		panel_TKPT_Filter_Content_StartTime.setBackground(Colors.khung_Chung);
+		panel_TKPT_Filter_Content.add(panel_TKPT_Filter_Content_StartTime);
+		panel_TKPT_Filter_Content_StartTime.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
-		JLabel lblNewLabel_1 = new JLabel("Độ tuổi");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKPT_Content_Sort.add(lblNewLabel_1);
+		JLabel lbl_TKPT_Filter_Content_StartTime_Ngay = new JLabel("   Ngày:   ");
+		lbl_TKPT_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_StartTime.add(lbl_TKPT_Filter_Content_StartTime_Ngay);
 
-		JComboBox comboBox_TKTC_Tuoi = new JComboBox();
-		comboBox_TKTC_Tuoi.addItem("Mầm non(2->5 tuổi)");
-		comboBox_TKTC_Tuoi.addItem("Học sinh(6 ->18 tuổi)");
-		comboBox_TKTC_Tuoi.addItem("Sinh viên");
-		comboBox_TKTC_Tuoi.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKPT_Content_Sort.add(comboBox_TKTC_Tuoi);
+		JComboBox comboBox_TKPT_Filter_Content_StartTime_Ngay = new JComboBox();
+		comboBox_TKPT_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_StartTime.add(comboBox_TKPT_Filter_Content_StartTime_Ngay);
 
-		JLabel lblNewLabel_1_1_1 = new JLabel("Phần thưởng đã phát");
-		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKPT_Content_Sort.add(lblNewLabel_1_1_1);
+		JLabel lbl_TKPT_Filter_Content_StartTime_Thang = new JLabel("   Tháng:   ");
+		lbl_TKPT_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_StartTime.add(lbl_TKPT_Filter_Content_StartTime_Thang);
 
-		JComboBox comboBox_TKTC_PhanThuong = new JComboBox();
-		comboBox_TKTC_PhanThuong.addItem("Thêm các loại phần thưởng ở đây");
-		comboBox_TKTC_PhanThuong.addItem("thêm vào phần thưởng");
-		comboBox_TKTC_PhanThuong.addItem("thêm vào phần thưởng");
-		comboBox_TKTC_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKPT_Content_Sort.add(comboBox_TKTC_PhanThuong);
+		JComboBox comboBox_TKPT_Filter_Content_StartTime_Thang = new JComboBox();
+		populateMonths(comboBox_TKPT_Filter_Content_StartTime_Thang);
+		comboBox_TKPT_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_StartTime.add(comboBox_TKPT_Filter_Content_StartTime_Thang);
+
+		JLabel lbl_TKPT_Filter_Content_StartTime_Nam = new JLabel("Năm:   ");
+		lbl_TKPT_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_StartTime.add(lbl_TKPT_Filter_Content_StartTime_Nam);
+
+		JComboBox comboBox_TKPT_Filter_Content_StartTime_Nam = new JComboBox();
+		populateYears(comboBox_TKPT_Filter_Content_StartTime_Nam);
+		comboBox_TKPT_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_StartTime.add(comboBox_TKPT_Filter_Content_StartTime_Nam);
+
+		comboBox_TKPT_Filter_Content_StartTime_Thang.addActionListener(e -> updateDays(comboBox_TKPT_Filter_Content_StartTime_Nam, comboBox_TKPT_Filter_Content_StartTime_Thang, comboBox_TKPT_Filter_Content_StartTime_Ngay));
+		comboBox_TKPT_Filter_Content_StartTime_Nam.addActionListener(e -> updateDays(comboBox_TKPT_Filter_Content_StartTime_Nam, comboBox_TKPT_Filter_Content_StartTime_Thang, comboBox_TKPT_Filter_Content_StartTime_Ngay));
+		updateDays(comboBox_TKPT_Filter_Content_StartTime_Nam, comboBox_TKPT_Filter_Content_StartTime_Thang, comboBox_TKPT_Filter_Content_StartTime_Ngay);
+
+		// Thời gian kết thúc thống kê
+		JPanel panel_TKPT_Filter_Content_EndTime = new JPanel();
+		panel_TKPT_Filter_Content_EndTime.setBackground(Colors.khung_Chung);
+		panel_TKPT_Filter_Content.add(panel_TKPT_Filter_Content_EndTime);
+		panel_TKPT_Filter_Content_EndTime.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+
+		JLabel lbl_TKPT_Filter_Content_EndTime_Ngay = new JLabel("   Ngày:   ");
+		lbl_TKPT_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_EndTime.add(lbl_TKPT_Filter_Content_EndTime_Ngay);
+
+		JComboBox comboBox_TKPT_Filter_Content_EndTime_Ngay = new JComboBox();
+		comboBox_TKPT_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_EndTime.add(comboBox_TKPT_Filter_Content_EndTime_Ngay);
+
+		JLabel lbl_TKPT_Filter_Content_EndTime_Thang = new JLabel("   Tháng:   ");
+		lbl_TKPT_Filter_Content_EndTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_EndTime.add(lbl_TKPT_Filter_Content_EndTime_Thang);
+
+		JComboBox comboBox_TKPT_Filter_Content_EndTime_Thang = new JComboBox();
+		populateMonths(comboBox_TKPT_Filter_Content_EndTime_Thang);
+		comboBox_TKPT_Filter_Content_EndTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_EndTime.add(comboBox_TKPT_Filter_Content_EndTime_Thang);
+
+		JLabel lbl_TKPT_Filter_Content_EndTime_Nam = new JLabel("Năm:   ");
+		lbl_TKPT_Filter_Content_EndTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_EndTime.add(lbl_TKPT_Filter_Content_EndTime_Nam);
+
+		JComboBox comboBox_TKPT_Filter_Content_EndTime_Nam = new JComboBox();
+		populateYears(comboBox_TKPT_Filter_Content_EndTime_Nam);
+		comboBox_TKPT_Filter_Content_EndTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_TKPT_Filter_Content_EndTime.add(comboBox_TKPT_Filter_Content_EndTime_Nam);
+
+		comboBox_TKPT_Filter_Content_EndTime_Thang.addActionListener(e -> updateDays(comboBox_TKPT_Filter_Content_EndTime_Nam, comboBox_TKPT_Filter_Content_EndTime_Thang, comboBox_TKPT_Filter_Content_EndTime_Ngay));
+		comboBox_TKPT_Filter_Content_EndTime_Nam.addActionListener(e -> updateDays(comboBox_TKPT_Filter_Content_EndTime_Nam, comboBox_TKPT_Filter_Content_EndTime_Thang, comboBox_TKPT_Filter_Content_EndTime_Ngay));
+		updateDays(comboBox_TKPT_Filter_Content_EndTime_Nam, comboBox_TKPT_Filter_Content_EndTime_Thang, comboBox_TKPT_Filter_Content_EndTime_Ngay);
 
 		JButton btn_TKPT_Filter_Confirm = new JButton("Thống kê");
-		panel_TKPT_Content_Sort.add(btn_TKPT_Filter_Confirm);
+		panel_TKPT_Filter_Content_EndTime.add(btn_TKPT_Filter_Confirm);
 		btn_TKPT_Filter_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JLabel lblNewLabel_Tong = new JLabel("  Tổng:  ");
+		panel_TKPT_Filter_Content_EndTime.add(lblNewLabel_Tong);
 		lblNewLabel_Tong.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKPT_Content_Sort.add(lblNewLabel_Tong);
 
 		// in ra tổng ở đây
 		JLabel lblTong_In_Ra = new JLabel("Tổng in ra ở đây khi bấm thống kê");
-		panel_TKPT_Content_Sort.add(lblTong_In_Ra);
+		panel_TKPT_Filter_Content_EndTime.add(lblTong_In_Ra);
+
+
+
 
 		JPanel panel_TKPT_NoiDung = new JPanel();// Điền bảng kết quả thống kê
-		panel_TKTC_Content.add(panel_TKPT_NoiDung, BorderLayout.CENTER);
+		panel_TKPT_NoiDung.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTKPT.add(panel_TKPT_NoiDung, BorderLayout.CENTER);
 
 
+	}
+	private void populateYears(JComboBox comboBox) {
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int year = 1900; year <= currentYear; year++) {
+			comboBox.addItem(year);
+		}
+	}
+
+	private void populateMonths(JComboBox comboBox) {
+		for (int month = 1; month <= 12; month++) {
+			comboBox.addItem(month);
+		}
+	}
+
+	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
+		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
+		for (int day = 1; day <= daysInMonth; day++) {
+			dayComboBox.addItem(day);
+		}
+	}
+
+	private int getDaysInMonth(int year, int month) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month - 1, 1);
+		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 }
