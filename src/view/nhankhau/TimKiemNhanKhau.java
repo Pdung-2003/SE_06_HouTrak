@@ -24,10 +24,10 @@ public class TimKiemNhanKhau extends JPanel {
 	public TimKiemNhanKhau() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_TimKiemNhanKhau = new JPanel();
-		add(panel_TimKiemNhanKhau, "name_365411790909000");
+		add(panel_TimKiemNhanKhau);
 		panel_TimKiemNhanKhau.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_TKNK_Title = new JPanel();
@@ -42,73 +42,62 @@ public class TimKiemNhanKhau extends JPanel {
 
 		JPanel panel_KhungNoiDungTKNK = new JPanel();
 		panel_KhungNoiDungTKNK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTKNK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTKNK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTKNK.setBackground(Colors.khung_Chung);
 		panel_TimKiemNhanKhau.add(panel_KhungNoiDungTKNK, BorderLayout.CENTER);
 		panel_KhungNoiDungTKNK.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TKNK_01 = new JPanel();
-		panel_TKNK_01.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_TKNK_01.setBackground(Colors.input_Colors);
-		panel_KhungNoiDungTKNK.add(panel_TKNK_01, BorderLayout.NORTH);
-		panel_TKNK_01.setLayout(new BorderLayout(0, 0));
+		JPanel panel_TKNK_Search = new JPanel();
+		panel_TKNK_Search.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		panel_TKNK_Search.setBackground(Colors.input_Colors);
+		panel_KhungNoiDungTKNK.add(panel_TKNK_Search, BorderLayout.NORTH);
+		panel_TKNK_Search.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TKNK_KhoangTrang2 = new JPanel();
-		panel_TKNK_KhoangTrang2.setBackground(Colors.khung_Chung);
-		panel_TKNK_01.add(panel_TKNK_KhoangTrang2, BorderLayout.NORTH);
-		panel_TKNK_KhoangTrang2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		JPanel panel_TKNK_Search_Method = new JPanel();
+		panel_TKNK_Search_Method.setBackground(Colors.khung_Chung);
+		panel_TKNK_Search.add(panel_TKNK_Search_Method, BorderLayout.NORTH);
+		panel_TKNK_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TKNK_CachTim = new JLabel("Tìm Kiếm theo: ");
-		lbl_TKNK_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
-		panel_TKNK_KhoangTrang2.add(lbl_TKNK_CachTim);
+		JLabel lbl_TKNK_Search_Method = new JLabel("Tìm Kiếm theo: ");
+		lbl_TKNK_Search_Method.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TKNK_Search_Method.add(lbl_TKNK_Search_Method);
 
-		JComboBox comboBox_TKNK_SortTK = new JComboBox();
-		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo tên");
-		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo ngày sinh");
-		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo số CMND");
-		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo mã nhân khẩu");
-		comboBox_TKNK_SortTK.addItem("Tìm kiếm theo mã hộ khẩu");
-		panel_TKNK_KhoangTrang2.add(comboBox_TKNK_SortTK);
+		JComboBox comboBox_TKNK_Search_Method = new JComboBox();
+		comboBox_TKNK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo tên");
+		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo ngày sinh");
+		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo số CMND");
+		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo mã nhân khẩu");
+		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo mã hộ khẩu");
+		panel_TKNK_Search_Method.add(comboBox_TKNK_Search_Method);
 
-		JPanel panel_TKNK_KhoangTrang1 = new JPanel();
-		panel_TKNK_KhoangTrang1.setBackground(Colors.khung_Chung);
-		panel_TKNK_01.add(panel_TKNK_KhoangTrang1, BorderLayout.WEST);
-		panel_TKNK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
+		JPanel panel_TKNK_Search_Title = new JPanel();
+		panel_TKNK_Search_Title.setBackground(Colors.khung_Chung);
+		panel_TKNK_Search.add(panel_TKNK_Search_Title, BorderLayout.WEST);
+		panel_TKNK_Search_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lblNewLabel = new JLabel("   Nhập thông tin tìm kiếm nhân khẩu: ");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKNK_KhoangTrang1.add(lblNewLabel, BorderLayout.CENTER);
-
-		JPanel panel_TKNK_01_dem = new JPanel();
-		panel_TKNK_01_dem.setBackground(Colors.input_Colors);
-		panel_TKNK_KhoangTrang1.add(panel_TKNK_01_dem, BorderLayout.EAST);
-
-		JPanel panel_TKNK_KhoangTrang4 = new JPanel();
-		panel_TKNK_KhoangTrang4.setBackground(Colors.input_Colors);
-		panel_TKNK_01.add(panel_TKNK_KhoangTrang4, BorderLayout.EAST);
+		JLabel lbl_TKNK_Search_Title = new JLabel("Nhập thông tin: ");
+		lbl_TKNK_Search_Title.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_TKNK_Search_Title.add(lbl_TKNK_Search_Title);
 
 		JPanel panel_TKNK_KhoangTrang3 = new JPanel();
 		panel_TKNK_KhoangTrang3.setBackground(Colors.khung_Chung);
-		panel_TKNK_01.add(panel_TKNK_KhoangTrang3, BorderLayout.SOUTH);
+		panel_TKNK_Search.add(panel_TKNK_KhoangTrang3, BorderLayout.SOUTH);
 
 		JPanel panel_TKNK_01_content = new JPanel();
 		panel_TKNK_01_content.setBackground(Colors.input_Colors);
-		panel_TKNK_01.add(panel_TKNK_01_content, BorderLayout.CENTER);
+		panel_TKNK_Search.add(panel_TKNK_01_content, BorderLayout.CENTER);
 		panel_TKNK_01_content.setLayout(new BoxLayout(panel_TKNK_01_content, BoxLayout.X_AXIS));
 
 		text_TKNK_01 = new JTextField();
-		text_TKNK_01.setPreferredSize(new Dimension(1389, 68));
-		text_TKNK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TKNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKNK_01.setForeground(Color.BLACK);
-		text_TKNK_01.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		text_TKNK_01.setColumns(10);
-		text_TKNK_01.setCaretColor(new Color(103, 103, 103));
+		text_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		text_TKNK_01.setBorder(null);
-		text_TKNK_01.setBackground(Colors.input_Colors);
 		panel_TKNK_01_content.add(text_TKNK_01);
 
 		JButton btn_TKNK_01_TimKiem = new JButton("Tìm kiếm");
+		btn_TKNK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TKNK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKNK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TKNK_01_TimKiem.setForeground(Color.WHITE);
@@ -125,7 +114,7 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_TKNK_02_BangThongTin.setBounds(new Rectangle(20, 0, 0, 0));
 		panel_TKNK_02.add(panel_TKNK_02_BangThongTin, BorderLayout.CENTER);
-//Tạo model cho Table
+		//Tạo model cho Table
 		DefaultTableModel tableModel = new DefaultTableModel();
 
 		// Tạo JTable với mô hình bảng đã tạo
@@ -149,7 +138,7 @@ public class TimKiemNhanKhau extends JPanel {
 			}
 		});
 
-		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+//		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 		panel_TKNK_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
@@ -200,7 +189,7 @@ public class TimKiemNhanKhau extends JPanel {
 		// Trong phương thức của TimKiemNhanKhau
 		btn_TKNK_01_TimKiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String selectedItem = comboBox_TKNK_SortTK.getSelectedItem().toString();
+				String selectedItem = comboBox_TKNK_Search_Method.getSelectedItem().toString();
 				String searchText = text_TKNK_01.getText();
 
 				if (searchText.isEmpty()) {
@@ -208,26 +197,26 @@ public class TimKiemNhanKhau extends JPanel {
 					return;
 				}
 
-				switch (selectedItem) {
-					case "Tìm kiếm theo tên":
-						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
-						break;
-					case "Tìm kiếm theo ngày sinh":
-						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
-						break;
-					case "Tìm kiếm theo số CMND":
-						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
-						break;
-					case "Tìm kiếm theo mã nhân khẩu":
-						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
-						break;
-					case "Tìm kiếm theo mã hộ khẩu":
-						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
-						break;
-						default:
-						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
-						break;
-				}
+//				switch (selectedItem) {
+//					case "Tìm kiếm theo tên":
+//						TimKiemNhanKhauController.timKiemTheoTen(tableModel, searchText);
+//						break;
+//					case "Tìm kiếm theo ngày sinh":
+//						TimKiemNhanKhauController.timKiemTheoNgaySinh(tableModel, searchText);
+//						break;
+//					case "Tìm kiếm theo số CMND":
+//						TimKiemNhanKhauController.timKiemTheoCMND(tableModel, searchText);
+//						break;
+//					case "Tìm kiếm theo mã nhân khẩu":
+//						TimKiemNhanKhauController.timKiemTheoMaNhanKhau(tableModel, searchText);
+//						break;
+//					case "Tìm kiếm theo mã hộ khẩu":
+//						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
+//						break;
+//						default:
+//						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
+//						break;
+//				}
 			}
 		});
 
@@ -247,6 +236,7 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_SubTitle.add(lbl_TKNK_Sort);
 
 		JComboBox comboBox_TKNK_Sort = new JComboBox();
+		comboBox_TKNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		// Thêm các tùy chọn vào combobox
 		comboBox_TKNK_Sort.addItem("Sắp xếp theo tên");
 		comboBox_TKNK_Sort.addItem("Sắp xếp theo ngày sinh");

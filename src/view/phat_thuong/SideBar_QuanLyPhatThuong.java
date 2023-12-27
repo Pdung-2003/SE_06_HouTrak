@@ -72,19 +72,32 @@ public class SideBar_QuanLyPhatThuong extends JPanel {
 		});
 		panel_SB_QLPT.add(btn_SB_QLPT_XHS);
 
-		JButton btn_SB_QLPT_CNCS = new JButton("  Cập nhật chính sách");
-		btn_SB_QLPT_CNCS.setHorizontalAlignment(SwingConstants.LEFT);
-		btn_SB_QLPT_CNCS.setFont(new Font("Arial", Font.BOLD, 20));
-		btn_SB_QLPT_CNCS.setBackground(Colors.menu_Trai);
-		btn_SB_QLPT_CNCS.setForeground(Color.WHITE);
-		btn_SB_QLPT_CNCS.setOpaque(true);
-		btn_SB_QLPT_CNCS.setBorder(matteBorder);
-		btn_SB_QLPT_CNCS.addActionListener(e -> {
-			CapNhatChinhSachPhatThuong capNhatChinhSachPhatThuongPanel = new CapNhatChinhSachPhatThuong(mainFrame);
+		JButton btn_SB_QLPT_TCS = new JButton("  Tạo chính sách");
+		btn_SB_QLPT_TCS.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLPT_TCS.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_SB_QLPT_TCS.setBackground(Colors.menu_Trai);
+		btn_SB_QLPT_TCS.setForeground(Color.WHITE);
+		btn_SB_QLPT_TCS.setOpaque(true);
+		btn_SB_QLPT_TCS.setBorder(matteBorder);
+		btn_SB_QLPT_TCS.addActionListener(e -> {
+			TaoChinhSachPhatThuong taoChinhSachPhatThuongPanel = new TaoChinhSachPhatThuong(mainFrame);
+			mainFrame.switchToMainPanel(taoChinhSachPhatThuongPanel);
+		});
+		panel_SB_QLPT.add(btn_SB_QLPT_TCS);
+
+		JButton btn_SB_QLPT_CNCSPT = new JButton("  Cập nhật chính sách phát thưởng");
+		btn_SB_QLPT_CNCSPT.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_SB_QLPT_CNCSPT.setFont(new Font("Arial", Font.BOLD, 20));
+		btn_SB_QLPT_CNCSPT.setBackground(Colors.menu_Trai);
+		btn_SB_QLPT_CNCSPT.setForeground(Color.WHITE);
+		btn_SB_QLPT_CNCSPT.setOpaque(true);
+
+		btn_SB_QLPT_CNCSPT.setBorder(matteBorder);
+		btn_SB_QLPT_CNCSPT.addActionListener(e -> {
+			CapNhatChinhSach capNhatChinhSachPhatThuongPanel = new CapNhatChinhSach(mainFrame);
 			mainFrame.switchToMainPanel(capNhatChinhSachPhatThuongPanel);
 		});
-		panel_SB_QLPT.add(btn_SB_QLPT_CNCS);
-
+		panel_SB_QLPT.add(btn_SB_QLPT_CNCSPT);
 
 		JButton btn_SB_QLPT_InCSPT = new JButton("  Xem chính sách phát thưởng");
 		btn_SB_QLPT_InCSPT.setHorizontalAlignment(SwingConstants.LEFT);
