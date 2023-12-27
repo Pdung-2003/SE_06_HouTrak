@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.border.MatteBorder;
 
 public class ThongKeNhanKhau extends JPanel {
 	private DefaultTableModel tableModel;
@@ -48,6 +49,7 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_Title.add(lbl_Title_ThongKeNhanKhau);
 
 		JPanel panel_TKeNK_Filter = new JPanel();
+		panel_TKeNK_Filter.setBorder(new MatteBorder(0, 0, 0, 1, (Color) new Color(0, 0, 0)));
 		panel_TKeNK_Filter.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTKeNK.add(panel_TKeNK_Filter, BorderLayout.WEST);
 		panel_TKeNK_Filter.setLayout(new BoxLayout(panel_TKeNK_Filter, BoxLayout.Y_AXIS));
@@ -164,7 +166,7 @@ public class ThongKeNhanKhau extends JPanel {
 						break;
 				}
 			}
-			});
+		});
 
 		// Điền bảng kết quả thống kê
 		JScrollPane scrollPane_TKeNK_Content_Table = new JScrollPane();

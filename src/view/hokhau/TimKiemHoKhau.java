@@ -30,10 +30,10 @@ public class TimKiemHoKhau extends JPanel {
 	public TimKiemHoKhau() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_TimKiemHoKhau = new JPanel();
-		add(panel_TimKiemHoKhau, "name_156658247367700");
+		add(panel_TimKiemHoKhau);
 		panel_TimKiemHoKhau.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_TKHK_Title = new JPanel();
@@ -48,7 +48,7 @@ public class TimKiemHoKhau extends JPanel {
 
 		JPanel panel_KhungNoiDungTKHK = new JPanel();
 		panel_KhungNoiDungTKHK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTKHK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTKHK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTKHK.setBackground(Colors.khung_Chung);
 		panel_TimKiemHoKhau.add(panel_KhungNoiDungTKHK, BorderLayout.CENTER);
 		panel_KhungNoiDungTKHK.setLayout(new BorderLayout(0, 0));
@@ -95,7 +95,6 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_01_content.setLayout(new BorderLayout(0, 0));
 
 		text_TKHK_01 = new JTextField();
-		text_TKHK_01.setMargin(new Insets(2, 20, 2, 2));
 		text_TKHK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKHK_01.setForeground(Color.BLACK);
 		text_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));

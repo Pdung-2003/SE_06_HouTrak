@@ -21,10 +21,10 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 	public LichSuThayDoiNhanKhau() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_LichSuThayDoiNhanKhau = new JPanel();
-		add(panel_LichSuThayDoiNhanKhau, "name_182608053389400");
+		add(panel_LichSuThayDoiNhanKhau);
 		panel_LichSuThayDoiNhanKhau.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_LSTDNK_Title = new JPanel();
@@ -39,7 +39,7 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 
 		JPanel panel_KhungNoiDungLSTDNK = new JPanel();
 		panel_KhungNoiDungLSTDNK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungLSTDNK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungLSTDNK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungLSTDNK.setBackground(Colors.khung_Chung);
 		panel_LichSuThayDoiNhanKhau.add(panel_KhungNoiDungLSTDNK, BorderLayout.CENTER);
 		panel_KhungNoiDungLSTDNK.setLayout(new BorderLayout(0, 0));
@@ -138,7 +138,7 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 		lbl_LSTDNK_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLNK_Sort = new JComboBox();
-		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_LSTDNK_SubTitle.add(comboBox_QLNK_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLNK_Sort.addItem("Sắp xếp theo mã nhân khẩu");

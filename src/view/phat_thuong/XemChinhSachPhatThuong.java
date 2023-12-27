@@ -188,7 +188,7 @@ public class XemChinhSachPhatThuong extends JPanel {
         public DisplayImage() {
             setTitle("Image Display");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setSize(1200, 1200);
+            setSize(1000, 1000);
             setResizable(false);
 
             // Load the image
@@ -197,65 +197,68 @@ public class XemChinhSachPhatThuong extends JPanel {
 
             JLabel lbl_Ngay = new JLabel("ngày");
             lbl_Ngay.setForeground(SystemColor.desktop);
-            lbl_Ngay.setBounds(719, 328, 49, 30);
+            lbl_Ngay.setBounds(626, 230, 49, 30);
             getContentPane().add(lbl_Ngay);
 
             JLabel lblNewLabel_NoiOKhuDanCu = new JLabel("Nơi ở đây");
             lblNewLabel_NoiOKhuDanCu.setForeground(SystemColor.desktop);
-            lblNewLabel_NoiOKhuDanCu.setBounds(620, 328, 49, 30);
+            lblNewLabel_NoiOKhuDanCu.setBounds(525, 225, 49, 37);
             getContentPane().add(lblNewLabel_NoiOKhuDanCu);
             JLabel lbl_SoLuong_HocTap = new JLabel("Điền số lượng");
-            lbl_SoLuong_HocTap.setBounds(748, 652, 102, 14);
+            lbl_SoLuong_HocTap.setBounds(653, 552, 102, 14);
             getContentPane().add(lbl_SoLuong_HocTap);
 
 
 
             JLabel lbl_Thang = new JLabel("tháng");
             lbl_Thang.setForeground(SystemColor.desktop);
-            lbl_Thang.setBounds(810, 328, 59, 30);
+            lbl_Thang.setBounds(709, 230, 59, 30);
             getContentPane().add(lbl_Thang);
 
             JLabel lbl_Nam = new JLabel("điền năm");
             lbl_Nam.setForeground(SystemColor.desktop);
-            lbl_Nam.setBounds(885, 328, 49, 30);
+            lbl_Nam.setBounds(782, 230, 49, 30);
             getContentPane().add(lbl_Nam);
 
             JLabel lbl_TenPTHocTap = new JLabel("Điền tên phần thưởng");
-            lbl_TenPTHocTap.setBounds(421, 652, 115, 14);
+            lbl_TenPTHocTap.setBounds(318, 552, 115, 14);
             getContentPane().add(lbl_TenPTHocTap);
 
 
+
+
+
             JLabel lbl_GiaTri_HocTap = new JLabel("Giá trị");
-            lbl_GiaTri_HocTap.setBounds(300, 677, 100, 25);
+            lbl_GiaTri_HocTap.setBounds(206, 576, 100, 25);
             getContentPane().add(lbl_GiaTri_HocTap);
 
             JLabel lbl_Lop_HocTap = new JLabel("Lớp");
-            lbl_Lop_HocTap.setBounds(574, 682, 65, 14);
+            lbl_Lop_HocTap.setBounds(470, 581, 65, 14);
             getContentPane().add(lbl_Lop_HocTap);
 
             JLabel lbl_HocTap_HocLuc = new JLabel("điền học lực");
-            lbl_HocTap_HocLuc.setBounds(775, 682, 115, 14);
+            lbl_HocTap_HocLuc.setBounds(667, 581, 115, 14);
             getContentPane().add(lbl_HocTap_HocLuc);
 
 
             JLabel lbl_DipLe_Ten = new JLabel("Điền tên phần thưởng");
-            lbl_DipLe_Ten.setBounds(421, 716, 115, 9);
+            lbl_DipLe_Ten.setBounds(318, 615, 115, 9);
             getContentPane().add(lbl_DipLe_Ten);
 
             JLabel lbl_DipLe_SoLuong = new JLabel("Điền số lượng");
-            lbl_DipLe_SoLuong.setBounds(767, 716, 102, 9);
+            lbl_DipLe_SoLuong.setBounds(666, 615, 102, 9);
             getContentPane().add(lbl_DipLe_SoLuong);
 
             JLabel lbl_DipLe_GiaTri = new JLabel("Giá trị");
-            lbl_DipLe_GiaTri.setBounds(318, 736, 100, 25);
+            lbl_DipLe_GiaTri.setBounds(227, 637, 100, 25);
             getContentPane().add(lbl_DipLe_GiaTri);
 
             JLabel lbl_DipLe_Tuoi = new JLabel("Tuổi");
-            lbl_DipLe_Tuoi.setBounds(525, 741, 65, 14);
+            lbl_DipLe_Tuoi.setBounds(417, 642, 70, 16);
             getContentPane().add(lbl_DipLe_Tuoi);
 
             JLabel lbl_DipLe_TenDipLe = new JLabel("điền dịp lễ");
-            lbl_DipLe_TenDipLe.setBounds(653, 741, 115, 14);
+            lbl_DipLe_TenDipLe.setBounds(543, 642, 115, 14);
             getContentPane().add(lbl_DipLe_TenDipLe);
 
             // Create a JLabel to display the image

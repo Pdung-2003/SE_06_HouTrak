@@ -26,13 +26,12 @@ public class QuanLyHoKhau extends JPanel {
 	 * Create the panel.
 	 */
 	public QuanLyHoKhau() {
-		setLayout(new CardLayout(10, 10));
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_QuanLyHoKhau = new JPanel();
-		add(panel_QuanLyHoKhau, "name_189901170782200");
+		add(panel_QuanLyHoKhau);
 		panel_QuanLyHoKhau.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_QLHK_Title = new JPanel();
@@ -47,7 +46,7 @@ public class QuanLyHoKhau extends JPanel {
 
 		JPanel panel_KhungNoiDungQLHK = new JPanel();
 		panel_KhungNoiDungQLHK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungQLHK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungQLHK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungQLHK.setBackground(Colors.khung_Chung);
 		panel_QuanLyHoKhau.add(panel_KhungNoiDungQLHK, BorderLayout.CENTER);
 		panel_KhungNoiDungQLHK.setLayout(new BorderLayout(0, 0));
