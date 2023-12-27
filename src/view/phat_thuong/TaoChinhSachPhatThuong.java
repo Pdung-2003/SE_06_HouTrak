@@ -12,29 +12,39 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.awt.Component;
+import java.sql.Date;
+
+import static model.DatabaseConnector.*;
 
 public class TaoChinhSachPhatThuong extends JPanel {
 
 	private JButton btn_TCS_Yes;
 	private JButton btn_TCS_No;
 	private final ManHinhChinh mainFrame;
-	private JTextField textField_TCSPT_CotPhai_Ten_SinhVien_XuatSac;
 	private JComboBox<Integer> comboBox_TCS_Content_DipLe_Tuoi;
 	private JComboBox<Integer> comboBox_TCS_Content_HocTap_SoLuong;
-	private JComboBox<Integer> comboBox_TCS_Content_SinhVien_SoLuong;
+	private JComboBox<Integer> comboBox_TCS_Content_DipLe_SoLuong;
 	private JTextField textField_TCS_Content_DipLe_Ten;
 	private JTextField textField_TCS_Content_HocTap_PhanThuong;
-	private JTextField textField_TCS_Content_SinhVien_PhanThuong;
 	private JTextField textField_TCS_Content_DipLe_PhanThuong;
 	private CardLayout cardLayout;
 	private JPanel panel_TCS_Content;
 	private JTextField textField_TCS_Content_DipLe_TienTuongUng;
 	private JTextField textField_TCS_Content_HocTap_TienTuongUng;
+	private JComboBox<Integer> comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe;
+	private JComboBox<Integer> comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe;
+	private JComboBox<Integer> comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe;
+	private JComboBox<Integer> comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap;
+	private JComboBox<Integer> comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap;
+	private JComboBox<Integer> comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap;
+	private JComboBox<String> comboBox_TCS_Content_HocTap_HocLuc;
+	private JComboBox<Integer> comboBox_TCS_Content_HocTap_Lop;
+	private int checkClick;
 
 	public TaoChinhSachPhatThuong(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
@@ -71,6 +81,8 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		JButton btn_TCS_Type_DipLe = new JButton("Dịp Lễ");
 		btn_TCS_Type_DipLe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				checkClick = 1;
+				System.out.println(checkClick);
 				cardLayout.show(panel_TCS_Content, "DipLe");
 			}
 		});
@@ -82,6 +94,8 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		btn_TCS_Type_HocTap.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				checkClick = 2;
+				System.out.println(checkClick);
 				cardLayout.show(panel_TCS_Content, "HocTap");
 			}
 		});
@@ -177,7 +191,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_DipLe_SoLuong.add(lbl_TCS_Content_DipLe_SoLuong);
 
-		JComboBox comboBox_TCS_Content_DipLe_SoLuong = new JComboBox<>();
+		comboBox_TCS_Content_DipLe_SoLuong = new JComboBox<>();
 		for (int i = 1; i <= 10; i++) {
 			comboBox_TCS_Content_DipLe_SoLuong.addItem(i);
 		}
@@ -199,7 +213,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TCS_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TCS_Filter_Content_StartTime_Ngay);
 
-		JComboBox comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe = new JComboBox();
+		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe = new JComboBox();
 		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe);
 
@@ -207,7 +221,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TKPT_Filter_Content_StartTime_Thang_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Thang_DipLe);
 
-		JComboBox comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe = new JComboBox();
+		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe = new JComboBox();
 		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
 		populateMonths(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe);
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe);
@@ -216,7 +230,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TKPT_Filter_Content_StartTime_Nam_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Nam_DipLe);
 
-		JComboBox comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe = new JComboBox();
+		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe = new JComboBox();
 		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
 		populateYears(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe);
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe);
@@ -250,7 +264,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_Lop.add(lbl_TCS_Content_HocTap_Lop);
 
-		JComboBox comboBox_TCS_Content_HocTap_Lop = new JComboBox<>();
+		comboBox_TCS_Content_HocTap_Lop = new JComboBox<>();
 		for (int i = 1; i <= 12; i++) {
 			comboBox_TCS_Content_HocTap_Lop.addItem(i);
 		}
@@ -269,10 +283,14 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_HocLuc.add(lbl_TCS_Content_HocTap_HocLuc);
 
-		JComboBox comboBox_TCS_Content_HocTap_HocLuc = new JComboBox();
+		comboBox_TCS_Content_HocTap_HocLuc = new JComboBox();
 		comboBox_TCS_Content_HocTap_HocLuc.setPreferredSize(new Dimension(500, 30));
 		comboBox_TCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_HocLuc.add(comboBox_TCS_Content_HocTap_HocLuc);
+
+		comboBox_TCS_Content_HocTap_HocLuc.addItem("Giỏi");
+		comboBox_TCS_Content_HocTap_HocLuc.addItem("Khá");
+		comboBox_TCS_Content_HocTap_HocLuc.addItem("Trung bình");
 
 		// Lấy phần thưởng
 		JPanel panel_TCS_Content_HocTap_PhanThuong = new JPanel();
@@ -338,7 +356,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TCS_Filter_Content_StartTime_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TCS_Filter_Content_StartTime_Ngay_HocTap);
 
-		JComboBox comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap = new JComboBox();
+		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap = new JComboBox();
 		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap);
 
@@ -346,7 +364,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TKPT_Filter_Content_StartTime_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Thang_HocTap);
 
-		JComboBox comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap = new JComboBox();
+		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap = new JComboBox();
 		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
 		populateMonths(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap);
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap);
@@ -355,7 +373,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		lbl_TKPT_Filter_Content_StartTime_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Nam_HocTap);
 
-		JComboBox comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap = new JComboBox();
+		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap = new JComboBox();
 		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
 		populateYears(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap);
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap);
@@ -391,9 +409,9 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		btn_TCS_No.setForeground(Color.WHITE);
 		btn_TCS_No.setOpaque(true);
 		btn_TCS_No.setBorderPainted(false);
-		btn_TCS_No.addActionListener(new ActionListener() {
+		btn_TCS_Yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				handleThemButtonClick();
 			}
 		});
 		panel_TCS_confirm.add(btn_TCS_No);
@@ -438,5 +456,128 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month - 1, 1);
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+	}
+	private Date getFormattedDate(JComboBox comboBoxYear, JComboBox comboBoxMonth, JComboBox comboBoxDay) {
+		String year = comboBoxYear.getSelectedItem().toString();
+		String month = comboBoxMonth.getSelectedItem().toString();
+		String day = comboBoxDay.getSelectedItem().toString();
+
+		if (year == null || month == null || day == null) {
+			return null;
+		}
+		String dateString = year + "-" + month + "-" + day;
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date utilDate = dateFormat.parse(dateString);
+			return new java.sql.Date(utilDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public int getDataThuongLe() {
+		String ngayLe = textField_TCS_Content_DipLe_Ten.getText();
+		int tuoi = comboBox_TCS_Content_DipLe_Tuoi.getSelectedIndex() + 1;
+		String phanThuong = textField_TCS_Content_DipLe_PhanThuong.getText();
+		String text = textField_TCS_Content_DipLe_TienTuongUng.getText();
+		int soLuong = comboBox_TCS_Content_DipLe_SoLuong.getSelectedIndex() + 1;
+		Date thoiGian = getFormattedDate(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe, comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe,
+				comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe);
+		float soTien = 0;
+		if (!text.isEmpty()) {
+			try {
+				soTien = Float.parseFloat(text);
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Nhập không hợp lệ. Vui lòng nhập đầy đủ các thông tin.",
+						"Lỗi",
+						JOptionPane.ERROR_MESSAGE
+				);
+			}
+		}
+		boolean check;
+		if (checkClick != 2) {
+			check = insertThuongLe(ngayLe, tuoi, phanThuong, soLuong, thoiGian, soTien);
+		} else {
+			check = false;
+		}
+		if (check) {
+			return 1;
+		} else return -1;
+	}
+	public int getDataThuongHS() {
+		String phanThuong = textField_TCS_Content_HocTap_PhanThuong.getText();
+		int soLuong = comboBox_TCS_Content_HocTap_SoLuong.getSelectedIndex() + 1;
+		int lop = comboBox_TCS_Content_HocTap_Lop.getSelectedIndex() + 1;
+		String text = textField_TCS_Content_HocTap_TienTuongUng.getText();
+        String hocLuc = comboBox_TCS_Content_HocTap_HocLuc.getSelectedItem().toString();
+		Date thoiGian = getFormattedDate(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap, comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap,
+				comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap);
+		float soTien = 0;
+		if (!text.isEmpty()) {
+			try {
+				soTien = Float.parseFloat(text);
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Nhập không hợp lệ. Vui lòng nhập đầy đủ các thông tin.",
+						"Lỗi",
+						JOptionPane.ERROR_MESSAGE
+				);
+			}
+		}
+		boolean check;
+		if (checkClick == 2) {
+			check = insertThuongHS(lop, hocLuc, phanThuong, soLuong, thoiGian, soTien);
+		} else {
+			check = false;
+		}
+		if (check) {
+			return 1;
+		} else return -1;
+	}
+	private void handleThemButtonClick() {
+		if(checkClick != 2) {
+			if (textField_TCS_Content_DipLe_Ten.getText().isEmpty() || textField_TCS_Content_DipLe_PhanThuong.getText().isEmpty()
+					|| textField_TCS_Content_DipLe_TienTuongUng.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Phải nhập đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			int check1 = getDataThuongLe();
+			int confirmResult = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc chắn muốn thêm không?", "Xác nhận thêm ",
+					JOptionPane.YES_NO_OPTION);
+
+			if (confirmResult == JOptionPane.YES_OPTION) {
+				if (check1 == 1) {
+					JOptionPane.showMessageDialog(null, "Thêm thành công!");
+				} else if (check1 == -1) {
+					JOptionPane.showMessageDialog(null, "Thêm thất bại! Kiểm tra lại thông tin!");
+				}
+			} else if (confirmResult == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "Đã hủy thêm.");
+			}
+		}
+		else {
+			if (textField_TCS_Content_HocTap_PhanThuong.getText().isEmpty() || textField_TCS_Content_HocTap_TienTuongUng.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Phải nhập đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			int check2 = getDataThuongHS();
+			int confirmResult = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc chắn muốn thêm không?", "Xác nhận thêm ",
+					JOptionPane.YES_NO_OPTION);
+
+			if (confirmResult == JOptionPane.YES_OPTION) {
+				if (check2 == 1) {
+					JOptionPane.showMessageDialog(null, "Thêm thành công!");
+				} else if (check2 == -1) {
+					JOptionPane.showMessageDialog(null, "Thêm thất bại! Kiểm tra lại thông tin!");
+				}
+			} else if (confirmResult == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "Đã hủy thêm.");
+			}
+		}
 	}
 }
