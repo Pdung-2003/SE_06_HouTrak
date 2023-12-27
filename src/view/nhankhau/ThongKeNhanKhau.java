@@ -1,12 +1,27 @@
 package view.nhankhau;
 
+import controller.nhankhau.ThongKeNhanKhauController;
+import model.NhanKhau;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
 
 public class ThongKeNhanKhau extends JPanel {
-
+	private DefaultTableModel tableModel;
+	private JTable table;
+	private RowSorter<DefaultTableModel> sorter;
+	private ThongKeNhanKhauController thongKeNhanKhauController = new ThongKeNhanKhauController();
 	/**
 	 * Create the panel.
 	 */
@@ -32,7 +47,6 @@ public class ThongKeNhanKhau extends JPanel {
 		lbl_Title_ThongKeNhanKhau.setBackground(Colors.nen_Chung);
 		panel_TKeNK_Title.add(lbl_Title_ThongKeNhanKhau);
 
-
 		JPanel panel_TKeNK_Filter = new JPanel();
 		panel_TKeNK_Filter.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTKeNK.add(panel_TKeNK_Filter, BorderLayout.WEST);
@@ -52,6 +66,8 @@ public class ThongKeNhanKhau extends JPanel {
 		comboBox_TKeNK_Filter_GioiTinh.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
 		comboBox_TKeNK_Filter_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKeNK_Filter_GioiTinh.add(comboBox_TKeNK_Filter_GioiTinh);
+		comboBox_TKeNK_Filter_GioiTinh.addItem("Nam");
+		comboBox_TKeNK_Filter_GioiTinh.addItem("Nữ");
 
 		JPanel panel_TKeNK_Filter_DoTuoi = new JPanel();
 		panel_TKeNK_Filter_DoTuoi.setBackground(Colors.khung_Chung);
@@ -67,6 +83,10 @@ public class ThongKeNhanKhau extends JPanel {
 		comboBox_TKeNK_Filter_DoTuoi.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
 		comboBox_TKeNK_Filter_DoTuoi.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKeNK_Filter_DoTuoi.add(comboBox_TKeNK_Filter_DoTuoi);
+		comboBox_TKeNK_Filter_DoTuoi.addItem("0-18");
+		comboBox_TKeNK_Filter_DoTuoi.addItem("19-45");
+		comboBox_TKeNK_Filter_DoTuoi.addItem("46-60");
+		comboBox_TKeNK_Filter_DoTuoi.addItem("61-100");
 
 		JPanel panel_TKeNK_Filter_Loai = new JPanel();
 		panel_TKeNK_Filter_Loai.setBackground(Colors.khung_Chung);
@@ -82,21 +102,8 @@ public class ThongKeNhanKhau extends JPanel {
 		comboBox_TKeNK_Filter_Loai.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
 		comboBox_TKeNK_Filter_Loai.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKeNK_Filter_Loai.add(comboBox_TKeNK_Filter_Loai);
-
-		JPanel panel_TKeNK_Filter_TinhTrang = new JPanel();
-		panel_TKeNK_Filter_TinhTrang.setBackground(Colors.khung_Chung);
-		panel_TKeNK_Filter.add(panel_TKeNK_Filter_TinhTrang);
-		panel_TKeNK_Filter_TinhTrang.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-
-		JLabel lbl_TKeNK_Filter_TinhTrang = new JLabel("Tình trạng: ");
-		lbl_TKeNK_Filter_TinhTrang.setPreferredSize(new Dimension(120, 19));
-		lbl_TKeNK_Filter_TinhTrang.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKeNK_Filter_TinhTrang.add(lbl_TKeNK_Filter_TinhTrang);
-
-		JComboBox comboBox_TKeNK_Filter_TinhTrang = new JComboBox();
-		comboBox_TKeNK_Filter_TinhTrang.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
-		comboBox_TKeNK_Filter_TinhTrang.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKeNK_Filter_TinhTrang.add(comboBox_TKeNK_Filter_TinhTrang);
+		comboBox_TKeNK_Filter_Loai.addItem("Thường trú");
+		comboBox_TKeNK_Filter_Loai.addItem("Tạm trú");
 
 		JPanel panel_TKeNK_Filter_Confirm = new JPanel();
 		panel_TKeNK_Filter_Confirm.setBackground(Colors.khung_Chung);
@@ -109,7 +116,6 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_Filter.add(Box.createVerticalGlue());
 		panel_TKeNK_Filter.add(Box.createVerticalGlue());
 		panel_TKeNK_Filter.add(Box.createVerticalGlue());
-
 
 		// Nơi điền bảng thông tin
 		JPanel panel_TKeNK_Content = new JPanel();
@@ -130,6 +136,35 @@ public class ThongKeNhanKhau extends JPanel {
 		JComboBox comboBox_TKeNK_Sort = new JComboBox();
 		comboBox_TKeNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKeNK_Content_Sort.add(comboBox_TKeNK_Sort);
+		comboBox_TKeNK_Sort.addItem("Họ tên");
+		comboBox_TKeNK_Sort.addItem("Ngày sinh");
+		comboBox_TKeNK_Sort.addItem("Quê quán");
+		comboBox_TKeNK_Sort.addItem("Giới tính");
+
+		comboBox_TKeNK_Sort.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedItem = comboBox_TKeNK_Sort.getSelectedItem().toString();
+				switch (selectedItem) {
+					case "Họ tên":
+						// Sắp xếp dữ liệu theo họ tên (column 1)
+						sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+						break;
+					case "Ngày sinh":
+						// Sắp xếp dữ liệu theo ngày sinh (column 2)
+						sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
+						break;
+					case "Quê quán":
+						// Sắp xếp dữ liệu theo quê quán (column 5)
+						sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(5, SortOrder.ASCENDING)));
+						break;
+					case "Giới tính":
+						// Sắp xếp dữ liệu theo giới tính (column 6)
+						sorter.setSortKeys(Arrays.asList(new RowSorter.SortKey(6, SortOrder.ASCENDING)));
+						break;
+				}
+			}
+			});
 
 		// Điền bảng kết quả thống kê
 		JScrollPane scrollPane_TKeNK_Content_Table = new JScrollPane();
@@ -144,6 +179,95 @@ public class ThongKeNhanKhau extends JPanel {
 		JLabel lbl_TKeNK_Content_Total = new JLabel("Tổng:");
 		lbl_TKeNK_Content_Total.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TKeNK_Content_Total.add(lbl_TKeNK_Content_Total);
+
+		initializeTable(panel_TKeNK_Content, scrollPane_TKeNK_Content_Table);
+		btn_TKeNK_Filter_Confirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String gioiTinhSelected = comboBox_TKeNK_Filter_GioiTinh.getSelectedItem().toString();
+				String doTuoiSelected = comboBox_TKeNK_Filter_DoTuoi.getSelectedItem().toString();
+				String loaiSelected = comboBox_TKeNK_Filter_Loai.getSelectedItem().toString();
+				List<NhanKhau> listNhanKhau = thongKeNhanKhauController.thongKeNhanKhau(gioiTinhSelected, doTuoiSelected,loaiSelected);
+
+				int soLuong = listNhanKhau.size();
+				// Đặt giá trị số lượng vào JLabel
+				lbl_TKeNK_Content_Total.setText("Tổng: " + soLuong);
+
+				populateTable(listNhanKhau);
+			}
+		});
+	}
+	private void initializeTable(JPanel jPanel, JScrollPane jScrollPane) {
+		// Khởi tạo tableModel và table ở đây...
+		tableModel = new DefaultTableModel();
+		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
+		tableModel.addColumn("Mã Nhân Khẩu");
+		tableModel.addColumn("Họ Tên");
+		tableModel.addColumn("Ngày Sinh");
+		tableModel.addColumn("Tôn Giáo");
+		tableModel.addColumn("Số CMND");
+		tableModel.addColumn("Quê Quán");
+		tableModel.addColumn("Giới Tính");
+		tableModel.addColumn("Mã Hộ Khẩu");
+
+		// Tạo JTable với mô hình bảng đã tạo
+		int rowHeight = 30;
+		table = new JTable(tableModel);
+		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
+		table.setRowSorter(sorter);
+
+		// Cấu hình header của bảng
+		JTableHeader header = table.getTableHeader();
+		header.setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setFont(label.getFont().deriveFont(Font.BOLD));
+				label.setBackground(Colors.mau_Header);
+				label.setForeground(Colors.mau_Text_QLHK);
+				return label;
+			}
+		});
+
+		// Đặt kích thước của các cột trong bảng
+		table.getColumnModel().getColumn(0).setPreferredWidth(180); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(3).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(4).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(5).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(6).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(7).setPreferredWidth(200); // Họ Tên Chủ Hộ
+
+		// Đặt độ cao của hàng trong bảng
+		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+
+		// Tạo JScrollPane để chứa bảng
+		jScrollPane = new JScrollPane(table);
+		jScrollPane.setPreferredSize(new Dimension(1400, 700));
+
+		// Đặt màu sắc cho background của bảng và JScrollPane
+		table.setBackground(Colors.mau_Nen_QLHK);
+		table.setForeground(Colors.mau_Text_QLHK);
+		jScrollPane.setBackground(Colors.khung_Chung);
+
+		// Thêm JScrollPane vào panel
+		jPanel.add(jScrollPane, BorderLayout.CENTER);
 	}
 
+	public void populateTable(List<NhanKhau> danhSachNhanKhau) {
+		tableModel.setRowCount(0); // Xóa dữ liệu cũ
+		for (NhanKhau nk : danhSachNhanKhau) {
+			tableModel.addRow(new Object[]{
+					nk.getMaNhanKhau(),
+					nk.getHoTen(),
+					nk.getNgaySinh(),
+					nk.getTonGiao(),
+					nk.getSoCMNDCCCD(),
+					nk.getQueQuan(),
+					nk.getGioiTinh(),
+					nk.getMaHoKhau()
+			});
+		}
+	}
 }
