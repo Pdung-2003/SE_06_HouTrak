@@ -33,6 +33,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 	private JTextField textField_TCS_Content_DipLe_PhanThuong;
 
 	public TaoChinhSachPhatThuong(ManHinhChinh mainFrame) {
+
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));

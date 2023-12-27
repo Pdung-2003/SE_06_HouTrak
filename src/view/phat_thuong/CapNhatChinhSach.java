@@ -28,8 +28,11 @@ public class CapNhatChinhSach extends JPanel {
     private JTextField textField_CNCS_Content_SinhVien_PhanThuong;
     private JTextField textField_CNCS_Content_DipLe_PhanThuong;
     private JTextField textField_CNCS_Search_Bar;
+    private CardLayout cardLayout;
+    private JPanel panel_CNCS_Content;
 
     public CapNhatChinhSach(ManHinhChinh mainFrame) {
+        cardLayout = new CardLayout();
         this.mainFrame = mainFrame;
         setBackground(Colors.nen_Chung);
         setPreferredSize(new Dimension(1581, 994));
@@ -71,6 +74,19 @@ public class CapNhatChinhSach extends JPanel {
 
         JComboBox comboBox_CNCS_Search_Method = new JComboBox();
         comboBox_CNCS_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_CNCS_Search_Method.addItem("Dịp lễ");
+        comboBox_CNCS_Search_Method.addItem("Học tập");
+        comboBox_CNCS_Search_Method.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) comboBox_CNCS_Search_Method.getSelectedItem();
+                if (selectedItem.equals("Dịp lễ")) {
+                    cardLayout.show(panel_CNCS_Content, "DipLe");
+                } else if (selectedItem.equals("Học tập")) {
+                    cardLayout.show(panel_CNCS_Content, "HocTap");
+                }
+            }
+        });
         panel_CNCS_Search_Method.add(comboBox_CNCS_Search_Method);
 
         // Khu vực tìm chính
@@ -103,28 +119,20 @@ public class CapNhatChinhSach extends JPanel {
         panel_CNCS_Search.add(panel_CNCS_Search_Sort, BorderLayout.SOUTH);
         panel_CNCS_Search_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
-        JLabel lbl_CNCS_Search_Sort = new JLabel("Sắp xếp theo:");
-        lbl_CNCS_Search_Sort.setFont(new Font("Arial", Font.BOLD, 16));
-        panel_CNCS_Search_Sort.add(lbl_CNCS_Search_Sort);
-
-        JComboBox comboBox_CNCS_Search_Sort = new JComboBox();
-        comboBox_CNCS_Search_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
-        panel_CNCS_Search_Sort.add(comboBox_CNCS_Search_Sort);
-
         // In bảng kết quả tìm kiếm
         JPanel panel_CNCS_Table = new JPanel();
         panel_KhungNoiDungCNCS.add(panel_CNCS_Table, BorderLayout.CENTER);
 
         // Nội dung chính
-        JPanel panel_CNCS_Content = new JPanel();
+        panel_CNCS_Content = new JPanel();
         panel_CNCS_Content.setBackground(Colors.khung_Chung);
         panel_KhungNoiDungCNCS.add(panel_CNCS_Content, BorderLayout.SOUTH);
-        panel_CNCS_Content.setLayout(new CardLayout(0, 0));
+        panel_CNCS_Content.setLayout(cardLayout);
 
         // Dịp lễ
         JPanel panel_CNCS_Content_DipLe = new JPanel();
         panel_CNCS_Content_DipLe.setBackground(Colors.khung_Chung);
-        panel_CNCS_Content.add(panel_CNCS_Content_DipLe);
+        panel_CNCS_Content.add(panel_CNCS_Content_DipLe, "DipLe");
         panel_CNCS_Content_DipLe.setLayout(new BoxLayout(panel_CNCS_Content_DipLe, BoxLayout.Y_AXIS));
 
         // Lấy tên dịp lễ
@@ -227,7 +235,7 @@ public class CapNhatChinhSach extends JPanel {
         // Học tập
         JPanel panel_CNCS_Content_HocTap = new JPanel();
         panel_CNCS_Content_HocTap.setBackground(Colors.khung_Chung);
-        panel_CNCS_Content.add(panel_CNCS_Content_HocTap);
+        panel_CNCS_Content.add(panel_CNCS_Content_HocTap,"HocTap");
         panel_CNCS_Content_HocTap.setLayout(new BoxLayout(panel_CNCS_Content_HocTap, BoxLayout.Y_AXIS));
 
 
@@ -327,8 +335,8 @@ public class CapNhatChinhSach extends JPanel {
         btn_CNCS_HocTap_No.setBackground((Color) null);
         panel_CNCS_HocTap_Confirm.add(btn_CNCS_HocTap_No);
 
-        JPanel panel_CNCS_Content_Default = new JPanel();
-        panel_CNCS_Content.add(panel_CNCS_Content_Default, "name_1013301180306100");
+        // Đặt panel mặc định
+        cardLayout.show(panel_CNCS_Content, "Default");
 
         // Khu vực đệm
         JPanel panel_CNCS_Dem = new JPanel();
@@ -341,8 +349,6 @@ public class CapNhatChinhSach extends JPanel {
         add(panel_CNCS_Dem_2, BorderLayout.EAST);
 
         setVisible(true);
-
-
     }
     /*public JButton getBtn_TNK_Yes() {return btn_CNCS_Yes;}
     public JButton getBtn_TNK_No() {
