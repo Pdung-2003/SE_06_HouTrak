@@ -1,7 +1,6 @@
 package view.nhankhau;
 
 import controller.nhankhau.TimKiemNhanKhauController;
-import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
