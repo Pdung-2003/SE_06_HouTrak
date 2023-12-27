@@ -10,9 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -24,6 +28,34 @@ public class XemChinhSachPhatThuong extends JPanel {
      */
     private JTable table;
     private DefaultTableModel tableModel;
+    private JLabel lbl_Ngay;
+    // Thuong Hoc Sinh
+    private int lop;
+    private String phanThuongHs;
+    private int soLuongTHS;
+    private String hocLuc;
+    private float soTien;
+
+    private String nam;
+    private String thang;
+    private String ngay;
+    private JLabel lbl_SoLuong_HocTap;
+    private JLabel lbl_Thang;
+    private JLabel lbl_Nam;
+    private JLabel lbl_Lop_HocTap;
+    private JLabel lbl_TenPTHocTap;
+    private JLabel lbl_HocTap_HocLuc;
+    private JLabel lbl_GiaTri_HocTap;
+
+    // Thuon Ngay Le
+    private JLabel lbl_DipLe_Ten;
+    private JLabel lbl_DipLe_SoLuong;
+    private JLabel lbl_DipLe_Tuoi;
+    private JLabel lbl_DipLe_GiaTri;
+    private JLabel lbl_DipLe_TenDipLe;
+    private String ngayLe;
+    private int tuoi;
+
     public XemChinhSachPhatThuong() {
         ChinhSachPhatThuongController controller = new ChinhSachPhatThuongController();
         setBackground(Colors.nen_Chung);
@@ -149,6 +181,26 @@ public class XemChinhSachPhatThuong extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DisplayImage().setVisible(true);
+                String selectedItem = (String) comboBox_XemCS_XemTheo.getSelectedItem();
+                if (selectedItem.equals("Học tập")) {
+                    lbl_Ngay.setText(ngay);
+                    lbl_Thang.setText(thang);
+                    lbl_Nam.setText(nam);
+                    lbl_Lop_HocTap.setText(String.valueOf(lop));
+                    lbl_HocTap_HocLuc.setText(hocLuc);
+                    lbl_GiaTri_HocTap.setText(String.valueOf(soTien));
+                    lbl_SoLuong_HocTap.setText(String.valueOf(soLuongTHS));
+                    lbl_TenPTHocTap.setText(phanThuongHs);
+                } else if (selectedItem.equals("Dịp lễ")) {
+                    lbl_Ngay.setText(ngay);
+                    lbl_Thang.setText(thang);
+                    lbl_Nam.setText(nam);
+                    lbl_DipLe_Ten.setText(phanThuongHs);
+                    lbl_DipLe_GiaTri.setText(String.valueOf(soTien));
+                    lbl_DipLe_SoLuong.setText(String.valueOf(soLuongTHS));
+                    lbl_DipLe_Tuoi.setText(String.valueOf(tuoi));
+                    lbl_DipLe_TenDipLe.setText(ngayLe);
+                }
             }
         });
 
@@ -156,6 +208,48 @@ public class XemChinhSachPhatThuong extends JPanel {
         btn_XCSPT_In.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_XCSPT_Confirm.add(btn_XCSPT_In);
         panel_XCSPT_Confirm.add(btn_XCSPT_Confirm);
+
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String selectedItem = (String) comboBox_XemCS_XemTheo.getSelectedItem();
+                    int selectedRow = table.getSelectedRow();
+
+                    // Ensure a row is actually selected
+                    if (selectedRow != -1) {
+                        // Use the retrieved data as needed
+                        if (selectedItem.equals("Học tập")) {
+                            lop = (int) table.getValueAt(selectedRow, 1);
+                            Date col7 = (Date) table.getValueAt(selectedRow, 6);
+                            phanThuongHs = (String) table.getValueAt(selectedRow, 3);
+                            soLuongTHS = (int) table.getValueAt(selectedRow, 4);
+                            hocLuc = (String) table.getValueAt(selectedRow, 2);
+                            soTien = (float) table.getValueAt(selectedRow, 5);
+                            String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(col7);
+                            String[] parts = formattedDate.split("-");
+                            nam = parts[0];
+                            thang = parts[1];
+                            ngay = parts[2];
+
+                        } else if (selectedItem.equals("Dịp lễ")) {
+                            ngayLe = (String) table.getValueAt(selectedRow, 1);
+                            Date col3 = (Date) table.getValueAt(selectedRow, 2);
+                            tuoi = (int) table.getValueAt(selectedRow, 3);
+                            phanThuongHs= (String) table.getValueAt(selectedRow, 4);
+                            soLuongTHS = (int) table.getValueAt(selectedRow, 5);
+                            soTien = (float) table.getValueAt(selectedRow, 6);
+                            String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(col3);
+                            String[] parts = formattedDate.split("-");
+                            nam = parts[0];
+                            thang = parts[1];
+                            ngay = parts[2];
+
+                        }
+                    }
+                }
+            }
+        });
     }
     private void setTableColumns(String selectedNenTang) {
         tableModel.setRowCount(0);
@@ -187,7 +281,7 @@ public class XemChinhSachPhatThuong extends JPanel {
     private class DisplayImage extends JFrame {
         public DisplayImage() {
             setTitle("Image Display");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setSize(1000, 1000);
             setResizable(false);
 
@@ -195,69 +289,64 @@ public class XemChinhSachPhatThuong extends JPanel {
             ImageIcon imageIcon = new ImageIcon("src/view/image/XemCS.png");
             getContentPane().setLayout(null);
 
-            JLabel lbl_Ngay = new JLabel("ngày");
+            lbl_Ngay = new JLabel();
             lbl_Ngay.setForeground(SystemColor.desktop);
             lbl_Ngay.setBounds(626, 230, 49, 30);
             getContentPane().add(lbl_Ngay);
 
-            JLabel lblNewLabel_NoiOKhuDanCu = new JLabel("Nơi ở đây");
+            JLabel lblNewLabel_NoiOKhuDanCu = new JLabel("HouTrak");
             lblNewLabel_NoiOKhuDanCu.setForeground(SystemColor.desktop);
             lblNewLabel_NoiOKhuDanCu.setBounds(525, 225, 49, 37);
             getContentPane().add(lblNewLabel_NoiOKhuDanCu);
-            JLabel lbl_SoLuong_HocTap = new JLabel("Điền số lượng");
+            lbl_SoLuong_HocTap = new JLabel();
             lbl_SoLuong_HocTap.setBounds(653, 552, 102, 14);
             getContentPane().add(lbl_SoLuong_HocTap);
 
 
 
-            JLabel lbl_Thang = new JLabel("tháng");
+            lbl_Thang = new JLabel();
             lbl_Thang.setForeground(SystemColor.desktop);
             lbl_Thang.setBounds(709, 230, 59, 30);
             getContentPane().add(lbl_Thang);
 
-            JLabel lbl_Nam = new JLabel("điền năm");
+            lbl_Nam = new JLabel();
             lbl_Nam.setForeground(SystemColor.desktop);
             lbl_Nam.setBounds(782, 230, 49, 30);
             getContentPane().add(lbl_Nam);
 
-            JLabel lbl_TenPTHocTap = new JLabel("Điền tên phần thưởng");
+            lbl_TenPTHocTap = new JLabel();
             lbl_TenPTHocTap.setBounds(318, 552, 115, 14);
             getContentPane().add(lbl_TenPTHocTap);
 
-
-
-
-
-            JLabel lbl_GiaTri_HocTap = new JLabel("Giá trị");
+            lbl_GiaTri_HocTap = new JLabel();
             lbl_GiaTri_HocTap.setBounds(206, 576, 100, 25);
             getContentPane().add(lbl_GiaTri_HocTap);
 
-            JLabel lbl_Lop_HocTap = new JLabel("Lớp");
+            lbl_Lop_HocTap = new JLabel();
             lbl_Lop_HocTap.setBounds(470, 581, 65, 14);
             getContentPane().add(lbl_Lop_HocTap);
 
-            JLabel lbl_HocTap_HocLuc = new JLabel("điền học lực");
+            lbl_HocTap_HocLuc = new JLabel();
             lbl_HocTap_HocLuc.setBounds(667, 581, 115, 14);
             getContentPane().add(lbl_HocTap_HocLuc);
 
-
-            JLabel lbl_DipLe_Ten = new JLabel("Điền tên phần thưởng");
+            lbl_DipLe_Ten = new JLabel();
             lbl_DipLe_Ten.setBounds(318, 615, 115, 9);
             getContentPane().add(lbl_DipLe_Ten);
 
-            JLabel lbl_DipLe_SoLuong = new JLabel("Điền số lượng");
+            lbl_DipLe_SoLuong = new JLabel();
             lbl_DipLe_SoLuong.setBounds(666, 615, 102, 9);
             getContentPane().add(lbl_DipLe_SoLuong);
 
-            JLabel lbl_DipLe_GiaTri = new JLabel("Giá trị");
+            lbl_DipLe_GiaTri = new JLabel();
             lbl_DipLe_GiaTri.setBounds(227, 637, 100, 25);
             getContentPane().add(lbl_DipLe_GiaTri);
 
-            JLabel lbl_DipLe_Tuoi = new JLabel("Tuổi");
+            lbl_DipLe_Tuoi = new JLabel();
             lbl_DipLe_Tuoi.setBounds(417, 642, 70, 16);
             getContentPane().add(lbl_DipLe_Tuoi);
 
-            JLabel lbl_DipLe_TenDipLe = new JLabel("điền dịp lễ");
+            lbl_DipLe_TenDipLe = new JLabel();
             lbl_DipLe_TenDipLe.setBounds(543, 642, 115, 14);
             getContentPane().add(lbl_DipLe_TenDipLe);
 
