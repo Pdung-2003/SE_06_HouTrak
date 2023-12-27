@@ -1,4 +1,4 @@
-package view;
+package view.hokhau;
 
 import controller.hokhau.LichSuThayDoiController;
 import model.ThayDoiHoKhau;
