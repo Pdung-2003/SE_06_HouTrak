@@ -1,4 +1,4 @@
- package view.phat_thuong;
+package view.phat_thuong;
 
 import controller.phat_thuong.QuanLyPhatThuongController;
 import model.HocSinh;
@@ -22,7 +22,7 @@ import java.awt.Font;
 import java.awt.event.ItemListener;
 import java.util.List;
 
- public class QuanLyPhatThuong extends JPanel {
+public class QuanLyPhatThuong extends JPanel {
 	private QuanLyPhatThuongController controller;
 	private DefaultTableModel tableModel;
 	private JTable table;
@@ -34,34 +34,34 @@ import java.util.List;
 	public QuanLyPhatThuong() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
-		
+		setLayout(new BorderLayout(0, 0));
+
 		JPanel panel_QuanLyPhatThuong = new JPanel();
-		add(panel_QuanLyPhatThuong, "name_191092971211800");
+		add(panel_QuanLyPhatThuong);
 		panel_QuanLyPhatThuong.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLPT_Title = new JPanel();
 		panel_QLPT_Title.setBackground(Colors.nen_Chung);
 		panel_QuanLyPhatThuong.add(panel_QLPT_Title, BorderLayout.NORTH);
 		panel_QLPT_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_Title_QuanLyPhatThuong = new JLabel("Thông tin các học sinh đủ điều kiện    ");
 		lbl_Title_QuanLyPhatThuong.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_Title_QuanLyPhatThuong.setBackground(Colors.nen_Chung);
 		panel_QLPT_Title.add(lbl_Title_QuanLyPhatThuong);
-		
+
 		JPanel panel_KhungNoiDungQLPT = new JPanel();
 		panel_KhungNoiDungQLPT.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungQLPT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungQLPT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungQLPT.setBackground(Colors.khung_Chung);
 		panel_QuanLyPhatThuong.add(panel_KhungNoiDungQLPT, BorderLayout.CENTER);
 		panel_KhungNoiDungQLPT.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLPT_02 = new JPanel();
 		panel_QLPT_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungQLPT.add(panel_QLPT_02, BorderLayout.CENTER);
 		panel_QLPT_02.setLayout(new BorderLayout(0, 0));
-		
+
 		panel_QLPT_02_BangThongTin = new JPanel();
 		panel_QLPT_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_QLPT_02_BangThongTin.setLayout(new BorderLayout(10, 10));
@@ -80,7 +80,7 @@ import java.util.List;
 		lbl_QLPT_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLPT_Sort = new JComboBox();
-		comboBox_QLPT_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLPT_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_QLPT_SubTitle.add(comboBox_QLPT_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLPT_Sort.addItem("Mã Nhân Khẩu");
@@ -162,7 +162,7 @@ import java.util.List;
 		});
 		controller = new QuanLyPhatThuongController(this);
 	}
-	
+
 	public void setController(QuanLyPhatThuongController controller) {
 		this.controller = controller;
 	}
