@@ -5,6 +5,7 @@ import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -57,10 +58,6 @@ public class CapNhatTamTru extends JPanel {
 		lbl_CNTT_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNTT_KhoangTrang1.add(lbl_CNTT_01_Title, BorderLayout.CENTER);
 
-		JPanel panel_CNTT_01_dem = new JPanel();
-		panel_CNTT_01_dem.setBackground(Colors.input_Colors);
-		panel_CNTT_KhoangTrang1.add(panel_CNTT_01_dem, BorderLayout.EAST);
-
 		JPanel panel_CNTT_KhoangTrang3 = new JPanel();
 		panel_CNTT_KhoangTrang3.setBackground(Colors.khung_Chung);
 		panel_CNTT_01.add(panel_CNTT_KhoangTrang3, BorderLayout.SOUTH);
@@ -74,10 +71,12 @@ public class CapNhatTamTru extends JPanel {
 		text_CNTT_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_CNTT_01.setForeground(Color.BLACK);
 		text_CNTT_01.setFont(new Font("Arial", Font.PLAIN, 16));
-		text_CNTT_01.setBorder(null);
+		text_CNTT_01.setBorder(new EmptyBorder(0, 10, 0, 0));;
+		text_CNTT_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		panel_CNTT_01_content.add(text_CNTT_01);
 
 		JButton btn_CNTT_01_TimKiem = new JButton("Tìm kiếm");
+		btn_CNTT_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_CNTT_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_CNTT_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_CNTT_01_TimKiem.setForeground(Color.WHITE);
@@ -115,6 +114,7 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_CotPhai_NhanKhau_01.add(lbl_CNTT_CotPhai_01);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Colors.khung_Chung);
 		panel_CNTT_CotPhai.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -124,6 +124,7 @@ public class CapNhatTamTru extends JPanel {
 		lbl_CNTT_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Colors.khung_Chung);
 		panel_CNTT_CotPhai.add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -133,6 +134,7 @@ public class CapNhatTamTru extends JPanel {
 		lbl_CNTT_CotPhai_09.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Colors.khung_Chung);
 		panel_CNTT_CotPhai.add(panel_3);
 		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -153,7 +155,6 @@ public class CapNhatTamTru extends JPanel {
 		textField_CNTT_CotPhai_04 = new JTextField();
 		textField_CNTT_CotPhai_04.setPreferredSize(new Dimension(500, 30));
 		textField_CNTT_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 16));
-		textField_CNTT_CotPhai_04.setBackground(new Color(217, 217, 217));
 		panel_CNTT_CotPhai_NhanKhau_02.add(textField_CNTT_CotPhai_04);
 
 		ButtonGroup bg_NhanKhau_GioiTinh = new ButtonGroup();
