@@ -106,8 +106,9 @@ public class QuanLyPhatThuong extends JPanel {
 		tableModel.addColumn("Lớp");
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
+		int rowHeight = 40;
 		table = new JTable(tableModel);
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

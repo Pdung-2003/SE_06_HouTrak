@@ -91,7 +91,6 @@ public class QuanLyHoKhau extends JPanel {
 		tableModel.addColumn("Khu Vực");
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		table = new JTable(tableModel);
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
@@ -110,6 +109,8 @@ public class QuanLyHoKhau extends JPanel {
 				return label;
 			}
 		});
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		// Đặt kích thước của các cột trong bảng
 		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu

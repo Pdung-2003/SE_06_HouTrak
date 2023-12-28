@@ -142,12 +142,13 @@ public class TimKiemHoKhau extends JPanel {
 		tableModel.addColumn("Khu Vực");
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		table = new JTable(tableModel);
 
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// In đậm chữ ở header và đặt font
 		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
 			@Override

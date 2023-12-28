@@ -21,6 +21,9 @@ import javax.swing.border.MatteBorder;
 public class ThongKeNhanKhau extends JPanel {
 	private DefaultTableModel tableModel;
 	private JTable table;
+	private JPanel panel_TKeNK_Content;
+	private JPanel panel_TKeNK_Content_Total;
+	private JLabel lbl_TKeNK_Content_Total;
 	private RowSorter<DefaultTableModel> sorter;
 	private ThongKeNhanKhauController thongKeNhanKhauController = new ThongKeNhanKhauController();
 	/**
@@ -120,7 +123,7 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_Filter.add(Box.createVerticalGlue());
 
 		// Nơi điền bảng thông tin
-		JPanel panel_TKeNK_Content = new JPanel();
+		panel_TKeNK_Content = new JPanel();
 		panel_TKeNK_Content.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTKeNK.add(panel_TKeNK_Content, BorderLayout.CENTER);
 		panel_TKeNK_Content.setLayout(new BorderLayout(0, 0));
@@ -168,21 +171,7 @@ public class ThongKeNhanKhau extends JPanel {
 			}
 		});
 
-		// Điền bảng kết quả thống kê
-		JScrollPane scrollPane_TKeNK_Content_Table = new JScrollPane();
-		panel_TKeNK_Content.add(scrollPane_TKeNK_Content_Table, BorderLayout.CENTER);
-
-		// Điền tổng số lượng
-		JPanel panel_TKeNK_Content_Total = new JPanel();
-		panel_TKeNK_Content_Total.setBackground(Colors.khung_Chung);
-		panel_TKeNK_Content.add(panel_TKeNK_Content_Total, BorderLayout.SOUTH);
-		panel_TKeNK_Content_Total.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-
-		JLabel lbl_TKeNK_Content_Total = new JLabel("Tổng:");
-		lbl_TKeNK_Content_Total.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TKeNK_Content_Total.add(lbl_TKeNK_Content_Total);
-
-		initializeTable(panel_TKeNK_Content, scrollPane_TKeNK_Content_Table);
+		initializeTable();
 		btn_TKeNK_Filter_Confirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -199,7 +188,7 @@ public class ThongKeNhanKhau extends JPanel {
 			}
 		});
 	}
-	private void initializeTable(JPanel jPanel, JScrollPane jScrollPane) {
+	private void initializeTable() {
 		// Khởi tạo tableModel và table ở đây...
 		tableModel = new DefaultTableModel();
 		// Tạo định dạng cột cho tableModel (tùy thuộc vào số cột của bảng NhanKhau)
@@ -211,18 +200,22 @@ public class ThongKeNhanKhau extends JPanel {
 		tableModel.addColumn("Quê Quán");
 		tableModel.addColumn("Giới Tính");
 		tableModel.addColumn("Mã Hộ Khẩu");
-
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		table = new JTable(tableModel);
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
-
-		// Cấu hình header của bảng
+		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
-		header.setDefaultRenderer(new DefaultTableCellRenderer() {
+
+		// In đậm chữ ở header và đặt font
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			public Component getTableCellRendererComponent(
+					JTable table, Object value,
+					boolean isSelected, boolean hasFocus,
+					int row, int column) {
 				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 				label.setFont(label.getFont().deriveFont(Font.BOLD));
 				label.setBackground(Colors.mau_Header);
@@ -232,31 +225,40 @@ public class ThongKeNhanKhau extends JPanel {
 		});
 
 		// Đặt kích thước của các cột trong bảng
-		table.getColumnModel().getColumn(0).setPreferredWidth(180); // Mã Hộ Khẩu
+		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
 		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(2).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(3).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(4).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(5).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(6).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(7).setPreferredWidth(200); // Họ Tên Chủ Hộ
+		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
+		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
-		// Đặt độ cao của hàng trong bảng
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+		panel_TKeNK_Content.setLayout(new BorderLayout(10, 10));
 
-		// Tạo JScrollPane để chứa bảng
-		jScrollPane = new JScrollPane(table);
-		jScrollPane.setPreferredSize(new Dimension(1400, 700));
+		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
 
-		// Đặt màu sắc cho background của bảng và JScrollPane
+		// Đặt màu sắc cho background của bảng
 		table.setBackground(Colors.mau_Nen_QLHK);
 		table.setForeground(Colors.mau_Text_QLHK);
-		jScrollPane.setBackground(Colors.khung_Chung);
+		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
-		jPanel.add(jScrollPane, BorderLayout.CENTER);
-	}
+		panel_TKeNK_Content.add(scrollPane, BorderLayout.CENTER);
+		JViewport viewport = scrollPane.getViewport();
+		viewport.setBackground(Colors.khung_Chung);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
+		// Điền tổng số lượng
+		panel_TKeNK_Content_Total = new JPanel();
+		panel_TKeNK_Content_Total.setBackground(Colors.khung_Chung);
+		panel_TKeNK_Content.add(panel_TKeNK_Content_Total, BorderLayout.SOUTH);
+		panel_TKeNK_Content_Total.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
+		lbl_TKeNK_Content_Total = new JLabel("Tổng:");
+		lbl_TKeNK_Content_Total.setFont(new Font("Arial", Font.BOLD, 20));
+		panel_TKeNK_Content_Total.add(lbl_TKeNK_Content_Total);
+	}
 	public void populateTable(List<NhanKhau> danhSachNhanKhau) {
 		tableModel.setRowCount(0); // Xóa dữ liệu cũ
 		for (NhanKhau nk : danhSachNhanKhau) {

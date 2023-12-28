@@ -270,7 +270,6 @@ public class ThayDoiHoKhau extends JPanel {
 		tableModel.addColumn("Khu Vực");
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		panel_TDHK_02_ThongTinHienTai.setLayout(new BorderLayout(10, 10));
 
 		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
@@ -287,7 +286,8 @@ public class ThayDoiHoKhau extends JPanel {
 		lbl_TDHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
 		lbl_TDHK_Subtitle.setAlignmentX(0.5f);
 		table = new JTable(tableModel);
-
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

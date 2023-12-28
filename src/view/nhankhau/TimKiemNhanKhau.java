@@ -119,8 +119,9 @@ public class TimKiemNhanKhau extends JPanel {
 		DefaultTableModel tableModel = new DefaultTableModel();
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		JTable table = new JTable(tableModel);
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

@@ -215,7 +215,6 @@ public class TachHoKhau extends JPanel {
 		tableModel.addColumn("Mã Hộ Khẩu");
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		table = new JTable(tableModel);
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
@@ -234,7 +233,8 @@ public class TachHoKhau extends JPanel {
 			}
 		});
 		// table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// Đặt kích thước của các cột trong bảng
 		table.getColumnModel().getColumn(0).setPreferredWidth(80); // Mã Hộ Khẩu
 		table.getColumnModel().getColumn(1).setPreferredWidth(100); // Họ Tên Chủ Hộ

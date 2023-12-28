@@ -124,8 +124,9 @@ public class QuanLyKhoanThu extends JPanel {
 		tableModel.addColumn("Người Thu");
 		tableModel.addColumn("Số Tiền");
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		table = new JTable(tableModel);
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng

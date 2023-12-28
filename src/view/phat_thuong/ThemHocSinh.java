@@ -125,8 +125,9 @@ public class ThemHocSinh extends JPanel {
 		DefaultTableModel tableModel = new DefaultTableModel();
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
+		int rowHeight = 40;
 		JTable table = new JTable(tableModel);
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

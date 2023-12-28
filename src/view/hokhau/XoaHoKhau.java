@@ -219,8 +219,9 @@ public class XoaHoKhau extends JPanel {
 		tableModel.addColumn("Mã Hộ Khẩu");
 
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
 		table = new JTable(tableModel);
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

@@ -15,7 +15,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class QuanLyKhoanChi extends JPanel {
+public class  QuanLyKhoanChi extends JPanel {
 	private DefaultTableModel tableModel;
 	private JTable table;
 	private RowSorter<DefaultTableModel> sorter;
@@ -126,8 +126,9 @@ public class QuanLyKhoanChi extends JPanel {
 		tableModel.addColumn("Người Chi");
 		tableModel.addColumn("Số Tiền");
 		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
+		int rowHeight = 40;
 		table = new JTable(tableModel);
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng

@@ -395,9 +395,10 @@ public class CapNhatKhoanThu extends JPanel {
 		for (int i = 0; i < columnWidths.length; i++) {
 			table.getColumnModel().getColumn(i).setPreferredWidth(columnWidths[i]);
 		}
+		int rowHeight = 40;
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
 
 		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
-		int rowHeight = 30;
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
 		// Cài đặt layout cho jPanel và thêm bảng vào panel

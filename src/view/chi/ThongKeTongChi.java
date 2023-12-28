@@ -309,7 +309,8 @@ public class ThongKeTongChi extends JPanel {
 		}
 
 		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
-		int rowHeight = 30;
+		int rowHeight = 40;
+		khoanChiTable.setFont(new Font("Arial", Font.PLAIN, 15));
 		khoanChiTable.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
 		// Cài đặt layout cho jPanel và thêm bảng vào panel
@@ -380,7 +381,8 @@ public class ThongKeTongChi extends JPanel {
 		}
 
 		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
-		int rowHeight = 30;
+		int rowHeight = 40;
+		thongKeTable.setFont(new Font("Arial", Font.PLAIN, 15));
 		thongKeTable.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
 		// Cài đặt layout cho jPanel và thêm bảng vào panel
