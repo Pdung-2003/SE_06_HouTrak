@@ -7,7 +7,6 @@ import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
 import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
-import view.Colors;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

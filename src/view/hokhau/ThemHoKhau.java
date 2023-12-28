@@ -90,6 +90,7 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_01.setLayout(new BoxLayout(panel_THK_01, BoxLayout.Y_AXIS));
 
 		JPanel panel_THK_Content_KhuVuc = new JPanel();
+		panel_THK_Content_KhuVuc.setBackground(Colors.khung_Chung);
 		panel_THK_01.add(panel_THK_Content_KhuVuc);
 		panel_THK_Content_KhuVuc.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -145,6 +146,7 @@ public class ThemHoKhau extends JPanel {
 		ButtonGroup bg_ChuHo_GioiTinh = new ButtonGroup();
 
 		JPanel panel_THK_Content_ChuHo_Ten = new JPanel();
+		panel_THK_Content_ChuHo_Ten.setBackground(Colors.khung_Chung);
 		panel_THK_01.add(panel_THK_Content_ChuHo_Ten);
 		panel_THK_Content_ChuHo_Ten.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -159,6 +161,7 @@ public class ThemHoKhau extends JPanel {
 		textField_THK_Content_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JPanel panel_THK_Content_ChuHo_CCCD = new JPanel();
+		panel_THK_Content_ChuHo_CCCD.setBackground(Colors.khung_Chung);
 		panel_THK_01.add(panel_THK_Content_ChuHo_CCCD);
 		panel_THK_Content_ChuHo_CCCD.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -173,6 +176,7 @@ public class ThemHoKhau extends JPanel {
 		textField_THK_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JPanel panel_THK_Content_ChuHo_GioiTinh = new JPanel();
+		panel_THK_Content_ChuHo_GioiTinh.setBackground(Colors.khung_Chung);
 		panel_THK_01.add(panel_THK_Content_ChuHo_GioiTinh);
 		panel_THK_Content_ChuHo_GioiTinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -201,6 +205,7 @@ public class ThemHoKhau extends JPanel {
 		bg_ChuHo_GioiTinh.add(rdbtn_THK_Content_ChuHo_GioiTinh_02);
 
 		JPanel panel_THK_Content_ChuHo_NgaySinh = new JPanel();
+		panel_THK_Content_ChuHo_NgaySinh.setBackground(Colors.khung_Chung);
 		panel_THK_01.add(panel_THK_Content_ChuHo_NgaySinh);
 		panel_THK_Content_ChuHo_NgaySinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -250,6 +255,7 @@ public class ThemHoKhau extends JPanel {
 		updateDays(comboBox_THK_Content_ChuHo_Nam, comboBox_THK_Content_ChuHo_Thang, comboBox_THK_Content_ChuHo_Ngay);
 
 		JPanel panel_THK_Content_ChuHo_TonGiao = new JPanel();
+		panel_THK_Content_ChuHo_TonGiao.setBackground(Colors.khung_Chung);
 		panel_THK_01.add(panel_THK_Content_ChuHo_TonGiao);
 		panel_THK_Content_ChuHo_TonGiao.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -321,7 +327,7 @@ public class ThemHoKhau extends JPanel {
 		panel_THK_NhapFIle.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		btn_THK_NhapFile = new JButton("Chọn file");
-		btn_THK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 14));
+		btn_THK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_THK_NhapFIle.add(btn_THK_NhapFile);
 
 		lbl_THK_TenFile = new JLabel("Chưa chọn file"); // Cho nay dien ten file
