@@ -1,5 +1,6 @@
 package view.dangnhap;
 
+import model.DatabaseConnector;
 import view.chi.QuanLyKhoanChi;
 import view.chi.SideBar_QuanLyKhoanChi;
 import view.hokhau.QuanLyHoKhau;
@@ -122,6 +123,7 @@ public class ManHinhChinh extends JFrame {
 				int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất?", "Xác nhận đăng xuất", JOptionPane.YES_NO_OPTION);
 				if (choice == JOptionPane.YES_OPTION) {
 					dispose();
+					DatabaseConnector.setDefault();
 					SignIn signIn = new SignIn(); // Tạo instance của lớp SignIn
 					signIn.setVisible(true); // Hiển thị lớp SignIn
 				}

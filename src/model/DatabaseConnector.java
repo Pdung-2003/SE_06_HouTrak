@@ -27,6 +27,10 @@ public class DatabaseConnector {
         return null;
     }
     // Kiểm tra đăng nhập
+    public static void setDefault() {
+        ds.setUser("sa");
+        ds.setPassword("manhvu123");
+    }
     public static boolean checkLogin(String username, String password) {
         try (Connection conn = ds.getConnection()) {
             String query = "SELECT * FROM users WHERE username = ? AND password = ?";
