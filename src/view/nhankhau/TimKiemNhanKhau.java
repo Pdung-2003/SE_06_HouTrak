@@ -95,7 +95,6 @@ public class TimKiemNhanKhau extends JPanel {
 		text_TKNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKNK_01.setForeground(Color.BLACK);
 		text_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
-		text_TKNK_01.setBorder(null);
 		panel_TKNK_01_content.add(text_TKNK_01);
 
 		JButton btn_TKNK_01_TimKiem = new JButton("Tìm kiếm");

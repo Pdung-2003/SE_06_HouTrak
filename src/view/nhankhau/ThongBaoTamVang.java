@@ -6,6 +6,7 @@ import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -75,6 +76,7 @@ public class ThongBaoTamVang extends JPanel {
 		JComboBox comboBox_TBTV_Content_Search_Method = new JComboBox();
 		comboBox_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TBTV_Content_Search_Method.add(comboBox_TBTV_Content_Search_Method);
+		comboBox_TBTV_Content_Search_Method.addItem("Mã nhân khẩu");
 
 		// Tiêu đề tìm kiếm
 		JPanel panel_TBTV_Content_Search_Title = new JPanel();
@@ -88,12 +90,10 @@ public class ThongBaoTamVang extends JPanel {
 
 		// Thanh tìm kiếm
 		text_TBTV_Content_Search = new JTextField();
-		text_TBTV_Content_Search.setMargin(new Insets(2, 20, 2, 2));
+		text_TBTV_Content_Search.setBorder(new EmptyBorder(0, 10, 0, 0));
 		text_TBTV_Content_Search.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TBTV_Content_Search.setForeground(Color.BLACK);
 		text_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 16));
-		text_TBTV_Content_Search.setBorder(null);
-		text_TBTV_Content_Search.setBackground(Colors.input_Colors);
 		panel_TBTV_Content_Search.add(text_TBTV_Content_Search, BorderLayout.CENTER);
 
 		JButton btn_TBTV_Content_Search = new JButton("Tìm kiếm");
@@ -313,7 +313,7 @@ public class ThongBaoTamVang extends JPanel {
 		scrollPane.setBackground(Colors.khung_Chung);
 
 		// Thêm JScrollPane vào panel
-		panel_TBTV_Content_SearchResult_Table.add(scrollPane, BorderLayout.WEST);
+		panel_TBTV_Content_SearchResult_Table.add(scrollPane, BorderLayout.CENTER);
 		JViewport viewport = scrollPane.getViewport();
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
