@@ -42,7 +42,7 @@ public class ThongKePhatThuong extends JPanel {
 
 		JPanel panel_KhungNoiDungTKPT = new JPanel();
 		panel_KhungNoiDungTKPT.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTKPT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTKPT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTKPT.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungTKPT, BorderLayout.CENTER);
 		panel_KhungNoiDungTKPT.setLayout(new BorderLayout(10, 10));
