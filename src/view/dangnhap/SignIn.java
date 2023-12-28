@@ -1,5 +1,6 @@
 package view.dangnhap;
 
+import model.DatabaseConnector;
 import model.LoginChecker;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
@@ -227,7 +228,7 @@ public class SignIn extends JFrame {
 		String password = passwordField_SignIn_MK.getText();
 
 		// Gọi phương thức checkLogin từ DatabaseConnector
-		boolean isValidLogin = LoginChecker.checkLogin(username, password);
+		boolean isValidLogin = DatabaseConnector.checkLogin(username, password);
 
 		if (isValidLogin) {
 			// Đăng nhập thành công

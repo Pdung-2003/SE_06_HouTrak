@@ -36,7 +36,12 @@ public class DatabaseConnector {
                 pstmt.setString(2, password);
 
                 try (ResultSet rs = pstmt.executeQuery()) {
-                    return rs.next(); // Trả về true nếu có kết quả, ngược lại trả về false
+                    if (rs.next()) {
+                        ds.setUser(username);
+                        ds.setPassword(password);
+                        return true;
+                    }
+                    return false;
                 }
             }
         } catch (SQLException e) {
