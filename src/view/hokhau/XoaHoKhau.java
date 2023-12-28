@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import java.awt.BorderLayout;
 
 import java.awt.Color;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -97,7 +98,7 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_01_content.setLayout(new BorderLayout(0, 0));
 
 		txt_XHK_TImKiem = new JTextField();
-		txt_XHK_TImKiem.setBorder(null);
+		txt_XHK_TImKiem.setBorder(new EmptyBorder(0, 10, 0, 0));
 		panel_XHK_01_content.add(txt_XHK_TImKiem);
 		txt_XHK_TImKiem.setHorizontalAlignment(SwingConstants.LEFT);
 		txt_XHK_TImKiem.setFont(new Font("Arial", Font.PLAIN, 16));

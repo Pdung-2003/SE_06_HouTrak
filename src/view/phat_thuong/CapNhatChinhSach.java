@@ -1,4 +1,4 @@
-package view.phat_thuong;
+package view;
 
 import model.CsThuongHS;
 import model.CsThuongLe;
@@ -8,6 +8,7 @@ import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.awt.Component;
+import java.awt.Cursor;
 import java.util.List;
 
 public class CapNhatChinhSach extends JPanel {
@@ -80,6 +82,7 @@ public class CapNhatChinhSach extends JPanel {
 
         // Phương pháp tìm kiếm
         JPanel panel_CNCS_Search_Method = new JPanel();
+        panel_CNCS_Search_Method.setBackground(Colors.khung_Chung);
         panel_CNCS_Search.add(panel_CNCS_Search_Method, BorderLayout.NORTH);
         panel_CNCS_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -107,11 +110,13 @@ public class CapNhatChinhSach extends JPanel {
 
         // Khu vực tìm chính
         JPanel panel_CNCS_Search_Bar = new JPanel();
+        panel_CNCS_Search_Bar.setBackground(Colors.khung_Chung);
         panel_CNCS_Search.add(panel_CNCS_Search_Bar, BorderLayout.CENTER);
         panel_CNCS_Search_Bar.setLayout(new BorderLayout(0, 0));
 
         // Tiêu đề tìm kiếm
         JPanel panel_CNCS_Search_Bar_Title = new JPanel();
+        panel_CNCS_Search_Bar_Title.setBackground(Colors.khung_Chung);
         panel_CNCS_Search_Bar.add(panel_CNCS_Search_Bar_Title, BorderLayout.WEST);
         panel_CNCS_Search_Bar_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -121,9 +126,11 @@ public class CapNhatChinhSach extends JPanel {
 
         // Thanh input
         textField_CNCS_Search_Bar = new JTextField();
+        textField_CNCS_Search_Bar.setBorder(new EmptyBorder(0, 10, 0, 0));
+        textField_CNCS_Search_Bar.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         textField_CNCS_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNCS_Search_Bar.add(textField_CNCS_Search_Bar, BorderLayout.CENTER);
-        textField_CNCS_Search_Bar.setColumns(10);
+
 
         // Nút tìm kiếm
         JButton btn_CNCS_Search_Bar = new JButton("Tìm kiếm");
@@ -144,11 +151,13 @@ public class CapNhatChinhSach extends JPanel {
 
         // Khu vực sắp xếp
         JPanel panel_CNCS_Search_Sort = new JPanel();
+        panel_CNCS_Search_Sort.setBackground(Colors.khung_Chung);
         panel_CNCS_Search.add(panel_CNCS_Search_Sort, BorderLayout.SOUTH);
         panel_CNCS_Search_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
         // In bảng kết quả tìm kiếm
         JPanel panel_CNCS_Table = new JPanel();
+        panel_CNCS_Table.setBackground(Colors.khung_Chung);
         panel_KhungNoiDungCNCS.add(panel_CNCS_Table, BorderLayout.CENTER);
 
         // Tạo bảng và mô hình bảng
@@ -326,6 +335,7 @@ public class CapNhatChinhSach extends JPanel {
         panel_CNCS_DipLe_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
         JButton btn_CNCS_Yes = new JButton("Cập nhật");
+        btn_CNCS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
         btn_CNCS_Yes.setToolTipText("");
         btn_CNCS_Yes.setOpaque(true);
         btn_CNCS_Yes.setForeground(Color.WHITE);
@@ -370,6 +380,7 @@ public class CapNhatChinhSach extends JPanel {
         });
 
         JButton btn_CNCS_No = new JButton("Hủy");
+        btn_CNCS_No.setFont(new Font("Arial", Font.PLAIN, 16));
         btn_CNCS_No.setOpaque(true);
         btn_CNCS_No.setForeground(Color.WHITE);
         btn_CNCS_No.setBorderPainted(false);
@@ -562,16 +573,6 @@ public class CapNhatChinhSach extends JPanel {
 
         // Đặt panel mặc định
         cardLayout.show(panel_CNCS_Content, "Default");
-
-        // Khu vực đệm
-        JPanel panel_CNCS_Dem = new JPanel();
-        add(panel_CNCS_Dem, BorderLayout.WEST);
-
-        JPanel panel_CNCS_Dem_1 = new JPanel();
-        add(panel_CNCS_Dem_1, BorderLayout.SOUTH);
-
-        JPanel panel_CNCS_Dem_2 = new JPanel();
-        add(panel_CNCS_Dem_2, BorderLayout.EAST);
 
         setVisible(true);
 
