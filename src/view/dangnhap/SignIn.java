@@ -18,10 +18,6 @@ import javax.swing.JPasswordField;
 public class SignIn extends JFrame {
 	private JTextField textField_SignIn_TK;
 	private JPasswordField passwordField_SignIn_MK;
-
-	/**
-	 * Create the panel.
-	 */
 	public SignIn() {
 		setTitle("Đăng nhập");
 		setSize(1390, 760);
@@ -33,37 +29,38 @@ public class SignIn extends JFrame {
 		panel_SignIn.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_SignIn_dem1 = new JPanel();
-		panel_SignIn_dem1.setBackground(Colors.nen_Chung);
+		panel_SignIn_dem1.setBackground(new Color(144, 224, 239));
 		panel_SignIn.add(panel_SignIn_dem1, BorderLayout.NORTH);
 
 		JPanel panel_SignIn_dem2 = new JPanel();
-		panel_SignIn_dem2.setBackground(Colors.nen_Chung);
+		panel_SignIn_dem2.setBackground(new Color(144, 224, 239));
 		panel_SignIn.add(panel_SignIn_dem2, BorderLayout.WEST);
 
 		JPanel panel_SignIn_dem3 = new JPanel();
-		panel_SignIn_dem3.setBackground(Colors.nen_Chung);
+		panel_SignIn_dem3.setBackground(new Color(144, 224, 239));
 		panel_SignIn.add(panel_SignIn_dem3, BorderLayout.EAST);
 
 		JPanel panel_SignIn_dem4 = new JPanel();
-		panel_SignIn_dem4.setBackground(Colors.nen_Chung);
+		panel_SignIn_dem4.setBackground(new Color(144, 224, 239));
 		panel_SignIn.add(panel_SignIn_dem4, BorderLayout.SOUTH);
 
 		JPanel panel_SignIn_content = new JPanel();
 		panel_SignIn.add(panel_SignIn_content, BorderLayout.CENTER);
-		panel_SignIn_content.setLayout(new GridLayout(1, 3, 0, 0));
+		panel_SignIn_content.setLayout(new GridLayout(1, 2, 0, 0));
 
 		JPanel panel_SignIn_Content_Title = new JPanel();
-		panel_SignIn_Content_Title.setBackground(Colors.nen_Chung);
+		panel_SignIn_Content_Title.setBackground(new Color(144, 224, 239));
 		panel_SignIn_content.add(panel_SignIn_Content_Title);
-		panel_SignIn_Content_Title.setLayout(new BorderLayout(0, 0));
+		panel_SignIn_Content_Title.setLayout(new BoxLayout(panel_SignIn_Content_Title, BoxLayout.X_AXIS));
 
 		JLabel lblLabel_Logo = new JLabel();
 		lblLabel_Logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(ManHinhChinh.class.getResource("/view/image/Logo_Signin.png"))));
 		lblLabel_Logo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLabel_Logo.setForeground(new Color(255, 255, 255));
+		lblLabel_Logo.setForeground(new Color(144, 224, 239));
 		panel_SignIn_Content_Title.add(lblLabel_Logo, BorderLayout.CENTER);
 
 		JPanel panel_SignIn_Content_function = new JPanel();
+		panel_SignIn_Content_function.setBackground(new Color(144, 224, 239));
 		panel_SignIn_content.add(panel_SignIn_Content_function);
 		panel_SignIn_Content_function.setLayout(new BorderLayout(0, 0));
 
@@ -85,17 +82,17 @@ public class SignIn extends JFrame {
 		panel_SignIn_Content_function_Form.add(verticalGlue_6);
 
 		JPanel panel_SignIn_Content_function_Form_TItle_3 = new JPanel();
-		panel_SignIn_Content_function_Form_TItle_3.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form_TItle_3.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_3);
 		panel_SignIn_Content_function_Form_TItle_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JPanel panel_SignIn_Content_function_Form_TItle_1 = new JPanel();
-		panel_SignIn_Content_function_Form_TItle_1.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form_TItle_1.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_1);
 		panel_SignIn_Content_function_Form_TItle_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JPanel panel_SignIn_Content_function_Form_TItle = new JPanel();
-		panel_SignIn_Content_function_Form_TItle.setBackground(Colors.khung_Chung);
+		panel_SignIn_Content_function_Form_TItle.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle);
 		panel_SignIn_Content_function_Form_TItle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -106,7 +103,7 @@ public class SignIn extends JFrame {
 		panel_SignIn_Content_function_Form_TItle.add(lblNewLabel_4);
 
 		JPanel panel_SignIn_Account = new JPanel();
-		panel_SignIn_Account.setBackground(Colors.khung_Chung);
+		panel_SignIn_Account.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Account);
 		panel_SignIn_Account.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -121,7 +118,7 @@ public class SignIn extends JFrame {
 		panel_SignIn_Account.add(textField_SignIn_TK);
 
 		JPanel panel_SignIn_Password = new JPanel();
-		panel_SignIn_Password.setBackground(Colors.khung_Chung);
+		panel_SignIn_Password.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Password);
 		panel_SignIn_Password.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -136,7 +133,7 @@ public class SignIn extends JFrame {
 		panel_SignIn_Password.add(passwordField_SignIn_MK);
 
 		JPanel panel_SignIn_dem11 = new JPanel();
-		panel_SignIn_dem11.setBackground(Colors.khung_Chung);
+		panel_SignIn_dem11.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_dem11);
 		panel_SignIn_dem11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -155,12 +152,12 @@ public class SignIn extends JFrame {
 		});
 
 		JPanel panel_SignIn_Content_function_Form_TItle_2 = new JPanel();
-		panel_SignIn_Content_function_Form_TItle_2.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form_TItle_2.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_2);
 		panel_SignIn_Content_function_Form_TItle_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JPanel panel_SignIn_Content_function_Form_TItle_4 = new JPanel();
-		panel_SignIn_Content_function_Form_TItle_4.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form_TItle_4.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_4);
 		panel_SignIn_Content_function_Form_TItle_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -185,7 +182,7 @@ public class SignIn extends JFrame {
 		panel_Header.add(panel_header_logo, BorderLayout.WEST);
 		panel_header_logo.setLayout(new BorderLayout(0, 0));
 
-		panel_header_logo.add(lblLabel_Logo, BorderLayout.CENTER);
+		//panel_header_logo.add(lblLabel_Logo, BorderLayout.CENTER);
 
 		JPanel panel_logo_dem = new JPanel();
 		panel_logo_dem.setBackground(Colors.vien_Tren_Duoi);

@@ -130,7 +130,6 @@ public class XemChinhSachPhatThuong extends JPanel {
         tableModel = new DefaultTableModel();
 
         // Tạo JTable với mô hình bảng đã tạo
-        int rowHeight = 40;
         table = new JTable(tableModel);
         // Đặt màu sắc cho header của bảng
         JTableHeader header = table.getTableHeader();
@@ -149,10 +148,10 @@ public class XemChinhSachPhatThuong extends JPanel {
                 return label;
             }
         });
-
+        int rowHeight = 40;
+        table.setFont(new Font("Arial", Font.PLAIN, 15));
         table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
         panel_XCSPT_Content_DonChinhSachPreview.setLayout(new BorderLayout(10, 10));
-        table.setFont(new Font("Arial", Font.PLAIN, 15));
 
         // Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
         JScrollPane scrollPane = new JScrollPane(table);
