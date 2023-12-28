@@ -4,7 +4,6 @@ import model.DatabaseConnector;
 import model.LoginChecker;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
-import view.Colors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -186,7 +185,7 @@ public class SignIn extends JFrame {
 		panel_Header.add(panel_header_logo, BorderLayout.WEST);
 		panel_header_logo.setLayout(new BorderLayout(0, 0));
 
-		panel_header_logo.add(label_logo, BorderLayout.CENTER);
+		panel_header_logo.add(lblLabel_Logo, BorderLayout.CENTER);
 
 		JPanel panel_logo_dem = new JPanel();
 		panel_logo_dem.setBackground(Colors.vien_Tren_Duoi);

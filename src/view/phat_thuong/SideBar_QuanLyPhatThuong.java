@@ -12,6 +12,7 @@ import javax.swing.border.Border;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import view.CapNhatChinhSach;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
