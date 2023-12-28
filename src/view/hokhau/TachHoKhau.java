@@ -7,8 +7,10 @@ import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
 import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
+import view.Colors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -95,7 +97,7 @@ public class TachHoKhau extends JPanel {
 		panel_TachHK_01_content.setLayout(new BorderLayout(0, 0));
 
 		txt_TachHK_TImKiem = new JTextField();
-		txt_TachHK_TImKiem.setBorder(null);
+		txt_TachHK_TImKiem.setBorder(new EmptyBorder(0, 10, 0, 0));
 		panel_TachHK_01_content.add(txt_TachHK_TImKiem);
 		txt_TachHK_TImKiem.setHorizontalAlignment(SwingConstants.LEFT);
 		txt_TachHK_TImKiem.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -302,6 +304,7 @@ public class TachHoKhau extends JPanel {
 		panel_CotPhai_ThongTinSau_Content_01.add(comboBox_CotPhai_ThongTinSau_Content_KhuVuc);
 
 		JPanel panel_CotPhai_ThongTinSau_Content_03 = new JPanel();
+		panel_CotPhai_ThongTinSau_Content_03.setBackground(Colors.khung_Chung);
 		panel_CotPhai_ThongTinSau_Content.add(panel_CotPhai_ThongTinSau_Content_03);
 		panel_CotPhai_ThongTinSau_Content_03.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -313,7 +316,6 @@ public class TachHoKhau extends JPanel {
 		textField_CotPhai_ThongTinSau_Content_DiaChi = new JTextField();
 		textField_CotPhai_ThongTinSau_Content_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CotPhai_ThongTinSau_Content_03.add(textField_CotPhai_ThongTinSau_Content_DiaChi);
-		textField_CotPhai_ThongTinSau_Content_DiaChi.setBackground(Colors.input_Colors);
 		textField_CotPhai_ThongTinSau_Content_DiaChi.setPreferredSize(new Dimension(500, 30));
 
 		JPanel panel_CotPhai_ThongTinSau_Content_02 = new JPanel();
@@ -328,7 +330,6 @@ public class TachHoKhau extends JPanel {
 
 		textField_CotPhai_ThongTinSau_Content_ChuHo = new JTextField();
 		textField_CotPhai_ThongTinSau_Content_ChuHo.setFont(new Font("Arial", Font.PLAIN, 16));
-		textField_CotPhai_ThongTinSau_Content_ChuHo.setBackground(Colors.input_Colors);
 		panel_CotPhai_ThongTinSau_Content_02.add(textField_CotPhai_ThongTinSau_Content_ChuHo);
 		textField_CotPhai_ThongTinSau_Content_ChuHo.setPreferredSize(new Dimension(500, 30));
 
