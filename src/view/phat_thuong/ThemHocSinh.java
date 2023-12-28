@@ -7,6 +7,7 @@ import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -28,10 +29,10 @@ public class ThemHocSinh extends JPanel {
 	public ThemHocSinh(ManHinhChinh mainFrame) {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
+		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_ThemHocSinh = new JPanel();
-		add(panel_ThemHocSinh, "name_365411790909000");
+		add(panel_ThemHocSinh);
 		panel_ThemHocSinh.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_THS_Title = new JPanel();
@@ -46,7 +47,7 @@ public class ThemHocSinh extends JPanel {
 
 		JPanel panel_KhungNoiDungTHS = new JPanel();
 		panel_KhungNoiDungTHS.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTHS.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTHS.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungTHS.setBackground(Colors.khung_Chung);
 		panel_ThemHocSinh.add(panel_KhungNoiDungTHS, BorderLayout.CENTER);
 		panel_KhungNoiDungTHS.setLayout(new BorderLayout(0, 0));
@@ -67,6 +68,7 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_KhoangTrang2.add(lbl_THS_CachTim);
 
 		JComboBox comboBox_THS_SortTK = new JComboBox();
+		comboBox_THS_SortTK.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox_THS_SortTK.addItem("Tìm kiếm theo tên");
 		comboBox_THS_SortTK.addItem("Tìm kiếm theo ngày sinh");
 		comboBox_THS_SortTK.addItem("Tìm kiếm theo số CMND");
@@ -79,17 +81,9 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_01.add(panel_THS_KhoangTrang1, BorderLayout.WEST);
 		panel_THS_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel = new JLabel("   Nhập thông tin tìm kiếm học sinh: ");
+		JLabel lblNewLabel = new JLabel("   Nhập thông tin: ");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_THS_KhoangTrang1.add(lblNewLabel, BorderLayout.CENTER);
-
-		JPanel panel_TKNK_01_dem = new JPanel();
-		panel_TKNK_01_dem.setBackground(Colors.input_Colors);
-		panel_THS_KhoangTrang1.add(panel_TKNK_01_dem, BorderLayout.EAST);
-
-		JPanel panel_THS_KhoangTrang4 = new JPanel();
-		panel_THS_KhoangTrang4.setBackground(Colors.input_Colors);
-		panel_THS_01.add(panel_THS_KhoangTrang4, BorderLayout.EAST);
 
 		JPanel panel_THS_KhoangTrang3 = new JPanel();
 		panel_THS_KhoangTrang3.setBackground(Colors.khung_Chung);
@@ -98,27 +92,25 @@ public class ThemHocSinh extends JPanel {
 		JPanel panel_THS_01_content = new JPanel();
 		panel_THS_01_content.setBackground(Colors.input_Colors);
 		panel_THS_01.add(panel_THS_01_content, BorderLayout.CENTER);
-		panel_THS_01_content.setLayout(new BoxLayout(panel_THS_01_content, BoxLayout.X_AXIS));
+		panel_THS_01_content.setLayout(new BorderLayout(0, 0));
 
 		text_THS_01 = new JTextField();
-		text_THS_01.setPreferredSize(new Dimension(1389, 68));
-		text_THS_01.setMargin(new Insets(2, 20, 2, 2));
 		text_THS_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_THS_01.setForeground(Color.BLACK);
-		text_THS_01.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		text_THS_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		text_THS_01.setColumns(10);
-		text_THS_01.setCaretColor(new Color(103, 103, 103));
-		text_THS_01.setBorder(null);
-		text_THS_01.setBackground(Colors.input_Colors);
+		text_THS_01.setBorder(new EmptyBorder(0, 10, 0, 0));
+		text_THS_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		panel_THS_01_content.add(text_THS_01);
 
 		JButton btn_TKHS_01_TimKiem = new JButton("Tìm kiếm");
+		btn_TKHS_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TKHS_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKHS_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TKHS_01_TimKiem.setForeground(Color.WHITE);
 		btn_TKHS_01_TimKiem.setOpaque(true);
 		btn_TKHS_01_TimKiem.setBorderPainted(false);
-		panel_THS_01_content.add(btn_TKHS_01_TimKiem);
+		panel_THS_01_content.add(btn_TKHS_01_TimKiem, BorderLayout.EAST);
 
 		JPanel panel_THS_02 = new JPanel();
 		panel_THS_02.setBackground(Colors.khung_Chung);
@@ -247,7 +239,7 @@ public class ThemHocSinh extends JPanel {
 					case "Tìm kiếm theo mã hộ khẩu":
 						TimKiemNhanKhauController.timKiemTheoMaHoKhau(tableModel, searchText);
 						break;
-						default:
+					default:
 						JOptionPane.showMessageDialog(null, "Yêu cầu tìm kiếm không hợp lệ!");
 						break;
 				}
@@ -270,6 +262,7 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_SubTitle.add(lbl_THS_Sort);
 
 		JComboBox comboBox_THS_Sort = new JComboBox();
+		comboBox_THS_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		// Thêm các tùy chọn vào combobox
 		comboBox_THS_Sort.addItem("Sắp xếp theo tên");
 		comboBox_THS_Sort.addItem("Sắp xếp theo ngày sinh");
@@ -283,8 +276,9 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_confirm.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungTHS.add(panel_THS_confirm, BorderLayout.SOUTH);
 		panel_THS_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
-		
+
 		btn_THS_Yes = new JButton("Thêm");
+		btn_THS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_THS_Yes.setToolTipText("");
 		btn_THS_Yes.setBackground(Colors.button_XacNhan);
 		btn_THS_Yes.setForeground(Color.WHITE);

@@ -2,7 +2,6 @@ package view.phat_thuong;
 
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
-import view.Colors;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
