@@ -4,12 +4,14 @@ import model.DatabaseConnector;
 import model.LoginChecker;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
+import view.Colors;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
@@ -23,7 +25,8 @@ public class SignIn extends JFrame {
 	 */
 	public SignIn() {
 		setTitle("Đăng nhập");
-		setSize(1920, 1010);
+		setSize(1390, 760);
+		setResizable(false);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
 		JPanel panel_SignIn = new JPanel();
@@ -65,90 +68,86 @@ public class SignIn extends JFrame {
 		panel_SignIn_content.add(panel_SignIn_Content_function);
 		panel_SignIn_Content_function.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_SignIn_Content_function_dem1 = new JPanel();
-		panel_SignIn_Content_function_dem1.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function.add(panel_SignIn_Content_function_dem1, BorderLayout.NORTH);
-
-		JPanel panel_SignIn_Content_function_dem2 = new JPanel();
-		panel_SignIn_Content_function_dem2.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function.add(panel_SignIn_Content_function_dem2, BorderLayout.WEST);
-
-		JPanel panel_SignIn_Content_function_dem3 = new JPanel();
-		panel_SignIn_Content_function_dem3.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function.add(panel_SignIn_Content_function_dem3, BorderLayout.EAST);
-
-		JPanel panel_SignIn_Content_function_dem4 = new JPanel();
-		panel_SignIn_Content_function_dem4.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function.add(panel_SignIn_Content_function_dem4, BorderLayout.SOUTH);
-
 		JPanel panel_SignIn_Content_function_Form = new JPanel();
-		panel_SignIn_Content_function_Form.setBackground(Colors.khung_Chung);
+		panel_SignIn_Content_function_Form.setBackground(Colors.nen_Chung);
 		panel_SignIn_Content_function.add(panel_SignIn_Content_function_Form, BorderLayout.CENTER);
-		panel_SignIn_Content_function_Form.setLayout(new GridLayout(10, 1, 20, 20));
+		panel_SignIn_Content_function_Form.setLayout(new BoxLayout(panel_SignIn_Content_function_Form, BoxLayout.Y_AXIS));
 
-		JPanel panel_SingIn_dem9 = new JPanel();
-		panel_SingIn_dem9.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function_Form.add(panel_SingIn_dem9);
+		Component verticalGlue = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue);
+
+		Component verticalGlue_3 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_3);
+
+		Component verticalGlue_4 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_4);
+
+		Component verticalGlue_6 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_6);
+
+		JPanel panel_SignIn_Content_function_Form_TItle_3 = new JPanel();
+		panel_SignIn_Content_function_Form_TItle_3.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_3);
+		panel_SignIn_Content_function_Form_TItle_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JPanel panel_SignIn_Content_function_Form_TItle_1 = new JPanel();
+		panel_SignIn_Content_function_Form_TItle_1.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_1);
+		panel_SignIn_Content_function_Form_TItle_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JPanel panel_SignIn_Content_function_Form_TItle = new JPanel();
 		panel_SignIn_Content_function_Form_TItle.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle);
-		panel_SignIn_Content_function_Form_TItle.setLayout(new BorderLayout(0, 0));
+		panel_SignIn_Content_function_Form_TItle.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JLabel lblNewLabel_4 = new JLabel("Đăng nhập tài khoản");
+		lblNewLabel_4.setPreferredSize(new Dimension(400, 60));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 25));
-		panel_SignIn_Content_function_Form_TItle.add(lblNewLabel_4, BorderLayout.CENTER);
+		panel_SignIn_Content_function_Form_TItle.add(lblNewLabel_4);
 
 		JPanel panel_SignIn_Account = new JPanel();
 		panel_SignIn_Account.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Account);
-		panel_SignIn_Account.setLayout(new BorderLayout(0, 0));
+		panel_SignIn_Account.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JLabel lblNewLabel = new JLabel("   Tài khoản: ");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_SignIn_Account.add(lblNewLabel, BorderLayout.WEST);
+		panel_SignIn_Account.add(lblNewLabel);
 
 		textField_SignIn_TK = new JTextField();
+		textField_SignIn_TK.setBorder(new EmptyBorder(0, 10, 0, 0));
+		textField_SignIn_TK.setPreferredSize(new Dimension(400, 30));
 		textField_SignIn_TK.setFont(new Font("Arial", Font.PLAIN, 16));
-		textField_SignIn_TK.setBackground(Colors.input_Colors);
-		panel_SignIn_Account.add(textField_SignIn_TK, BorderLayout.CENTER);
-		textField_SignIn_TK.setColumns(10);
+		panel_SignIn_Account.add(textField_SignIn_TK);
 
 		JPanel panel_SignIn_Password = new JPanel();
 		panel_SignIn_Password.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_Password);
-		panel_SignIn_Password.setLayout(new BorderLayout(0, 0));
+		panel_SignIn_Password.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JLabel lblNewLabel_1 = new JLabel("   Mật khẩu:  ");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_SignIn_Password.add(lblNewLabel_1, BorderLayout.WEST);
+		panel_SignIn_Password.add(lblNewLabel_1);
 
 		passwordField_SignIn_MK = new JPasswordField();
-		passwordField_SignIn_MK.setBackground(Colors.input_Colors);
+		passwordField_SignIn_MK.setBorder(new EmptyBorder(0, 10, 0, 0));
+		passwordField_SignIn_MK.setPreferredSize(new Dimension(400, 30));
 		passwordField_SignIn_MK.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_SignIn_Password.add(passwordField_SignIn_MK, BorderLayout.CENTER);
+		panel_SignIn_Password.add(passwordField_SignIn_MK);
 
 		JPanel panel_SignIn_dem11 = new JPanel();
 		panel_SignIn_dem11.setBackground(Colors.khung_Chung);
 		panel_SignIn_Content_function_Form.add(panel_SignIn_dem11);
-		panel_SignIn_dem11.setLayout(new BorderLayout(0, 0));
-
-		JPanel panel_SignIn_btn_DangNhap = new JPanel();
-		panel_SignIn_dem11.add(panel_SignIn_btn_DangNhap, BorderLayout.CENTER);
-		panel_SignIn_btn_DangNhap.setLayout(new GridLayout(1, 3, 0, 0));
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Colors.khung_Chung);
-		panel_SignIn_btn_DangNhap.add(panel_1);
+		panel_SignIn_dem11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JButton btnSignIn_1 = new JButton("Đăng Nhập");
+		panel_SignIn_dem11.add(btnSignIn_1);
 		btnSignIn_1.setOpaque(true);
 		btnSignIn_1.setForeground(Color.WHITE);
 		btnSignIn_1.setFont(new Font("Arial", Font.BOLD, 20));
 		btnSignIn_1.setBorderPainted(false);
 		btnSignIn_1.setBackground(new Color(2, 62, 138));
-		panel_SignIn_btn_DangNhap.add(btnSignIn_1);
 		btnSignIn_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -156,40 +155,27 @@ public class SignIn extends JFrame {
 			}
 		});
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Colors.khung_Chung);
-		panel_SignIn_btn_DangNhap.add(panel_2);
+		JPanel panel_SignIn_Content_function_Form_TItle_2 = new JPanel();
+		panel_SignIn_Content_function_Form_TItle_2.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_2);
+		panel_SignIn_Content_function_Form_TItle_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JPanel panel_SignIn_dem12 = new JPanel();
-		panel_SignIn_dem12.setBackground(Colors.khung_Chung);
-		panel_SignIn_dem12.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_SignIn_Content_function_Form.add(panel_SignIn_dem12);
+		JPanel panel_SignIn_Content_function_Form_TItle_4 = new JPanel();
+		panel_SignIn_Content_function_Form_TItle_4.setBackground(new Color(144, 224, 239));
+		panel_SignIn_Content_function_Form.add(panel_SignIn_Content_function_Form_TItle_4);
+		panel_SignIn_Content_function_Form_TItle_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JButton btnNewButton = new JButton("Quên mật khẩu?");
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.setOpaque(true);
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBackground(new Color(2, 62, 138));
-		panel_SignIn_dem12.add(btnNewButton);
+		Component verticalGlue_7 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_7);
 
-		JPanel panel_SignIn_SignUp_Title = new JPanel();
-		panel_SignIn_SignUp_Title.setBackground(Colors.khung_Chung);
-		panel_SignIn_Content_function_Form.add(panel_SignIn_SignUp_Title);
-		panel_SignIn_SignUp_Title.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+		Component verticalGlue_1 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_1);
 
-		JLabel lblNewLabel_2 = new JLabel("Chưa có tài khoản?");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 16));
-		panel_SignIn_SignUp_Title.add(lblNewLabel_2);
+		Component verticalGlue_2 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_2);
 
-		JButton btnNewButton_1 = new JButton("Đăng Ký Tài Khoản");
-		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 16));
-		btnNewButton_1.setOpaque(true);
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBackground(new Color(2, 62, 138));
-		panel_SignIn_Content_function_Form.add(btnNewButton_1);
+		Component verticalGlue_5 = Box.createVerticalGlue();
+		panel_SignIn_Content_function_Form.add(verticalGlue_5);
 
 		JPanel panel_Header = new JPanel();
 		panel_Header.setBackground(Colors.vien_Tren_Duoi);
@@ -199,9 +185,6 @@ public class SignIn extends JFrame {
 		JPanel panel_header_logo = new JPanel();
 		panel_Header.add(panel_header_logo, BorderLayout.WEST);
 		panel_header_logo.setLayout(new BorderLayout(0, 0));
-
-		ImageIcon logo = new ImageIcon("/Prjxl/src/img/pngtree-cute-duck-animal-cartoon-png-image_3826733 (1).jpg"); // Đường dẫn đến hình ảnh
-		JLabel label_logo = new JLabel(logo);
 
 		panel_header_logo.add(label_logo, BorderLayout.CENTER);
 
