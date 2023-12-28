@@ -42,34 +42,34 @@ public class DanhSachPhanThuong extends JPanel {
 	public DanhSachPhanThuong() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new CardLayout(10, 10));
-		
+		setLayout(new BorderLayout(0, 0));
+
 		JPanel panel_DanhSachPhanThuong = new JPanel();
-		add(panel_DanhSachPhanThuong, "name_191092971211800");
+		add(panel_DanhSachPhanThuong);
 		panel_DanhSachPhanThuong.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_DSPT_Title = new JPanel();
 		panel_DSPT_Title.setBackground(Colors.nen_Chung);
 		panel_DanhSachPhanThuong.add(panel_DSPT_Title, BorderLayout.NORTH);
 		panel_DSPT_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_Title_DanhSachPhanThuong = new JLabel("Thông tin các phần thưởng");
 		lbl_Title_DanhSachPhanThuong.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_Title_DanhSachPhanThuong.setBackground(Colors.nen_Chung);
 		panel_DSPT_Title.add(lbl_Title_DanhSachPhanThuong);
-		
+
 		JPanel panel_KhungNoiDungDSPT = new JPanel();
 		panel_KhungNoiDungDSPT.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungDSPT.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungDSPT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungDSPT.setBackground(Colors.khung_Chung);
 		panel_DanhSachPhanThuong.add(panel_KhungNoiDungDSPT, BorderLayout.CENTER);
 		panel_KhungNoiDungDSPT.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_DSPT_02 = new JPanel();
 		panel_DSPT_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungDSPT.add(panel_DSPT_02, BorderLayout.CENTER);
 		panel_DSPT_02.setLayout(new BorderLayout(0, 0));
-		
+
 		panel_DSPT_02_BangThongTin = new JPanel();
 		panel_DSPT_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_DSPT_02_BangThongTin.setLayout(new BorderLayout(10, 10));
@@ -88,7 +88,7 @@ public class DanhSachPhanThuong extends JPanel {
 		lbl_DSPT_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_DSPT_Sort = new JComboBox();
-		comboBox_DSPT_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_DSPT_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_DSPT_SubTitle.add(comboBox_DSPT_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_DSPT_Sort.addItem("Sắp xếp theo mã phần thưởng");
@@ -101,7 +101,7 @@ public class DanhSachPhanThuong extends JPanel {
 			String selectedItem = comboBox_DSPT_Sort.getSelectedItem().toString();
 		});
 	}
-	
+
 	public void setController(QuanLyNhanKhauController controller) {
 		this.controller = controller;
 	}
