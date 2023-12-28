@@ -1,6 +1,6 @@
 package controller.nhankhau;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

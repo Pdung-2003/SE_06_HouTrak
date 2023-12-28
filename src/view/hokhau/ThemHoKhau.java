@@ -1,13 +1,7 @@
 package view.hokhau;
 
 import controller.hokhau.ThemHoKhauController;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.dangnhap.ManHinhChinh;
-import view.hokhau.QuanLyHoKhau;
 import view.settings.Colors;
 
 import java.awt.CardLayout;
@@ -15,37 +9,29 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 
 import java.awt.BorderLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import static model.DatabaseConnector.insertChuHo;
-import static model.DatabaseConnector.insertHoKhau;
+import static server.DatabaseConnector.insertChuHo;
+import static server.DatabaseConnector.insertHoKhau;
 
 public class ThemHoKhau extends JPanel {
 	private JTextField textField_THK_Content_DiaChi;

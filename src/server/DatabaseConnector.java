@@ -1,6 +1,7 @@
-package model;
+package server;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -177,7 +178,7 @@ public class DatabaseConnector {
     }
     // insertNhanKhau
     public static boolean insertNhanKhau(String hoTen, String ngaySinh, String tonGiao, String soCMNDCCCD, String queQuan, String gioiTinh,  String maHoKhau) {
-        try (Connection conn = model.DatabaseConnector.getConnection()) {
+        try (Connection conn = DatabaseConnector.getConnection()) {
             // Kiểm tra xem mã hộ khẩu có tồn tại hay không
             String sqlCheckHoKhau = "SELECT * FROM HoKhau WHERE MaHoKhau = ?";
             try (PreparedStatement pstmtCheck = conn.prepareStatement(sqlCheckHoKhau)) {

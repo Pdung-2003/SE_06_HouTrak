@@ -1,6 +1,6 @@
 package view.hokhau;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.HoKhau;
 import view.dangnhap.ManHinhChinh;
 import view.settings.CustomRowHeightRenderer;

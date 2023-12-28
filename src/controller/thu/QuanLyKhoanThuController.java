@@ -1,6 +1,6 @@
 package controller.thu;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.KhoanThu;
 
 import java.sql.Connection;

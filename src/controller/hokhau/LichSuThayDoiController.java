@@ -1,6 +1,6 @@
 package controller.hokhau;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.ThayDoiHoKhau;
 import view.hokhau.LichSuThayDoiHoKhau;
 

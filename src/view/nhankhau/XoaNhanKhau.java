@@ -1,7 +1,6 @@
 package view.nhankhau;
 
-import controller.nhankhau.XoaNhanKhauController;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 

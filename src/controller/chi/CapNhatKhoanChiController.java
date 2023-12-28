@@ -1,6 +1,6 @@
 package controller.chi;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.KhoanChi;
 
 import java.sql.*;

@@ -1,17 +1,14 @@
 package controller.phat_thuong;
 
-import model.DatabaseConnector;
-import model.HoKhau;
+import server.DatabaseConnector;
 import model.HocSinh;
 import view.dangnhap.ManHinhChinh;
-import view.hokhau.QuanLyHoKhau;
 import view.phat_thuong.QuanLyPhatThuong;
 import view.phat_thuong.XoaHocSinh;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class XoaHocSinhController {

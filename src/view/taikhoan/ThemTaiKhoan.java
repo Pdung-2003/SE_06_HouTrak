@@ -1,6 +1,5 @@
 package view.taikhoan;
 
-import controller.hokhau.ThemHoKhauController;
 import controller.taikhoan.ThemTaiKhoanController;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
@@ -16,10 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.awt.Color;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import static model.DatabaseConnector.insertTaiKhoan;
+import static server.DatabaseConnector.insertTaiKhoan;
 
 public class ThemTaiKhoan extends JPanel {
 	private JTextField textField_TTK_Item_Content_MaNhanVien;

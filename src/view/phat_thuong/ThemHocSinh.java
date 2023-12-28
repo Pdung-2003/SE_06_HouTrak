@@ -1,7 +1,7 @@
 package view.phat_thuong;
 
 import controller.nhankhau.TimKiemNhanKhauController;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import view.settings.CustomRowHeightRenderer;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;

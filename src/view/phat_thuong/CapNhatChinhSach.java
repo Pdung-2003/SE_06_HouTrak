@@ -2,7 +2,7 @@ package view;
 
 import model.CsThuongHS;
 import model.CsThuongLe;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
@@ -25,7 +25,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

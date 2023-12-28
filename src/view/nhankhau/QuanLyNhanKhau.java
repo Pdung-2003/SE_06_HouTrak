@@ -1,7 +1,6 @@
 package view.nhankhau;
 
 import controller.nhankhau.QuanLyNhanKhauController;
-import model.DatabaseConnector;
 import model.NhanKhau;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
@@ -16,18 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Rectangle;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 
 public class QuanLyNhanKhau extends JPanel {
 	private QuanLyNhanKhauController controller;

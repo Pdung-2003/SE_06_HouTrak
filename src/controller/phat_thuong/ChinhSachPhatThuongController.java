@@ -2,8 +2,7 @@ package controller.phat_thuong;
 
 import model.CsThuongHS;
 import model.CsThuongLe;
-import model.DatabaseConnector;
-import model.HoKhau;
+import server.DatabaseConnector;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.List;

@@ -1,8 +1,7 @@
 package view.taikhoan;
 
 import controller.taikhoan.CapNhatTaiKhoanController;
-import controller.taikhoan.TimKiemTaiKhoanController;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.TaiKhoan;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
