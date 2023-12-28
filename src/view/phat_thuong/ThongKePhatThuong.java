@@ -153,10 +153,6 @@ public class ThongKePhatThuong extends JPanel {
 		panel_TKPT_Filter_Content_EndTime.add(lblNewLabel_Tong);
 		lblNewLabel_Tong.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		// in ra tổng ở đây
-		JLabel lblTong_In_Ra = new JLabel("Tổng in ra ở đây khi bấm thống kê");
-		panel_TKPT_Filter_Content_EndTime.add(lblTong_In_Ra);
-
 
 		JPanel panel_TKPT_NoiDung = new JPanel();// Điền bảng kết quả thống kê
 		panel_TKPT_NoiDung.setBackground(Colors.khung_Chung);
@@ -192,8 +188,9 @@ public class ThongKePhatThuong extends JPanel {
 				String namKetThuc = comboBox_TKPT_Filter_Content_EndTime_Nam.getSelectedItem().toString();
 				List<Object[]> ketQuaPhatThuong = controller.timPhatThuongTheoThoiGian(ngayBatDau, thangBatDau, namBatDau, ngayKetThuc, thangKetThuc, namKetThuc);
 				addDataToTablePhatThuong(ketQuaPhatThuong);
-//				List<String> ketQuaThongKe = controller.thongKeTheoThoiGian(ngayBatDau, thangBatDau, namBatDau, ngayKetThuc, thangKetThuc, namKetThuc);
-//				addDataToTableThongKe(ketQuaThongKe);
+				List<Object[]> ketQuaThongKe = controller.thongKeTheoThoiGian(ngayBatDau, thangBatDau, namBatDau, ngayKetThuc, thangKetThuc, namKetThuc);
+				addDataToTableThongKe(ketQuaThongKe);
+				lblNewLabel_Tong.setText("Tổng số phần thưởng đã phát là: "+ ketQuaPhatThuong.size());
 			}
 		});
 	}
@@ -303,7 +300,7 @@ public class ThongKePhatThuong extends JPanel {
 		if (thongKeTableModel == null) {
 			// Nếu tableModel chưa được khởi tạo, thực hiện khởi tạo mới
 			thongKeTableModel = new DefaultTableModel();
-			thongKeTableModel.addColumn("Mã Nhân Khẩu");
+			thongKeTableModel.addColumn("Mã Hộ Khẩu");
 			thongKeTableModel.addColumn("Địa Chỉ");
 			thongKeTableModel.addColumn("Số Lần Nhận");
 			thongKeTableModel.addColumn("Số Tiền Nhận Được");
@@ -355,41 +352,13 @@ public class ThongKePhatThuong extends JPanel {
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 	}
-	private void addDataToTableThongKe(List<String> thongKeList) {
+	private void addDataToTableThongKe(List<Object[]> thongKeList) {
 		// Xóa dữ liệu hiện tại trong bảng
 		thongKeTableModel.setRowCount(0);
 
-		for (String thongKeItem : thongKeList) {
-			// Kiểm tra xem chuỗi có đúng định dạng "Tháng/Năm - Số lượng" hay không
-			if (thongKeItem.contains(" - ")) {
-				String[] parts = thongKeItem.split(" - ");
-				if (parts.length >= 2) { // Kiểm tra xem đã tách được đúng định dạng chưa
-					String thangNam = parts[0]; // Tháng/Năm
-					String soLuong = parts[1]; // Số lượng
-
-					// Tạo các giá trị mặc định cho các cột không có dữ liệu tương ứng
-					String maNhanKhau = ""; // Mã Nhân Khẩu
-					String diaChi = ""; // Địa Chỉ
-					String soLanNhan = ""; // Số Lần Nhận
-					String soTienNhanDuoc = ""; // Số Tiền Nhận Được
-
-					// Thêm dòng mới vào bảng với dữ liệu từ đối tượng String
-					thongKeTableModel.addRow(new Object[]{
-							maNhanKhau,
-							diaChi,
-							soLanNhan,
-							soTienNhanDuoc,
-							thangNam,
-							soLuong
-					});
-				}
-			} else {
-				// Nếu không đúng định dạng, có thể xử lý bằng cách bỏ qua hoặc thông báo lỗi tùy ý
-				// Ví dụ:
-				System.out.println("Dữ liệu không đúng định dạng: " + thongKeItem);
-				// Hoặc có thể bỏ qua và tiếp tục với các dòng dữ liệu tiếp theo:
-				continue;
-			}
+		// Thêm dữ liệu mới vào bảng từ danh sách List<Object[]>
+		for (Object[] rowData : thongKeList) {
+			thongKeTableModel.addRow(rowData);
 		}
 	}
 }
