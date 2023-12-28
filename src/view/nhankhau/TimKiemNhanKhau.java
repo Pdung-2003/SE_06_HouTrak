@@ -5,6 +5,7 @@ import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -90,6 +91,7 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_01_content.setLayout(new BoxLayout(panel_TKNK_01_content, BoxLayout.X_AXIS));
 
 		text_TKNK_01 = new JTextField();
+		text_TKNK_01.setBorder(new EmptyBorder(0, 10, 0, 0));
 		text_TKNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKNK_01.setForeground(Color.BLACK);
 		text_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
