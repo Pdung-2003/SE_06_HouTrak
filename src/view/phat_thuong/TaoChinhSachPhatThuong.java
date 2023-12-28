@@ -2,6 +2,7 @@ package view.phat_thuong;
 
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
+import view.Colors;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -99,6 +100,9 @@ public class TaoChinhSachPhatThuong extends JPanel {
 				cardLayout.show(panel_TCS_Content, "HocTap");
 			}
 		});
+
+		JLabel lblNewLabel = new JLabel("     ");
+		panel_TCS_Type.add(lblNewLabel);
 		panel_TCS_Type.add(btn_TCS_Type_HocTap);
 
 		// Nội dung chính
@@ -395,7 +399,8 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		panel_KhungNoiDungTCS.add(panel_TCS_confirm, BorderLayout.SOUTH);
 		panel_TCS_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
-		btn_TCS_Yes = new JButton("Cập nhật");
+		btn_TCS_Yes = new JButton("Tạo");
+		btn_TCS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TCS_Yes.setToolTipText("");
 		btn_TCS_Yes.setBackground(Colors.button_XacNhan);
 		btn_TCS_Yes.setForeground(Color.WHITE);
@@ -404,6 +409,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		panel_TCS_confirm.add(btn_TCS_Yes);
 
 		btn_TCS_No = new JButton("Hủy");
+		btn_TCS_No.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TCS_No.setToolTipText("");
 		btn_TCS_No.setBackground(Colors.button_Huy);
 		btn_TCS_No.setForeground(Color.WHITE);
@@ -511,7 +517,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		int soLuong = comboBox_TCS_Content_HocTap_SoLuong.getSelectedIndex() + 1;
 		int lop = comboBox_TCS_Content_HocTap_Lop.getSelectedIndex() + 1;
 		String text = textField_TCS_Content_HocTap_TienTuongUng.getText();
-        String hocLuc = comboBox_TCS_Content_HocTap_HocLuc.getSelectedItem().toString();
+		String hocLuc = comboBox_TCS_Content_HocTap_HocLuc.getSelectedItem().toString();
 		Date thoiGian = getFormattedDate(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap, comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap,
 				comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap);
 		float soTien = 0;
