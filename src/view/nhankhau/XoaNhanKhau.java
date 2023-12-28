@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.border.EmptyBorder;
 
 public class XoaNhanKhau extends JPanel {
 	private JTextField txt_XNK_Search_Bar;
@@ -52,21 +53,9 @@ public class XoaNhanKhau extends JPanel {
 		panel_KhungNoiDungXNK.add(panel_XNK_Search, BorderLayout.NORTH);
 		panel_XNK_Search.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_XNK_Search_Method = new JPanel();
-		panel_XNK_Search.add(panel_XNK_Search_Method, BorderLayout.NORTH);
-		panel_XNK_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
-
-		JLabel lbl_XNK_Search_Method = new JLabel("Tìm theo: ");
-		lbl_XNK_Search_Method.setFont(new Font("Arial", Font.BOLD, 16));
-		panel_XNK_Search_Method.add(lbl_XNK_Search_Method);
-
-		JComboBox comboBox_XNK_Search_Method = new JComboBox();
-		comboBox_XNK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_XNK_Search_Method.add(comboBox_XNK_Search_Method);
-
 		txt_XNK_Search_Bar = new JTextField();
 		panel_XNK_Search.add(txt_XNK_Search_Bar, BorderLayout.CENTER);
-		txt_XNK_Search_Bar.setBorder(null);
+		txt_XNK_Search_Bar.setBorder(new EmptyBorder(0, 10, 0, 0));
 		txt_XNK_Search_Bar.setHorizontalAlignment(SwingConstants.LEFT);
 		txt_XNK_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 16));
 		txt_XNK_Search_Bar.setForeground(new Color(0, 0, 0));
@@ -83,7 +72,7 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_Search_Title.setBackground(Colors.khung_Chung);
 		panel_XNK_Search_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 
-		JLabel lbl_XNK_01_Title = new JLabel("Nhập thông tin: ");
+		JLabel lbl_XNK_01_Title = new JLabel("Nhập mã nhân khẩu: ");
 		lbl_XNK_01_Title.setFont(new Font("Arial", Font.BOLD, 16));
 		panel_XNK_Search_Title.add(lbl_XNK_01_Title);
 
@@ -92,24 +81,13 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_Search_Sort.setBackground(Colors.khung_Noi_Dung);
 		panel_XNK_Search_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
-		JLabel lbl_XNK_Search_Sort = new JLabel("Sắp xếp theo: ");
-		lbl_XNK_Search_Sort.setFont(new Font("Arial", Font.BOLD, 16));
-		panel_XNK_Search_Sort.add(lbl_XNK_Search_Sort);
-
-		JComboBox comboBox_XNK_Search_Sort = new JComboBox();
-		comboBox_XNK_Search_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_XNK_Search_Sort.add(comboBox_XNK_Search_Sort);
-
-		JPanel panel_XNK_Search_Result = new JPanel();
-		panel_KhungNoiDungXNK.add(panel_XNK_Search_Result, BorderLayout.CENTER);
-		panel_XNK_Search_Result.setLayout(new BorderLayout(0, 0));
-
 		JPanel panel_XNK_InforDetail = new JPanel();
-		panel_KhungNoiDungXNK.add(panel_XNK_InforDetail, BorderLayout.SOUTH);
+		panel_KhungNoiDungXNK.add(panel_XNK_InforDetail, BorderLayout.CENTER);
 		panel_XNK_InforDetail.setLayout(new BoxLayout(panel_XNK_InforDetail, BoxLayout.Y_AXIS));
 
 		// Mã nhân khẩu
 		JPanel panel_XNK_InforDetail_MaNhanKhau = new JPanel();
+		panel_XNK_InforDetail_MaNhanKhau.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_MaNhanKhau);
 		panel_XNK_InforDetail_MaNhanKhau.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -124,6 +102,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// Họ và tên
 		JPanel panel_XNK_InforDetail_HoVaTen = new JPanel();
+		panel_XNK_InforDetail_HoVaTen.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_HoVaTen);
 		panel_XNK_InforDetail_HoVaTen.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -138,6 +117,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// CCCD
 		JPanel panel_XNK_InforDetail_CCCD = new JPanel();
+		panel_XNK_InforDetail_CCCD.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_CCCD);
 		panel_XNK_InforDetail_CCCD.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -152,6 +132,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// Ngày sinh
 		JPanel panel_XNK_InforDetail_NgaySinh = new JPanel();
+		panel_XNK_InforDetail_NgaySinh.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_NgaySinh);
 		panel_XNK_InforDetail_NgaySinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -166,6 +147,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// Giới tính
 		JPanel panel_XNK_InforDetail_GioiTinh = new JPanel();
+		panel_XNK_InforDetail_GioiTinh.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_GioiTinh);
 		panel_XNK_InforDetail_GioiTinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -180,6 +162,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// Quê quán
 		JPanel panel_XNK_InforDetail_QueQuan = new JPanel();
+		panel_XNK_InforDetail_QueQuan.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_QueQuan);
 		panel_XNK_InforDetail_QueQuan.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -194,6 +177,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// Tôn giáo
 		JPanel panel_XNK_InforDetail_TonGiao = new JPanel();
+		panel_XNK_InforDetail_TonGiao.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_TonGiao);
 		panel_XNK_InforDetail_TonGiao.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -208,6 +192,7 @@ public class XoaNhanKhau extends JPanel {
 
 		// Mã hộ khẩu
 		JPanel panel_XNK_InforDetail_MaHoKhau = new JPanel();
+		panel_XNK_InforDetail_MaHoKhau.setBackground(Colors.khung_Chung);
 		panel_XNK_InforDetail.add(panel_XNK_InforDetail_MaHoKhau);
 		panel_XNK_InforDetail_MaHoKhau.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -219,6 +204,29 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotPhai_MaHK = new JLabel();// dien ma ho khau
 		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_XNK_InforDetail_MaHoKhau.add(lbl_XNK_CotPhai_MaHK);
+
+		JPanel panel_XNK_Confirm = new JPanel();
+		panel_XNK_Confirm.setBackground((Color) null);
+		panel_KhungNoiDungXNK.add(panel_XNK_Confirm, BorderLayout.SOUTH);
+		panel_XNK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
+		JButton btn_XNK_Yes = new JButton("Xóa\r\n");
+		btn_XNK_Yes.setToolTipText("");
+		btn_XNK_Yes.setOpaque(true);
+		btn_XNK_Yes.setForeground(Color.WHITE);
+		btn_XNK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_Yes.setBorderPainted(false);
+		btn_XNK_Yes.setBackground((Color) null);
+		panel_XNK_Confirm.add(btn_XNK_Yes);
+
+		JButton btn_XNK_No = new JButton("Hủy\r\n");
+		btn_XNK_No.setToolTipText("");
+		btn_XNK_No.setOpaque(true);
+		btn_XNK_No.setForeground(Color.WHITE);
+		btn_XNK_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_No.setBorderPainted(false);
+		btn_XNK_No.setBackground((Color) null);
+		panel_XNK_Confirm.add(btn_XNK_No);
 
 		// thêm hàm tìm kiếm và hiển thị ttin cho nhân khẩu muốn xóa
 		btn_XNK_Search_Confirm.addActionListener(new ActionListener() {
@@ -266,72 +274,6 @@ public class XoaNhanKhau extends JPanel {
 				}
 			}
 		});
-
-		// Khu vực confirm
-		JPanel panel_XNK_Confirm = new JPanel();
-		panel_XNK_InforDetail.add(panel_XNK_Confirm);
-		panel_XNK_Confirm.setBackground(Colors.khung_Chung);
-		panel_XNK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-
-		JButton btn_XNK_Yes = new JButton("Xóa\r\n");
-		btn_XNK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
-		btn_XNK_Yes.setToolTipText("");
-		btn_XNK_Yes.setBackground(Colors.button_XacNhan);
-		btn_XNK_Yes.setForeground(Color.WHITE);
-		btn_XNK_Yes.setOpaque(true);
-		btn_XNK_Yes.setBorderPainted(false);
-		btn_XNK_Yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String maNhanKhau = txt_XNK_Search_Bar.getText();
-				// Mảng chứa các tùy chọn
-				String[] options = { "Rời đi", "Đã mất" };
-				int confirmResult = JOptionPane.showOptionDialog(mainFrame, "Người này rời đi hay đã mất?", "Xác nhận",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-				if (confirmResult == 0) {
-					XoaNhanKhauController.xoaNhanKhau(maNhanKhau);
-				} else if (confirmResult == 1) {
-					// Yêu cầu nhập thông tin về việc "đã mất"
-					JTextField textFieldNguoiKhaiTu = new JTextField();
-					JTextField textFieldNguyenNhan = new JTextField();
-					JTextField textFieldThoiGianMat = new JTextField();
-					textFieldThoiGianMat.setToolTipText("Thời gian có định dạng DD/MM/YYYY");
-
-					Object[] message = { "Người khai tử:", textFieldNguoiKhaiTu, "Nguyên nhân:", textFieldNguyenNhan,
-							"Thời gian mất:", textFieldThoiGianMat, };
-
-					int option = JOptionPane.showConfirmDialog(null, message, "Nhập thông tin",
-							JOptionPane.OK_CANCEL_OPTION);
-					if (option == JOptionPane.OK_OPTION) {
-						// Xử lý thông tin nhập vào
-						String nguoiKhaiTu = textFieldNguoiKhaiTu.getText();
-						String nguyenNhan = textFieldNguyenNhan.getText();
-						String thoiGianMat = textFieldThoiGianMat.getText();
-						// Xóa nhân khẩu
-						XoaNhanKhauController.xoaNhanKhau(maNhanKhau);
-
-						// Thêm thông tin vào bảng KhaiTu
-						XoaNhanKhauController.themKhaiTu(maNhanKhau, nguoiKhaiTu, nguyenNhan, thoiGianMat);
-					}
-				}
-			}
-		});
-		panel_XNK_Confirm.add(btn_XNK_Yes);
-
-		JButton btn_XNK_No = new JButton("Hủy\r\n");
-		btn_XNK_No.setFont(new Font("Arial", Font.PLAIN, 16));
-		btn_XNK_No.setToolTipText("");
-		btn_XNK_No.setBackground(Colors.button_Huy);
-		btn_XNK_No.setForeground(Color.WHITE);
-		btn_XNK_No.setOpaque(true);
-		btn_XNK_No.setBorderPainted(false);
-		btn_XNK_No.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				QuanLyNhanKhau quanLyNhanKhauPanel = new QuanLyNhanKhau();
-				mainFrame.switchToMainPanel(quanLyNhanKhauPanel);
-			}
-		});
-		panel_XNK_Confirm.add(btn_XNK_No);
 
 	}
 
