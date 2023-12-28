@@ -78,6 +78,9 @@ public class CapNhatKhoanChi extends JPanel {
 		btn_CNKC_SearchBar_Method_Reason.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_Method.add(btn_CNKC_SearchBar_Method_Reason);
 
+		JLabel lblNewLabel = new JLabel("     ");
+		panel_CNKC_SearchBar_Method.add(lblNewLabel);
+
 		JButton btn_CNKC_SearchBar_Method_Time = new JButton("Tìm bằng thời gian");
 		btn_CNKC_SearchBar_Method_Time.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_CNKC_SearchBar_Method.add(btn_CNKC_SearchBar_Method_Time);
@@ -224,7 +227,7 @@ public class CapNhatKhoanChi extends JPanel {
 				}
 			}
 		});
-		
+
 		// Bảng thông tin điền vào đây
 		JPanel panel_CNKC_SearchResults = new JPanel();
 		panel_KhungNoiDungCNKC.add(panel_CNKC_SearchResults, BorderLayout.CENTER);
@@ -253,7 +256,7 @@ public class CapNhatKhoanChi extends JPanel {
 				addDataToTable(danhSachKhoanChi);
 			}
 		});
-		
+
 		//Hàm chọn khoản chi để sửa
 		table.addMouseListener(new MouseAdapter() {
 			@Override

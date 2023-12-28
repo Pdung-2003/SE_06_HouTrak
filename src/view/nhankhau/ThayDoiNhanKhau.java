@@ -6,6 +6,7 @@ import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -79,14 +80,6 @@ public class ThayDoiNhanKhau extends JPanel {
 		lbl_TDNK_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TDNK_KhoangTrang1.add(lbl_TDNK_01_Title, BorderLayout.CENTER);
 
-		JPanel panel_TDNK_01_dem = new JPanel();
-		panel_TDNK_01_dem.setBackground(Colors.input_Colors);
-		panel_TDNK_KhoangTrang1.add(panel_TDNK_01_dem, BorderLayout.EAST);
-
-		JPanel panel_TDNK_KhoangTrang4 = new JPanel();
-		panel_TDNK_KhoangTrang4.setBackground(Colors.input_Colors);
-		panel_TDNK_01.add(panel_TDNK_KhoangTrang4, BorderLayout.EAST);
-
 		JPanel panel_TDNK_KhoangTrang3 = new JPanel();
 		panel_TDNK_KhoangTrang3.setBackground(Colors.khung_Chung);
 		panel_TDNK_01.add(panel_TDNK_KhoangTrang3, BorderLayout.SOUTH);
@@ -94,27 +87,24 @@ public class ThayDoiNhanKhau extends JPanel {
 		JPanel panel_TDNK_01_content = new JPanel();
 		panel_TDNK_01_content.setBackground(Colors.input_Colors);
 		panel_TDNK_01.add(panel_TDNK_01_content, BorderLayout.CENTER);
-		panel_TDNK_01_content.setLayout(new BoxLayout(panel_TDNK_01_content, BoxLayout.X_AXIS));
+		panel_TDNK_01_content.setLayout(new BorderLayout(0, 0));
 
 		text_TDNK_01 = new JTextField();
-		text_TDNK_01.setPreferredSize(new Dimension(1389, 48));
-		text_TDNK_01.setMargin(new Insets(2, 20, 2, 2));
+		text_TDNK_01.setBorder(new EmptyBorder(0, 10, 0, 0));
 		text_TDNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TDNK_01.setForeground(Color.BLACK);
-		text_TDNK_01.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		text_TDNK_01.setColumns(10);
-		text_TDNK_01.setCaretColor(new Color(103, 103, 103));
-		text_TDNK_01.setBorder(null);
-		text_TDNK_01.setBackground(Colors.input_Colors);
+		text_TDNK_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		text_TDNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TDNK_01_content.add(text_TDNK_01);
 
 		JButton btn_TDNK_01_TimKiem = new JButton("Tìm kiếm");
+		btn_TDNK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TDNK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TDNK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TDNK_01_TimKiem.setForeground(Color.WHITE);
 		btn_TDNK_01_TimKiem.setOpaque(true);
 		btn_TDNK_01_TimKiem.setBorderPainted(false);
-		panel_TDNK_01_content.add(btn_TDNK_01_TimKiem);
+		panel_TDNK_01_content.add(btn_TDNK_01_TimKiem, BorderLayout.EAST);
 
 		JPanel panel_TDNK_02 = new JPanel();
 		panel_TDNK_02.setBackground(Colors.khung_Chung);
