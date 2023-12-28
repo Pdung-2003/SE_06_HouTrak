@@ -5,8 +5,10 @@ import model.HoKhau;
 import view.dangnhap.ManHinhChinh;
 import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
+import view.Colors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -86,15 +88,16 @@ public class ThayDoiHoKhau extends JPanel {
 		panel_TDHK_01_content.setLayout(new BoxLayout(panel_TDHK_01_content, BoxLayout.X_AXIS));
 
 		text_TDHK_01 = new JTextField();
+		text_TDHK_01.setBorder(new EmptyBorder(0, 10, 0, 0));
+		text_TDHK_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		text_TDHK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TDHK_01.setForeground(Color.BLACK);
 		text_TDHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
-		text_TDHK_01.setColumns(10);
 		text_TDHK_01.setCaretColor(new Color(103, 103, 103));
-		text_TDHK_01.setBorder(null);
 		panel_TDHK_01_content.add(text_TDHK_01);
 
 		JButton btn_TDHK_01_TimKiem = new JButton("Tìm kiếm");
+		btn_TDHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TDHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TDHK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TDHK_01_TimKiem.setForeground(Color.WHITE);
@@ -162,6 +165,7 @@ public class ThayDoiHoKhau extends JPanel {
 				.setLayout(new BoxLayout(panel_TDHK_02_ThayDoiThongTin_Content_CotPhai, BoxLayout.Y_AXIS));
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Colors.khung_Chung);
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -187,6 +191,7 @@ public class ThayDoiHoKhau extends JPanel {
 		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Colors.khung_Chung);
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -198,10 +203,10 @@ public class ThayDoiHoKhau extends JPanel {
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi = new JTextField();
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setPreferredSize(new Dimension(500, 30));
 		panel_1.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setBackground(Colors.input_Colors);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Colors.khung_Chung);
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -220,7 +225,6 @@ public class ThayDoiHoKhau extends JPanel {
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.add(lblNewLabel_5);
 
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen = new JTextField();
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setBackground(Colors.input_Colors);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 16));
 		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen);
 		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setPreferredSize(new Dimension(500, 30));
@@ -236,16 +240,17 @@ public class ThayDoiHoKhau extends JPanel {
 		btn_TDHK_Yes.setForeground(Color.WHITE);
 		btn_TDHK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TDHK_Yes.setBorderPainted(false);
-		btn_TDHK_Yes.setBackground((Color) null);
+		btn_TDHK_Yes.setBackground(Colors.button_XacNhan);
 		panel_TDHK_Confirm.add(btn_TDHK_Yes);
 
 		JButton btn_TDHK_No = new JButton("Hủy");
+		btn_TDHK_No.setFont(new Font("Arial", Font.PLAIN, 16));
 		btn_TDHK_No.setToolTipText("");
 		btn_TDHK_No.setOpaque(true);
 		btn_TDHK_No.setMinimumSize(new Dimension(50, 23));
 		btn_TDHK_No.setForeground(Color.WHITE);
 		btn_TDHK_No.setBorderPainted(false);
-		btn_TDHK_No.setBackground((Color) null);
+		btn_TDHK_No.setBackground(Colors.button_Huy);
 		panel_TDHK_Confirm.add(btn_TDHK_No);
 
 		JPanel panel_TDHK_SubTitle = new JPanel();
@@ -312,6 +317,7 @@ public class ThayDoiHoKhau extends JPanel {
 
 		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
 		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBackground(Colors.khung_Chung);
 		panel_TDHK_02.add(scrollPane, BorderLayout.CENTER);
 		scrollPane.setPreferredSize(new Dimension(1400, 80)); // Đặt kích thước của JScrollPane
 

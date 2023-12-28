@@ -1,335 +1,369 @@
 package view.hokhau;
 
-import model.DatabaseConnector;
-import model.HoKhau;
+import controller.hokhau.ThemHoKhauController;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.dangnhap.ManHinhChinh;
-import view.settings.CustomRowHeightRenderer;
+import view.hokhau.QuanLyHoKhau;
 import view.settings.Colors;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-
-import java.awt.*;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+
+import java.awt.BorderLayout;
+import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ThayDoiHoKhau extends JPanel {
-	private String maHoKhau;
-	private JTable table;
-	private DefaultTableModel tableModel;
-	JComboBox comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc = new JComboBox();
-	private JTextField text_TDHK_01;
-	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi;
-	private JTextField textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen = null;
-	private String soCMNDCCCD;
-	private ManHinhChinh mainFrame;
+import static model.DatabaseConnector.insertChuHo;
+import static model.DatabaseConnector.insertHoKhau;
 
-	public ThayDoiHoKhau(ManHinhChinh mainFrame) {
+public class ThemHoKhau extends JPanel {
+	private JTextField textField_THK_Content_DiaChi;
+	private JTextField textField_THK_Content_Ten;
+	private JTextField textField_THK_Content_CCCD;
+	private JTextField textField_THK_Content_TonGiao;
+	private JTextField textField_THK_Content_QueQuan;
+	private JComboBox comboBox_THK_Content_KhuVuc;
+	private JRadioButton rdbtn_THK_Content_ChuHo_GioiTinh_01;
+	private JRadioButton rdbtn_THK_Content_ChuHo_GioiTinh_02;
+	private ManHinhChinh mainFrame;
+	private JComboBox comboBox_THK_Content_ChuHo_Nam;
+	private JComboBox comboBox_THK_Content_ChuHo_Thang;
+	private JComboBox comboBox_THK_Content_ChuHo_Ngay;
+	private JButton btn_THK_Yes;
+	private JButton btn_THK_No;
+	private JButton btn_THK_NhapFile;
+	private ThemHoKhauController themHoKhauController;
+
+	private static JLabel lbl_THK_TenFile;
+
+	public ThemHoKhau(ManHinhChinh mainFrame) {
 		this.mainFrame = mainFrame;
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new CardLayout(0, 0));
 
-		JPanel panel_ThayDoiHoKhau = new JPanel();
-		add(panel_ThayDoiHoKhau);
-		panel_ThayDoiHoKhau.setLayout(new BorderLayout(0, 0));
+		JPanel panel_ThemHoKhau = new JPanel();
+		add(panel_ThemHoKhau, "name_1099989259338400");
+		panel_ThemHoKhau.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_TDHK_Title = new JPanel();
-		panel_TDHK_Title.setBackground(Colors.nen_Chung);
-		panel_ThayDoiHoKhau.add(panel_TDHK_Title, BorderLayout.NORTH);
-		panel_TDHK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		JPanel panel_KhungNoiDungTHK = new JPanel();
+		panel_KhungNoiDungTHK.setPreferredSize(new Dimension(1463, 10));
+		panel_KhungNoiDungTHK.setBorder(new LineBorder(Colors.khung_Chung, 5, true));
+		panel_KhungNoiDungTHK.setBackground(Colors.khung_Chung);
+		panel_ThemHoKhau.add(panel_KhungNoiDungTHK, BorderLayout.CENTER);
+		panel_KhungNoiDungTHK.setLayout(new BorderLayout(0, 0));
 
-		JLabel lbl_Title_ThayDoiHoKhau = new JLabel("Thay đổi hộ khẩu");
-		lbl_Title_ThayDoiHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
-		lbl_Title_ThayDoiHoKhau.setBackground(Colors.nen_Chung);
-		panel_TDHK_Title.add(lbl_Title_ThayDoiHoKhau);
+		JPanel panel_THK_01 = new JPanel();
+		panel_THK_01.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTHK.add(panel_THK_01, BorderLayout.CENTER);
+		panel_THK_01.setLayout(new BoxLayout(panel_THK_01, BoxLayout.Y_AXIS));
 
-		JPanel panel_KhungNoiDungTDHK = new JPanel();
-		panel_KhungNoiDungTDHK.setPreferredSize(new Dimension(1463, 10));
-		panel_KhungNoiDungTDHK.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
-		panel_KhungNoiDungTDHK.setBackground(Colors.khung_Chung);
-		panel_ThayDoiHoKhau.add(panel_KhungNoiDungTDHK, BorderLayout.CENTER);
-		panel_KhungNoiDungTDHK.setLayout(new BorderLayout(0, 0));
+		JPanel panel_THK_Content_KhuVuc = new JPanel();
+		panel_THK_Content_KhuVuc.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_KhuVuc);
+		panel_THK_Content_KhuVuc.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JPanel panel_TDHK_01 = new JPanel();
-		panel_TDHK_01.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		panel_TDHK_01.setBackground(Colors.input_Colors);
-		panel_KhungNoiDungTDHK.add(panel_TDHK_01, BorderLayout.NORTH);
-		panel_TDHK_01.setLayout(new BorderLayout(0, 0));
+		JLabel lbl_THK_Content_KhuVuc = new JLabel("Khu vực:");
+		lbl_THK_Content_KhuVuc.setPreferredSize(new Dimension(150, 19));
+		panel_THK_Content_KhuVuc.add(lbl_THK_Content_KhuVuc);
+		lbl_THK_Content_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_TDHK_KhoangTrang2 = new JPanel();
-		panel_TDHK_KhoangTrang2.setBackground(Colors.khung_Chung);
-		panel_TDHK_01.add(panel_TDHK_KhoangTrang2, BorderLayout.NORTH);
+		comboBox_THK_Content_KhuVuc = new JComboBox();
+		comboBox_THK_Content_KhuVuc.setPreferredSize(new Dimension(500, 30));
+		comboBox_THK_Content_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_Content_KhuVuc.add(comboBox_THK_Content_KhuVuc);
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực A");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực B");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực C");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực D");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực E");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực F");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực G");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực H");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực J");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực K");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực L");
+		comboBox_THK_Content_KhuVuc.addItem("Khu vực M");
 
-		JPanel panel_TDHK_KhoangTrang1 = new JPanel();
-		panel_TDHK_KhoangTrang1.setBackground(Colors.khung_Chung);
-		panel_TDHK_01.add(panel_TDHK_KhoangTrang1, BorderLayout.WEST);
-		panel_TDHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
+		JPanel panel_THK_Content_DiaChi = new JPanel();
+		panel_THK_Content_DiaChi.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_DiaChi);
+		panel_THK_Content_DiaChi.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lblNewLabel_9 = new JLabel("   Nhập mã hộ khẩu: ");
-		lblNewLabel_9.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TDHK_KhoangTrang1.add(lblNewLabel_9, BorderLayout.CENTER);
+		JLabel lbl_THK_Content_DiaChi = new JLabel("Địa chỉ:");
+		lbl_THK_Content_DiaChi.setPreferredSize(new Dimension(150, 19));
+		lbl_THK_Content_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_Content_DiaChi.add(lbl_THK_Content_DiaChi);
 
-		JPanel panel_TDHK_KhoangTrang3 = new JPanel();
-		panel_TDHK_KhoangTrang3.setBackground(Colors.khung_Chung);
-		panel_TDHK_01.add(panel_TDHK_KhoangTrang3, BorderLayout.SOUTH);
+		textField_THK_Content_DiaChi = new JTextField();
+		textField_THK_Content_DiaChi.setPreferredSize(new Dimension(500, 30));
+		panel_THK_Content_DiaChi.add(textField_THK_Content_DiaChi);
+		textField_THK_Content_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_TDHK_01_content = new JPanel();
-		panel_TDHK_01_content.setBackground(Colors.input_Colors);
-		panel_TDHK_01.add(panel_TDHK_01_content, BorderLayout.CENTER);
-		panel_TDHK_01_content.setLayout(new BoxLayout(panel_TDHK_01_content, BoxLayout.X_AXIS));
+		JPanel panel_THK_Content_ChuHo = new JPanel();
+		panel_THK_Content_ChuHo.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo);
+		panel_THK_Content_ChuHo.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		text_TDHK_01 = new JTextField();
-		text_TDHK_01.setBorder(new EmptyBorder(0, 10, 0, 0));
-		text_TDHK_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		text_TDHK_01.setHorizontalAlignment(SwingConstants.LEFT);
-		text_TDHK_01.setForeground(Color.BLACK);
-		text_TDHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
-		text_TDHK_01.setCaretColor(new Color(103, 103, 103));
-		panel_TDHK_01_content.add(text_TDHK_01);
+		JLabel lbl_THK_Content_ChuHo = new JLabel("Thông tin chủ hộ:  ");
+		lbl_THK_Content_ChuHo.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_THK_Content_ChuHo.add(lbl_THK_Content_ChuHo);
 
-		JButton btn_TDHK_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TDHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
-		btn_TDHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
-		btn_TDHK_01_TimKiem.setBackground(Colors.button_Chung);
-		btn_TDHK_01_TimKiem.setForeground(Color.WHITE);
-		btn_TDHK_01_TimKiem.setOpaque(true);
-		btn_TDHK_01_TimKiem.setBorderPainted(false);
-		panel_TDHK_01_content.add(btn_TDHK_01_TimKiem);
+		// Tạo ButtonGroup để nhóm các JRadioButton lại với nhau
+		ButtonGroup gioiTinhGroup = new ButtonGroup();
 
-		btn_TDHK_01_TimKiem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				maHoKhau = text_TDHK_01.getText();
-				HoKhau hoKhau = (HoKhau) DatabaseConnector.searchHoKhauByID(maHoKhau);
+		ButtonGroup bg_ChuHo_GioiTinh = new ButtonGroup();
 
-				// Kiểm tra xem hoKhau có giá trị hay không
-				if (hoKhau != null) {
-					String id = hoKhau.getMaHoKhau();
-					String khuVuc = hoKhau.getKhuVuc();
-					String diaChi = hoKhau.getDiaChi();
-					String chuHo = hoKhau.getHoTenChuHo();
-					Date date = hoKhau.getNgayLap();
+		JPanel panel_THK_Content_ChuHo_Ten = new JPanel();
+		panel_THK_Content_ChuHo_Ten.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo_Ten);
+		panel_THK_Content_ChuHo_Ten.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-					Object[] rowData = { id, chuHo, date, diaChi, khuVuc };
-					tableModel.addRow(rowData);
+		JLabel lbl_THK_Content_ChuHo_Ten = new JLabel("Họ và tên:");
+		lbl_THK_Content_ChuHo_Ten.setPreferredSize(new Dimension(150, 19));
+		panel_THK_Content_ChuHo_Ten.add(lbl_THK_Content_ChuHo_Ten);
+		lbl_THK_Content_ChuHo_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
 
-					// Đặt giá trị vào các JLabel
-					comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.setSelectedItem(khuVuc);
-					textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setText(diaChi);
+		textField_THK_Content_Ten = new JTextField();
+		textField_THK_Content_Ten.setPreferredSize(new Dimension(500, 30));
+		panel_THK_Content_ChuHo_Ten.add(textField_THK_Content_Ten);
+		textField_THK_Content_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
 
-				} else {
-					// Nếu không tìm thấy thông tin, có thể hiển thị một thông báo hoặc thực hiện
-					// các hành động khác
-					JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin cho mã hộ khẩu: " + maHoKhau);
-				}
-			}
-		});
+		JPanel panel_THK_Content_ChuHo_CCCD = new JPanel();
+		panel_THK_Content_ChuHo_CCCD.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo_CCCD);
+		panel_THK_Content_ChuHo_CCCD.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JPanel panel_TDHK_02 = new JPanel();
-		panel_TDHK_02.setBackground(Colors.khung_Chung);
-		panel_KhungNoiDungTDHK.add(panel_TDHK_02, BorderLayout.CENTER);
-		panel_TDHK_02.setLayout(new BorderLayout(0, 0));
+		JLabel lbl_THK_Content_ChuHo_CCCD = new JLabel("CCCD/CMND:");
+		lbl_THK_Content_ChuHo_CCCD.setPreferredSize(new Dimension(150, 19));
+		lbl_THK_Content_ChuHo_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_Content_ChuHo_CCCD.add(lbl_THK_Content_ChuHo_CCCD);
 
-		JPanel panel_TDHK_02_ThayDoiThongTin = new JPanel();
-		panel_TDHK_02_ThayDoiThongTin.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin.setBounds(new Rectangle(20, 0, 0, 0));
-		panel_TDHK_02.add(panel_TDHK_02_ThayDoiThongTin, BorderLayout.SOUTH);
-		panel_TDHK_02_ThayDoiThongTin.setLayout(new BorderLayout(0, 0));
+		textField_THK_Content_CCCD = new JTextField();
+		textField_THK_Content_CCCD.setPreferredSize(new Dimension(500, 30));
+		panel_THK_Content_ChuHo_CCCD.add(textField_THK_Content_CCCD);
+		textField_THK_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_TDHK_02_ThayDoiThongTin_Title = new JPanel();
-		panel_TDHK_02_ThayDoiThongTin_Title.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin.add(panel_TDHK_02_ThayDoiThongTin_Title, BorderLayout.NORTH);
-		panel_TDHK_02_ThayDoiThongTin_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		JPanel panel_THK_Content_ChuHo_GioiTinh = new JPanel();
+		panel_THK_Content_ChuHo_GioiTinh.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo_GioiTinh);
+		panel_THK_Content_ChuHo_GioiTinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JLabel lbl_TDHK_02_ThayDoiThongTin_Title = new JLabel("Thay đổi thông tin hộ khẩu:");
-		lbl_TDHK_02_ThayDoiThongTin_Title.setFont(new Font("Arial", Font.BOLD, 16));
-		panel_TDHK_02_ThayDoiThongTin_Title.add(lbl_TDHK_02_ThayDoiThongTin_Title);
+		JLabel lbl_THK_Content_ChuHo_GioiTinh = new JLabel("Giới tính:");
+		lbl_THK_Content_ChuHo_GioiTinh.setPreferredSize(new Dimension(150, 19));
+		panel_THK_Content_ChuHo_GioiTinh.add(lbl_THK_Content_ChuHo_GioiTinh);
+		lbl_THK_Content_ChuHo_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_TDHK_02_ThayDoiThongTin_Content = new JPanel();
-		panel_TDHK_02_ThayDoiThongTin_Content.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin.add(panel_TDHK_02_ThayDoiThongTin_Content, BorderLayout.CENTER);
-		panel_TDHK_02_ThayDoiThongTin_Content.setLayout(new BorderLayout(0, 0));
+		JPanel panel_THK_Content_ChuHo_GioiTinh_NoiDung = new JPanel();
+		panel_THK_Content_ChuHo_GioiTinh.add(panel_THK_Content_ChuHo_GioiTinh_NoiDung);
+		panel_THK_Content_ChuHo_GioiTinh_NoiDung.setBackground(Colors.khung_Chung);
+		panel_THK_Content_ChuHo_GioiTinh_NoiDung.setLayout(new BoxLayout(panel_THK_Content_ChuHo_GioiTinh_NoiDung, BoxLayout.X_AXIS));
 
-		JPanel panel_TDHK_02_ThayDoiThongTin_Content_CotPhai = new JPanel();
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin_Content.add(panel_TDHK_02_ThayDoiThongTin_Content_CotPhai, BorderLayout.CENTER);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai
-				.setLayout(new BoxLayout(panel_TDHK_02_ThayDoiThongTin_Content_CotPhai, BoxLayout.Y_AXIS));
+		rdbtn_THK_Content_ChuHo_GioiTinh_01 = new JRadioButton("Nam");
+		rdbtn_THK_Content_ChuHo_GioiTinh_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		rdbtn_THK_Content_ChuHo_GioiTinh_01.setBackground(Colors.khung_Chung);
+		panel_THK_Content_ChuHo_GioiTinh_NoiDung.add(rdbtn_THK_Content_ChuHo_GioiTinh_01);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		rdbtn_THK_Content_ChuHo_GioiTinh_02 = new JRadioButton("Nữ");
+		rdbtn_THK_Content_ChuHo_GioiTinh_02.setFont(new Font("Arial", Font.PLAIN, 16));
+		rdbtn_THK_Content_ChuHo_GioiTinh_02.setBackground(Colors.khung_Chung);
+		panel_THK_Content_ChuHo_GioiTinh_NoiDung.add(rdbtn_THK_Content_ChuHo_GioiTinh_02);
+		gioiTinhGroup.add(rdbtn_THK_Content_ChuHo_GioiTinh_01);
+		gioiTinhGroup.add(rdbtn_THK_Content_ChuHo_GioiTinh_02);
+		bg_ChuHo_GioiTinh.add(rdbtn_THK_Content_ChuHo_GioiTinh_01);
+		bg_ChuHo_GioiTinh.add(rdbtn_THK_Content_ChuHo_GioiTinh_02);
 
-		JLabel lblNewLabel = new JLabel("Khu vực: ");
-		lblNewLabel.setPreferredSize(new Dimension(150, 19));
-		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.setPreferredSize(new Dimension(500, 30));
-		panel.add(comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc);
+		JPanel panel_THK_Content_ChuHo_NgaySinh = new JPanel();
+		panel_THK_Content_ChuHo_NgaySinh.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo_NgaySinh);
+		panel_THK_Content_ChuHo_NgaySinh.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực A");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực B");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực C");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực D");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực E");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực F");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực G");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực H");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực J");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực K");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực L");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.addItem("Khu vực M");
-		comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_THK_Content_ChuHo_NgaySinh = new JLabel("Ngày sinh: ");
+		lbl_THK_Content_ChuHo_NgaySinh.setPreferredSize(new Dimension(150, 19));
+		panel_THK_Content_ChuHo_NgaySinh.add(lbl_THK_Content_ChuHo_NgaySinh);
+		lbl_THK_Content_ChuHo_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		JPanel panel_THK_Content_ChuHo_NgaySinh_NoiDung = new JPanel();
+		panel_THK_Content_ChuHo_NgaySinh.add(panel_THK_Content_ChuHo_NgaySinh_NoiDung);
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.setBackground(Colors.khung_Chung);
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung
+				.setLayout(new BoxLayout(panel_THK_Content_ChuHo_NgaySinh_NoiDung, BoxLayout.X_AXIS));
 
-		JLabel lblNewLabel_1 = new JLabel("Địa chỉ:");
-		lblNewLabel_1.setPreferredSize(new Dimension(150, 19));
-		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		JLabel lbl_THK_Content_ChuHo_Nam = new JLabel("Năm:        ");
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.add(lbl_THK_Content_ChuHo_Nam);
+		lbl_THK_Content_ChuHo_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi = new JTextField();
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setPreferredSize(new Dimension(500, 30));
-		panel_1.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_THK_Content_ChuHo_Nam = new JComboBox();
+		comboBox_THK_Content_ChuHo_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateYears(comboBox_THK_Content_ChuHo_Nam);
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_Content_ChuHo_Nam);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel_2);
-		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		JLabel lbl_THK_Content_ChuHo_Thang = new JLabel("     Tháng:        ");
+		lbl_THK_Content_ChuHo_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JLabel lblNewLabel_2 = new JLabel("Thay đổi chủ hộ:");
-		panel_2.add(lblNewLabel_2);
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 16));
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.add(lbl_THK_Content_ChuHo_Thang);
 
-		JPanel panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03 = new JPanel();
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.setBackground(Colors.khung_Chung);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		comboBox_THK_Content_ChuHo_Thang = new JComboBox();
+		comboBox_THK_Content_ChuHo_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		populateMonths(comboBox_THK_Content_ChuHo_Thang);
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_Content_ChuHo_Thang);
 
-		JLabel lblNewLabel_5 = new JLabel("CCCD/CMND: ");
-		lblNewLabel_5.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.add(lblNewLabel_5);
+		JLabel lbl_THK_Content_ChuHo_Ngay = new JLabel("     Ngày:        ");
+		lbl_THK_Content_ChuHo_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.add(lbl_THK_Content_ChuHo_Ngay);
 
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen = new JTextField();
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 16));
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai_03.add(textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen);
-		textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.setPreferredSize(new Dimension(500, 30));
+		comboBox_THK_Content_ChuHo_Ngay = new JComboBox();
+		comboBox_THK_Content_ChuHo_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_Content_ChuHo_NgaySinh_NoiDung.add(comboBox_THK_Content_ChuHo_Ngay);
+		comboBox_THK_Content_ChuHo_Thang.addActionListener(e -> updateDays(comboBox_THK_Content_ChuHo_Nam,
+				comboBox_THK_Content_ChuHo_Thang, comboBox_THK_Content_ChuHo_Ngay));
+		comboBox_THK_Content_ChuHo_Nam.addActionListener(e -> updateDays(comboBox_THK_Content_ChuHo_Nam,
+				comboBox_THK_Content_ChuHo_Thang, comboBox_THK_Content_ChuHo_Ngay));
 
-		JPanel panel_TDHK_Confirm = new JPanel();
-		panel_TDHK_Confirm.setBackground((Color) null);
-		panel_TDHK_02_ThayDoiThongTin_Content_CotPhai.add(panel_TDHK_Confirm);
-		panel_TDHK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+		// Initial population of days
+		updateDays(comboBox_THK_Content_ChuHo_Nam, comboBox_THK_Content_ChuHo_Thang, comboBox_THK_Content_ChuHo_Ngay);
 
-		JButton btn_TDHK_Yes = new JButton("Thay đổi");
-		btn_TDHK_Yes.setToolTipText("");
-		btn_TDHK_Yes.setOpaque(true);
-		btn_TDHK_Yes.setForeground(Color.WHITE);
-		btn_TDHK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
-		btn_TDHK_Yes.setBorderPainted(false);
-		btn_TDHK_Yes.setBackground(Colors.button_XacNhan);
-		panel_TDHK_Confirm.add(btn_TDHK_Yes);
+		JPanel panel_THK_Content_ChuHo_TonGiao = new JPanel();
+		panel_THK_Content_ChuHo_TonGiao.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo_TonGiao);
+		panel_THK_Content_ChuHo_TonGiao.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		JButton btn_TDHK_No = new JButton("Hủy");
-		btn_TDHK_No.setFont(new Font("Arial", Font.PLAIN, 16));
-		btn_TDHK_No.setToolTipText("");
-		btn_TDHK_No.setOpaque(true);
-		btn_TDHK_No.setMinimumSize(new Dimension(50, 23));
-		btn_TDHK_No.setForeground(Color.WHITE);
-		btn_TDHK_No.setBorderPainted(false);
-		btn_TDHK_No.setBackground(Colors.button_Huy);
-		panel_TDHK_Confirm.add(btn_TDHK_No);
+		JLabel lbl_THK_Content_ChuHo_TonGiao = new JLabel("Tôn giáo: ");
+		lbl_THK_Content_ChuHo_TonGiao.setPreferredSize(new Dimension(150, 19));
+		panel_THK_Content_ChuHo_TonGiao.add(lbl_THK_Content_ChuHo_TonGiao);
+		lbl_THK_Content_ChuHo_TonGiao.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_TDHK_SubTitle = new JPanel();
-		panel_TDHK_SubTitle.setBackground(Colors.khung_Chung);
-		panel_TDHK_02.add(panel_TDHK_SubTitle, BorderLayout.NORTH);
-		panel_TDHK_SubTitle.setLayout(new BorderLayout(0, 0));
+		textField_THK_Content_TonGiao = new JTextField();
+		textField_THK_Content_TonGiao.setPreferredSize(new Dimension(500, 30));
+		panel_THK_Content_ChuHo_TonGiao.add(textField_THK_Content_TonGiao);
+		textField_THK_Content_TonGiao.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		JPanel panel_TDHK_02_ThongTinHienTai = new JPanel();
-		panel_TDHK_02_ThongTinHienTai.setBackground(Colors.khung_Chung);
-		panel_TDHK_SubTitle.add(panel_TDHK_02_ThongTinHienTai, BorderLayout.CENTER);
+		JPanel panel_THK_Content_ChuHo_QueQuan = new JPanel();
+		panel_THK_Content_ChuHo_QueQuan.setBackground(Colors.khung_Chung);
+		panel_THK_01.add(panel_THK_Content_ChuHo_QueQuan);
+		panel_THK_Content_ChuHo_QueQuan.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		// Tạo bảng và mô hình bảng
-		tableModel = new DefaultTableModel();
-		tableModel.addColumn("Mã Hộ Khẩu");
-		tableModel.addColumn("Họ Tên Chủ Hộ");
-		tableModel.addColumn("Ngày Lập");
-		tableModel.addColumn("Địa Chỉ");
-		tableModel.addColumn("Khu Vực");
+		JLabel lbl_THK_Content_ChuHo_QueQuan = new JLabel("Quê quán: ");
+		lbl_THK_Content_ChuHo_QueQuan.setPreferredSize(new Dimension(150, 19));
+		panel_THK_Content_ChuHo_QueQuan.add(lbl_THK_Content_ChuHo_QueQuan);
+		lbl_THK_Content_ChuHo_QueQuan.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		// Tạo JTable với mô hình bảng đã tạo
-		int rowHeight = 30;
-		panel_TDHK_02_ThongTinHienTai.setLayout(new BorderLayout(10, 10));
+		textField_THK_Content_QueQuan = new JTextField();
+		textField_THK_Content_QueQuan.setPreferredSize(new Dimension(500, 30));
+		panel_THK_Content_ChuHo_QueQuan.add(textField_THK_Content_QueQuan);
+		textField_THK_Content_QueQuan.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		// Load dữ liệu từ cơ sở dữ liệu và điền vào bảng
-		// loadDataFromDatabase();
 
-		JPanel panel_TDHK_02_ThongTinHienTai_Title = new JPanel();
-		panel_TDHK_02_ThongTinHienTai_Title.setBackground(Colors.khung_Chung);
-		panel_TDHK_SubTitle.add(panel_TDHK_02_ThongTinHienTai_Title, BorderLayout.NORTH);
-		panel_TDHK_02_ThongTinHienTai_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
+		panel_THK_01.add(Box.createVerticalGlue());
 
-		JLabel lbl_TDHK_Subtitle = new JLabel("Thông tin hộ khẩu:");
-		panel_TDHK_02_ThongTinHienTai_Title.add(lbl_TDHK_Subtitle);
-		lbl_TDHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_TDHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
-		lbl_TDHK_Subtitle.setAlignmentX(0.5f);
-		table = new JTable(tableModel);
+		JPanel panel_THK_confirm = new JPanel();
+		panel_THK_confirm.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTHK.add(panel_THK_confirm, BorderLayout.SOUTH);
+		panel_THK_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
-		// Đặt màu sắc cho header của bảng
-		JTableHeader header = table.getTableHeader();
-
-		// In đậm chữ ở header và đặt font
-		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-														   boolean hasFocus, int row, int column) {
-				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
-						column);
-				label.setFont(label.getFont().deriveFont(Font.BOLD));
-				label.setBackground(Colors.mau_Header);
-				label.setForeground(Colors.mau_Text_QLHK);
-				return label;
-			}
-		});
-
-		// Đặt kích thước của các cột trong bảng
-		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
-		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
-		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
-		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
-
-		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
-
-		// Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBackground(Colors.khung_Chung);
-		panel_TDHK_02.add(scrollPane, BorderLayout.CENTER);
-		scrollPane.setPreferredSize(new Dimension(1400, 80)); // Đặt kích thước của JScrollPane
-
-		// Đặt màu sắc cho background của bảng
-		table.setBackground(Colors.mau_Nen_QLHK);
-		table.setForeground(Colors.mau_Text_QLHK);
-		JViewport viewport = scrollPane.getViewport();
-		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
-		viewport.setBackground(Colors.khung_Chung);
-
-		JButton btn_THK_Yes = new JButton("Thêm");
+		btn_THK_Yes = new JButton("Thêm");
 		btn_THK_Yes.setMinimumSize(new Dimension(50, 23));
+		btn_THK_Yes.setToolTipText("");
+		btn_THK_Yes.setBackground(Colors.button_XacNhan);
+		btn_THK_Yes.setForeground(Color.WHITE);
+		btn_THK_Yes.setOpaque(true);
+		btn_THK_Yes.setBorderPainted(false);
 
+		panel_THK_confirm.add(btn_THK_Yes);
+
+		btn_THK_No = new JButton("Hủy");
+		btn_THK_No.setMinimumSize(new Dimension(50, 23));
+		btn_THK_No.setToolTipText("");
+		btn_THK_No.setBackground(Colors.button_Huy);
+		btn_THK_No.setForeground(Color.WHITE);
+		btn_THK_No.setOpaque(true);
+		btn_THK_No.setBorderPainted(false);
+
+		panel_THK_confirm.add(btn_THK_No);
+
+		JPanel panel_THK_NhapFIle = new JPanel();
+		panel_THK_NhapFIle.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		panel_THK_NhapFIle.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungTHK.add(panel_THK_NhapFIle, BorderLayout.NORTH);
+		panel_THK_NhapFIle.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+		btn_THK_NhapFile = new JButton("Chọn file");
+		btn_THK_NhapFile.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_NhapFIle.add(btn_THK_NhapFile);
+
+		lbl_THK_TenFile = new JLabel("Chưa chọn file"); // Cho nay dien ten file
+		lbl_THK_TenFile.setFont(new Font("Arial", Font.PLAIN, 16));
+		panel_THK_NhapFIle.add(lbl_THK_TenFile);
+
+		JPanel panel_THK_title = new JPanel();
+		panel_THK_title.setBackground(Colors.nen_Chung);
+		panel_ThemHoKhau.add(panel_THK_title, BorderLayout.NORTH);
+		panel_THK_title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+		JLabel lbl_Title_ThemHoKhau = new JLabel("Thêm hộ khẩu");
+		lbl_Title_ThemHoKhau.setBackground(Colors.nen_Chung);
+		lbl_Title_ThemHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		panel_THK_title.add(lbl_Title_ThemHoKhau);
+
+		themHoKhauController = new ThemHoKhauController(this);
+
+		setVisible(true);
+
+	}
+
+	public JButton getBtn_THK_Yes() {
+		return btn_THK_Yes;
+	}
+
+	public JButton getBtn_THK_No() {
+		return btn_THK_No;
+	}
+
+	public JButton getBtn_THK_NhapFile() {
+		return btn_THK_NhapFile;
+	}
+
+	public static JLabel getLblTenFileDaChon() {
+		return lbl_THK_TenFile;
 	}
 
 	private void populateYears(JComboBox comboBox) {
@@ -362,20 +396,59 @@ public class ThayDoiHoKhau extends JPanel {
 		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
-	private boolean updateHK() {
-		String khuVuc = (comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.getSelectedItem() != null)
-				? comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.getSelectedItem().toString()
-				: "";
-		String diaChi = textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.getText();
-		return DatabaseConnector.thayDoiHoKhau(diaChi, khuVuc, maHoKhau);
+	private Date getFormattedDate(JComboBox comboBoxYear, JComboBox comboBoxMonth, JComboBox comboBoxDay) {
+		// Ghep du lieu nam sinh
+		String year = comboBoxYear.getSelectedItem().toString();
+		String month = comboBoxMonth.getSelectedItem().toString();
+		String day = comboBoxDay.getSelectedItem().toString();
+
+		// Kiểm tra xem có giá trị null không
+		if (year == null || month == null || day == null) {
+			return null;
+		}
+
+		// Định dạng ngày tháng năm
+		String dateString = year + "-" + month + "-" + day;
+
+		// Chuyển đổi chuỗi thành đối tượng Date
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormat.parse(dateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null; // Trả về null nếu có lỗi chuyển đổi
+		}
 	}
 
-	private boolean updateCH() {
-		String khuVuc = (comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.getSelectedItem() != null)
-				? comboBox_TDHK_02_ThayDoiThongTin_CotPhai_KhuVuc.getSelectedItem().toString()
+	public int getData() {
+		String hoTenChuHo = textField_THK_Content_Ten.getText();
+		String diaChi = textField_THK_Content_DiaChi.getText();
+		// Check if an item is selected before attempting to get its value
+		String khuVuc = (comboBox_THK_Content_KhuVuc.getSelectedItem() != null)
+				? comboBox_THK_Content_KhuVuc.getSelectedItem().toString()
 				: "";
-		String diaChi = textField_TDHK_02_ThayDoiThongTin_CotPhai_DiaChi.getText();
-		soCMNDCCCD = textField_TDHK_02_ThayDoiThongTin_CotPhai_ChuHo_HoVaTen.getText();
-		return DatabaseConnector.thayDoiChuHo(diaChi, khuVuc, soCMNDCCCD, maHoKhau);
+		Date ngaySinhDate = getFormattedDate(comboBox_THK_Content_ChuHo_Nam, comboBox_THK_Content_ChuHo_Thang,
+				comboBox_THK_Content_ChuHo_Ngay);
+		String tonGiao = textField_THK_Content_TonGiao.getText();
+		String soCMNDCCCD = textField_THK_Content_CCCD.getText();
+		String queQuan = textField_THK_Content_QueQuan.getText();
+		String gioiTinh = "";
+
+		String ngaySinh = ngaySinhDate != null ? new SimpleDateFormat("yyyy-MM-dd").format(ngaySinhDate) : "";
+		if (rdbtn_THK_Content_ChuHo_GioiTinh_01.isSelected()) {
+			gioiTinh = "Nam";
+		} else if (rdbtn_THK_Content_ChuHo_GioiTinh_02.isSelected()) {
+			gioiTinh = "Nữ";
+		}
+		boolean check1 = insertHoKhau(hoTenChuHo, diaChi, khuVuc);
+		boolean check2 = insertChuHo(hoTenChuHo, ngaySinh, tonGiao, soCMNDCCCD, queQuan, gioiTinh, diaChi);
+		if (check1 == true && check2 == true) {
+			return 1;
+		} else
+			return -1;
+	}
+
+	public ManHinhChinh getMainFrame() {
+		return mainFrame;
 	}
 }
