@@ -129,18 +129,6 @@ public class QuanLyNhanKhau extends JPanel {
 			}
 		});
 		this.controller = new QuanLyNhanKhauController(this);
-
-		JPanel panel = new JPanel();
-		panel.setBackground(Colors.nen_Chung);
-		add(panel, BorderLayout.WEST);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground((Color) null);
-		add(panel_1, BorderLayout.EAST);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground((Color) null);
-		add(panel_2, BorderLayout.SOUTH);
 		this.controller.loadData();
 	}
 	private void initializeTable() {
