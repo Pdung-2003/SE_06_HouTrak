@@ -1,6 +1,6 @@
 package view.dangnhap;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import view.chi.QuanLyKhoanChi;
 import view.chi.SideBar_QuanLyKhoanChi;
 import view.hokhau.QuanLyHoKhau;

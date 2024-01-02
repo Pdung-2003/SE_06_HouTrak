@@ -1,13 +1,11 @@
 package controller.hokhau;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.HoKhau;
-import view.dangnhap.ManHinhChinh;
 import view.hokhau.QuanLyHoKhau;
 import view.hokhau.TachHoKhau;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 
 public class TachHoKhauController {

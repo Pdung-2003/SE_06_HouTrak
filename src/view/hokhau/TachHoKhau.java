@@ -1,7 +1,7 @@
 package view.hokhau;
 
 import controller.hokhau.TachHoKhauController;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.HoKhau;
 import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;

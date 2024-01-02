@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.sql.Date;
 
-import static model.DatabaseConnector.*;
+import static server.DatabaseConnector.*;
 
 public class TaoChinhSachPhatThuong extends JPanel {
 
