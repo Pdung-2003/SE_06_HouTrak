@@ -1,17 +1,10 @@
 package view.thu;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import javax.swing.JButton;
 import view.settings.Colors;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class ChiTietKhoanThu extends JFrame {
 
@@ -53,7 +46,7 @@ public class ChiTietKhoanThu extends JFrame {
 
         JLabel lbl_CTKT_Title = new JLabel("Khoản thu:");
         lbl_CTKT_Title.setForeground(Color.WHITE);
-        lbl_CTKT_Title.setFont(new Font("Arial", Font.BOLD, 20));
+        lbl_CTKT_Title.setFont(new Font("Arial", Font.BOLD, 25));
         panel_CTKT_Title.add(lbl_CTKT_Title);
 
         JLabel lbl_CTKT_Title_Content = new JLabel(""); // Điền tên khoản thu và số thứ tự vào đây

@@ -50,7 +50,7 @@ public class ThongKeTongChi extends JPanel {
 		panel_KhungNoiDungTKTC.setLayout(new BorderLayout(10, 10));
 		
 		JLabel lbl_Title_ThongKeTongChi = new JLabel("Thống kê tổng chi          ");
-		lbl_Title_ThongKeTongChi.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_ThongKeTongChi.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_ThongKeTongChi.setBackground(Colors.nen_Chung);
 		panel_TKTC_Title.add(lbl_Title_ThongKeTongChi);
 		
@@ -65,11 +65,11 @@ public class ThongKeTongChi extends JPanel {
 		panel_TKTC_Filter_Title.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JLabel lbl_TKTC_Filter_StartTime = new JLabel("Thời gian bắt đầu: ");
-		lbl_TKTC_Filter_StartTime.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_StartTime.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Title.add(lbl_TKTC_Filter_StartTime);
 		
 		JLabel lbl_TKTC_Filter_EndTime = new JLabel("Thời gian kết thúc: ");
-		lbl_TKTC_Filter_EndTime.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_EndTime.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Title.add(lbl_TKTC_Filter_EndTime);
 		
 		JPanel panel_TKTC_Filter_Content = new JPanel();
@@ -83,29 +83,29 @@ public class ThongKeTongChi extends JPanel {
 		panel_TKTC_Filter_Content_StartTime.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
 		JLabel lbl_TKTC_Filter_Content_StartTime_Ngay = new JLabel("   Ngày:   ");
-		lbl_TKTC_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_StartTime.add(lbl_TKTC_Filter_Content_StartTime_Ngay);
 
 		JComboBox comboBox_TKTC_Filter_Content_StartTime_Ngay = new JComboBox();
-		comboBox_TKTC_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_StartTime.add(comboBox_TKTC_Filter_Content_StartTime_Ngay);
 		
 		JLabel lbl_TKTC_Filter_Content_StartTime_Thang = new JLabel("   Tháng:   ");
-		lbl_TKTC_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_StartTime.add(lbl_TKTC_Filter_Content_StartTime_Thang);
 		
 		JComboBox comboBox_TKTC_Filter_Content_StartTime_Thang = new JComboBox();
 		populateMonths(comboBox_TKTC_Filter_Content_StartTime_Thang);
-		comboBox_TKTC_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_StartTime.add(comboBox_TKTC_Filter_Content_StartTime_Thang);
 
 		JLabel lbl_TKTC_Filter_Content_StartTime_Nam = new JLabel("Năm:   ");
-		lbl_TKTC_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_StartTime.add(lbl_TKTC_Filter_Content_StartTime_Nam);
 
 		JComboBox comboBox_TKTC_Filter_Content_StartTime_Nam = new JComboBox();
 		populateYears(comboBox_TKTC_Filter_Content_StartTime_Nam);
-		comboBox_TKTC_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_StartTime.add(comboBox_TKTC_Filter_Content_StartTime_Nam);
 
 		comboBox_TKTC_Filter_Content_StartTime_Thang.addActionListener(e -> updateDays(comboBox_TKTC_Filter_Content_StartTime_Nam, comboBox_TKTC_Filter_Content_StartTime_Thang, comboBox_TKTC_Filter_Content_StartTime_Ngay));
@@ -119,29 +119,29 @@ public class ThongKeTongChi extends JPanel {
 		panel_TKTC_Filter_Content_EndTime.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
 		JLabel lbl_TKTC_Filter_Content_EndTime_Ngay = new JLabel("   Ngày:   ");
-		lbl_TKTC_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(lbl_TKTC_Filter_Content_EndTime_Ngay);
 
 		JComboBox comboBox_TKTC_Filter_Content_EndTime_Ngay = new JComboBox();
-		comboBox_TKTC_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Filter_Content_EndTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(comboBox_TKTC_Filter_Content_EndTime_Ngay);
 		
 		JLabel lbl_TKTC_Filter_Content_EndTime_Thang = new JLabel("   Tháng:   ");
-		lbl_TKTC_Filter_Content_EndTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_Content_EndTime_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(lbl_TKTC_Filter_Content_EndTime_Thang);
 		
 		JComboBox comboBox_TKTC_Filter_Content_EndTime_Thang = new JComboBox();
 		populateMonths(comboBox_TKTC_Filter_Content_EndTime_Thang);
-		comboBox_TKTC_Filter_Content_EndTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Filter_Content_EndTime_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(comboBox_TKTC_Filter_Content_EndTime_Thang);
 
 		JLabel lbl_TKTC_Filter_Content_EndTime_Nam = new JLabel("Năm:   ");
-		lbl_TKTC_Filter_Content_EndTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Filter_Content_EndTime_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(lbl_TKTC_Filter_Content_EndTime_Nam);
 
 		JComboBox comboBox_TKTC_Filter_Content_EndTime_Nam = new JComboBox();
 		populateYears(comboBox_TKTC_Filter_Content_EndTime_Nam);
-		comboBox_TKTC_Filter_Content_EndTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Filter_Content_EndTime_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(comboBox_TKTC_Filter_Content_EndTime_Nam);
 
 		comboBox_TKTC_Filter_Content_EndTime_Thang.addActionListener(e -> updateDays(comboBox_TKTC_Filter_Content_EndTime_Nam, comboBox_TKTC_Filter_Content_EndTime_Thang, comboBox_TKTC_Filter_Content_EndTime_Ngay));
@@ -150,7 +150,7 @@ public class ThongKeTongChi extends JPanel {
 
 		// Nút duyệt thời gian
 		JButton btn_TKTC_Filter_Confirm = new JButton("Duyệt");
-		btn_TKTC_Filter_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TKTC_Filter_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Filter_Content_EndTime.add(btn_TKTC_Filter_Confirm);
 
 		btn_TKTC_Filter_Confirm.addActionListener(new ActionListener() {
@@ -198,11 +198,11 @@ public class ThongKeTongChi extends JPanel {
 		panel_TKTC_Content_Sort.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 		
 		JLabel lbl_TKTC_Content_Sort = new JLabel("Sắp xếp theo: ");
-		lbl_TKTC_Content_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKTC_Content_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Content_Sort.add(lbl_TKTC_Content_Sort);
 		
 		JComboBox comboBox_TKTC_Sort = new JComboBox();
-		comboBox_TKTC_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKTC_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKTC_Content_Sort.add(comboBox_TKTC_Sort);
 
 		comboBox_TKTC_Sort.addItem("Mặc định");
@@ -310,7 +310,7 @@ public class ThongKeTongChi extends JPanel {
 
 		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
 		int rowHeight = 40;
-		khoanChiTable.setFont(new Font("Arial", Font.PLAIN, 15));
+		khoanChiTable.setFont(new Font("Arial", Font.PLAIN, 17));
 		khoanChiTable.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
 		// Cài đặt layout cho jPanel và thêm bảng vào panel
@@ -382,7 +382,7 @@ public class ThongKeTongChi extends JPanel {
 
 		// Cài đặt renderer mặc định cho tất cả các kiểu dữ liệu
 		int rowHeight = 40;
-		thongKeTable.setFont(new Font("Arial", Font.PLAIN, 15));
+		thongKeTable.setFont(new Font("Arial", Font.PLAIN, 17));
 		thongKeTable.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 
 		// Cài đặt layout cho jPanel và thêm bảng vào panel
