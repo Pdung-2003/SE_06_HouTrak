@@ -1,18 +1,17 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="SE_06:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/SE_06_jar</output-path>
+    <output-path>$PROJECT_DIR$</output-path>
     <root id="archive" name="SE_06.jar">
       <element id="module-output" name="SE_06" />
       <element id="library" level="project" name="mssql-jdbc-11.2.3.jre17" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/sqljdbc_10.2/enu/mssql-jdbc-10.2.2.jre17.jar" path-in-jar="/" />
       <element id="library" level="project" name="sqljdbc_12" />
-      <element id="library" level="project" name="commons-codec-1.15" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/sqljdbc_10.2/enu/mssql-jdbc-10.2.2.jre17.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/xmlbeans-2.6.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/poi-ooxml-schemas-3.17.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/poi-ooxml-3.17.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/poi-3.17.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/commons-collections4-4.1.jar" path-in-jar="/" />
-      <element id="module-source" name="SE_06" />
+      <element id="library" level="project" name="commons-codec-1.15" />
     </root>
   </artifact>
 </component>
