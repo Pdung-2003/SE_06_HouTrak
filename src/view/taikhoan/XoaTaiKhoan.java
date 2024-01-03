@@ -1,25 +1,23 @@
 package view.taikhoan;
 
 import controller.taikhoan.XoaTaiKhoanController;
-import server.DatabaseConnector;
 import model.TaiKhoan;
+import server.DatabaseConnector;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 public class XoaTaiKhoan extends JPanel {
 	private JTable table;
@@ -46,7 +44,7 @@ public class XoaTaiKhoan extends JPanel {
 		panel_XTK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
 		JLabel lbl_Title_TimKiemTaiKhoan = new JLabel("Xóa Tài Khoản          ");
-		lbl_Title_TimKiemTaiKhoan.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TimKiemTaiKhoan.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TimKiemTaiKhoan.setBackground(Colors.nen_Chung);
 		panel_XTK_Title.add(lbl_Title_TimKiemTaiKhoan);
 		
@@ -71,12 +69,12 @@ public class XoaTaiKhoan extends JPanel {
 		panel_XTK_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_XTK_Search_Method = new JLabel("Tìm Kiếm theo: ");
-		lbl_XTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Search_Method.add(lbl_XTK_Search_Method);
 		
 		// Thêm cách tìm kiếm thì thêm vào đây
 		comboBox_XTK_Search_Method = new JComboBox();
-		comboBox_XTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_XTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_XTK_Search_Method.addItem("Tên tài khoản");
 		comboBox_XTK_Search_Method.addItem("Mã nhân viên");
 		panel_XTK_Search_Method.add(comboBox_XTK_Search_Method);
@@ -88,7 +86,7 @@ public class XoaTaiKhoan extends JPanel {
 		panel_XTK_Search_Title.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_XTK_Search_Title = new JLabel("   Nhập thông tin: ");
-		lbl_XTK_Search_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Search_Title.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Search_Title.add(lbl_XTK_Search_Title, BorderLayout.CENTER);
 
 		JPanel panel_XTK_dem = new JPanel();
@@ -101,7 +99,7 @@ public class XoaTaiKhoan extends JPanel {
 		panel_XTK_01_content.setLayout(new BoxLayout(panel_XTK_01_content, BoxLayout.X_AXIS));
 		
 		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_01_content.add(textField);
 		textField.setColumns(10);
 		
@@ -144,7 +142,7 @@ public class XoaTaiKhoan extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 40;
 		table = new JTable(tableModel);
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
@@ -202,11 +200,11 @@ public class XoaTaiKhoan extends JPanel {
 		
 		JLabel lbl_XTK_Item_Title_MaNhanVien = new JLabel("Mã nhân viên:\r\n");
 		lbl_XTK_Item_Title_MaNhanVien.setPreferredSize(new Dimension(150, 19));
-		lbl_XTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Item_Content_MaNhanVien.add(lbl_XTK_Item_Title_MaNhanVien);
 		
 		JLabel lbl_XTK_Item_Content_MaNhanVien = new JLabel();
-		lbl_XTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XTK_Item_Content_MaNhanVien.add(lbl_XTK_Item_Content_MaNhanVien);
 		
 		// Mã tài khoản
@@ -217,11 +215,11 @@ public class XoaTaiKhoan extends JPanel {
 		
 		JLabel lbl_XTK_Item_Title_MaTaiKhoan = new JLabel("Mã tài khoản:\r\n");
 		lbl_XTK_Item_Title_MaTaiKhoan.setPreferredSize(new Dimension(150, 19));
-		lbl_XTK_Item_Title_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Item_Title_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Item_Content_MaTaiKhoan.add(lbl_XTK_Item_Title_MaTaiKhoan);
 		
 		JLabel lbl_XTK_Item_Content_MaTaiKhoan = new JLabel();
-		lbl_XTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XTK_Item_Content_MaTaiKhoan.add(lbl_XTK_Item_Content_MaTaiKhoan);
 		
 		// Tên tài khoản
@@ -232,11 +230,11 @@ public class XoaTaiKhoan extends JPanel {
 		
 		JLabel lbl_XTK_Item_Title_TenTaiKhoan = new JLabel("Tên tài khoản:\r\n");
 		lbl_XTK_Item_Title_TenTaiKhoan.setPreferredSize(new Dimension(150, 19));
-		lbl_XTK_Item_Title_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Item_Title_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Item_Content_TenTaiKhoan.add(lbl_XTK_Item_Title_TenTaiKhoan);
 		
 		JLabel lbl_XTK_Item_Content_TenTaiKhoan = new JLabel();
-		lbl_XTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XTK_Item_Content_TenTaiKhoan.add(lbl_XTK_Item_Content_TenTaiKhoan);
 		
 		// Mật khẩu
@@ -247,11 +245,11 @@ public class XoaTaiKhoan extends JPanel {
 		
 		JLabel lbl_XTK_Item_Title_MatKhau = new JLabel("Mật khẩu:\r\n");
 		lbl_XTK_Item_Title_MatKhau.setPreferredSize(new Dimension(150, 19));
-		lbl_XTK_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Item_Content_MatKhau.add(lbl_XTK_Item_Title_MatKhau);
 		
 		JLabel lbl_XTK_Item_Content_MatKhau = new JLabel();
-		lbl_XTK_Item_Content_MatKhau.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XTK_Item_Content_MatKhau.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XTK_Item_Content_MatKhau.add(lbl_XTK_Item_Content_MatKhau);
 		
 		// Chức vụ
@@ -262,11 +260,11 @@ public class XoaTaiKhoan extends JPanel {
 		
 		JLabel lbl_XTK_Item_Title_ChucVu = new JLabel("Chức vụ:\r\n");
 		lbl_XTK_Item_Title_ChucVu.setPreferredSize(new Dimension(150, 19));
-		lbl_XTK_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XTK_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Item_Content_ChucVu.add(lbl_XTK_Item_Title_ChucVu);
 		
 		JLabel lbl_XTK_Item_Content_ChucVu = new JLabel();
-		lbl_XTK_Item_Content_ChucVu.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XTK_Item_Content_ChucVu.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XTK_Item_Content_ChucVu.add(lbl_XTK_Item_Content_ChucVu);
 		
 		// Đệm
@@ -287,7 +285,7 @@ public class XoaTaiKhoan extends JPanel {
 		panel_XTK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		
 		JButton btn_XTK_Confirm = new JButton("Xóa tài khoản");
-		btn_XTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XTK_Confirm.add(btn_XTK_Confirm);
 
 		btn_XTK_Confirm.addActionListener(new ActionListener() {

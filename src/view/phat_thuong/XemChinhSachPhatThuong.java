@@ -5,14 +5,6 @@ import controller.phat_thuong.ChinhSachPhatThuongController;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -20,6 +12,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class XemChinhSachPhatThuong extends JPanel {
 
@@ -69,7 +68,7 @@ public class XemChinhSachPhatThuong extends JPanel {
         panel_XCSPT_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
         JLabel lbl_Title_XemChinhSachPhatThuong = new JLabel("Xem chính sách phát thưởng          ");
-        lbl_Title_XemChinhSachPhatThuong.setFont(new Font("Arial", Font.BOLD, 20));
+        lbl_Title_XemChinhSachPhatThuong.setFont(new Font("Arial", Font.BOLD, 25));
         lbl_Title_XemChinhSachPhatThuong.setBackground(Colors.nen_Chung);
         panel_XCSPT_Title.add(lbl_Title_XemChinhSachPhatThuong);
 
@@ -94,7 +93,7 @@ public class XemChinhSachPhatThuong extends JPanel {
         panel_XCSPT_Content_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
         JLabel lbl_CNCS_XemTheo = new JLabel("Xem theo: ");
-        lbl_CNCS_XemTheo.setFont(new Font("Arial", Font.BOLD, 16));
+        lbl_CNCS_XemTheo.setFont(new Font("Arial", Font.BOLD, 17));
         panel_XCSPT_Content_Title.add(lbl_CNCS_XemTheo);
 
         JComboBox comboBox_XemCS_XemTheo = new JComboBox();
@@ -113,11 +112,11 @@ public class XemChinhSachPhatThuong extends JPanel {
                 }
             }
         });
-        comboBox_XemCS_XemTheo.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_XemCS_XemTheo.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_XCSPT_Content_Title.add(comboBox_XemCS_XemTheo);
 
         JLabel lbl_XCSPT_Content_Title = new JLabel("Danh sách chính sách hiện tại: ");
-        lbl_XCSPT_Content_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_XCSPT_Content_Title.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_XCSPT_Content_Title.add(lbl_XCSPT_Content_Title);
 
         // Scrollpane để in đơn
@@ -149,7 +148,7 @@ public class XemChinhSachPhatThuong extends JPanel {
             }
         });
         int rowHeight = 40;
-        table.setFont(new Font("Arial", Font.PLAIN, 15));
+        table.setFont(new Font("Arial", Font.PLAIN, 17));
         table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
         panel_XCSPT_Content_DonChinhSachPreview.setLayout(new BorderLayout(10, 10));
 
@@ -175,7 +174,7 @@ public class XemChinhSachPhatThuong extends JPanel {
         panel_XCSPT_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
         JButton btn_XCSPT_Confirm = new JButton("Xem chi tiết chính sách");
-        btn_XCSPT_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+        btn_XCSPT_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
         btn_XCSPT_Confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -204,7 +203,7 @@ public class XemChinhSachPhatThuong extends JPanel {
         });
 
         JButton btn_XCSPT_In = new JButton("In ra chính sách");
-        btn_XCSPT_In.setFont(new Font("Arial", Font.PLAIN, 16));
+        btn_XCSPT_In.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_XCSPT_Confirm.add(btn_XCSPT_In);
         panel_XCSPT_Confirm.add(btn_XCSPT_Confirm);
 
@@ -287,7 +286,7 @@ public class XemChinhSachPhatThuong extends JPanel {
             // Load the image
             ImageIcon imageIcon = new ImageIcon("src/view/image/XemCS.png");
             getContentPane().setLayout(null);
-            Font font = new Font("Arial", Font.BOLD, 15);
+            Font font = new Font("Arial", Font.BOLD, 17);
 
             lbl_Ngay = new JLabel();
             lbl_Ngay.setForeground(SystemColor.desktop);
@@ -353,7 +352,7 @@ public class XemChinhSachPhatThuong extends JPanel {
             getContentPane().add(lbl_DipLe_GiaTri);
 
             lbl_DipLe_Tuoi = new JLabel();
-            lbl_DipLe_Tuoi.setBounds(417, 642, 70, 16);
+            lbl_DipLe_Tuoi.setBounds(417, 642, 70, 17);
             lbl_DipLe_Tuoi.setFont(font);
             getContentPane().add(lbl_DipLe_Tuoi);
 

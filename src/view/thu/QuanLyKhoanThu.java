@@ -114,6 +114,7 @@ public class QuanLyKhoanThu extends JPanel {
 			}
 		});
 		JPanel panel_QLKT_ChiTiet = new JPanel();
+		panel_QLKT_ChiTiet.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungQLKT.add(panel_QLKT_ChiTiet, BorderLayout.SOUTH);
 		panel_QLKT_ChiTiet.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 

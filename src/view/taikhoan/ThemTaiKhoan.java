@@ -41,7 +41,7 @@ public class ThemTaiKhoan extends JPanel {
 		panel_TTK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
 		JLabel lbl_Title_TaoTaiKhoan = new JLabel("Thêm tài khoản          ");
-		lbl_Title_TaoTaiKhoan.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TaoTaiKhoan.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TaoTaiKhoan.setBackground(Colors.nen_Chung);
 		panel_TTK_Title.add(lbl_Title_TaoTaiKhoan);
 		
@@ -65,12 +65,12 @@ public class ThemTaiKhoan extends JPanel {
 		
 		JLabel lbl_TTK_Item_Title_MaNhanVien = new JLabel("Mã nhân viên:\r\n");
 		lbl_TTK_Item_Title_MaNhanVien.setPreferredSize(new Dimension(150, 19));
-		lbl_TTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_MaNhanVien.add(lbl_TTK_Item_Title_MaNhanVien);
 				
 		textField_TTK_Item_Content_MaNhanVien = new JTextField();
 		textField_TTK_Item_Content_MaNhanVien.setPreferredSize(new Dimension(500, 30));
-		textField_TTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_MaNhanVien.add(textField_TTK_Item_Content_MaNhanVien);
 		
 		// Nơi nhập tên tài khoản
@@ -81,12 +81,12 @@ public class ThemTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNKC_Item_Title_SoTien = new JLabel("Tên tài khoản:");
 		lbl_CNKC_Item_Title_SoTien.setPreferredSize(new Dimension(150, 19));
-		lbl_CNKC_Item_Title_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNKC_Item_Title_SoTien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_TenTaiKhoan.add(lbl_CNKC_Item_Title_SoTien);
 		
 		textField_TTK_Item_Content_TenTaiKhoan = new JTextField();
 		textField_TTK_Item_Content_TenTaiKhoan.setPreferredSize(new Dimension(500, 30));
-		textField_TTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_TenTaiKhoan.add(textField_TTK_Item_Content_TenTaiKhoan);
 		
 		// Nơi nhập mật khẩu
@@ -97,7 +97,7 @@ public class ThemTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNKC_Item_Title_MatKhau = new JLabel("Mật khẩu:");
 		lbl_CNKC_Item_Title_MatKhau.setPreferredSize(new Dimension(150, 19));
-		lbl_CNKC_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNKC_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_MatKhau.add(lbl_CNKC_Item_Title_MatKhau);
 		
 		passwordField_TTK_Item_Content_MatKhau = new JPasswordField();
@@ -105,7 +105,7 @@ public class ThemTaiKhoan extends JPanel {
 		panel_TTK_Item_Content_MatKhau.add(passwordField_TTK_Item_Content_MatKhau);
 		
 		JButton showHideButton = new JButton("Xem");
-		showHideButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		showHideButton.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_MatKhau.add(showHideButton);
 
         showHideButton.addActionListener(new ActionListener() {
@@ -128,10 +128,11 @@ public class ThemTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNKC_Item_Title_ChucVu = new JLabel("Chức vụ:");
 		lbl_CNKC_Item_Title_ChucVu.setPreferredSize(new Dimension(150, 19));
-		lbl_CNKC_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNKC_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_ChucVu.add(lbl_CNKC_Item_Title_ChucVu);
 		
 		comboBox_TTK_Item_Content_ChucVu = new JComboBox();
+		comboBox_TTK_Item_Content_ChucVu.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Item_Content_ChucVu.add(comboBox_TTK_Item_Content_ChucVu);
 		comboBox_TTK_Item_Content_ChucVu.setPreferredSize(new Dimension(500, 30));
 		comboBox_TTK_Item_Content_ChucVu.addItem("Tổ trưởng");
@@ -154,7 +155,7 @@ public class ThemTaiKhoan extends JPanel {
 		panel_TTK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		
 		JButton btn_TTK_Confirm = new JButton("Thêm tài khoản");
-		btn_TTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TTK_Confirm.add(btn_TTK_Confirm);
 		btn_TTK_Confirm.addActionListener(new ActionListener() {
 			@Override

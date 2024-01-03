@@ -1,4 +1,4 @@
-package view;
+package view.phat_thuong;
 
 import model.CsThuongHS;
 import model.CsThuongLe;
@@ -62,7 +62,7 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Title = new JLabel("Cập nhật chính sách phát thưởng  ");
         lbl_CNCS_Title.setBackground(Colors.nen_Chung);
-        lbl_CNCS_Title.setFont(new Font("Arial", Font.BOLD, 20));
+        lbl_CNCS_Title.setFont(new Font("Arial", Font.BOLD, 25));
         panel_CNCS_Title.add(lbl_CNCS_Title);
 
         // Nội dung trang
@@ -86,11 +86,11 @@ public class CapNhatChinhSach extends JPanel {
         panel_CNCS_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
         JLabel lbl_CNCS_Search_Method = new JLabel("Tìm kiếm theo: ");
-        lbl_CNCS_Search_Method.setFont(new Font("Arial", Font.BOLD, 16));
+        lbl_CNCS_Search_Method.setFont(new Font("Arial", Font.BOLD, 17));
         panel_CNCS_Search_Method.add(lbl_CNCS_Search_Method);
 
         JComboBox comboBox_CNCS_Search_Method = new JComboBox();
-        comboBox_CNCS_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_CNCS_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
         comboBox_CNCS_Search_Method.addItem("Dịp lễ");
         comboBox_CNCS_Search_Method.addItem("Học tập");
         comboBox_CNCS_Search_Method.addActionListener(new ActionListener() {
@@ -121,19 +121,19 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Search_Bar_Title = new JLabel("Nhập thông tin: ");
         panel_CNCS_Search_Bar_Title.add(lbl_CNCS_Search_Bar_Title);
-        lbl_CNCS_Search_Bar_Title.setFont(new Font("Arial", Font.BOLD, 16));
+        lbl_CNCS_Search_Bar_Title.setFont(new Font("Arial", Font.BOLD, 17));
 
         // Thanh input
         textField_CNCS_Search_Bar = new JTextField();
         textField_CNCS_Search_Bar.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_CNCS_Search_Bar.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        textField_CNCS_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 16));
+        textField_CNCS_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Search_Bar.add(textField_CNCS_Search_Bar, BorderLayout.CENTER);
 
 
         // Nút tìm kiếm
         JButton btn_CNCS_Search_Bar = new JButton("Tìm kiếm");
-        btn_CNCS_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 16));
+        btn_CNCS_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Search_Bar.add(btn_CNCS_Search_Bar, BorderLayout.EAST);
 
         btn_CNCS_Search_Bar.addActionListener(new ActionListener() {
@@ -185,7 +185,7 @@ public class CapNhatChinhSach extends JPanel {
 
         table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
         panel_CNCS_Table.setLayout(new BorderLayout(10, 10));
-        table.setFont(new Font("Arial", Font.PLAIN, 15));
+        table.setFont(new Font("Arial", Font.PLAIN, 17));
 
         // Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
         JScrollPane scrollPane = new JScrollPane(table);
@@ -222,11 +222,11 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_DipLe_Ten = new JLabel("Dịp lễ:");
         lbl_CNCS_Content_DipLe_Ten.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_DipLe_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_Ten.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_Ten.add(lbl_CNCS_Content_DipLe_Ten);
 
         JLabel lbl_CNCS_Content_DipLe_Ten_TraVe = new JLabel("Điền tên dịp lễ vào đây");
-        lbl_CNCS_Content_DipLe_Ten_TraVe.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_Ten_TraVe.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_Ten.add(lbl_CNCS_Content_DipLe_Ten_TraVe);
 
         // Lấy tuổi
@@ -237,11 +237,11 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_DipLe_Tuoi = new JLabel("Tuổi:");
         lbl_CNCS_Content_DipLe_Tuoi.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_DipLe_Tuoi.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_Tuoi.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_Tuoi.add(lbl_CNCS_Content_DipLe_Tuoi);
 
         JLabel lbl_CNCS_Content_DipLe_Tuoi_TraVe = new JLabel("Điền tuổi vào đây");
-        lbl_CNCS_Content_DipLe_Tuoi_TraVe.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_Tuoi_TraVe.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_Tuoi.add(lbl_CNCS_Content_DipLe_Tuoi_TraVe);
 
         // Lấy phần thưởng
@@ -252,21 +252,21 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_DipLe_PhanThuong = new JLabel("Phần thưởng: ");
         lbl_CNCS_Content_DipLe_PhanThuong.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_PhanThuong.add(lbl_CNCS_Content_DipLe_PhanThuong);
 
         textField_CNCS_Content_DipLe_PhanThuong = new JTextField();
         textField_CNCS_Content_DipLe_PhanThuong.setPreferredSize(new Dimension(500, 30));
-        textField_CNCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        textField_CNCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_PhanThuong.add(textField_CNCS_Content_DipLe_PhanThuong);
 
         JLabel lbl_CNCS_Content_DipLe_TienTuongUng = new JLabel("Số tiền tương ứng");
-        lbl_CNCS_Content_DipLe_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_PhanThuong.add(lbl_CNCS_Content_DipLe_TienTuongUng);
 
         textField_CNCS_Content_DipLe_TienTuongUng = new JTextField();
         textField_CNCS_Content_DipLe_TienTuongUng.setPreferredSize(new Dimension(500, 30));
-        textField_CNCS_Content_DipLe_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+        textField_CNCS_Content_DipLe_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_PhanThuong.add(textField_CNCS_Content_DipLe_TienTuongUng);
 
         // Lấy số lượng
@@ -277,7 +277,7 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_DipLe_SoLuong = new JLabel("Số lượng:");
         lbl_CNCS_Content_DipLe_SoLuong.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_SoLuong.add(lbl_CNCS_Content_DipLe_SoLuong);
 
         JComboBox comboBox_CNCS_Content_DipLe_SoLuong = new JComboBox<>();
@@ -285,32 +285,32 @@ public class CapNhatChinhSach extends JPanel {
             comboBox_CNCS_Content_DipLe_SoLuong.addItem(i);
         }
         comboBox_CNCS_Content_DipLe_SoLuong.setPreferredSize(new Dimension(500, 30));
-        comboBox_CNCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_CNCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_SoLuong.add(comboBox_CNCS_Content_DipLe_SoLuong);
 
         JLabel lbl_CNCS_Filter_ThoiGianPhatThuong = new JLabel("Thời gian phát thưởng ");
-        lbl_CNCS_Filter_ThoiGianPhatThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Filter_ThoiGianPhatThuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_SoLuong.add(lbl_CNCS_Filter_ThoiGianPhatThuong);
 
         JComboBox comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay = new JComboBox();
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_SoLuong.add(comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay);
 
         JLabel lbl_TKPT_Filter_Content_StartTime_Thang = new JLabel("   Tháng:   ");
-        lbl_TKPT_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_TKPT_Filter_Content_StartTime_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_SoLuong.add(lbl_TKPT_Filter_Content_StartTime_Thang);
 
         JComboBox comboBox_TKPT_Filter_Content_TimePhatThuong_Thang = new JComboBox();
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
         populateMonths(comboBox_TKPT_Filter_Content_TimePhatThuong_Thang);
         panel_CNCS_Content_DipLe_SoLuong.add(comboBox_TKPT_Filter_Content_TimePhatThuong_Thang);
 
         JLabel lbl_TKPT_Filter_Content_StartTime_Nam = new JLabel("Năm:   ");
-        lbl_TKPT_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_TKPT_Filter_Content_StartTime_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_DipLe_SoLuong.add(lbl_TKPT_Filter_Content_StartTime_Nam);
 
         JComboBox comboBox_TKPT_Filter_Content_TimePhatThuong_Nam = new JComboBox();
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
         populateYears(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam);
         panel_CNCS_Content_DipLe_SoLuong.add(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam);
 
@@ -334,7 +334,7 @@ public class CapNhatChinhSach extends JPanel {
         panel_CNCS_DipLe_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
         JButton btn_CNCS_Yes = new JButton("Cập nhật");
-        btn_CNCS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+        btn_CNCS_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
         btn_CNCS_Yes.setToolTipText("");
         btn_CNCS_Yes.setOpaque(true);
         btn_CNCS_Yes.setForeground(Color.WHITE);
@@ -379,7 +379,7 @@ public class CapNhatChinhSach extends JPanel {
         });
 
         JButton btn_CNCS_No = new JButton("Hủy");
-        btn_CNCS_No.setFont(new Font("Arial", Font.PLAIN, 16));
+        btn_CNCS_No.setFont(new Font("Arial", Font.PLAIN, 17));
         btn_CNCS_No.setOpaque(true);
         btn_CNCS_No.setForeground(Color.WHITE);
         btn_CNCS_No.setBorderPainted(false);
@@ -402,11 +402,11 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_HocTap_Lop = new JLabel("Lớp:");
         lbl_CNCS_Content_HocTap_Lop.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_Lop.add(lbl_CNCS_Content_HocTap_Lop);
 
         JLabel lbl_CNCS_Content_HocTap_Lop_Ten = new JLabel("Điền lớp vào đây"); // Điền lớp vào đây
-        lbl_CNCS_Content_HocTap_Lop_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_Lop_Ten.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_Lop.add(lbl_CNCS_Content_HocTap_Lop_Ten);
 
         // In học lực
@@ -417,11 +417,11 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_HocTap_HocLuc = new JLabel("Học lực:");
         lbl_CNCS_Content_HocTap_HocLuc.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_HocLuc.add(lbl_CNCS_Content_HocTap_HocLuc);
 
         JLabel lbl_CNCS_Content_HocTap_HocLuc_Ten = new JLabel("Điền học lực vào đây"); // Điền học l
-        lbl_CNCS_Content_HocTap_HocLuc_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_HocLuc_Ten.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_HocLuc.add(lbl_CNCS_Content_HocTap_HocLuc_Ten);
 
         // Lấy phần thưởng
@@ -432,21 +432,21 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_HocTap_PhanThuong = new JLabel("Phần thưởng:");
         lbl_CNCS_Content_HocTap_PhanThuong.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_PhanThuong.add(lbl_CNCS_Content_HocTap_PhanThuong);
 
         textField_CNCS_Content_HocTap_PhanThuong = new JTextField();
         textField_CNCS_Content_HocTap_PhanThuong.setPreferredSize(new Dimension(500, 30));
-        textField_CNCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        textField_CNCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_PhanThuong.add(textField_CNCS_Content_HocTap_PhanThuong);
 
         JLabel lbl_CNCS_Content_HocTap_TienTuongUng = new JLabel("Số tiền tương ứng");
-        lbl_CNCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_PhanThuong.add(lbl_CNCS_Content_HocTap_TienTuongUng);
 
         textField_CNCS_Content_HocTap_TienTuongUng = new JTextField();
         textField_CNCS_Content_HocTap_TienTuongUng.setPreferredSize(new Dimension(500, 30));
-        textField_CNCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+        textField_CNCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_PhanThuong.add(textField_CNCS_Content_HocTap_TienTuongUng);
 
         // Lấy số lượng
@@ -457,43 +457,43 @@ public class CapNhatChinhSach extends JPanel {
 
         JLabel lbl_CNCS_Content_HocTap_SoLuong = new JLabel("Số lượng:");
         lbl_CNCS_Content_HocTap_SoLuong.setPreferredSize(new Dimension(150, 19));
-        lbl_CNCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_SoLuong.add(lbl_CNCS_Content_HocTap_SoLuong);
 
         comboBox_CNCS_Content_HocTap_SoLuong = new JComboBox<>();
         for (int i = 1; i <= 10; i++) {
             comboBox_CNCS_Content_HocTap_SoLuong.addItem(i);
         }
-        comboBox_CNCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_CNCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
         comboBox_CNCS_Content_HocTap_SoLuong.setPreferredSize(new Dimension(500, 30));
         panel_CNCS_Content_HocTap_SoLuong.add(comboBox_CNCS_Content_HocTap_SoLuong);
 
         JLabel lbl_CNCS_Filter_ThoiGianPhatThuong_HocTap = new JLabel("Thời gian phát thưởng ");
-        lbl_CNCS_Filter_ThoiGianPhatThuong_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
-        lbl_CNCS_Filter_ThoiGianPhatThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_CNCS_Filter_ThoiGianPhatThuong_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
+        lbl_CNCS_Filter_ThoiGianPhatThuong.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_SoLuong.add(lbl_CNCS_Filter_ThoiGianPhatThuong_HocTap);
 
         JComboBox comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap = new JComboBox();
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_SoLuong.add(comboBox_TKPT_Filter_Content_TimePhatThuong_Ngay_HocTap);
 
         JLabel lbl_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap = new JLabel("   Tháng:   ");
-        lbl_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_SoLuong.add(lbl_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap);
 
         JComboBox comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap = new JComboBox();
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
         populateMonths(comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap);
         panel_CNCS_Content_HocTap_SoLuong.add(comboBox_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap);
 
         JLabel lbl_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap = new JLabel("Năm:   ");
-        lbl_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
-        lbl_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+        lbl_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
+        lbl_TKPT_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
         panel_CNCS_Content_HocTap_SoLuong.add(lbl_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap);
 
         JComboBox comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap = new JComboBox();
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
-        comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
+        comboBox_TKPT_Filter_Content_TimePhatThuong_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
         populateYears(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap);
         panel_CNCS_Content_HocTap_SoLuong.add(comboBox_TKPT_Filter_Content_TimePhatThuong_Nam_HocTap);
 

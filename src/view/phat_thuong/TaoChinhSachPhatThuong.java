@@ -60,7 +60,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Title = new JLabel("Tạo chính sách phát thưởng  ");
 		lbl_TCS_Title.setBackground(Colors.nen_Chung);
-		lbl_TCS_Title.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_TCS_Title.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_TCS_Title.add(lbl_TCS_Title);
 
 		// Nội dung trang
@@ -86,11 +86,11 @@ public class TaoChinhSachPhatThuong extends JPanel {
 				cardLayout.show(panel_TCS_Content, "DipLe");
 			}
 		});
-		btn_TCS_Type_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TCS_Type_DipLe.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Type.add(btn_TCS_Type_DipLe);
 
 		JButton btn_TCS_Type_HocTap = new JButton("Học Tập");
-		btn_TCS_Type_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TCS_Type_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TCS_Type_HocTap.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -125,12 +125,12 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_DipLe_Ten = new JLabel("Dịp lễ:");
 		lbl_TCS_Content_DipLe_Ten.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_DipLe_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_DipLe_Ten.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_Ten.add(lbl_TCS_Content_DipLe_Ten);
 
 		textField_TCS_Content_DipLe_Ten = new JTextField();
 		textField_TCS_Content_DipLe_Ten.setPreferredSize(new Dimension(500, 30));
-		textField_TCS_Content_DipLe_Ten.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TCS_Content_DipLe_Ten.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_Ten.add(textField_TCS_Content_DipLe_Ten);
 
 		// Lấy tuổi
@@ -141,14 +141,14 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_DipLe_Tuoi = new JLabel("Tuổi:");
 		lbl_TCS_Content_DipLe_Tuoi.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_DipLe_Tuoi.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_DipLe_Tuoi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_Tuoi.add(lbl_TCS_Content_DipLe_Tuoi);
 
 		comboBox_TCS_Content_DipLe_Tuoi = new JComboBox<>();
 		for (int i = 1; i <= 18; i++) {
 			comboBox_TCS_Content_DipLe_Tuoi.addItem(i);
 		}
-		comboBox_TCS_Content_DipLe_Tuoi.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Content_DipLe_Tuoi.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_TCS_Content_DipLe_Tuoi.setPreferredSize(new Dimension(500, 30));
 		panel_TCS_Content_DipLe_Tuoi.add(comboBox_TCS_Content_DipLe_Tuoi);
 
@@ -160,12 +160,12 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_DipLe_PhanThuong = new JLabel("Phần thưởng: ");
 		lbl_TCS_Content_DipLe_PhanThuong.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_PhanThuong.add(lbl_TCS_Content_DipLe_PhanThuong);
 
 		textField_TCS_Content_DipLe_PhanThuong = new JTextField();
 		textField_TCS_Content_DipLe_PhanThuong.setPreferredSize(new Dimension(500, 30));
-		textField_TCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TCS_Content_DipLe_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_PhanThuong.add(textField_TCS_Content_DipLe_PhanThuong);
 
 		JPanel panel_TCS_Content_DipLe_TienTuongUng = new JPanel();
@@ -175,12 +175,12 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_DipLe_SoLuong_1 = new JLabel("Số tiền tương ứng");
 		lbl_TCS_Content_DipLe_SoLuong_1.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_DipLe_SoLuong_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_DipLe_SoLuong_1.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_TienTuongUng.add(lbl_TCS_Content_DipLe_SoLuong_1);
 
 		textField_TCS_Content_DipLe_TienTuongUng = new JTextField();
 		textField_TCS_Content_DipLe_TienTuongUng.setPreferredSize(new Dimension(500, 30));
-		textField_TCS_Content_DipLe_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TCS_Content_DipLe_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_TienTuongUng.add(textField_TCS_Content_DipLe_TienTuongUng);
 
 		// Lấy số lượng
@@ -191,7 +191,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_DipLe_SoLuong = new JLabel("Số lượng:");
 		lbl_TCS_Content_DipLe_SoLuong.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_SoLuong.add(lbl_TCS_Content_DipLe_SoLuong);
 
 		comboBox_TCS_Content_DipLe_SoLuong = new JComboBox<>();
@@ -199,7 +199,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 			comboBox_TCS_Content_DipLe_SoLuong.addItem(i);
 		}
 		comboBox_TCS_Content_DipLe_SoLuong.setPreferredSize(new Dimension(500, 30));
-		comboBox_TCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Content_DipLe_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_SoLuong.add(comboBox_TCS_Content_DipLe_SoLuong);
 
 		JPanel panel_TCS_Content_DipLe_ThoiGianPhat = new JPanel();
@@ -209,32 +209,32 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_DipLe_ThoiGianPhat = new JLabel("Thời gian phát: ");
 		lbl_TCS_Content_DipLe_ThoiGianPhat.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_DipLe_ThoiGianPhat.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_DipLe_ThoiGianPhat.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TCS_Content_DipLe_ThoiGianPhat);
 
 		JLabel lbl_TCS_Filter_Content_StartTime_Ngay = new JLabel("   Ngày:  ");
-		lbl_TCS_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Filter_Content_StartTime_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TCS_Filter_Content_StartTime_Ngay);
 
 		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe = new JComboBox();
-		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_DipLe);
 
 		JLabel lbl_TKPT_Filter_Content_StartTime_Thang_DipLe = new JLabel("   Tháng:   ");
-		lbl_TKPT_Filter_Content_StartTime_Thang_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKPT_Filter_Content_StartTime_Thang_DipLe.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Thang_DipLe);
 
 		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe = new JComboBox();
-		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe);
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_DipLe);
 
 		JLabel lbl_TKPT_Filter_Content_StartTime_Nam_DipLe = new JLabel("Năm:   ");
-		lbl_TKPT_Filter_Content_StartTime_Nam_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKPT_Filter_Content_StartTime_Nam_DipLe.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Nam_DipLe);
 
 		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe = new JComboBox();
-		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe);
 		panel_TCS_Content_DipLe_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_DipLe);
 
@@ -264,7 +264,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_HocTap_Lop = new JLabel("Lớp:");
 		lbl_TCS_Content_HocTap_Lop.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_Lop.add(lbl_TCS_Content_HocTap_Lop);
 
 		comboBox_TCS_Content_HocTap_Lop = new JComboBox<>();
@@ -272,7 +272,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 			comboBox_TCS_Content_HocTap_Lop.addItem(i);
 		}
 		comboBox_TCS_Content_HocTap_Lop.setPreferredSize(new Dimension(500, 30));
-		comboBox_TCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Content_HocTap_Lop.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_Lop.add(comboBox_TCS_Content_HocTap_Lop);
 
 		// Lấy học lực
@@ -283,12 +283,12 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_HocTap_HocLuc = new JLabel("Học lực:");
 		lbl_TCS_Content_HocTap_HocLuc.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_HocLuc.add(lbl_TCS_Content_HocTap_HocLuc);
 
 		comboBox_TCS_Content_HocTap_HocLuc = new JComboBox();
 		comboBox_TCS_Content_HocTap_HocLuc.setPreferredSize(new Dimension(500, 30));
-		comboBox_TCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Content_HocTap_HocLuc.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_HocLuc.add(comboBox_TCS_Content_HocTap_HocLuc);
 
 		comboBox_TCS_Content_HocTap_HocLuc.addItem("Giỏi");
@@ -303,12 +303,12 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_HocTap_PhanThuong = new JLabel("Phần thưởng:");
 		lbl_TCS_Content_HocTap_PhanThuong.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_PhanThuong.add(lbl_TCS_Content_HocTap_PhanThuong);
 
 		textField_TCS_Content_HocTap_PhanThuong = new JTextField();
 		textField_TCS_Content_HocTap_PhanThuong.setPreferredSize(new Dimension(500, 30));
-		textField_TCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TCS_Content_HocTap_PhanThuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_PhanThuong.add(textField_TCS_Content_HocTap_PhanThuong);
 
 		JPanel panel_TCS_Content_HocTap_PhanThuong_1 = new JPanel();
@@ -318,12 +318,12 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_HocTap_TienTuongUng = new JLabel("Số tiền tương ứng : ");
 		lbl_TCS_Content_HocTap_TienTuongUng.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_PhanThuong_1.add(lbl_TCS_Content_HocTap_TienTuongUng);
 
 		textField_TCS_Content_HocTap_TienTuongUng = new JTextField();
 		textField_TCS_Content_HocTap_TienTuongUng.setPreferredSize(new Dimension(500, 30));
-		textField_TCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TCS_Content_HocTap_TienTuongUng.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_PhanThuong_1.add(textField_TCS_Content_HocTap_TienTuongUng);
 
 		// Lấy số lượng
@@ -334,14 +334,14 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_HocTap_SoLuong = new JLabel("Số lượng:");
 		lbl_TCS_Content_HocTap_SoLuong.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_SoLuong.add(lbl_TCS_Content_HocTap_SoLuong);
 
 		comboBox_TCS_Content_HocTap_SoLuong = new JComboBox<>();
 		for (int i = 1; i <= 10; i++) {
 			comboBox_TCS_Content_HocTap_SoLuong.addItem(i);
 		}
-		comboBox_TCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Content_HocTap_SoLuong.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_TCS_Content_HocTap_SoLuong.setPreferredSize(new Dimension(500, 30));
 		panel_TCS_Content_HocTap_SoLuong.add(comboBox_TCS_Content_HocTap_SoLuong);
 
@@ -352,32 +352,32 @@ public class TaoChinhSachPhatThuong extends JPanel {
 
 		JLabel lbl_TCS_Content_HocTap_ThoiGianPhat = new JLabel("Thời gian phát: ");
 		lbl_TCS_Content_HocTap_ThoiGianPhat.setPreferredSize(new Dimension(150, 19));
-		lbl_TCS_Content_HocTap_ThoiGianPhat.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Content_HocTap_ThoiGianPhat.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TCS_Content_HocTap_ThoiGianPhat);
 
 		JLabel lbl_TCS_Filter_Content_StartTime_Ngay_HocTap = new JLabel("   Ngày:  ");
-		lbl_TCS_Filter_Content_StartTime_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TCS_Filter_Content_StartTime_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TCS_Filter_Content_StartTime_Ngay_HocTap);
 
 		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap = new JComboBox();
-		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap);
 
 		JLabel lbl_TKPT_Filter_Content_StartTime_Thang_HocTap = new JLabel("   Tháng:   ");
-		lbl_TKPT_Filter_Content_StartTime_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKPT_Filter_Content_StartTime_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Thang_HocTap);
 
 		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap = new JComboBox();
-		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap);
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap);
 
 		JLabel lbl_TKPT_Filter_Content_StartTime_Nam_HocTap = new JLabel("Năm:   ");
-		lbl_TKPT_Filter_Content_StartTime_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKPT_Filter_Content_StartTime_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(lbl_TKPT_Filter_Content_StartTime_Nam_HocTap);
 
 		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap = new JComboBox();
-		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap);
 		panel_TCS_Content_HocTap_ThoiGianPhat.add(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap);
 		comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap.addActionListener(e -> updateDays(comboBox_TCS_Filter_Content_TimePhatThuong_Nam_HocTap, comboBox_TCS_Filter_Content_TimePhatThuong_Thang_HocTap, comboBox_TCS_Filter_Content_TimePhatThuong_Ngay_HocTap));
@@ -399,7 +399,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		panel_TCS_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
 		btn_TCS_Yes = new JButton("Tạo");
-		btn_TCS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TCS_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TCS_Yes.setToolTipText("");
 		btn_TCS_Yes.setBackground(Colors.button_XacNhan);
 		btn_TCS_Yes.setForeground(Color.WHITE);
@@ -408,7 +408,7 @@ public class TaoChinhSachPhatThuong extends JPanel {
 		panel_TCS_confirm.add(btn_TCS_Yes);
 
 		btn_TCS_No = new JButton("Hủy");
-		btn_TCS_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TCS_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TCS_No.setToolTipText("");
 		btn_TCS_No.setBackground(Colors.button_Huy);
 		btn_TCS_No.setForeground(Color.WHITE);
