@@ -37,7 +37,7 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_TimKiemNhanKhau = new JLabel("Tìm kiếm nhân khẩu");
-		lbl_Title_TimKiemNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TimKiemNhanKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TimKiemNhanKhau.setBackground(Colors.nen_Chung);
 		panel_TKNK_Title.add(lbl_Title_TimKiemNhanKhau);
 
@@ -60,11 +60,11 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TKNK_Search_Method = new JLabel("Tìm Kiếm theo: ");
-		lbl_TKNK_Search_Method.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKNK_Search_Method.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_TKNK_Search_Method.add(lbl_TKNK_Search_Method);
 
 		JComboBox comboBox_TKNK_Search_Method = new JComboBox();
-		comboBox_TKNK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKNK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo tên");
 		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo ngày sinh");
 		comboBox_TKNK_Search_Method.addItem("Tìm kiếm theo số CMND");
@@ -78,7 +78,7 @@ public class TimKiemNhanKhau extends JPanel {
 		panel_TKNK_Search_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TKNK_Search_Title = new JLabel("Nhập thông tin: ");
-		lbl_TKNK_Search_Title.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKNK_Search_Title.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_TKNK_Search_Title.add(lbl_TKNK_Search_Title);
 
 		JPanel panel_TKNK_KhoangTrang3 = new JPanel();
@@ -94,11 +94,11 @@ public class TimKiemNhanKhau extends JPanel {
 		text_TKNK_01.setBorder(new EmptyBorder(0, 10, 0, 0));
 		text_TKNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKNK_01.setForeground(Color.BLACK);
-		text_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_TKNK_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKNK_01_content.add(text_TKNK_01);
 
 		JButton btn_TKNK_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TKNK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TKNK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TKNK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKNK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TKNK_01_TimKiem.setForeground(Color.WHITE);
@@ -121,7 +121,7 @@ public class TimKiemNhanKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		JTable table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -230,15 +230,15 @@ public class TimKiemNhanKhau extends JPanel {
 		JLabel lbl_TKNK_Subtitle = new JLabel("Thông tin nhân khẩu:");
 		panel_TKNK_SubTitle.add(lbl_TKNK_Subtitle);
 		lbl_TKNK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_TKNK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKNK_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_TKNK_Subtitle.setAlignmentX(0.5f);
 
 		JLabel lbl_TKNK_Sort = new JLabel("Sắp xếp theo: ");
-		lbl_TKNK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKNK_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_TKNK_SubTitle.add(lbl_TKNK_Sort);
 
 		JComboBox comboBox_TKNK_Sort = new JComboBox();
-		comboBox_TKNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKNK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Thêm các tùy chọn vào combobox
 		comboBox_TKNK_Sort.addItem("Sắp xếp theo tên");
 		comboBox_TKNK_Sort.addItem("Sắp xếp theo ngày sinh");

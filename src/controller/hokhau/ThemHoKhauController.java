@@ -1,10 +1,6 @@
 package controller.hokhau;
 
-import model.DatabaseConnector;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.hokhau.QuanLyHoKhau;
 import view.hokhau.ThemHoKhau;
@@ -15,8 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import static model.DatabaseConnector.insertChuHo;
 import static model.DatabaseConnector.insertHoKhau;
@@ -140,7 +136,7 @@ public class ThemHoKhauController {
     private static boolean isRowEmpty(Row row) {
         for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
             Cell cell = row.getCell(cellNum);
-            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+            if (cell != null && cell.getCellType() != CellType.BLANK) {
                 return false;
             }
         }

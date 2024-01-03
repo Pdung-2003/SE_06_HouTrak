@@ -33,7 +33,7 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 		panel_LSTDNK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_LichSuThayDoiNhanKhau = new JLabel("Lịch sử thay đổi thông tin nhân khẩu   ");
-		lbl_Title_LichSuThayDoiNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_LichSuThayDoiNhanKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_LichSuThayDoiNhanKhau.setBackground(Colors.nen_Chung);
 		panel_LSTDNK_Title.add(lbl_Title_LichSuThayDoiNhanKhau);
 
@@ -60,7 +60,7 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		JTable table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -135,11 +135,11 @@ public class LichSuThayDoiNhanKhau extends JPanel {
 		JLabel lbl_LSTDNK_Sort = new JLabel("Sắp xếp theo: ");
 		panel_LSTDNK_SubTitle.add(lbl_LSTDNK_Sort);
 		lbl_LSTDNK_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_LSTDNK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_LSTDNK_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_LSTDNK_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLNK_Sort = new JComboBox();
-		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_LSTDNK_SubTitle.add(comboBox_QLNK_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLNK_Sort.addItem("Sắp xếp theo mã nhân khẩu");

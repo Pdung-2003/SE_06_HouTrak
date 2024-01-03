@@ -55,7 +55,7 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_CNTT_01_Title = new JLabel("   Nhập CCCD/CMND: ");
-		lbl_CNTT_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_01_Title.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_CNTT_KhoangTrang1.add(lbl_CNTT_01_Title, BorderLayout.CENTER);
 
 		JPanel panel_CNTT_KhoangTrang3 = new JPanel();
@@ -70,13 +70,13 @@ public class CapNhatTamTru extends JPanel {
 		text_CNTT_01 = new JTextField();
 		text_CNTT_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_CNTT_01.setForeground(Color.BLACK);
-		text_CNTT_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_CNTT_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		text_CNTT_01.setBorder(new EmptyBorder(0, 10, 0, 0));;
 		text_CNTT_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		panel_CNTT_01_content.add(text_CNTT_01);
 
 		JButton btn_CNTT_01_TimKiem = new JButton("Tìm kiếm");
-		btn_CNTT_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_CNTT_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_CNTT_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_CNTT_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_CNTT_01_TimKiem.setForeground(Color.WHITE);
@@ -107,10 +107,10 @@ public class CapNhatTamTru extends JPanel {
 		JLabel lbl_CNTT_CotTrai_1 = new JLabel("Tên người tạm trú: ");
 		lbl_CNTT_CotTrai_1.setPreferredSize(new Dimension(150, 19));
 		panel_CNTT_CotPhai_NhanKhau_01.add(lbl_CNTT_CotTrai_1);
-		lbl_CNTT_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_CNTT_CotPhai_01 = new JLabel("   Họ và tên");// dien ho va ten
-		lbl_CNTT_CotPhai_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_01.add(lbl_CNTT_CotPhai_01);
 
 		JPanel panel_1 = new JPanel();
@@ -121,7 +121,7 @@ public class CapNhatTamTru extends JPanel {
 		JLabel lbl_CNTT_CotTrai_2 = new JLabel("Mã hộ khẩu: "); // điền mã hộ khẩu
 		lbl_CNTT_CotTrai_2.setPreferredSize(new Dimension(150, 19));
 		panel_1.add(lbl_CNTT_CotTrai_2);
-		lbl_CNTT_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Colors.khung_Chung);
@@ -131,7 +131,7 @@ public class CapNhatTamTru extends JPanel {
 		JLabel lbl_CNTT_CotPhai_09 = new JLabel("Địa chi: ");// dien dia chi vao day
 		lbl_CNTT_CotPhai_09.setPreferredSize(new Dimension(150, 19));
 		panel_2.add(lbl_CNTT_CotPhai_09);
-		lbl_CNTT_CotPhai_09.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_09.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Colors.khung_Chung);
@@ -140,7 +140,7 @@ public class CapNhatTamTru extends JPanel {
 
 		JLabel lbl_CNTT_CotTrai_3 = new JLabel("Thông tin thay đổi:");
 		panel_3.add(lbl_CNTT_CotTrai_3);
-		lbl_CNTT_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_CNTT_CotPhai_NhanKhau_02 = new JPanel();
 		panel_CNTT_CotPhai_NhanKhau_02.setBackground(Colors.khung_Chung);
@@ -149,12 +149,12 @@ public class CapNhatTamTru extends JPanel {
 
 		JLabel lbl_CNTT_CotPhai_02 = new JLabel("Mã hộ khẩu mới: ");
 		lbl_CNTT_CotPhai_02.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTT_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_02.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_02.add(lbl_CNTT_CotPhai_02);
 
 		textField_CNTT_CotPhai_04 = new JTextField();
 		textField_CNTT_CotPhai_04.setPreferredSize(new Dimension(500, 30));
-		textField_CNTT_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_CNTT_CotPhai_04.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_02.add(textField_CNTT_CotPhai_04);
 
 		ButtonGroup bg_NhanKhau_GioiTinh = new ButtonGroup();
@@ -166,7 +166,7 @@ public class CapNhatTamTru extends JPanel {
 
 		JLabel lbl_CNTT_CotPhai_07 = new JLabel("Bắt đầu từ: ");
 		lbl_CNTT_CotPhai_07.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTT_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_07.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_07.add(lbl_CNTT_CotPhai_07);
 
 		JPanel panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau = new JPanel();
@@ -182,29 +182,29 @@ public class CapNhatTamTru extends JPanel {
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam = new JLabel("Năm:        ");
 		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setBackground(new Color(128, 0, 0));
-		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam);
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam = new JComboBox();
-		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Nam);
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang = new JLabel("     Tháng:        ");
-		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang);
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang = new JComboBox();
-		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang);
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay = new JLabel("     Ngày:        \r\n");
-		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(lbl_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay);
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay = new JComboBox();
-		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Ngay);
 
 		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianBatDau_Thang
@@ -226,7 +226,7 @@ public class CapNhatTamTru extends JPanel {
 
 		JLabel lbl_CNTT_CotPhai_08 = new JLabel("Kết thúc ngày:");
 		lbl_CNTT_CotPhai_08.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTT_CotPhai_08.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_08.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_08.add(lbl_CNTT_CotPhai_08);
 
 		JPanel panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc = new JPanel();
@@ -241,29 +241,29 @@ public class CapNhatTamTru extends JPanel {
 				.setLayout(new BoxLayout(panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung, BoxLayout.X_AXIS));
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam = new JLabel("Năm:        ");
-		lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam);
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam = new JComboBox();
-		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Nam);
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang = new JLabel("     Tháng:        ");
-		lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang);
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang = new JComboBox();
-		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang);
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang);
 
 		JLabel lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay = new JLabel("     Ngày:        \r\n");
-		lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(lbl_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
 
 		JComboBox comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay = new JComboBox();
-		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_NoiDung.add(comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Ngay);
 
 		comboBox_CNTT_CotPhai_NhanKhau_ThoiGianKetThuc_Thang
@@ -308,6 +308,7 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
 		JButton btn_CNTT_Yes = new JButton("Cập nhật");
+		btn_CNTT_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_CNTT_Yes.setToolTipText("");
 		btn_CNTT_Yes.setBackground(Colors.button_XacNhan);
 		btn_CNTT_Yes.setForeground(Color.WHITE);
@@ -350,6 +351,7 @@ public class CapNhatTamTru extends JPanel {
 		panel_CNTT_confirm.add(btn_CNTT_Yes);
 
 		JButton btn_CNTT_No = new JButton("Hủy");
+		btn_CNTT_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_CNTT_No.setToolTipText("");
 		btn_CNTT_No.setBackground(Colors.button_Huy);
 		btn_CNTT_No.setForeground(Color.WHITE);
@@ -370,7 +372,7 @@ public class CapNhatTamTru extends JPanel {
 
 		JLabel lbl_Title_CapNhatTamTru = new JLabel("Cập nhật thông tin tạm trú    ");
 		lbl_Title_CapNhatTamTru.setBackground(Colors.nen_Chung);
-		lbl_Title_CapNhatTamTru.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_CapNhatTamTru.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_CNTT_title.add(lbl_Title_CapNhatTamTru);
 
 		setVisible(true);

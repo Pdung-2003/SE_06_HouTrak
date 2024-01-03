@@ -7,6 +7,7 @@ import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -16,7 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.border.MatteBorder;
 
 public class ThongKeNhanKhau extends JPanel {
 	private DefaultTableModel tableModel;
@@ -47,7 +47,7 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_KhungNoiDungTKeNK.setLayout(new BorderLayout(10, 10));
 
 		JLabel lbl_Title_ThongKeNhanKhau = new JLabel("Thống kê nhân khẩu          ");
-		lbl_Title_ThongKeNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_ThongKeNhanKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_ThongKeNhanKhau.setBackground(Colors.nen_Chung);
 		panel_TKeNK_Title.add(lbl_Title_ThongKeNhanKhau);
 
@@ -64,12 +64,12 @@ public class ThongKeNhanKhau extends JPanel {
 
 		JLabel lbl_TKeNK_Filter_GioiTinh = new JLabel("Giới tính: ");
 		lbl_TKeNK_Filter_GioiTinh.setPreferredSize(new Dimension(120, 19));
-		lbl_TKeNK_Filter_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKeNK_Filter_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKeNK_Filter_GioiTinh.add(lbl_TKeNK_Filter_GioiTinh);
 
 		JComboBox comboBox_TKeNK_Filter_GioiTinh = new JComboBox();
 		comboBox_TKeNK_Filter_GioiTinh.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
-		comboBox_TKeNK_Filter_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKeNK_Filter_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKeNK_Filter_GioiTinh.add(comboBox_TKeNK_Filter_GioiTinh);
 		comboBox_TKeNK_Filter_GioiTinh.addItem("Nam");
 		comboBox_TKeNK_Filter_GioiTinh.addItem("Nữ");
@@ -81,12 +81,12 @@ public class ThongKeNhanKhau extends JPanel {
 
 		JLabel lbl_TKeNK_Filter_DoTuoi = new JLabel("Độ tuổi");
 		lbl_TKeNK_Filter_DoTuoi.setPreferredSize(new Dimension(120, 19));
-		lbl_TKeNK_Filter_DoTuoi.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKeNK_Filter_DoTuoi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKeNK_Filter_DoTuoi.add(lbl_TKeNK_Filter_DoTuoi);
 
 		JComboBox comboBox_TKeNK_Filter_DoTuoi = new JComboBox();
 		comboBox_TKeNK_Filter_DoTuoi.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
-		comboBox_TKeNK_Filter_DoTuoi.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKeNK_Filter_DoTuoi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKeNK_Filter_DoTuoi.add(comboBox_TKeNK_Filter_DoTuoi);
 		comboBox_TKeNK_Filter_DoTuoi.addItem("0-18");
 		comboBox_TKeNK_Filter_DoTuoi.addItem("19-45");
@@ -105,7 +105,7 @@ public class ThongKeNhanKhau extends JPanel {
 
 		JComboBox comboBox_TKeNK_Filter_Loai = new JComboBox();
 		comboBox_TKeNK_Filter_Loai.setPreferredSize(new Dimension(180, comboBox_TKeNK_Filter_GioiTinh.getPreferredSize().height));
-		comboBox_TKeNK_Filter_Loai.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKeNK_Filter_Loai.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKeNK_Filter_Loai.add(comboBox_TKeNK_Filter_Loai);
 		comboBox_TKeNK_Filter_Loai.addItem("Thường trú");
 		comboBox_TKeNK_Filter_Loai.addItem("Tạm trú");
@@ -116,7 +116,7 @@ public class ThongKeNhanKhau extends JPanel {
 
 		JButton btn_TKeNK_Filter_Confirm = new JButton("Duyệt");
 		panel_TKeNK_Filter_Confirm.add(btn_TKeNK_Filter_Confirm);
-		btn_TKeNK_Filter_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TKeNK_Filter_Confirm.setFont(new Font("Arial", Font.PLAIN, 20));
 
 		panel_TKeNK_Filter.add(Box.createVerticalGlue());
 		panel_TKeNK_Filter.add(Box.createVerticalGlue());
@@ -139,7 +139,7 @@ public class ThongKeNhanKhau extends JPanel {
 		panel_TKeNK_Content_Sort.add(lbl_TKeNK_Content_Sort);
 
 		JComboBox comboBox_TKeNK_Sort = new JComboBox();
-		comboBox_TKeNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKeNK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKeNK_Content_Sort.add(comboBox_TKeNK_Sort);
 		comboBox_TKeNK_Sort.addItem("Họ tên");
 		comboBox_TKeNK_Sort.addItem("Ngày sinh");
@@ -203,7 +203,7 @@ public class ThongKeNhanKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng

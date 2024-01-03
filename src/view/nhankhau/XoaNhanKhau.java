@@ -1,11 +1,11 @@
 package view.nhankhau;
 
-import controller.nhankhau.XoaNhanKhauController;
 import model.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
 import view.settings.Colors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -15,7 +15,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.border.EmptyBorder;
 
 public class XoaNhanKhau extends JPanel {
 	private JTextField txt_XNK_Search_Bar;
@@ -38,7 +37,7 @@ public class XoaNhanKhau extends JPanel {
 
 		JLabel lbl_Title_XoaNhanKhau = new JLabel("Xóa nhân khẩu");
 		lbl_Title_XoaNhanKhau.setBackground(Colors.nen_Chung);
-		lbl_Title_XoaNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_XoaNhanKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_XNK_title.add(lbl_Title_XoaNhanKhau);
 
 		JPanel panel_KhungNoiDungXNK = new JPanel();
@@ -57,13 +56,14 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_Search.add(txt_XNK_Search_Bar, BorderLayout.CENTER);
 		txt_XNK_Search_Bar.setBorder(new EmptyBorder(0, 10, 0, 0));
 		txt_XNK_Search_Bar.setHorizontalAlignment(SwingConstants.LEFT);
-		txt_XNK_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 16));
+		txt_XNK_Search_Bar.setFont(new Font("Arial", Font.PLAIN, 17));
 		txt_XNK_Search_Bar.setForeground(new Color(0, 0, 0));
 		txt_XNK_Search_Bar.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
 		JButton btn_XNK_Search_Confirm = new JButton("Tìm kiếm");
 		panel_XNK_Search.add(btn_XNK_Search_Confirm, BorderLayout.EAST);
-		btn_XNK_Search_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_Search_Confirm.setForeground(Color.WHITE);
+		btn_XNK_Search_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_XNK_Search_Confirm.setBackground(Colors.button_Chung);
 		btn_XNK_Search_Confirm.setMargin(new Insets(10, 16, 10, 16));
 
@@ -73,7 +73,7 @@ public class XoaNhanKhau extends JPanel {
 		panel_XNK_Search_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 
 		JLabel lbl_XNK_01_Title = new JLabel("Nhập mã nhân khẩu: ");
-		lbl_XNK_01_Title.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XNK_01_Title.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XNK_Search_Title.add(lbl_XNK_01_Title);
 
 		JPanel panel_XNK_Search_Sort = new JPanel();
@@ -94,10 +94,10 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotTrai_1 = new JLabel("Mã nhân khẩu: ");
 		lbl_XNK_CotTrai_1.setPreferredSize(new Dimension(180, 19));
 		panel_XNK_InforDetail_MaNhanKhau.add(lbl_XNK_CotTrai_1);
-		lbl_XNK_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XNK_CotPhai_MaNK = new JLabel(); // dien ma nhan khau vao
-		lbl_XNK_CotPhai_MaNK.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_MaNK.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_MaNhanKhau.add(lbl_XNK_CotPhai_MaNK);
 
 		// Họ và tên
@@ -109,10 +109,10 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotTrai_2 = new JLabel("Họ và tên");
 		lbl_XNK_CotTrai_2.setPreferredSize(new Dimension(180, 19));
 		panel_XNK_InforDetail_HoVaTen.add(lbl_XNK_CotTrai_2);
-		lbl_XNK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XNK_CotPhai_HoVaTen = new JLabel(); // dien ho va ten
-		lbl_XNK_CotPhai_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_HoVaTen.add(lbl_XNK_CotPhai_HoVaTen);
 
 		// CCCD
@@ -124,10 +124,10 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotTrai_3 = new JLabel("Số CCCD/CMND:");
 		lbl_XNK_CotTrai_3.setPreferredSize(new Dimension(180, 19));
 		panel_XNK_InforDetail_CCCD.add(lbl_XNK_CotTrai_3);
-		lbl_XNK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XNK_CotPhai_CCCD = new JLabel(); // dien cccd
-		lbl_XNK_CotPhai_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_CCCD.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_CCCD.add(lbl_XNK_CotPhai_CCCD);
 
 		// Ngày sinh
@@ -139,10 +139,10 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotTrai_5 = new JLabel("Ngày sinh:");
 		lbl_XNK_CotTrai_5.setPreferredSize(new Dimension(180, 19));
 		panel_XNK_InforDetail_NgaySinh.add(lbl_XNK_CotTrai_5);
-		lbl_XNK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XNK_CotPhai_NgaySinh = new JLabel(); // dien ngay sinh
-		lbl_XNK_CotPhai_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_NgaySinh.add(lbl_XNK_CotPhai_NgaySinh);
 
 		// Giới tính
@@ -154,10 +154,10 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotTrai_4 = new JLabel("Giới tính:");
 		lbl_XNK_CotTrai_4.setPreferredSize(new Dimension(180, 19));
 		panel_XNK_InforDetail_GioiTinh.add(lbl_XNK_CotTrai_4);
-		lbl_XNK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XNK_CotPhai_GioiTinh = new JLabel(); // dien gioi tinh
-		lbl_XNK_CotPhai_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_GioiTinh.add(lbl_XNK_CotPhai_GioiTinh);
 
 		// Quê quán
@@ -169,10 +169,10 @@ public class XoaNhanKhau extends JPanel {
 		JLabel lbl_XNK_CotTrai_6 = new JLabel("Quê quán:");
 		lbl_XNK_CotTrai_6.setPreferredSize(new Dimension(180, 19));
 		panel_XNK_InforDetail_QueQuan.add(lbl_XNK_CotTrai_6);
-		lbl_XNK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XNK_CotPhai_QueQuan = new JLabel();// dien que quan
-		lbl_XNK_CotPhai_QueQuan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_QueQuan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_QueQuan.add(lbl_XNK_CotPhai_QueQuan);
 
 		// Tôn giáo
@@ -183,11 +183,11 @@ public class XoaNhanKhau extends JPanel {
 
 		JLabel lbl_XNK_CotTrai_7 = new JLabel("Tôn giáo:");
 		lbl_XNK_CotTrai_7.setPreferredSize(new Dimension(180, 19));
-		lbl_XNK_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_TonGiao.add(lbl_XNK_CotTrai_7);
 
 		JLabel lbl_XNK_CotPhai_TonGiao = new JLabel();// dien ton giao
-		lbl_XNK_CotPhai_TonGiao.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_TonGiao.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_TonGiao.add(lbl_XNK_CotPhai_TonGiao);
 
 		// Mã hộ khẩu
@@ -198,34 +198,34 @@ public class XoaNhanKhau extends JPanel {
 
 		JLabel lbl_XNK_CotTrai_8 = new JLabel("Mã hộ khẩu:");
 		lbl_XNK_CotTrai_8.setPreferredSize(new Dimension(180, 19));
-		lbl_XNK_CotTrai_8.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotTrai_8.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_MaHoKhau.add(lbl_XNK_CotTrai_8);
 
 		JLabel lbl_XNK_CotPhai_MaHK = new JLabel();// dien ma ho khau
-		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_InforDetail_MaHoKhau.add(lbl_XNK_CotPhai_MaHK);
 
 		JPanel panel_XNK_Confirm = new JPanel();
-		panel_XNK_Confirm.setBackground((Color) null);
+		panel_XNK_Confirm.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungXNK.add(panel_XNK_Confirm, BorderLayout.SOUTH);
 		panel_XNK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		JButton btn_XNK_Yes = new JButton("Xóa\r\n");
 		btn_XNK_Yes.setToolTipText("");
-		btn_XNK_Yes.setOpaque(true);
 		btn_XNK_Yes.setForeground(Color.WHITE);
-		btn_XNK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_Yes.setBackground(Colors.button_XacNhan);
+		btn_XNK_Yes.setOpaque(true);
+		btn_XNK_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_XNK_Yes.setBorderPainted(false);
-		btn_XNK_Yes.setBackground((Color) null);
 		panel_XNK_Confirm.add(btn_XNK_Yes);
 
 		JButton btn_XNK_No = new JButton("Hủy\r\n");
-		btn_XNK_No.setToolTipText("");
-		btn_XNK_No.setOpaque(true);
 		btn_XNK_No.setForeground(Color.WHITE);
-		btn_XNK_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XNK_No.setToolTipText("");
+		btn_XNK_No.setBackground(Colors.button_Huy);
+		btn_XNK_No.setOpaque(true);
+		btn_XNK_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_XNK_No.setBorderPainted(false);
-		btn_XNK_No.setBackground((Color) null);
 		panel_XNK_Confirm.add(btn_XNK_No);
 
 		// thêm hàm tìm kiếm và hiển thị ttin cho nhân khẩu muốn xóa
