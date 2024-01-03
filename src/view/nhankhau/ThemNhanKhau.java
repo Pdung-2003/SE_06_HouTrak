@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
-import static model.DatabaseConnector.insertNhanKhau;
+import static server.DatabaseConnector.insertNhanKhau;
 
 public class ThemNhanKhau extends JPanel {
 	private JTextField textField_TNK_Content_HoTen;
