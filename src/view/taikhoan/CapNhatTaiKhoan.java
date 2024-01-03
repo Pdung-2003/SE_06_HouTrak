@@ -42,7 +42,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		panel_CNTK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
 		JLabel lbl_Title_TimKiemTaiKhoan = new JLabel("Cập nhật tài khoản          ");
-		lbl_Title_TimKiemTaiKhoan.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TimKiemTaiKhoan.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TimKiemTaiKhoan.setBackground(Colors.nen_Chung);
 		panel_CNTK_Title.add(lbl_Title_TimKiemTaiKhoan);
 		
@@ -67,12 +67,12 @@ public class CapNhatTaiKhoan extends JPanel {
 		panel_CNTK_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_CNTK_Search_Method = new JLabel("Tìm Kiếm theo: ");
-		lbl_CNTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Search_Method.add(lbl_CNTK_Search_Method);
 		
 		// Thêm cách tìm kiếm thì thêm vào đây
 		comboBox_CNTK_Search_Method = new JComboBox();
-		comboBox_CNTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_CNTK_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_CNTK_Search_Method.addItem("Tên tài khoản");
 		comboBox_CNTK_Search_Method.addItem("Mã nhân viên");
 		panel_CNTK_Search_Method.add(comboBox_CNTK_Search_Method);
@@ -84,7 +84,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		panel_CNTK_Search_Title.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_CNTK_Search_Title = new JLabel("   Nhập thông tin: ");
-		lbl_CNTK_Search_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Search_Title.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Search_Title.add(lbl_CNTK_Search_Title, BorderLayout.CENTER);
 
 		JPanel panel_CNTK_dem = new JPanel();
@@ -97,7 +97,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		panel_CNTK_01_content.setLayout(new BoxLayout(panel_CNTK_01_content, BoxLayout.X_AXIS));
 		
 		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_01_content.add(textField);
 		textField.setColumns(10);
 		
@@ -140,7 +140,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
@@ -198,11 +198,11 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNTK_Item_Title_MaNhanVien = new JLabel("Mã nhân viên:\r\n");
 		lbl_CNTK_Item_Title_MaNhanVien.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Title_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_MaNhanVien.add(lbl_CNTK_Item_Title_MaNhanVien);
 		
 		JLabel lbl_CNTK_Item_Content_MaNhanVien = new JLabel();
-		lbl_CNTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Content_MaNhanVien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_MaNhanVien.add(lbl_CNTK_Item_Content_MaNhanVien);
 		
 		// Mã tài khoản
@@ -213,11 +213,11 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNTK_Item_Title_MaTaiKhoan = new JLabel("Mã tài khoản:\r\n");
 		lbl_CNTK_Item_Title_MaTaiKhoan.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTK_Item_Title_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Title_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_MaTaiKhoan.add(lbl_CNTK_Item_Title_MaTaiKhoan);
 		
 		JLabel lbl_CNTK_Item_Content_MaTaiKhoan = new JLabel();
-		lbl_CNTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Content_MaTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_MaTaiKhoan.add(lbl_CNTK_Item_Content_MaTaiKhoan);
 		
 		// Tên tài khoản
@@ -228,11 +228,11 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNTK_Item_Title_TenTaiKhoan = new JLabel("Tên tài khoản:\r\n");
 		lbl_CNTK_Item_Title_TenTaiKhoan.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTK_Item_Title_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Title_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_TenTaiKhoan.add(lbl_CNTK_Item_Title_TenTaiKhoan);
 		
 		JLabel lbl_CNTK_Item_Content_TenTaiKhoan = new JLabel();
-		lbl_CNTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Content_TenTaiKhoan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_TenTaiKhoan.add(lbl_CNTK_Item_Content_TenTaiKhoan);
 		
 		// Mật khẩu
@@ -243,15 +243,16 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNTK_Item_Title_MatKhau = new JLabel("Mật khẩu:\r\n");
 		lbl_CNTK_Item_Title_MatKhau.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTK_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Title_MatKhau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_MatKhau.add(lbl_CNTK_Item_Title_MatKhau);
 		
 		passwordField_CNTK_Item_Content_MatKhau = new JPasswordField();
+		passwordField_CNTK_Item_Content_MatKhau.setFont(new Font("Arial", Font.PLAIN, 17));
 		passwordField_CNTK_Item_Content_MatKhau.setPreferredSize(new Dimension(500, 30));
 		panel_CNTK_Item_Content_MatKhau.add(passwordField_CNTK_Item_Content_MatKhau);
 		
 		JButton showHideButton = new JButton("Xem");
-		showHideButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		showHideButton.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_MatKhau.add(showHideButton);
 		
 		showHideButton.addActionListener(new ActionListener() {
@@ -275,11 +276,12 @@ public class CapNhatTaiKhoan extends JPanel {
 		
 		JLabel lbl_CNTK_Item_Title_ChucVu = new JLabel("Chức vụ:\r\n");
 		lbl_CNTK_Item_Title_ChucVu.setPreferredSize(new Dimension(150, 19));
-		lbl_CNTK_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNTK_Item_Title_ChucVu.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Item_Content_ChucVu.add(lbl_CNTK_Item_Title_ChucVu);
 		
 		// Thêm các chức vụ vào đây
 		JComboBox comboBox_CNTK_Item_Content_ChucVu = new JComboBox();
+		comboBox_CNTK_Item_Content_ChucVu.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_CNTK_Item_Content_ChucVu.addItem("Tổ trưởng");
 		comboBox_CNTK_Item_Content_ChucVu.addItem("Tổ phó");
 		comboBox_CNTK_Item_Content_ChucVu.addItem("Kế toán");
@@ -304,7 +306,7 @@ public class CapNhatTaiKhoan extends JPanel {
 		panel_CNTK_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		
 		JButton btn_CNTK_Confirm = new JButton("Cập nhật tài khoản");
-		btn_CNTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_CNTK_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CNTK_Confirm.add(btn_CNTK_Confirm);
 
 		btn_CNTK_Confirm.addActionListener(new ActionListener() {

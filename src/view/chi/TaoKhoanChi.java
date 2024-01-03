@@ -26,7 +26,7 @@ public class TaoKhoanChi extends JPanel {
 		panel_TKC_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_TaoKhoanChi = new JLabel("Tạo khoản chi          ");
-		lbl_Title_TaoKhoanChi.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TaoKhoanChi.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TaoKhoanChi.setBackground(Colors.nen_Chung);
 		panel_TKC_Title.add(lbl_Title_TaoKhoanChi);
 
@@ -49,13 +49,13 @@ public class TaoKhoanChi extends JPanel {
 
 		JLabel lbl_TKC_Item_Title_LyDo = new JLabel("Lý do:\r\n");
 		lbl_TKC_Item_Title_LyDo.setPreferredSize(new Dimension(100, 19));
-		lbl_TKC_Item_Title_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKC_Item_Title_LyDo.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKC_Item_Content_LyDo.add(lbl_TKC_Item_Title_LyDo);
 
 		// nơi nhập lý do
 		textField_TKC_Item_Content_LyDo = new JTextField();
 		textField_TKC_Item_Content_LyDo.setPreferredSize(new Dimension(500, 30));
-		textField_TKC_Item_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TKC_Item_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKC_Item_Content_LyDo.add(textField_TKC_Item_Content_LyDo);
 
 		JPanel panel_TKC_Item_Content_SoTien = new JPanel();
@@ -65,13 +65,13 @@ public class TaoKhoanChi extends JPanel {
 
 		JLabel lbl_CNKC_Item_Title_SoTien = new JLabel("Số tiền");
 		lbl_CNKC_Item_Title_SoTien.setPreferredSize(new Dimension(100, 19));
-		lbl_CNKC_Item_Title_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CNKC_Item_Title_SoTien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKC_Item_Content_SoTien.add(lbl_CNKC_Item_Title_SoTien);
 
 		// nơi nhập số tiền
 		textField_TKC_Item_Content_SoTien = new JTextField();
 		textField_TKC_Item_Content_SoTien.setPreferredSize(new Dimension(500, 30));
-		textField_TKC_Item_Content_SoTien.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TKC_Item_Content_SoTien.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKC_Item_Content_SoTien.add(textField_TKC_Item_Content_SoTien);
 
 		panel_TKC_Item_Content.add(Box.createVerticalGlue());
@@ -95,7 +95,7 @@ public class TaoKhoanChi extends JPanel {
 		panel_TKC_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
 		JButton btn_TKC_Confirm = new JButton("Tạo khoản chi");
-		btn_TKC_Confirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TKC_Confirm.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKC_Confirm.add(btn_TKC_Confirm);
 
 		btn_TKC_Confirm.addActionListener(e -> {

@@ -14,6 +14,8 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class QuanLyKhoanThu extends JPanel {
 	private DefaultTableModel tableModel;
@@ -26,29 +28,29 @@ public class QuanLyKhoanThu extends JPanel {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLKT_Title = new JPanel();
 		panel_QLKT_Title.setBackground(Colors.nen_Chung);
 		add(panel_QLKT_Title, BorderLayout.NORTH);
 		panel_QLKT_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		
+
 		JLabel lbl_Title_QuanLyKhoanThu = new JLabel("Thông tin các khoản thu          ");
-		lbl_Title_QuanLyKhoanThu.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_QuanLyKhoanThu.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_QuanLyKhoanThu.setBackground(Colors.nen_Chung);
 		panel_QLKT_Title.add(lbl_Title_QuanLyKhoanThu);
-		
+
 		JPanel panel_KhungNoiDungQLKT = new JPanel();
 		panel_KhungNoiDungQLKT.setPreferredSize(new Dimension(1463, 10));
 		panel_KhungNoiDungQLKT.setBorder(new LineBorder(Colors.khung_Chung, 20, true));
 		panel_KhungNoiDungQLKT.setBackground(Colors.khung_Chung);
 		add(panel_KhungNoiDungQLKT, BorderLayout.CENTER);
 		panel_KhungNoiDungQLKT.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLKT_02 = new JPanel();
 		panel_QLKT_02.setBackground(Colors.khung_Chung);
 		panel_KhungNoiDungQLKT.add(panel_QLKT_02, BorderLayout.CENTER);
 		panel_QLKT_02.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel_QLKT_02_BangThongTin = new JPanel();
 		panel_QLKT_02_BangThongTin.setBackground(Colors.khung_Chung);
 		panel_QLKT_02_BangThongTin.setLayout(new BorderLayout(10, 10));
@@ -72,11 +74,11 @@ public class QuanLyKhoanThu extends JPanel {
 		JLabel lbl_QLKT_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLKT_SubTitle.add(lbl_QLKT_Sort);
 		lbl_QLKT_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_QLKT_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_QLKT_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_QLKT_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLKT_Sort = new JComboBox();
-		comboBox_QLKT_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLKT_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_QLKT_SubTitle.add(comboBox_QLKT_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLKT_Sort.addItem("Sắp xếp theo mã khoản Thu");
@@ -111,6 +113,23 @@ public class QuanLyKhoanThu extends JPanel {
 					break;
 			}
 		});
+		JPanel panel_QLKT_ChiTiet = new JPanel();
+		panel_QLKT_ChiTiet.setBackground(Colors.khung_Chung);
+		panel_KhungNoiDungQLKT.add(panel_QLKT_ChiTiet, BorderLayout.SOUTH);
+		panel_QLKT_ChiTiet.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
+		JButton btn_QLKT_ChiTiet = new JButton("Xem chi tiết khoản thu");
+		btn_QLKT_ChiTiet.setFont(new Font("Arial", Font.PLAIN, 17));
+		panel_QLKT_ChiTiet.add(btn_QLKT_ChiTiet);
+
+		btn_QLKT_ChiTiet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Khi nút được ấn, tạo và hiển thị một JFrame mới
+				ChiTietKhoanThu newFrame = new ChiTietKhoanThu();
+				newFrame.setVisible(true);
+			}
+		});
 	}
 
 
@@ -126,7 +145,7 @@ public class QuanLyKhoanThu extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng

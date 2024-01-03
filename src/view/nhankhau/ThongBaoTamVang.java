@@ -41,7 +41,7 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_ThongBaoTamVang = new JLabel("Thông báo tạm vắng   ");
-		lbl_Title_ThongBaoTamVang.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_ThongBaoTamVang.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_ThongBaoTamVang.setBackground(Colors.nen_Chung);
 		panel_TBTV_Title.add(lbl_Title_ThongBaoTamVang);
 
@@ -70,11 +70,11 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_Content_Search_Method.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TBTV_Content_Search_Method = new JLabel("Tìm kiếm theo:");
-		lbl_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_TBTV_Content_Search_Method.add(lbl_TBTV_Content_Search_Method);
 
 		JComboBox comboBox_TBTV_Content_Search_Method = new JComboBox();
-		comboBox_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_Search_Method.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_Search_Method.add(comboBox_TBTV_Content_Search_Method);
 		comboBox_TBTV_Content_Search_Method.addItem("Mã nhân khẩu");
 
@@ -85,7 +85,7 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_Content_Search_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TBTV_Content_Search_Title = new JLabel("Nhập thông tin:");
-		lbl_TBTV_Content_Search_Title.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TBTV_Content_Search_Title.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_TBTV_Content_Search_Title.add(lbl_TBTV_Content_Search_Title);
 
 		// Thanh tìm kiếm
@@ -93,11 +93,11 @@ public class ThongBaoTamVang extends JPanel {
 		text_TBTV_Content_Search.setBorder(new EmptyBorder(0, 10, 0, 0));
 		text_TBTV_Content_Search.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TBTV_Content_Search.setForeground(Color.BLACK);
-		text_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_Search.add(text_TBTV_Content_Search, BorderLayout.CENTER);
 
 		JButton btn_TBTV_Content_Search = new JButton("Tìm kiếm");
-		btn_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTV_Content_Search.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TBTV_Content_Search.setMargin(new Insets(10, 16, 10, 16));
 		btn_TBTV_Content_Search.setBackground(Colors.button_Chung);
 		btn_TBTV_Content_Search.setForeground(Color.WHITE);
@@ -122,11 +122,11 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_Content_SearchResult_Title.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		JLabel lbl_TBTV_Content_Search_Method_1_1 = new JLabel("Sắp xếp theo:");
-		lbl_TBTV_Content_Search_Method_1_1.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TBTV_Content_Search_Method_1_1.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_TBTV_Content_SearchResult_Title.add(lbl_TBTV_Content_Search_Method_1_1);
 
 		JComboBox comboBox_TBTV_Content_SortTable = new JComboBox();
-		comboBox_TBTV_Content_SortTable.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_SortTable.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_SearchResult_Title.add(comboBox_TBTV_Content_SortTable);
 
 		// In thông tin tìm kiếm
@@ -155,12 +155,12 @@ public class ThongBaoTamVang extends JPanel {
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_DiaChi = new JLabel("Địa chỉ chuyển tới:");
 		lbl_TBTV_Content_ThongTinTamVang_DiaChi.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTV_Content_ThongTinTamVang_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_DiaChi.add(lbl_TBTV_Content_ThongTinTamVang_DiaChi);
 
 		textField_TBTV_Content_ThongTinTamVang_DiaChi = new JTextField();
 		textField_TBTV_Content_ThongTinTamVang_DiaChi.setPreferredSize(new Dimension(500, 30));
-		textField_TBTV_Content_ThongTinTamVang_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTV_Content_ThongTinTamVang_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 		textField_TBTV_Content_ThongTinTamVang_DiaChi.setBackground(new Color(217, 217, 217));
 		panel_TBTV_Content_ThongTinTamVang_DiaChi.add(textField_TBTV_Content_ThongTinTamVang_DiaChi);
 
@@ -172,12 +172,12 @@ public class ThongBaoTamVang extends JPanel {
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_LyDo = new JLabel("Lý do:");
 		lbl_TBTV_Content_ThongTinTamVang_LyDo.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTV_Content_ThongTinTamVang_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_LyDo.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_LyDo.add(lbl_TBTV_Content_ThongTinTamVang_LyDo);
 
 		textField_TBTV_Content_ThongTinTamVang_LyDo = new JTextField();
 		textField_TBTV_Content_ThongTinTamVang_LyDo.setPreferredSize(new Dimension(500, 30));
-		textField_TBTV_Content_ThongTinTamVang_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTV_Content_ThongTinTamVang_LyDo.setFont(new Font("Arial", Font.PLAIN, 17));
 		textField_TBTV_Content_ThongTinTamVang_LyDo.setBackground(new Color(217, 217, 217));
 		panel_TBTV_Content_ThongTinTamVang_LyDo.add(textField_TBTV_Content_ThongTinTamVang_LyDo, BorderLayout.CENTER);
 
@@ -189,7 +189,7 @@ public class ThongBaoTamVang extends JPanel {
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau = new JLabel("Ngày bắt đầu:");
 		lbl_TBTV_Content_ThongTinTamVang_BatDau.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTV_Content_ThongTinTamVang_BatDau.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau.add(lbl_TBTV_Content_ThongTinTamVang_BatDau);
 
 		JPanel panel_TBTV_Content_ThongTinTamVang_BatDau_Group = new JPanel();
@@ -199,34 +199,41 @@ public class ThongBaoTamVang extends JPanel {
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam = new JLabel("Năm:");
 		lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(lbl_TBTV_Content_ThongTinTamVang_BatDau_Nam);
 
 		JComboBox comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam = new JComboBox();
+		populateYears(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam);
 		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.getPreferredSize().height));
-		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam);
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang = new JLabel("Tháng:");
 		lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(lbl_TBTV_Content_ThongTinTamVang_BatDau_Thang);
 
 		JComboBox comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang = new JComboBox();
+		populateMonths(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang);
 		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.getPreferredSize().height));
-		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang);
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay = new JLabel("Ngày:");
 		lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(lbl_TBTV_Content_ThongTinTamVang_BatDau_Ngay);
 
 		JComboBox comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay = new JComboBox();
 		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.getPreferredSize().height));
-		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_BatDau_Group.add(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay);
 
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang.addActionListener(e -> updateDays(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay));
+		comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam.addActionListener(e -> updateDays(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay));
+
+		// Initial population of days
+		updateDays(comboBox_TBTV_Content_ThongTinTamVang_BatDau_Nam, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Thang, comboBox_TBTV_Content_ThongTinTamVang_BatDau_Ngay);
 		// Lấy ngày kết thúc
 		JPanel panel_TBTV_Content_ThongTinTamVang_KetThuc = new JPanel();
 		panel_TBTV_Content_ThongTinTamVang_KetThuc.setBackground(Colors.khung_Chung);
@@ -235,7 +242,7 @@ public class ThongBaoTamVang extends JPanel {
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc = new JLabel("Ngày kết thúc:");
 		lbl_TBTV_Content_ThongTinTamVang_KetThuc.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTV_Content_ThongTinTamVang_KetThuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc);
 
 		JPanel panel_TBTV_Content_ThongTinTamVang_KetThuc_Group = new JPanel();
@@ -245,33 +252,41 @@ public class ThongBaoTamVang extends JPanel {
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam = new JLabel("Năm:");
 		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc_Nam);
 
 		JComboBox comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam = new JComboBox();
+		populateYears(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam);
 		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.getPreferredSize().height));
-		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam);
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang = new JLabel("Tháng:");
 		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc_Thang);
 
 		JComboBox comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang = new JComboBox();
+		populateMonths(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang);
 		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.getPreferredSize().height));
-		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang);
 
 		JLabel lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay = new JLabel("Ngày:");
 		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(lbl_TBTV_Content_ThongTinTamVang_KetThuc_Ngay);
 
 		JComboBox comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay = new JComboBox();
 		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.getPreferredSize().height));
-		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTV_Content_ThongTinTamVang_KetThuc_Group.add(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay);
+
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang.addActionListener(e -> updateDays(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay));
+		comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam.addActionListener(e -> updateDays(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay));
+
+		// Initial population of days
+		updateDays(comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Nam, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Thang, comboBox_TBTV_Content_ThongTinTamVang_KetThuc_Ngay);
 
 		Component verticalGlue = Box.createVerticalGlue();
 		panel_TBTV_Content_ThongTinTamVang.add(verticalGlue);
@@ -282,7 +297,7 @@ public class ThongBaoTamVang extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		JTable table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -364,7 +379,7 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		JButton btn_TBTV_Yes = new JButton("Xác Nhận");
-		btn_TBTV_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTV_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TBTV_Yes.setToolTipText("");
 		btn_TBTV_Yes.setBackground(Colors.button_XacNhan);
 		btn_TBTV_Yes.setForeground(Color.WHITE);
@@ -409,7 +424,7 @@ public class ThongBaoTamVang extends JPanel {
 		panel_TBTV_confirm.add(btn_TBTV_Yes);
 
 		JButton btn_TBTV_No = new JButton("Hủy");
-		btn_TBTV_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTV_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TBTV_No.setToolTipText("");
 		btn_TBTV_No.setBackground(Colors.button_Huy);
 		btn_TBTV_No.setForeground(Color.WHITE);
@@ -430,23 +445,35 @@ public class ThongBaoTamVang extends JPanel {
 		}
 	}
 
-	/*private void populateMonths(JComboBox comboBox) {
+	private void populateMonths(JComboBox comboBox) {
 		for (int month = 1; month <= 12; month++) {
 			comboBox.addItem(month);
 		}
 	}
 
 	private void updateDays(JComboBox yearComboBox, JComboBox monthComboBox, JComboBox dayComboBox) {
+		int year = (int) yearComboBox.getSelectedItem();
+		int month = (int) monthComboBox.getSelectedItem();
 		int daysInMonth = getDaysInMonth(year, month);
+
+		dayComboBox.setModel(new DefaultComboBoxModel());
 		for (int day = 1; day <= daysInMonth; day++) {
 			dayComboBox.addItem(day);
 		}
 	}
-*/
+
 	private int getDaysInMonth(int year, int month) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(year, month - 1, 1);
-		return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		if (month == 2) {
+			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+				return 29; // Leap year: February has 29 days
+			} else {
+				return 28; // Non-leap year: February has 28 days
+			}
+		} else if (month == 4 || month == 6 || month == 9 || month == 11) {
+			return 30; // April, June, September, November have 30 days
+		} else {
+			return 31; // January, March, May, July, August, October, December have 31 days
+		}
 	}
 
 }

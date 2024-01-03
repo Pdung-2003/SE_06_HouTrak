@@ -85,6 +85,7 @@ public class ManHinhChinh extends JFrame {
 		panel_Header.add(panel, BorderLayout.EAST);
 
 		JButton btnTrangChu = new JButton("Trang chủ");
+		btnTrangChu.setFont(new Font("Arial", Font.BOLD, 17));
 		btnTrangChu.setHorizontalAlignment(SwingConstants.CENTER);
 		btnTrangChu.setBackground(Colors.vien_Tren_Duoi);
 		btnTrangChu.setForeground(Color.WHITE);
@@ -93,6 +94,7 @@ public class ManHinhChinh extends JFrame {
 
 
 		JButton btnHoTro = new JButton("Hỗ trợ");
+		btnHoTro.setFont(new Font("Arial", Font.BOLD, 17));
 		btnHoTro.setHorizontalAlignment(SwingConstants.CENTER);
 		btnHoTro.setBackground(Colors.vien_Tren_Duoi);
 		btnHoTro.setForeground(Color.WHITE);
@@ -100,6 +102,7 @@ public class ManHinhChinh extends JFrame {
 		btnHoTro.setOpaque(true);
 
 		JButton btnThongTin = new JButton("Thông tin");
+		btnThongTin.setFont(new Font("Arial", Font.BOLD, 17));
 		btnThongTin.setHorizontalAlignment(SwingConstants.CENTER);
 		btnThongTin.setBackground(Colors.vien_Tren_Duoi);
 		btnThongTin.setBorderPainted(false);
@@ -107,6 +110,7 @@ public class ManHinhChinh extends JFrame {
 		btnThongTin.setOpaque(true);
 
 		JButton btnDangXuat = new JButton("Đăng xuất");
+		btnDangXuat.setFont(new Font("Arial", Font.BOLD, 17));
 		btnDangXuat.setHorizontalAlignment(SwingConstants.CENTER);
 		btnDangXuat.setBackground(Colors.khung_Chung);
 		btnDangXuat.setBorderPainted(false);

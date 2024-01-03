@@ -35,7 +35,7 @@ public class  QuanLyKhoanChi extends JPanel {
 		panel_QLKC_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_QuanLyKhoanChi = new JLabel("Thông tin các khoản chi          ");
-		lbl_Title_QuanLyKhoanChi.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_QuanLyKhoanChi.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_QuanLyKhoanChi.setBackground(Colors.nen_Chung);
 		panel_QLKC_Title.add(lbl_Title_QuanLyKhoanChi);
 
@@ -73,11 +73,11 @@ public class  QuanLyKhoanChi extends JPanel {
 		JLabel lbl_QLKC_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLKC_SubTitle.add(lbl_QLKC_Sort);
 		lbl_QLKC_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_QLKC_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_QLKC_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_QLKC_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLKC_Sort = new JComboBox();
-		comboBox_QLKC_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLKC_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_QLKC_SubTitle.add(comboBox_QLKC_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLKC_Sort.addItem("Sắp xếp theo mã khoản chi");
@@ -128,7 +128,7 @@ public class  QuanLyKhoanChi extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 40;
 		table = new JTable(tableModel);
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng

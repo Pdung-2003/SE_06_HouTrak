@@ -4,21 +4,14 @@ import controller.phat_thuong.QuanLyPhatThuongController;
 import model.HocSinh;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
-import java.awt.event.ItemEvent;
 
-import java.awt.*;
-import javax.swing.table.DefaultTableCellRenderer;
-
-import javax.swing.table.JTableHeader;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
 
@@ -46,7 +39,7 @@ public class QuanLyPhatThuong extends JPanel {
 		panel_QLPT_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_QuanLyPhatThuong = new JLabel("Thông tin các học sinh đủ điều kiện    ");
-		lbl_Title_QuanLyPhatThuong.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_QuanLyPhatThuong.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_QuanLyPhatThuong.setBackground(Colors.nen_Chung);
 		panel_QLPT_Title.add(lbl_Title_QuanLyPhatThuong);
 
@@ -76,11 +69,11 @@ public class QuanLyPhatThuong extends JPanel {
 		JLabel lbl_QLPT_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLPT_SubTitle.add(lbl_QLPT_Sort);
 		lbl_QLPT_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_QLPT_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_QLPT_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_QLPT_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLPT_Sort = new JComboBox();
-		comboBox_QLPT_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_QLPT_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_QLPT_SubTitle.add(comboBox_QLPT_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLPT_Sort.addItem("Mã Nhân Khẩu");
@@ -108,7 +101,7 @@ public class QuanLyPhatThuong extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 40;
 		table = new JTable(tableModel);
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

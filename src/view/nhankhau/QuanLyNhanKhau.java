@@ -5,19 +5,13 @@ import model.NhanKhau;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
-import java.awt.*;
-import javax.swing.table.DefaultTableCellRenderer;
-
-import javax.swing.table.JTableHeader;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +39,7 @@ public class QuanLyNhanKhau extends JPanel {
 		panel_QLNK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_QuanLyNhanKhau = new JLabel("Thông tin các nhân khẩu      ");
-		lbl_Title_QuanLyNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_QuanLyNhanKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_QuanLyNhanKhau.setBackground(Colors.nen_Chung);
 		panel_QLNK_Title.add(lbl_Title_QuanLyNhanKhau);
 
@@ -76,11 +70,11 @@ public class QuanLyNhanKhau extends JPanel {
 		JLabel lbl_QLNK_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLNK_SubTitle.add(lbl_QLNK_Sort);
 		lbl_QLNK_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_QLNK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_QLNK_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_QLNK_Sort.setAlignmentX(0.5f);
 
 		JComboBox comboBox_QLNK_Sort = new JComboBox();
-		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_QLNK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_QLNK_SubTitle.add(comboBox_QLNK_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLNK_Sort.addItem("Sắp xếp theo mã nhân khẩu");
@@ -138,7 +132,7 @@ public class QuanLyNhanKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		sorter = new TableRowSorter<>(tableModel);  // Khởi tạo sorter với tableModel
 		table.setRowSorter(sorter);
 		// Đặt màu sắc cho header của bảng
@@ -163,7 +157,7 @@ public class QuanLyNhanKhau extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
 		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
 		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
-		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(3).setPreferredWidth(100); // Địa Chỉ
 		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));

@@ -66,7 +66,7 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_XNK_01_Title = new JLabel("   Nhập mã nhân khẩu: ");
-		lbl_XNK_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_01_Title.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XHS_KhoangTrang1.add(lbl_XNK_01_Title, BorderLayout.CENTER);
 		panel_XHS_KhoangTrang2.setBackground(Colors.khung_Noi_Dung);
 		panel_XHS_KhoangTrang3.setBackground(Colors.khung_Noi_Dung);
@@ -81,7 +81,7 @@ public class XoaHocSinh extends JPanel {
 		txt_XHS_TImKiem.setBorder(new EmptyBorder(0, 10, 0, 0));
 		panel_XHS_01_content.add(txt_XHS_TImKiem);
 		txt_XHS_TImKiem.setHorizontalAlignment(SwingConstants.LEFT);
-		txt_XHS_TImKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		txt_XHS_TImKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		txt_XHS_TImKiem.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
 		btn_XHS_01_TimKiem = new JButton("Tìm kiếm");
@@ -110,31 +110,31 @@ public class XoaHocSinh extends JPanel {
 		panel_XNK_CotTrai_01.add(lbl_XHS_CotTrai_1);
 		lbl_XHS_CotTrai_1.setMaximumSize(new Dimension(100, 14));
 		lbl_XHS_CotTrai_1.setPreferredSize(new Dimension(23, 50));
-		lbl_XHS_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHS_CotTrai_2 = new JLabel("     Họ và tên");
 		panel_XNK_CotTrai_01.add(lbl_XHS_CotTrai_2);
 		lbl_XHS_CotTrai_2.setPreferredSize(new Dimension(23, 500));
 		lbl_XHS_CotTrai_2.setMaximumSize(new Dimension(100, 14));
-		lbl_XHS_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHS_CotTrai_3 = new JLabel("     Số CCCD/CMND");
 		panel_XNK_CotTrai_01.add(lbl_XHS_CotTrai_3);
 		lbl_XHS_CotTrai_3.setPreferredSize(new Dimension(23, 500));
 		lbl_XHS_CotTrai_3.setMaximumSize(new Dimension(100, 14));
-		lbl_XHS_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHS_CotTrai_5 = new JLabel("     Ngày sinh");
 		panel_XNK_CotTrai_01.add(lbl_XHS_CotTrai_5);
 		lbl_XHS_CotTrai_5.setPreferredSize(new Dimension(23, 500));
 		lbl_XHS_CotTrai_5.setMaximumSize(new Dimension(100, 14));
-		lbl_XHS_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHS_CotTrai_4 = new JLabel("     Giới tính");
 		panel_XNK_CotTrai_01.add(lbl_XHS_CotTrai_4);
 		lbl_XHS_CotTrai_4.setPreferredSize(new Dimension(23, 500));
 		lbl_XHS_CotTrai_4.setMaximumSize(new Dimension(100, 14));
-		lbl_XHS_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_XHS_CotTrai_02 = new JPanel();
 		panel_XHS_CotTrai_02.setBackground(Colors.khung_Noi_Dung);
@@ -146,27 +146,27 @@ public class XoaHocSinh extends JPanel {
 		lbl_XHS_CotTrai_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_XHS_CotTrai_6.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_6.setMinimumSize(new Dimension(50, 14));
-		lbl_XHS_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHS_CotTrai_7 = new JLabel("     Địa Chỉ                         ");
 		lbl_XHS_CotTrai_7.setMinimumSize(new Dimension(50, 14));
 		lbl_XHS_CotTrai_7.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_7.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_XHS_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_7.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_7);
 
 		JLabel lbl_XHS_CotTrai_8 = new JLabel("     Học Lực                          ");
 		lbl_XHS_CotTrai_8.setMinimumSize(new Dimension(50, 14));
 		lbl_XHS_CotTrai_8.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_8.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_XHS_CotTrai_8.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_8.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_8);
 
 		JLabel lbl_XHS_CotTrai_9 = new JLabel("     Lớp                          ");
 		lbl_XHS_CotTrai_9.setMinimumSize(new Dimension(50, 14));
 		lbl_XHS_CotTrai_9.setMaximumSize(new Dimension(200, 14));
 		lbl_XHS_CotTrai_9.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_XHS_CotTrai_9.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHS_CotTrai_9.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XHS_CotTrai_02.add(lbl_XHS_CotTrai_9);
 
 		JPanel panel_XHS_CotPhai = new JPanel();
@@ -180,19 +180,19 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_CotPhai.add(panel_XHS_CotPhai_01);
 		panel_XHS_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
 
-		lbl_XHS_CotPhai_MaNK.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XHS_CotPhai_MaNK.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_MaNK);
 
-		lbl_XHS_CotPhai_HoVaTen.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XHS_CotPhai_HoVaTen.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_HoVaTen);
 
-		lbl_XHS_CotPhai_CCCD.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XHS_CotPhai_CCCD.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_CCCD);
 
-		lbl_XHS_CotPhai_NgaySinh.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XHS_CotPhai_NgaySinh.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_NgaySinh);
 
-		lbl_XHS_CotPhai_GioiTinh.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XHS_CotPhai_GioiTinh.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_01.add(lbl_XHS_CotPhai_GioiTinh);
 
 		JPanel panel_XHS_CotPhai_02 = new JPanel();
@@ -200,16 +200,16 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_CotPhai.add(panel_XHS_CotPhai_02);
 		panel_XHS_CotPhai_02.setLayout(new GridLayout(5, 1, 0, 0));
 
-		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_MaHK);
 
-		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_DiaChi);
 
-		lbl_XNK_CotPhai_HocLuc.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XNK_CotPhai_HocLuc.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_HocLuc);
 
-		lbl_XNK_CotPhai_Lop.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_XNK_CotPhai_Lop.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_XHS_CotPhai_02.add(lbl_XNK_CotPhai_Lop);
 
 		JPanel panel_XHS_Confirm = new JPanel();
@@ -218,7 +218,7 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_Confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		btn_XHS_Yes = new JButton("Xóa\r\n");
-		btn_XHS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XHS_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_XHS_Yes.setToolTipText("");
 		btn_XHS_Yes.setBackground(Colors.button_XacNhan);
 		btn_XHS_Yes.setForeground(Color.WHITE);
@@ -227,7 +227,7 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_Confirm.add(btn_XHS_Yes);
 
 		btn_XHS_No = new JButton("Hủy\r\n");
-		btn_XHS_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XHS_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_XHS_No.setToolTipText("");
 		btn_XHS_No.setBackground(Colors.button_Huy);
 		btn_XHS_No.setForeground(Color.WHITE);
@@ -250,7 +250,7 @@ public class XoaHocSinh extends JPanel {
 		panel_XHS_Title.add(lbl_XHS_Subtitle);
 		lbl_XHS_Subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lbl_XHS_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_XHS_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XHS_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JPanel panel_XHS_title = new JPanel();
 		panel_XHS_title.setBackground(Colors.nen_Chung);
@@ -259,7 +259,7 @@ public class XoaHocSinh extends JPanel {
 
 		JLabel lbl_Title_XoaHocSinh = new JLabel("Xóa học sinh");
 		lbl_Title_XoaHocSinh.setBackground(Colors.nen_Chung);
-		lbl_Title_XoaHocSinh.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_XoaHocSinh.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_XHS_title.add(lbl_Title_XoaHocSinh);
 
 		XoaHocSinhController controller = new XoaHocSinhController(mainFrame, this);

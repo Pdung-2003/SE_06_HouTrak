@@ -34,7 +34,7 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_Title_ThongBaoTamTru = new JLabel("Thông báo tạm trú    ");
 		lbl_Title_ThongBaoTamTru.setBackground(Colors.nen_Chung);
-		lbl_Title_ThongBaoTamTru.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_ThongBaoTamTru.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_TBTT_title.add(lbl_Title_ThongBaoTamTru);
 
 		// Nội dung trang
@@ -64,12 +64,12 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_MaHoKhau = new JLabel("Mã hộ khẩu*:");
 		lbl_TBTT_Content_MaHoKhau.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_MaHoKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_MaHoKhau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_MaHoKhau.add(lbl_TBTT_Content_MaHoKhau);
 
 		textField_TBTT_Content_MaHoKhau = new JTextField();
 		textField_TBTT_Content_MaHoKhau.setPreferredSize(new Dimension(500, 30));
-		textField_TBTT_Content_MaHoKhau.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTT_Content_MaHoKhau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_MaHoKhau.add(textField_TBTT_Content_MaHoKhau);
 
 		// Lấy họ và tên
@@ -80,12 +80,12 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_HoTen = new JLabel("Họ và tên*:");
 		lbl_TBTT_Content_HoTen.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_HoTen.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_HoTen.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_HoTen.add(lbl_TBTT_Content_HoTen);
 
 		textField_TBTT_Content_HoTen = new JTextField();
 		textField_TBTT_Content_HoTen.setPreferredSize(new Dimension(500, 30));
-		textField_TBTT_Content_HoTen.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTT_Content_HoTen.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_HoTen.add(textField_TBTT_Content_HoTen);
 
 		// Lấy số CCCD
@@ -96,12 +96,12 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_CCCD = new JLabel("CCCD/CMND*:");
 		lbl_TBTT_Content_CCCD.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_CCCD.add(lbl_TBTT_Content_CCCD);
 
 		textField_TBTT_Content_CCCD = new JTextField();
 		textField_TBTT_Content_CCCD.setPreferredSize(new Dimension(500, 30));
-		textField_TBTT_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTT_Content_CCCD.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_CCCD.add(textField_TBTT_Content_CCCD);
 
 		//Lấy giới tính
@@ -112,7 +112,7 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_GioiTinh = new JLabel("Giới tính*:");
 		lbl_TBTT_Content_GioiTinh.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_GioiTinh.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_GioiTinh.add(lbl_TBTT_Content_GioiTinh, BorderLayout.WEST);
 
 		JPanel panel_TBTT_Content_GioiTinh_Group = new JPanel();
@@ -121,12 +121,12 @@ public class ThongBaoTamTru extends JPanel {
 		panel_TBTT_Content_GioiTinh_Group.setLayout(new BoxLayout(panel_TBTT_Content_GioiTinh_Group, BoxLayout.X_AXIS));
 
 		JRadioButton rdbtn_TBTT_Content_GioiTinh_Nam = new JRadioButton("Nam");
-		rdbtn_TBTT_Content_GioiTinh_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		rdbtn_TBTT_Content_GioiTinh_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		rdbtn_TBTT_Content_GioiTinh_Nam.setBackground(Colors.khung_Chung);
 		panel_TBTT_Content_GioiTinh_Group.add(rdbtn_TBTT_Content_GioiTinh_Nam);
 
 		JRadioButton rdbtn_TBTT_Content_GioiTinh_Nu = new JRadioButton("Nữ");
-		rdbtn_TBTT_Content_GioiTinh_Nu.setFont(new Font("Arial", Font.PLAIN, 16));
+		rdbtn_TBTT_Content_GioiTinh_Nu.setFont(new Font("Arial", Font.PLAIN, 17));
 		rdbtn_TBTT_Content_GioiTinh_Nu.setBackground(Colors.khung_Chung);
 		panel_TBTT_Content_GioiTinh_Group.add(rdbtn_TBTT_Content_GioiTinh_Nu);
 
@@ -143,7 +143,7 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_NgaySinh = new JLabel("Ngày sinh*:");
 		lbl_TBTT_Content_NgaySinh.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_NgaySinh.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_NgaySinh.add(lbl_TBTT_Content_NgaySinh, BorderLayout.WEST);
 
 		JPanel panel_TBTT_Content_NgaySinh_Group = new JPanel();
@@ -154,33 +154,33 @@ public class ThongBaoTamTru extends JPanel {
 		JLabel lbl_TBTT_Content_NgaySinh_Nam = new JLabel("Năm:");
 		lbl_TBTT_Content_NgaySinh_Nam.setPreferredSize(new Dimension(60, 19));
 		panel_TBTT_Content_NgaySinh_Group.add(lbl_TBTT_Content_NgaySinh_Nam);
-		lbl_TBTT_Content_NgaySinh_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_NgaySinh_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JComboBox comboBox_TBTT_Content_NgaySinh_Nam = new JComboBox();
 		comboBox_TBTT_Content_NgaySinh_Nam.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Nam.getPreferredSize().height));
-		comboBox_TBTT_Content_NgaySinh_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_NgaySinh_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_TBTT_Content_NgaySinh_Nam);
 		panel_TBTT_Content_NgaySinh_Group.add(comboBox_TBTT_Content_NgaySinh_Nam);
 
 		JLabel lbl_TBTT_Content_NgaySinh_Thang = new JLabel("Tháng:");
 		lbl_TBTT_Content_NgaySinh_Thang.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_NgaySinh_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_NgaySinh_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_NgaySinh_Group.add(lbl_TBTT_Content_NgaySinh_Thang);
 
 		JComboBox comboBox_TBTT_Content_NgaySinh_Thang = new JComboBox();
 		comboBox_TBTT_Content_NgaySinh_Thang.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Thang.getPreferredSize().height));
-		comboBox_TBTT_Content_NgaySinh_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_NgaySinh_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_TBTT_Content_NgaySinh_Thang);
 		panel_TBTT_Content_NgaySinh_Group.add(comboBox_TBTT_Content_NgaySinh_Thang);
 
 		JLabel lbl_TBTT_Content_NgaySinh_Ngay = new JLabel("Ngày:");
 		lbl_TBTT_Content_NgaySinh_Ngay.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_NgaySinh_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_NgaySinh_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_NgaySinh_Group.add(lbl_TBTT_Content_NgaySinh_Ngay);
 
 		JComboBox comboBox_TBTT_Content_NgaySinh_Ngay = new JComboBox();
 		comboBox_TBTT_Content_NgaySinh_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_NgaySinh_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_NgaySinh_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_NgaySinh_Group.add(comboBox_TBTT_Content_NgaySinh_Ngay);
 		comboBox_TBTT_Content_NgaySinh_Thang.addActionListener(e -> updateDays(comboBox_TBTT_Content_NgaySinh_Nam, comboBox_TBTT_Content_NgaySinh_Thang, comboBox_TBTT_Content_NgaySinh_Ngay));
 		comboBox_TBTT_Content_NgaySinh_Nam.addActionListener(e -> updateDays(comboBox_TBTT_Content_NgaySinh_Nam, comboBox_TBTT_Content_NgaySinh_Thang, comboBox_TBTT_Content_NgaySinh_Ngay));
@@ -197,12 +197,12 @@ public class ThongBaoTamTru extends JPanel {
 		JLabel lbl_TBTT_Content_TonGiao = new JLabel("Tôn giáo:");
 		lbl_TBTT_Content_TonGiao.setPreferredSize(new Dimension(150, 19));
 		panel_TBTT_Content_TonGiao.add(lbl_TBTT_Content_TonGiao);
-		lbl_TBTT_Content_TonGiao.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_TonGiao.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		textField_TBTT_Content_TonGiao = new JTextField();
 		textField_TBTT_Content_TonGiao.setPreferredSize(new Dimension(500, 30));
 		panel_TBTT_Content_TonGiao.add(textField_TBTT_Content_TonGiao);
-		textField_TBTT_Content_TonGiao.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTT_Content_TonGiao.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		// Lấy quê quán
 		JPanel panel_TBTT_Content_QueQuan = new JPanel();
@@ -213,12 +213,12 @@ public class ThongBaoTamTru extends JPanel {
 		JLabel lbl_TBTT_Content_QueQuan = new JLabel("Quê quán:");
 		lbl_TBTT_Content_QueQuan.setPreferredSize(new Dimension(150, 19));
 		panel_TBTT_Content_QueQuan.add(lbl_TBTT_Content_QueQuan);
-		lbl_TBTT_Content_QueQuan.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_QueQuan.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		textField_TBTT_Content_QueQuan = new JTextField();
 		textField_TBTT_Content_QueQuan.setPreferredSize(new Dimension(500, 30));
 		panel_TBTT_Content_QueQuan.add(textField_TBTT_Content_QueQuan);
-		textField_TBTT_Content_QueQuan.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTT_Content_QueQuan.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		// Lấy lý do
 		JPanel panel_TBTT_Content_LyDo = new JPanel();
@@ -229,12 +229,12 @@ public class ThongBaoTamTru extends JPanel {
 		JLabel lbl_TBTT_Content_LyDo = new JLabel("Lý do:");
 		lbl_TBTT_Content_LyDo.setPreferredSize(new Dimension(150, 19));
 		panel_TBTT_Content_LyDo.add(lbl_TBTT_Content_LyDo);
-		lbl_TBTT_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		textField_TBTT_Content_LyDo = new JTextField();
 		textField_TBTT_Content_LyDo.setPreferredSize(new Dimension(500, 30));
 		panel_TBTT_Content_LyDo.add(textField_TBTT_Content_LyDo);
-		textField_TBTT_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_TBTT_Content_LyDo.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		// Lấy thời gian bắt đầu
 		JPanel panel_TBTT_Content_ThoiGianBatDau = new JPanel();
@@ -244,7 +244,7 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_ThoiGianBatDau = new JLabel("Bắt đầu từ*:");
 		lbl_TBTT_Content_ThoiGianBatDau.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_ThoiGianBatDau.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianBatDau.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianBatDau.add(lbl_TBTT_Content_ThoiGianBatDau, BorderLayout.WEST);
 
 		JPanel panel_TBTT_Content_ThoiGianBatDau_Group = new JPanel();
@@ -254,35 +254,35 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_ThoiGianBatDau_Nam = new JLabel("Năm:");
 		lbl_TBTT_Content_ThoiGianBatDau_Nam.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianBatDau_Group.add(lbl_TBTT_Content_ThoiGianBatDau_Nam);
 
 		JComboBox comboBox_TBTT_Content_ThoiGianBatDau_Nam = new JComboBox();
 		comboBox_TBTT_Content_ThoiGianBatDau_Nam.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_ThoiGianBatDau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_TBTT_Content_ThoiGianBatDau_Nam);
 		panel_TBTT_Content_ThoiGianBatDau_Group.add(comboBox_TBTT_Content_ThoiGianBatDau_Nam);
 
 
 		JLabel lbl_TBTT_Content_ThoiGianBatDau_Thang = new JLabel("Tháng:");
 		lbl_TBTT_Content_ThoiGianBatDau_Thang.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianBatDau_Group.add(lbl_TBTT_Content_ThoiGianBatDau_Thang);
 
 		JComboBox comboBox_TBTT_Content_ThoiGianBatDau_Thang = new JComboBox();
 		comboBox_TBTT_Content_ThoiGianBatDau_Thang.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_ThoiGianBatDau_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_TBTT_Content_ThoiGianBatDau_Thang);
 		panel_TBTT_Content_ThoiGianBatDau_Group.add(comboBox_TBTT_Content_ThoiGianBatDau_Thang);
 
 		JLabel lbl_TBTT_Content_ThoiGianBatDau_Ngay = new JLabel("Ngày:");
 		lbl_TBTT_Content_ThoiGianBatDau_Ngay.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianBatDau_Group.add(lbl_TBTT_Content_ThoiGianBatDau_Ngay);
 
 		JComboBox comboBox_TBTT_Content_ThoiGianBatDau_Ngay = new JComboBox();
 		comboBox_TBTT_Content_ThoiGianBatDau_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_ThoiGianBatDau_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianBatDau_Group.add(comboBox_TBTT_Content_ThoiGianBatDau_Ngay);
 
 		comboBox_TBTT_Content_ThoiGianBatDau_Thang.addActionListener(e -> updateDays(comboBox_TBTT_Content_ThoiGianBatDau_Nam, comboBox_TBTT_Content_ThoiGianBatDau_Thang, comboBox_TBTT_Content_ThoiGianBatDau_Ngay));
@@ -297,7 +297,7 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_ThoiGianKetThuc = new JLabel("Kết thúc ngày*:");
 		lbl_TBTT_Content_ThoiGianKetThuc.setPreferredSize(new Dimension(150, 19));
-		lbl_TBTT_Content_ThoiGianKetThuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianKetThuc.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianKetThuc.add(lbl_TBTT_Content_ThoiGianKetThuc);
 
 		JPanel panel_TBTT_Content_ThoiGianKetThuc_Group = new JPanel();
@@ -307,34 +307,34 @@ public class ThongBaoTamTru extends JPanel {
 
 		JLabel lbl_TBTT_Content_ThoiGianKetThuc_Nam = new JLabel("Năm:");
 		lbl_TBTT_Content_ThoiGianKetThuc_Nam.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianKetThuc_Group.add(lbl_TBTT_Content_ThoiGianKetThuc_Nam);
 
 		JComboBox comboBox_TBTT_Content_ThoiGianKetThuc_Nam = new JComboBox();
 		comboBox_TBTT_Content_ThoiGianKetThuc_Nam.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_ThoiGianKetThuc_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_TBTT_Content_ThoiGianKetThuc_Nam);
 		panel_TBTT_Content_ThoiGianKetThuc_Group.add(comboBox_TBTT_Content_ThoiGianKetThuc_Nam);
 
 		JLabel lbl_TBTT_Content_ThoiGianKetThuc_Thang = new JLabel("Tháng:");
 		lbl_TBTT_Content_ThoiGianKetThuc_Thang.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianKetThuc_Group.add(lbl_TBTT_Content_ThoiGianKetThuc_Thang);
 
 		JComboBox comboBox_TBTT_Content_ThoiGianKetThuc_Thang = new JComboBox();
 		comboBox_TBTT_Content_ThoiGianKetThuc_Thang.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_ThoiGianKetThuc_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateMonths(comboBox_TBTT_Content_ThoiGianKetThuc_Thang);
 		panel_TBTT_Content_ThoiGianKetThuc_Group.add(comboBox_TBTT_Content_ThoiGianKetThuc_Thang);
 
 		JLabel lbl_TBTT_Content_ThoiGianKetThuc_Ngay = new JLabel("Ngày:");
 		lbl_TBTT_Content_ThoiGianKetThuc_Ngay.setPreferredSize(new Dimension(60, 19));
-		lbl_TBTT_Content_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TBTT_Content_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianKetThuc_Group.add(lbl_TBTT_Content_ThoiGianKetThuc_Ngay);
 
 		JComboBox comboBox_TBTT_Content_ThoiGianKetThuc_Ngay = new JComboBox();
 		comboBox_TBTT_Content_ThoiGianKetThuc_Ngay.setPreferredSize(new Dimension(80, comboBox_TBTT_Content_NgaySinh_Ngay.getPreferredSize().height));
-		comboBox_TBTT_Content_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TBTT_Content_ThoiGianKetThuc_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TBTT_Content_ThoiGianKetThuc_Group.add(comboBox_TBTT_Content_ThoiGianKetThuc_Ngay);
 
 
@@ -351,7 +351,7 @@ public class ThongBaoTamTru extends JPanel {
 		panel_TBTT_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 
 		JButton btn_TBTT_Yes = new JButton("Thêm");
-		btn_TBTT_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTT_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TBTT_Yes.setToolTipText("");
 		btn_TBTT_Yes.setBackground(Colors.button_XacNhan);
 		btn_TBTT_Yes.setForeground(Color.WHITE);
@@ -411,7 +411,7 @@ public class ThongBaoTamTru extends JPanel {
 		panel_TBTT_confirm.add(btn_TBTT_Yes);
 
 		JButton btn_TBTT_No = new JButton("Hủy");
-		btn_TBTT_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TBTT_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TBTT_No.setToolTipText("");
 		btn_TBTT_No.setBackground(Colors.button_Huy);
 		btn_TBTT_No.setForeground(Color.WHITE);

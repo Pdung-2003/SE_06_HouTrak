@@ -1,8 +1,6 @@
 package view.taikhoan;
 
-import controller.hokhau.QuanLyHoKhauController;
 import controller.taikhoan.QuanLyTaiKhoanController;
-import model.HoKhau;
 import model.TaiKhoan;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
@@ -12,11 +10,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Arrays;
 import java.util.List;
 
 public class QuanLyTaiKhoan extends JPanel {
@@ -38,7 +34,7 @@ public class QuanLyTaiKhoan extends JPanel {
 		panel_QLTK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_QuanLyKhoanChi = new JLabel("Thông tin các tài khoản          ");
-		lbl_Title_QuanLyKhoanChi.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_QuanLyKhoanChi.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_QuanLyKhoanChi.setBackground(Colors.nen_Chung);
 		panel_QLTK_Title.add(lbl_Title_QuanLyKhoanChi);
 
@@ -69,11 +65,11 @@ public class QuanLyTaiKhoan extends JPanel {
 		JLabel lbl_QLTK_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLTK_SubTitle.add(lbl_QLTK_Sort);
 		lbl_QLTK_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_QLTK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_QLTK_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_QLTK_Sort.setAlignmentX(0.5f);
 
 		comboBox_QLTK_Sort = new JComboBox();
-		comboBox_QLTK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLTK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_QLTK_SubTitle.add(comboBox_QLTK_Sort);
 		// Thêm các tùy chọn vào combobox
 		comboBox_QLTK_Sort.addItem("Mã tài khoản");
@@ -92,7 +88,7 @@ public class QuanLyTaiKhoan extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		int rowHeight = 40;
 		table = new JTable(tableModel);
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

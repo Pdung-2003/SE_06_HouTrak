@@ -36,8 +36,6 @@ public class CapNhatTamTruController {
                 labelMaHoKhau.setText(maHoKhau);
             } else {
                 // Nếu không tìm thấy kết quả
-                labelHoTen.setText("");
-                labelMaHoKhau.setText("");
                 JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin tạm trú cho số CMND/CCCD này hoặc mã nhân khẩu không có trong bảng TamTru.");
             }
 

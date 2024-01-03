@@ -1,20 +1,19 @@
 package view.hokhau;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import java.awt.*;
-import javax.swing.table.DefaultTableCellRenderer;
-
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.List;
-
 import controller.hokhau.QuanLyHoKhauController;
 import model.HoKhau;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.List;
 
 
 public class QuanLyHoKhau extends JPanel {
@@ -40,7 +39,7 @@ public class QuanLyHoKhau extends JPanel {
 		panel_QLHK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_QuanLyHoKhau = new JLabel("Thông tin các hộ khẩu      ");
-		lbl_Title_QuanLyHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_QuanLyHoKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_QuanLyHoKhau.setBackground(Colors.nen_Chung);
 		panel_QLHK_Title.add(lbl_Title_QuanLyHoKhau);
 
@@ -69,12 +68,12 @@ public class QuanLyHoKhau extends JPanel {
 		JLabel lbl_QLHK_Sort = new JLabel("Sắp xếp theo: ");
 		panel_QLHK_SubTitle.add(lbl_QLHK_Sort);
 		lbl_QLHK_Sort.setMaximumSize(new Dimension(1000, 14));
-		lbl_QLHK_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_QLHK_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_QLHK_Sort.setAlignmentX(0.5f);
 
 
 		comboBox_QLHK_Sort = new JComboBox();
-		comboBox_QLHK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_QLHK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_QLHK_SubTitle.add(comboBox_QLHK_Sort);
 		comboBox_QLHK_Sort.addItem("Mã hộ khẩu");
 		comboBox_QLHK_Sort.addItem("Ngày lập");
@@ -110,7 +109,7 @@ public class QuanLyHoKhau extends JPanel {
 			}
 		});
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		// Đặt kích thước của các cột trong bảng
 		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu

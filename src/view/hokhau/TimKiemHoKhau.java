@@ -5,18 +5,16 @@ import model.HoKhau;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
-import java.awt.*;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 public class TimKiemHoKhau extends JPanel {
 	private JTable table;
@@ -42,7 +40,7 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_TimKiemHoKhau = new JLabel("Tìm kiếm hộ khẩu");
-		lbl_Title_TimKiemHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TimKiemHoKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TimKiemHoKhau.setBackground(Colors.nen_Chung);
 		panel_TKHK_Title.add(lbl_Title_TimKiemHoKhau);
 
@@ -65,11 +63,11 @@ public class TimKiemHoKhau extends JPanel {
 		panel_TKHK_KhoangTrang2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TKHK_CachTim = new JLabel("Tìm kiếm theo: ");
-		lbl_TKHK_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKHK_CachTim.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_TKHK_KhoangTrang2.add(lbl_TKHK_CachTim);
 
 		comboBox_TKHK_CachTim = new JComboBox();
-		comboBox_TKHK_CachTim.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_TKHK_CachTim.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo tên chủ hộ");
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo mã hộ khẩu");
 		comboBox_TKHK_CachTim.addItem("Tìm kiếm theo địa chỉ");
@@ -82,7 +80,7 @@ public class TimKiemHoKhau extends JPanel {
 
 		JLabel lbl_TKHK_01 = new JLabel("   Nhập thông tin: ");
 		lbl_TKHK_01.setBackground(Colors.khung_Chung);
-		lbl_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TKHK_KhoangTrang1.add(lbl_TKHK_01, BorderLayout.CENTER);
 
 		JPanel panel_TKHK_KhoangTrang3 = new JPanel();
@@ -97,13 +95,13 @@ public class TimKiemHoKhau extends JPanel {
 		text_TKHK_01 = new JTextField();
 		text_TKHK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TKHK_01.setForeground(Color.BLACK);
-		text_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_TKHK_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		text_TKHK_01.setBorder(null);
 		text_TKHK_01.setBackground(Colors.input_Colors);
 		panel_TKHK_01_content.add(text_TKHK_01);
 
 		JButton btn_TKHK_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TKHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TKHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TKHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKHK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TKHK_01_TimKiem.setForeground(Color.WHITE);
@@ -130,7 +128,7 @@ public class TimKiemHoKhau extends JPanel {
 		JLabel lbl_TKHK_Subtitle = new JLabel("Thông tin hộ khẩu:");
 		panel_TKHK_SubTitle.add(lbl_TKHK_Subtitle);
 		lbl_TKHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_TKHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TKHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_TKHK_Subtitle.setAlignmentX(0.5f);
 
 		// Tạo bảng và mô hình bảng
@@ -148,7 +146,7 @@ public class TimKiemHoKhau extends JPanel {
 		JTableHeader header = table.getTableHeader();
 
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// In đậm chữ ở header và đặt font
 		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
 			@Override

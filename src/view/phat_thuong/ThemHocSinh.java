@@ -41,7 +41,7 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_TimKiemHocSinh = new JLabel("Thêm học sinh");
-		lbl_Title_TimKiemHocSinh.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TimKiemHocSinh.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_TimKiemHocSinh.setBackground(Colors.nen_Chung);
 		panel_THS_Title.add(lbl_Title_TimKiemHocSinh);
 
@@ -64,11 +64,11 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_KhoangTrang2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_THS_CachTim = new JLabel("Tìm Kiếm theo: ");
-		lbl_THS_CachTim.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_THS_CachTim.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_THS_KhoangTrang2.add(lbl_THS_CachTim);
 
 		JComboBox comboBox_THS_SortTK = new JComboBox();
-		comboBox_THS_SortTK.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_THS_SortTK.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_THS_SortTK.addItem("Tìm kiếm theo tên");
 		comboBox_THS_SortTK.addItem("Tìm kiếm theo ngày sinh");
 		comboBox_THS_SortTK.addItem("Tìm kiếm theo số CMND");
@@ -82,7 +82,7 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblNewLabel = new JLabel("   Nhập thông tin: ");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_THS_KhoangTrang1.add(lblNewLabel, BorderLayout.CENTER);
 
 		JPanel panel_THS_KhoangTrang3 = new JPanel();
@@ -97,14 +97,14 @@ public class ThemHocSinh extends JPanel {
 		text_THS_01 = new JTextField();
 		text_THS_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_THS_01.setForeground(Color.BLACK);
-		text_THS_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_THS_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		text_THS_01.setColumns(10);
 		text_THS_01.setBorder(new EmptyBorder(0, 10, 0, 0));
 		text_THS_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		panel_THS_01_content.add(text_THS_01);
 
 		JButton btn_TKHS_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TKHS_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TKHS_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TKHS_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TKHS_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TKHS_01_TimKiem.setForeground(Color.WHITE);
@@ -255,15 +255,15 @@ public class ThemHocSinh extends JPanel {
 		JLabel lbl_THS_Subtitle = new JLabel("Thông tin học sinh:");
 		panel_THS_SubTitle.add(lbl_THS_Subtitle);
 		lbl_THS_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_THS_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_THS_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_THS_Subtitle.setAlignmentX(0.5f);
 
 		JLabel lbl_THS_Sort = new JLabel("Sắp xếp theo: ");
-		lbl_THS_Sort.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_THS_Sort.setFont(new Font("Arial", Font.BOLD, 17));
 		panel_THS_SubTitle.add(lbl_THS_Sort);
 
 		JComboBox comboBox_THS_Sort = new JComboBox();
-		comboBox_THS_Sort.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBox_THS_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Thêm các tùy chọn vào combobox
 		comboBox_THS_Sort.addItem("Sắp xếp theo tên");
 		comboBox_THS_Sort.addItem("Sắp xếp theo ngày sinh");
@@ -279,7 +279,7 @@ public class ThemHocSinh extends JPanel {
 		panel_THS_confirm.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
 		btn_THS_Yes = new JButton("Thêm");
-		btn_THS_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_THS_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_THS_Yes.setToolTipText("");
 		btn_THS_Yes.setBackground(Colors.button_XacNhan);
 		btn_THS_Yes.setForeground(Color.WHITE);

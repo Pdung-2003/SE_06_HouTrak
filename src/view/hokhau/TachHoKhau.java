@@ -84,7 +84,7 @@ public class TachHoKhau extends JPanel {
 		panel_TachHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_TachHK_01_Title = new JLabel("   Nhập mã hộ khẩu: ");
-		lbl_TachHK_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TachHK_01_Title.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TachHK_KhoangTrang1.add(lbl_TachHK_01_Title, BorderLayout.CENTER);
 		panel_TachHK_KhoangTrang2.setBackground(Colors.khung_Noi_Dung);
 		panel_TachHK_KhoangTrang3.setBackground(Colors.khung_Noi_Dung);
@@ -98,11 +98,11 @@ public class TachHoKhau extends JPanel {
 		txt_TachHK_TImKiem.setBorder(new EmptyBorder(0, 10, 0, 0));
 		panel_TachHK_01_content.add(txt_TachHK_TImKiem);
 		txt_TachHK_TImKiem.setHorizontalAlignment(SwingConstants.LEFT);
-		txt_TachHK_TImKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		txt_TachHK_TImKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		txt_TachHK_TImKiem.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
 		JButton btn_TachHK_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TachHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TachHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TachHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_TachHK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TachHK_01_TimKiem.setForeground(Color.WHITE);
@@ -152,19 +152,19 @@ public class TachHoKhau extends JPanel {
 		panel_TachHK_CotTrai_01.add(lbl_TachHK_CotTrai_3);
 		lbl_TachHK_CotTrai_3.setPreferredSize(new Dimension(23, 500));
 		lbl_TachHK_CotTrai_3.setMaximumSize(new Dimension(100, 14));
-		lbl_TachHK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TachHK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_TachHK_CotTrai_5 = new JLabel("     Chủ hộ");
 		panel_TachHK_CotTrai_01.add(lbl_TachHK_CotTrai_5);
 		lbl_TachHK_CotTrai_5.setPreferredSize(new Dimension(23, 500));
 		lbl_TachHK_CotTrai_5.setMaximumSize(new Dimension(100, 14));
-		lbl_TachHK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TachHK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_TachHK_CotTrai_4 = new JLabel("     Thành viên");
 		panel_TachHK_CotTrai_01.add(lbl_TachHK_CotTrai_4);
 		lbl_TachHK_CotTrai_4.setPreferredSize(new Dimension(23, 500));
 		lbl_TachHK_CotTrai_4.setMaximumSize(new Dimension(100, 14));
-		lbl_TachHK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TachHK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_TachHK_CotTrai_02 = new JPanel();
 		panel_TachHK_CotTrai_02.setBackground(Colors.khung_Noi_Dung);
@@ -174,7 +174,7 @@ public class TachHoKhau extends JPanel {
 		JLabel lbl_TachHK_CotTrai_6 = new JLabel("     Thông tin hộ tách ra     ");
 		panel_TachHK_CotTrai_02.add(lbl_TachHK_CotTrai_6);
 		lbl_TachHK_CotTrai_6.setHorizontalAlignment(SwingConstants.LEFT);
-		lbl_TachHK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TachHK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_TachHK_CotPhai = new JPanel();
 		panel_TachHK_CotPhai.setBackground(Colors.khung_Chung);
@@ -190,10 +190,10 @@ public class TachHoKhau extends JPanel {
 		panel_CotPhai_ThongTinDau_01.setBackground(Colors.khung_Chung);
 		panel_CotPhai_ThongTinDau.add(panel_CotPhai_ThongTinDau_01);
 		panel_CotPhai_ThongTinDau_01.setLayout(new GridLayout(2, 1, 0, 0));
-		lbl_CotPhai_ThongTinDau_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CotPhai_ThongTinDau_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		panel_CotPhai_ThongTinDau_01.add(lbl_CotPhai_ThongTinDau_DiaChi);
-		lbl_CotPhai_ThongTinDau_ChuHo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CotPhai_ThongTinDau_ChuHo.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		panel_CotPhai_ThongTinDau_01.add(lbl_CotPhai_ThongTinDau_ChuHo);
 
@@ -233,7 +233,7 @@ public class TachHoKhau extends JPanel {
 		});
 		// table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt kích thước của các cột trong bảng
 		table.getColumnModel().getColumn(0).setPreferredWidth(80); // Mã Hộ Khẩu
 		table.getColumnModel().getColumn(1).setPreferredWidth(100); // Họ Tên Chủ Hộ
@@ -283,8 +283,8 @@ public class TachHoKhau extends JPanel {
 		JLabel lbl_CotPhai_ThongTinSau_Title_KhuVuc = new JLabel("Khu vực: ");
 		lbl_CotPhai_ThongTinSau_Title_KhuVuc.setPreferredSize(new Dimension(150, 19));
 		panel_CotPhai_ThongTinSau_Content_01.add(lbl_CotPhai_ThongTinSau_Title_KhuVuc);
-		lbl_CotPhai_ThongTinSau_Title_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBox_CotPhai_ThongTinSau_Content_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CotPhai_ThongTinSau_Title_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 17));
+		comboBox_CotPhai_ThongTinSau_Content_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 17));
 		comboBox_CotPhai_ThongTinSau_Content_KhuVuc.setPreferredSize(new Dimension(500, 30));
 
 		comboBox_CotPhai_ThongTinSau_Content_KhuVuc.addItem("Khu vực A");
@@ -309,10 +309,10 @@ public class TachHoKhau extends JPanel {
 		JLabel lbl_CotPhai_ThongTinSau_Title_DiaChi = new JLabel("Địa chỉ mới: ");
 		lbl_CotPhai_ThongTinSau_Title_DiaChi.setPreferredSize(new Dimension(150, 19));
 		panel_CotPhai_ThongTinSau_Content_03.add(lbl_CotPhai_ThongTinSau_Title_DiaChi);
-		lbl_CotPhai_ThongTinSau_Title_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CotPhai_ThongTinSau_Title_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		textField_CotPhai_ThongTinSau_Content_DiaChi = new JTextField();
-		textField_CotPhai_ThongTinSau_Content_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_CotPhai_ThongTinSau_Content_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CotPhai_ThongTinSau_Content_03.add(textField_CotPhai_ThongTinSau_Content_DiaChi);
 		textField_CotPhai_ThongTinSau_Content_DiaChi.setPreferredSize(new Dimension(500, 30));
 
@@ -324,10 +324,10 @@ public class TachHoKhau extends JPanel {
 		JLabel lbl_CotPhai_ThongTinSau_Title_ChuHo = new JLabel("Mã chủ hộ: ");
 		lbl_CotPhai_ThongTinSau_Title_ChuHo.setPreferredSize(new Dimension(150, 19));
 		panel_CotPhai_ThongTinSau_Content_02.add(lbl_CotPhai_ThongTinSau_Title_ChuHo);
-		lbl_CotPhai_ThongTinSau_Title_ChuHo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_CotPhai_ThongTinSau_Title_ChuHo.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		textField_CotPhai_ThongTinSau_Content_ChuHo = new JTextField();
-		textField_CotPhai_ThongTinSau_Content_ChuHo.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField_CotPhai_ThongTinSau_Content_ChuHo.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_CotPhai_ThongTinSau_Content_02.add(textField_CotPhai_ThongTinSau_Content_ChuHo);
 		textField_CotPhai_ThongTinSau_Content_ChuHo.setPreferredSize(new Dimension(500, 30));
 
@@ -393,7 +393,7 @@ public class TachHoKhau extends JPanel {
 		panel_TachHK_Title.add(lbl_TachHK_Subtitle);
 		lbl_TachHK_Subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lbl_TachHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_TachHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TachHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JPanel panel_TachHK_title = new JPanel();
 		panel_TachHK_title.setBackground(Colors.nen_Chung);
@@ -402,7 +402,7 @@ public class TachHoKhau extends JPanel {
 
 		JLabel lbl_Title_TachHoKhau = new JLabel("Tách hộ khẩu   ");
 		lbl_Title_TachHoKhau.setBackground(Colors.nen_Chung);
-		lbl_Title_TachHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_TachHoKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_TachHK_title.add(lbl_Title_TachHoKhau);
 	}
 

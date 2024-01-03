@@ -39,7 +39,7 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		panel_LSTDHK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_LichSuThayDoiHoKhau = new JLabel("Lịch sử thay đổi thông tin hộ khẩu   ");
-		lbl_Title_LichSuThayDoiHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_LichSuThayDoiHoKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_LichSuThayDoiHoKhau.setBackground(Colors.nen_Chung);
 		panel_LSTDHK_Title.add(lbl_Title_LichSuThayDoiHoKhau);
 
@@ -68,14 +68,14 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		JLabel lbl_LSTDHK_Subtitle = new JLabel("Sắp xếp theo: ");
 		panel_LSTDHK_SubTitle.add(lbl_LSTDHK_Subtitle);
 		lbl_LSTDHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_LSTDHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_LSTDHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 		lbl_LSTDHK_Subtitle.setAlignmentX(0.5f);
 
 		comboBox_LSTDHK_Sort = new JComboBox();
 		comboBox_LSTDHK_Sort.addItem("Ngày thay đổi");
 		comboBox_LSTDHK_Sort.addItem("Mã hộ khẩu");
 		comboBox_LSTDHK_Sort.addItem("Loại thay đổi");
-		comboBox_LSTDHK_Sort.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_LSTDHK_Sort.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_LSTDHK_SubTitle.add(comboBox_LSTDHK_Sort);
 
 		// Tạo bảng và mô hình bảng
@@ -92,7 +92,7 @@ public class LichSuThayDoiHoKhau extends JPanel {
 		table = new JTable(tableModel);
 
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 

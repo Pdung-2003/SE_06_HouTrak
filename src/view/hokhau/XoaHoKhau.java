@@ -1,32 +1,22 @@
 package view.hokhau;
 
 import controller.hokhau.XoaHoKhauController;
-import server.DatabaseConnector;
 import model.NhanKhau;
+import server.DatabaseConnector;
 import view.dangnhap.ManHinhChinh;
-import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-
-import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import java.awt.Cursor;
-import java.awt.Insets;
-import java.awt.Font;
-import java.awt.Rectangle;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +76,7 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_XHK_01_Title = new JLabel("   Nhập mã hộ khẩu: ");
-		lbl_XHK_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_01_Title.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XHK_KhoangTrang1.add(lbl_XHK_01_Title, BorderLayout.CENTER);
 		panel_XHK_KhoangTrang2.setBackground(Colors.khung_Noi_Dung);
 		panel_XHK_KhoangTrang3.setBackground(Colors.khung_Noi_Dung);
@@ -100,11 +90,11 @@ public class XoaHoKhau extends JPanel {
 		txt_XHK_TImKiem.setBorder(new EmptyBorder(0, 10, 0, 0));
 		panel_XHK_01_content.add(txt_XHK_TImKiem);
 		txt_XHK_TImKiem.setHorizontalAlignment(SwingConstants.LEFT);
-		txt_XHK_TImKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		txt_XHK_TImKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		txt_XHK_TImKiem.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
 		btn_XHK_01_TimKiem = new JButton("Tìm kiếm");
-		btn_XHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_XHK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_XHK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
 		btn_XHK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_XHK_01_TimKiem.setForeground(Color.WHITE);
@@ -134,31 +124,31 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotTrai_01.add(lbl_XHK_CotTrai_1);
 		lbl_XHK_CotTrai_1.setMaximumSize(new Dimension(100, 14));
 		lbl_XHK_CotTrai_1.setPreferredSize(new Dimension(23, 50));
-		lbl_XHK_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_CotTrai_1.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHK_CotTrai_2 = new JLabel("     Khu vực");
 		panel_XHK_CotTrai_01.add(lbl_XHK_CotTrai_2);
 		lbl_XHK_CotTrai_2.setPreferredSize(new Dimension(23, 500));
 		lbl_XHK_CotTrai_2.setMaximumSize(new Dimension(100, 14));
-		lbl_XHK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_CotTrai_2.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHK_CotTrai_3 = new JLabel("     Địa chỉ");
 		panel_XHK_CotTrai_01.add(lbl_XHK_CotTrai_3);
 		lbl_XHK_CotTrai_3.setPreferredSize(new Dimension(23, 500));
 		lbl_XHK_CotTrai_3.setMaximumSize(new Dimension(100, 14));
-		lbl_XHK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_CotTrai_3.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHK_CotTrai_5 = new JLabel("     Chủ hộ");
 		panel_XHK_CotTrai_01.add(lbl_XHK_CotTrai_5);
 		lbl_XHK_CotTrai_5.setPreferredSize(new Dimension(23, 500));
 		lbl_XHK_CotTrai_5.setMaximumSize(new Dimension(100, 14));
-		lbl_XHK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_CotTrai_5.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JLabel lbl_XHK_CotTrai_4 = new JLabel("     Ngày lập");
 		panel_XHK_CotTrai_01.add(lbl_XHK_CotTrai_4);
 		lbl_XHK_CotTrai_4.setPreferredSize(new Dimension(23, 500));
 		lbl_XHK_CotTrai_4.setMaximumSize(new Dimension(100, 14));
-		lbl_XHK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_CotTrai_4.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_XHK_CotTrai_02 = new JPanel();
 		panel_XHK_CotTrai_02.setBackground(Colors.khung_Noi_Dung);
@@ -170,7 +160,7 @@ public class XoaHoKhau extends JPanel {
 		lbl_XHK_CotTrai_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_XHK_CotTrai_6.setMaximumSize(new Dimension(200, 14));
 		lbl_XHK_CotTrai_6.setMinimumSize(new Dimension(50, 14));
-		lbl_XHK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XHK_CotTrai_6.setFont(new Font("Arial", Font.PLAIN, 17));
 
 		JPanel panel_XHK_CotPhai = new JPanel();
 		panel_XHK_CotPhai.setBackground(Colors.khung_Chung);
@@ -183,20 +173,20 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_CotPhai.add(panel_XNK_CotPhai_01);
 		panel_XNK_CotPhai_01.setLayout(new GridLayout(5, 1, 0, 0));
 
-		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_MaHK.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_MaHK);
 
-		lbl_XNK_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_KhuVuc.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_KhuVuc);
 
-		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_DiaChi);
 
 		// panel nay de bang thong tin chu ho
-		lbl_XNK_CotPhai_ChuHo.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_ChuHo.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_ChuHo);
 
-		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_XNK_CotPhai_NgayLap.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_XNK_CotPhai_01.add(lbl_XNK_CotPhai_NgayLap);
 
 		//dien bang thong tin thanh vien thuoc ho khau vao day
@@ -220,7 +210,7 @@ public class XoaHoKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -309,7 +299,7 @@ public class XoaHoKhau extends JPanel {
 		panel_XHK_Title.add(lbl_XHK_Subtitle);
 		lbl_XHK_Subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lbl_XHK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_XHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_XHK_Subtitle.setFont(new Font("Arial", Font.BOLD, 17));
 
 		JPanel panel_XHK_title = new JPanel();
 		panel_XHK_title.setBackground(Colors.nen_Chung);
@@ -318,7 +308,7 @@ public class XoaHoKhau extends JPanel {
 
 		JLabel lbl_Title_XoaHoKhau = new JLabel("Xóa hộ khẩu");
 		lbl_Title_XoaHoKhau.setBackground(Colors.nen_Chung);
-		lbl_Title_XoaHoKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_XoaHoKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_XHK_title.add(lbl_Title_XoaHoKhau);
 
 		XoaHoKhauController controller = new XoaHoKhauController(mainFrame, this);

@@ -50,7 +50,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_Title_ThayDoiNhanKhau = new JLabel("Thay đổi nhân khẩu   ");
-		lbl_Title_ThayDoiNhanKhau.setFont(new Font("Arial", Font.BOLD, 20));
+		lbl_Title_ThayDoiNhanKhau.setFont(new Font("Arial", Font.BOLD, 25));
 		lbl_Title_ThayDoiNhanKhau.setBackground(Colors.nen_Chung);
 		panel_TDNK_Title.add(lbl_Title_ThayDoiNhanKhau);
 
@@ -77,7 +77,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_KhoangTrang1.setLayout(new BorderLayout(0, 0));
 
 		JLabel lbl_TDNK_01_Title = new JLabel("   Nhập mã nhân khẩu: ");
-		lbl_TDNK_01_Title.setFont(new Font("Arial", Font.PLAIN, 16));
+		lbl_TDNK_01_Title.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_TDNK_KhoangTrang1.add(lbl_TDNK_01_Title, BorderLayout.CENTER);
 
 		JPanel panel_TDNK_KhoangTrang3 = new JPanel();
@@ -91,15 +91,16 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		text_TDNK_01 = new JTextField();
 		text_TDNK_01.setBorder(new EmptyBorder(0, 10, 0, 0));
+		text_TDNK_01.setPreferredSize(new Dimension(150, 19));
 		text_TDNK_01.setHorizontalAlignment(SwingConstants.LEFT);
 		text_TDNK_01.setForeground(Color.BLACK);
 		text_TDNK_01.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		text_TDNK_01.setFont(new Font("Arial", Font.PLAIN, 16));
+		text_TDNK_01.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_01_content.add(text_TDNK_01);
 
 		JButton btn_TDNK_01_TimKiem = new JButton("Tìm kiếm");
-		btn_TDNK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 16));
-		btn_TDNK_01_TimKiem.setMargin(new Insets(10, 16, 10, 16));
+		btn_TDNK_01_TimKiem.setFont(new Font("Arial", Font.PLAIN, 17));
+		btn_TDNK_01_TimKiem.setMargin(new Insets(10, 20, 10, 20));
 		btn_TDNK_01_TimKiem.setBackground(Colors.button_Chung);
 		btn_TDNK_01_TimKiem.setForeground(Color.WHITE);
 		btn_TDNK_01_TimKiem.setOpaque(true);
@@ -123,7 +124,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_02_ThayDoiThongTin_Title.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		JLabel lbl_TDNK_02_ThayDoiThongTin_Title = new JLabel("Thay đổi thông tin nhân khẩu:");
-		lbl_TDNK_02_ThayDoiThongTin_Title.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TDNK_02_ThayDoiThongTin_Title.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_TDNK_02_ThayDoiThongTin_Title.add(lbl_TDNK_02_ThayDoiThongTin_Title);
 
 		JPanel panel_TDNK_02_ThayDoiThongTin_Content = new JPanel();
@@ -145,11 +146,11 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_1 = new JLabel("Mã Hộ Khẩu*:");
 		lblNewLabel_1.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_01.add(lblNewLabel_1);
 
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi.setBackground(Colors.input_Colors);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_01.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi);
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_DiaChi.setPreferredSize(new Dimension(500, 30));
 		//
@@ -161,12 +162,12 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_5 = new JLabel("Họ và tên*:");
 		lblNewLabel_5.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_03.add(lblNewLabel_5);
 
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen = new JTextField();
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen.setBackground(Colors.input_Colors);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_03
 				.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen);
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_HoVaTen.setPreferredSize(new Dimension(500, 30));
@@ -178,12 +179,12 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_3 = new JLabel("CCCD/CMND*:");
 		lblNewLabel_3.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_04.add(lblNewLabel_3);
 
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD = new JTextField();
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD.setBackground(Colors.input_Colors);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_04.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD);
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_CCCD.setPreferredSize(new Dimension(500, 30));
 
@@ -194,7 +195,7 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_4 = new JLabel("Giới tính*:");
 		lblNewLabel_4.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_05.add(lblNewLabel_4);
 
 		JPanel panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn = new JPanel();
@@ -211,13 +212,13 @@ public class ThayDoiNhanKhau extends JPanel {
 		JRadioButton rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam = new JRadioButton("Nam");
 		panel_Dem_3.add(rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam);
 		rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam.setBackground(Colors.khung_Chung);
-		rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
+		rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		bg_TDNK_NhanKhau_GioiTinh.add(rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nam);
 
 		JRadioButton rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu = new JRadioButton("Nữ");
 		panel_Dem_3.add(rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu);
 		rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu.setBackground(Colors.khung_Chung);
-		rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu.setFont(new Font("Arial", Font.PLAIN, 12));
+		rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu.setFont(new Font("Arial", Font.PLAIN, 17));
 		bg_TDNK_NhanKhau_GioiTinh.add(rdbtn_TDNK_02_ThayDoiThongTin_Content_CotPhai_05_Radiobtn_Nu);
 
 		JPanel panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_06 = new JPanel();
@@ -227,7 +228,7 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_6 = new JLabel("Ngày sinh*:");
 		lblNewLabel_6.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_06.add(lblNewLabel_6);
 
 		JPanel panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh = new JPanel();
@@ -242,29 +243,29 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.setLayout(new GridLayout(1, 6, 10, 10));
 
 		JLabel lbl_TDNK_CotPhai_NhanKhau_Nam = new JLabel("Năm:\r\n");
-		lbl_TDNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
+		lbl_TDNK_CotPhai_NhanKhau_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(lbl_TDNK_CotPhai_NhanKhau_Nam);
 
 		JComboBox comboBox_Nam = new JComboBox();
-		comboBox_Nam.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_Nam.setFont(new Font("Arial", Font.PLAIN, 17));
 		populateYears(comboBox_Nam);
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_Nam);
 
 		JLabel lblNewLabel_10 = new JLabel("Tháng:");
-		lblNewLabel_10.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_10.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(lblNewLabel_10);
 
 		JComboBox comboBox_Thang = new JComboBox();
 		populateMonths(comboBox_Thang);
-		comboBox_Thang.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_Thang.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_Thang);
 
 		JLabel lblNewLabel_11 = new JLabel("Ngày:");
-		lblNewLabel_11.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_11.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(lblNewLabel_11);
 
 		JComboBox comboBox_Ngay = new JComboBox();
-		comboBox_Ngay.setFont(new Font("Arial", Font.PLAIN, 12));
+		comboBox_Ngay.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_NhanKhau_NgaySinh_Content.add(comboBox_Ngay);
 
 		comboBox_Thang.addActionListener(e -> updateDays(comboBox_Nam, comboBox_Thang, comboBox_Ngay));
@@ -278,12 +279,12 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_7 = new JLabel("Tôn giáo:");
 		lblNewLabel_7.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_7.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_7.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_07.add(lblNewLabel_7);
 
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao = new JTextField();
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.setBackground(Colors.input_Colors);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_07.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao);
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_TonGiao.setPreferredSize(new Dimension(500, 30));
 
@@ -295,12 +296,12 @@ public class ThayDoiNhanKhau extends JPanel {
 
 		JLabel lblNewLabel_9 = new JLabel("Quê quán:");
 		lblNewLabel_9.setPreferredSize(new Dimension(150, 19));
-		lblNewLabel_9.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_9.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_09.add(lblNewLabel_9);
 
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan = new JTextField();
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan.setBackground(Colors.input_Colors);
-		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan.setFont(new Font("Arial", Font.PLAIN, 17));
 		panel_TDNK_02_ThayDoiThongTin_Content_CotPhai_09.add(textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan);
 		textField_TDNK_02_ThayDoiThongTin_CotPhai_NhanKhau_QueQuan.setPreferredSize(new Dimension(500, 30));
 
@@ -326,7 +327,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		// Tạo JTable với mô hình bảng đã tạo
 		table = new JTable(tableModel);
 		int rowHeight = 40;
-		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.setFont(new Font("Arial", Font.PLAIN, 17));
 		// Đặt màu sắc cho header của bảng
 		JTableHeader header = table.getTableHeader();
 
@@ -348,7 +349,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
 		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
 		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
-		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
+		table.getColumnModel().getColumn(3).setPreferredWidth(100); // Địa Chỉ
 		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực
 
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
@@ -462,7 +463,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		JLabel lbl_TDNK_Subtitle = new JLabel("Thông tin nhân khẩu:");
 		panel_TDNK_02_ThongTinHienTai_Title.add(lbl_TDNK_Subtitle);
 		lbl_TDNK_Subtitle.setMaximumSize(new Dimension(1000, 14));
-		lbl_TDNK_Subtitle.setFont(new Font("Arial", Font.BOLD, 16));
+		lbl_TDNK_Subtitle.setFont(new Font("Arial", Font.BOLD, 20));
 		lbl_TDNK_Subtitle.setAlignmentX(0.5f);
 
 		JPanel panel_TDNK_SubTitle_DemDuoi = new JPanel();
@@ -475,7 +476,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_02.add(panel_TDNK_Confirm, BorderLayout.SOUTH);
 
 		JButton btn_TDNK_Yes = new JButton("Thay đổi");
-		btn_TDNK_Yes.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TDNK_Yes.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TDNK_Yes.setToolTipText("");
 		btn_TDNK_Yes.setBackground(Colors.button_XacNhan);
 		btn_TDNK_Yes.setForeground(Color.WHITE);
@@ -584,7 +585,7 @@ public class ThayDoiNhanKhau extends JPanel {
 		panel_TDNK_Confirm.add(btn_TDNK_Yes);
 
 		JButton btn_TDNK_No = new JButton("Hủy");
-		btn_TDNK_No.setFont(new Font("Arial", Font.PLAIN, 16));
+		btn_TDNK_No.setFont(new Font("Arial", Font.PLAIN, 17));
 		btn_TDNK_No.setToolTipText("");
 		btn_TDNK_No.setBackground(Colors.button_Huy);
 		btn_TDNK_No.setForeground(Color.WHITE);
