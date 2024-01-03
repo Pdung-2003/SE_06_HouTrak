@@ -1,12 +1,9 @@
 package controller.taikhoan;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.TaiKhoan;
-import view.taikhoan.TimKiemTaiKhoan;
 import view.taikhoan.XoaTaiKhoan;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 

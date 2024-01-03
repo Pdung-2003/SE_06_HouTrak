@@ -287,10 +287,12 @@ public class XemChinhSachPhatThuong extends JPanel {
             // Load the image
             ImageIcon imageIcon = new ImageIcon("src/view/image/XemCS.png");
             getContentPane().setLayout(null);
+            Font font = new Font("Arial", Font.BOLD, 15);
 
             lbl_Ngay = new JLabel();
             lbl_Ngay.setForeground(SystemColor.desktop);
             lbl_Ngay.setBounds(626, 230, 49, 30);
+            lbl_Ngay.setFont(font);
             getContentPane().add(lbl_Ngay);
 
             JLabel lblNewLabel_NoiOKhuDanCu = new JLabel("HouTrak");
@@ -299,6 +301,7 @@ public class XemChinhSachPhatThuong extends JPanel {
             getContentPane().add(lblNewLabel_NoiOKhuDanCu);
             lbl_SoLuong_HocTap = new JLabel();
             lbl_SoLuong_HocTap.setBounds(653, 552, 102, 14);
+            lbl_SoLuong_HocTap.setFont(font);
             getContentPane().add(lbl_SoLuong_HocTap);
 
 
@@ -306,11 +309,13 @@ public class XemChinhSachPhatThuong extends JPanel {
             lbl_Thang = new JLabel();
             lbl_Thang.setForeground(SystemColor.desktop);
             lbl_Thang.setBounds(709, 230, 59, 30);
+            lbl_Thang.setFont(font);
             getContentPane().add(lbl_Thang);
 
             lbl_Nam = new JLabel();
             lbl_Nam.setForeground(SystemColor.desktop);
             lbl_Nam.setBounds(782, 230, 49, 30);
+            lbl_Nam.setFont(font);
             getContentPane().add(lbl_Nam);
 
             lbl_TenPTHocTap = new JLabel();
@@ -319,34 +324,42 @@ public class XemChinhSachPhatThuong extends JPanel {
 
             lbl_GiaTri_HocTap = new JLabel();
             lbl_GiaTri_HocTap.setBounds(206, 576, 100, 25);
+            lbl_GiaTri_HocTap.setFont(font);
             getContentPane().add(lbl_GiaTri_HocTap);
 
             lbl_Lop_HocTap = new JLabel();
             lbl_Lop_HocTap.setBounds(470, 581, 65, 14);
+            lbl_Lop_HocTap.setFont(font);
             getContentPane().add(lbl_Lop_HocTap);
 
             lbl_HocTap_HocLuc = new JLabel();
             lbl_HocTap_HocLuc.setBounds(667, 581, 115, 14);
+            lbl_HocTap_HocLuc.setFont(font);
             getContentPane().add(lbl_HocTap_HocLuc);
 
             lbl_DipLe_Ten = new JLabel();
             lbl_DipLe_Ten.setBounds(318, 615, 115, 9);
+            lbl_DipLe_Ten.setFont(font);
             getContentPane().add(lbl_DipLe_Ten);
 
             lbl_DipLe_SoLuong = new JLabel();
             lbl_DipLe_SoLuong.setBounds(666, 615, 102, 9);
+            lbl_DipLe_SoLuong.setFont(font);
             getContentPane().add(lbl_DipLe_SoLuong);
 
             lbl_DipLe_GiaTri = new JLabel();
             lbl_DipLe_GiaTri.setBounds(227, 637, 100, 25);
+            lbl_DipLe_GiaTri.setFont(font);
             getContentPane().add(lbl_DipLe_GiaTri);
 
             lbl_DipLe_Tuoi = new JLabel();
             lbl_DipLe_Tuoi.setBounds(417, 642, 70, 16);
+            lbl_DipLe_Tuoi.setFont(font);
             getContentPane().add(lbl_DipLe_Tuoi);
 
             lbl_DipLe_TenDipLe = new JLabel();
             lbl_DipLe_TenDipLe.setBounds(543, 642, 115, 14);
+            lbl_DipLe_TenDipLe.setFont(font);
             getContentPane().add(lbl_DipLe_TenDipLe);
 
             // Create a JLabel to display the image

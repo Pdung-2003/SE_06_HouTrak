@@ -14,7 +14,7 @@ import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static model.DatabaseConnector.insertNhanKhau;
+import static server.DatabaseConnector.insertNhanKhau;
 
 public class ThemNhanKhauController  {
     private static ThemNhanKhau themNhanKhauView;

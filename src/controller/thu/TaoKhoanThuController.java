@@ -1,6 +1,6 @@
 package controller.thu;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

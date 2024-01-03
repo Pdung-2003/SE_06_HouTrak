@@ -4,8 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import model.DatabaseConnector;
-import model.LoginChecker;
+import server.DatabaseConnector;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

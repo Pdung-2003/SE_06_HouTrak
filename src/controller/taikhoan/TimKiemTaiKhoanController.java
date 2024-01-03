@@ -1,9 +1,7 @@
 package controller.taikhoan;
 
-import model.DatabaseConnector;
-import model.HoKhau;
+import server.DatabaseConnector;
 import model.TaiKhoan;
-import view.hokhau.TimKiemHoKhau;
 import view.taikhoan.TimKiemTaiKhoan;
 
 import java.util.ArrayList;

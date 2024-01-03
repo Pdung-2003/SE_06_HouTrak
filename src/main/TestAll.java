@@ -1,14 +1,15 @@
-package test;
+package main;
 
 import view.dangnhap.ManHinhChinh;
 
-public class Test {
+public class TestAll {
     public static void main(String[] args) {
         try {
-            //new LoginView();
+            //new SignIn();
             new ManHinhChinh();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+

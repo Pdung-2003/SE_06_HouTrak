@@ -1,8 +1,6 @@
 package view.dangnhap;
 
-import model.DatabaseConnector;
-import model.LoginChecker;
-import view.dangnhap.ManHinhChinh;
+import server.DatabaseConnector;
 import view.settings.Colors;
 
 import javax.swing.*;
@@ -11,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 

@@ -1,8 +1,6 @@
 package controller.phat_thuong;
 
-import controller.hokhau.QuanLyHoKhauController;
-import model.DatabaseConnector;
-import model.HoKhau;
+import server.DatabaseConnector;
 import model.HocSinh;
 import view.phat_thuong.QuanLyPhatThuong;
 

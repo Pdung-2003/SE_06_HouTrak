@@ -1,6 +1,6 @@
 package controller.nhankhau;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.NhanKhau;
 import view.nhankhau.QuanLyNhanKhau;
 

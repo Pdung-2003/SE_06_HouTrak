@@ -1,14 +1,13 @@
 package view.hokhau;
 
 import controller.hokhau.XoaHoKhauController;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
 import view.settings.CustomRowHeightRenderer;
 import view.settings.Colors;
 
 import javax.swing.*;
-import java.awt.CardLayout;
 import java.awt.BorderLayout;
 
 import java.awt.Color;

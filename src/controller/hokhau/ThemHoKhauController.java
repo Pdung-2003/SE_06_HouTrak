@@ -1,5 +1,9 @@
 package controller.hokhau;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import view.hokhau.QuanLyHoKhau;
@@ -14,8 +18,8 @@ import java.io.FileInputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import static model.DatabaseConnector.insertChuHo;
-import static model.DatabaseConnector.insertHoKhau;
+import static server.DatabaseConnector.insertChuHo;
+import static server.DatabaseConnector.insertHoKhau;
 
 public class ThemHoKhauController {
     private static ThemHoKhau themHoKhauView;

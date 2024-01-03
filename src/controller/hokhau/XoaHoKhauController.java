@@ -1,21 +1,16 @@
 package controller.hokhau;
 
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.HoKhau;
-import model.NhanKhau;
 import view.dangnhap.ManHinhChinh;
 import view.hokhau.QuanLyHoKhau;
 import view.hokhau.XoaHoKhau;
-import view.settings.Colors;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class XoaHoKhauController {
     private XoaHoKhau xoaHoKhauPanel;

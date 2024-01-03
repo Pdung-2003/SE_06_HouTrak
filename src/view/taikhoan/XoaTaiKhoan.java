@@ -1,8 +1,7 @@
 package view.taikhoan;
 
-import controller.taikhoan.TimKiemTaiKhoanController;
 import controller.taikhoan.XoaTaiKhoanController;
-import model.DatabaseConnector;
+import server.DatabaseConnector;
 import model.TaiKhoan;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
@@ -12,7 +11,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import java.awt.*;
-import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
