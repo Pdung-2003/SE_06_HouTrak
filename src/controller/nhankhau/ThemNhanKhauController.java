@@ -143,7 +143,7 @@ public class ThemNhanKhauController  {
     private static boolean isRowEmpty(Row row) {
         for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
             Cell cell = row.getCell(cellNum);
-            if (cell != null && cell.getCellType() != CellType.BLANK) {
+            if (cell != null) {
                 return false;
             }
         }

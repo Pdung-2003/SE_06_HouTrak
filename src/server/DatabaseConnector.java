@@ -1282,4 +1282,36 @@ public class DatabaseConnector {
         }
         return dsThuong;
     }
+    // 1. List khoản thu của hộ khẩu
+    public static List<HoKhauDongPhi> searchHoKhauDongPhi(String ma) {
+        List<HoKhauDongPhi> dsHoKhau = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection()) {
+            String query = "SELECT k.MaKhoanThu, k.MaHoKhau, h.DiaChi, k.SoTienDong, k.TenNguoiDong, k.TrangThai \n" +
+                    "FROM KhoanThuHoKhau k JOIN HoKhau h\n" +
+                    "ON k.MaHoKhau = h.MaHoKhau WHERE MaKhoanThu = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, ma);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        String maKhoanThu = rs.getString("MaKhoanThu");
+                        String maHoKhau = rs.getString("MaHoKhau");
+                        String diaChi = rs.getString("DiaChi");
+                        float soTien = rs.getFloat("SoTienDong");
+                        String tenNguoiDong = rs.getString("TenNguoiDong");
+                        String trangThai = rs.getString("TrangThai");
+
+                        HoKhauDongPhi init = new HoKhauDongPhi(maKhoanThu, maHoKhau, diaChi, soTien, tenNguoiDong, trangThai);
+                        dsHoKhau.add(init);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dsHoKhau;
+    }
+    // 2. Update Nop Phi của hộ khẩu
 }

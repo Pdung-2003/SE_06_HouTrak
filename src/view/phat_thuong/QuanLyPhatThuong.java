@@ -120,13 +120,6 @@ public class QuanLyPhatThuong extends JPanel {
 			}
 		});
 
-		/*// Đặt kích thước của các cột trong bảng
-		table.getColumnModel().getColumn(0).setPreferredWidth(120); // Mã Hộ Khẩu
-		table.getColumnModel().getColumn(1).setPreferredWidth(200); // Họ Tên Chủ Hộ
-		table.getColumnModel().getColumn(2).setPreferredWidth(100); // Ngày Lập
-		table.getColumnModel().getColumn(3).setPreferredWidth(250); // Địa Chỉ
-		table.getColumnModel().getColumn(4).setPreferredWidth(100); // Khu Vực*/
-
 		table.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
 		panel_QLPT_02_BangThongTin.setLayout(new BorderLayout(10, 10));
 

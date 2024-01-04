@@ -1,18 +1,24 @@
 package view.thu;
 
+import model.HoKhau;
+import model.HoKhauDongPhi;
+import server.DatabaseConnector;
 import view.settings.Colors;
+import view.settings.CustomRowHeightRenderer;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.util.List;
 
 public class ChiTietKhoanThu extends JFrame {
 
     private JPanel contentPane;
-
-    /**
-     * Launch the application.
-     */
+    private JTable table1;
+    private DefaultTableModel tableModel1;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -25,12 +31,9 @@ public class ChiTietKhoanThu extends JFrame {
             }
         });
     }
-
-    /**
-     * Create the frame.
-     */
     public ChiTietKhoanThu() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 920, 600);
         setLocationRelativeTo(null);
         contentPane = new JPanel();
@@ -57,6 +60,47 @@ public class ChiTietKhoanThu extends JFrame {
         // Dưới đây điền bảng thông tin chi tiết khoản thu
         JPanel panel_CTKT_Content = new JPanel();
         contentPane.add(panel_CTKT_Content, BorderLayout.CENTER);
+        // Tạo bảng và mô hình bảng
+
+        // Tạo JTable với mô hình bảng đã tạo
+        table1 = new JTable(tableModel1);
+        // Đặt màu sắc cho header của bảng
+        JTableHeader header = table1.getTableHeader();
+
+        // In đậm chữ ở header và đặt font
+        table1.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(
+                    JTable table, Object value,
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                label.setFont(label.getFont().deriveFont(Font.BOLD));
+                label.setBackground(Colors.mau_Header);
+                label.setForeground(Colors.mau_Text_QLHK);
+                return label;
+            }
+        });
+        int rowHeight = 40;
+        table1.setFont(new Font("Arial", Font.PLAIN, 17));
+
+        table1.setDefaultRenderer(Object.class, new CustomRowHeightRenderer(rowHeight));
+        panel_CTKT_Content.setLayout(new BorderLayout(10, 10));
+
+        // Tạo thanh cuộn cho bảng để hiển thị các hàng nếu bảng quá lớn
+        JScrollPane scrollPane = new JScrollPane(table1);
+        scrollPane.setPreferredSize(new Dimension(1400, 700));  // Đặt kích thước của JScrollPane
+
+        // Đặt màu sắc cho background của bảng
+        table1.setBackground(Colors.mau_Nen_QLHK);
+        table1.setForeground(Colors.mau_Text_QLHK);
+        scrollPane.setBackground(Colors.khung_Chung);
+
+        // Thêm JScrollPane vào panel
+        panel_CTKT_Content.add(scrollPane, BorderLayout.CENTER);
+        JViewport viewport = scrollPane.getViewport();
+        viewport.setBackground(Colors.khung_Chung);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
         // Nút cập nhật thông tin
         JPanel panel_CTKT_Confirm = new JPanel();
@@ -67,5 +111,13 @@ public class ChiTietKhoanThu extends JFrame {
         btn_CTKT_Confirm.setFont(new Font("Arial", Font.BOLD, 16));
         panel_CTKT_Confirm.add(btn_CTKT_Confirm);
     }
-
+    public JTable getTable1() {
+        return table1;
+    }
+    public DefaultTableModel getTableModel1() {
+        return tableModel1;
+    }
+    public void setTableModel1(DefaultTableModel tableModel1) {
+        this.table1.setModel(tableModel1);
+    }
 }

@@ -1,7 +1,9 @@
 package view.thu;
 
 import controller.thu.QuanLyKhoanThuController;
+import model.HoKhauDongPhi;
 import model.KhoanThu;
+import server.DatabaseConnector;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
@@ -16,14 +18,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class QuanLyKhoanThu extends JPanel {
 	private DefaultTableModel tableModel;
 	private JTable table;
 	private RowSorter<DefaultTableModel> sorter;
-	/**
-	 * Create the panel.
-	 */
+	private String maThu;
 	public QuanLyKhoanThu() {
 		setBackground(Colors.nen_Chung);
 		setPreferredSize(new Dimension(1581, 994));
@@ -128,6 +130,30 @@ public class QuanLyKhoanThu extends JPanel {
 				// Khi nút được ấn, tạo và hiển thị một JFrame mới
 				ChiTietKhoanThu newFrame = new ChiTietKhoanThu();
 				newFrame.setVisible(true);
+				List<HoKhauDongPhi> dsThu = DatabaseConnector.searchHoKhauDongPhi(maThu);
+				DefaultTableModel tableModel1 = new DefaultTableModel();
+				tableModel1 = new DefaultTableModel();
+				tableModel1.addColumn("Mã Khoản Thu");
+				tableModel1.addColumn("Mã Hộ Khẩu");
+				tableModel1.addColumn("Địa Chỉ");
+				tableModel1.addColumn("Số Tiền Đã Đóng");
+				tableModel1.addColumn("Người Đóng");
+				tableModel1.addColumn("Trang Thái");
+				tableModel1.setRowCount(0);
+
+				// Populate the table with the fetched data
+				for (HoKhauDongPhi hoKhau : dsThu) {
+					Object[] rowData = {
+							hoKhau.getMaKhoanThu(),
+							hoKhau.getMaHoKhau(),
+							hoKhau.getDiaChi(),
+							hoKhau.getSoTienDong(),
+							hoKhau.getTenNguoiDong(),
+							hoKhau.getTrangThai()
+					};
+					tableModel1.addRow(rowData);
+				}
+				newFrame.setTableModel1(tableModel1);
 			}
 		});
 	}
@@ -191,6 +217,23 @@ public class QuanLyKhoanThu extends JPanel {
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int selectedRow = table.getSelectedRow();
+
+					if (selectedRow != -1) {
+						Object maThuValue = table.getValueAt(selectedRow, 0);
+
+						if (maThuValue != null) {
+							maThu = maThuValue.toString();
+							System.out.println("Mã Khoản Thu được chọn: " + maThu);
+						}
+					}
+				}
+			}
+		});
 	}
 
 	private void addDataToTable(List<KhoanThu> khoanThuList) {
@@ -206,4 +249,7 @@ public class QuanLyKhoanThu extends JPanel {
 		}
 	}
 
+	public String getMaThu() {
+		return maThu;
+	}
 }

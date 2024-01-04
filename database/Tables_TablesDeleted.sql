@@ -85,6 +85,7 @@ CREATE TABLE KhoanThuPhi (
     NguoiThu NVARCHAR(255),
     SoTien DECIMAL(18, 2)
 );
+
 --9. Tạo bảng kết nối Khoản thu - Hộ khẩu
 CREATE TABLE KhoanThuHoKhau (
     MaKhoanThu NVARCHAR(10),
@@ -95,6 +96,8 @@ CREATE TABLE KhoanThuHoKhau (
     FOREIGN KEY (MaHoKhau) REFERENCES HoKhau(MaHoKhau),
     PRIMARY KEY (MaKhoanThu, MaHoKhau)
 );
+ALTER TABLE KhoanThuHoKhau
+ADD TrangThai NVARCHAR(10);
 
 --10. Tạo bảng Khoản chi (Chi cho chính sách phát thưởng)
 CREATE TABLE KhoanChi (

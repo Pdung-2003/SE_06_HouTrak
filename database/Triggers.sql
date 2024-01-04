@@ -301,3 +301,20 @@ BEGIN
     UPDATE Quy
     SET SoTien = SoTien - (SELECT SUM(SoTien) FROM inserted) + (SELECT SUM(SoTien) FROM deleted)
 END;
+
+CREATE TRIGGER trg_AfterInsert_KhoanThuPhi
+ON KhoanThuPhi
+AFTER INSERT
+AS
+BEGIN
+    -- Insert tất cả MaHoKhau từ bảng HoKhau vào bảng KhoanThuHoKhau
+    INSERT INTO KhoanThuHoKhau (MaKhoanThu, MaHoKhau, SoTienDong, TrangThai)
+    SELECT
+        i.MaKhoanThu,
+        h.MaHoKhau,
+        0,
+        N'Chưa nộp'
+    FROM
+        inserted i
+    CROSS JOIN HoKhau h; -- Sử dụng CROSS JOIN để chèn tất cả các MaHoKhau từ bảng HoKhau
+END;
