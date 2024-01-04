@@ -1,8 +1,5 @@
 package view.thu;
 
-import model.HoKhau;
-import model.HoKhauDongPhi;
-import server.DatabaseConnector;
 import view.settings.Colors;
 import view.settings.CustomRowHeightRenderer;
 
@@ -14,9 +11,17 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ChiTietKhoanThu extends JFrame {
+    private Object maKhoanThu;
+    private Object maHoKhau;
+    private Object diaChi;
+    private Object soTienDaDong;
+    private Object nguoiDong;
+    private Object trangThai;
+
 
     private JPanel contentPane;
     private JTable table1;
@@ -112,12 +117,50 @@ public class ChiTietKhoanThu extends JFrame {
         JButton btn_CTKT_Confirm = new JButton("Cập nhật");
         btn_CTKT_Confirm.setFont(new Font("Arial", Font.BOLD, 16));
         panel_CTKT_Confirm.add(btn_CTKT_Confirm);
+
+        table1.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedRow = table1.rowAtPoint(e.getPoint());
+                if (selectedRow != -1) {
+                    // Lấy thông tin từ hàng được chọn
+                    maKhoanThu = table1.getValueAt(selectedRow, 0);
+                    maHoKhau = table1.getValueAt(selectedRow, 1);
+                    diaChi = table1.getValueAt(selectedRow, 2);
+                    soTienDaDong = table1.getValueAt(selectedRow, 3);
+                    nguoiDong = table1.getValueAt(selectedRow, 4);
+                    trangThai = table1.getValueAt(selectedRow, 5);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         btn_CTKT_Confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Khi nút được ấn, tạo và hiển thị một JFrame mới
                 CapNhatKhoanThuRieng newFrame1 = new CapNhatKhoanThuRieng();
                 newFrame1.setVisible(true);
+                newFrame1.themThongTinVaoPanel(maKhoanThu,maHoKhau,diaChi, soTienDaDong, nguoiDong, trangThai);
             }
         });
     }

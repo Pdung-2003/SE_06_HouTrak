@@ -1,27 +1,25 @@
 package view.thu;
+
+import controller.thu.QuanLyKhoanThuController;
 import view.settings.Colors;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CapNhatKhoanThuRieng extends JFrame {
 
     private JPanel contentPane;
     private JTextField textField_CNKTR_Content_SoTien;
     private JTextField textField_CNKTR_Content_NguoiDong;
+    private JLabel lbl_CNKTR_Content_MaKhoanThu_Info;
+    private JLabel lbl_CNKTR_Content_MaHoKhau_Info;
+    private JLabel lbl_CNKTR_Content_DiaChi_Info;
+    private JLabel lbl_CNKTR_Content_TrangThai_Info;
+    private Object maHoKhauObject;
+    private Object maKhoanThuObject;
 
     /**
      * Launch the application.
@@ -78,7 +76,7 @@ public class CapNhatKhoanThuRieng extends JFrame {
         lbl_CNKTR_Content_MaKhoanThu.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_MaKhoanThu.add(lbl_CNKTR_Content_MaKhoanThu);
 
-        JLabel lbl_CNKTR_Content_MaKhoanThu_Info = new JLabel(""); // Nhập thông tin vào đây
+        lbl_CNKTR_Content_MaKhoanThu_Info = new JLabel(""); // Nhập thông tin vào đây
         lbl_CNKTR_Content_MaKhoanThu_Info.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_MaKhoanThu.add(lbl_CNKTR_Content_MaKhoanThu_Info);
 
@@ -93,7 +91,7 @@ public class CapNhatKhoanThuRieng extends JFrame {
         lbl_CNKTR_Content_MaHoKhau.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_MaHoKhau.add(lbl_CNKTR_Content_MaHoKhau);
 
-        JLabel lbl_CNKTR_Content_MaHoKhau_Info = new JLabel(""); // Nhập thông tin vào đây
+        lbl_CNKTR_Content_MaHoKhau_Info = new JLabel(""); // Nhập thông tin vào đây
         lbl_CNKTR_Content_MaHoKhau_Info.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_MaHoKhau.add(lbl_CNKTR_Content_MaHoKhau_Info);
 
@@ -108,7 +106,7 @@ public class CapNhatKhoanThuRieng extends JFrame {
         lbl_CNKTR_Content_DiaChi.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_DiaChi.add(lbl_CNKTR_Content_DiaChi);
 
-        JLabel lbl_CNKTR_Content_DiaChi_Info = new JLabel(""); // Nhập thông tin vào đây
+        lbl_CNKTR_Content_DiaChi_Info = new JLabel(""); // Nhập thông tin vào đây
         lbl_CNKTR_Content_DiaChi_Info.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_DiaChi.add(lbl_CNKTR_Content_DiaChi_Info);
 
@@ -157,7 +155,7 @@ public class CapNhatKhoanThuRieng extends JFrame {
         lbl_CNKTR_Content_TrangThai.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_TrangThai.add(lbl_CNKTR_Content_TrangThai);
 
-        JLabel lbl_CNKTR_Content_TrangThai_Info = new JLabel(""); // Nhập thông tin vào đây
+        lbl_CNKTR_Content_TrangThai_Info = new JLabel(""); // Nhập thông tin vào đây
         lbl_CNKTR_Content_TrangThai_Info.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Content_TrangThai.add(lbl_CNKTR_Content_TrangThai_Info);
 
@@ -170,6 +168,26 @@ public class CapNhatKhoanThuRieng extends JFrame {
         JButton btnNewButton = new JButton("Xác nhận");
         btnNewButton.setFont(new Font("Arial", Font.PLAIN, 16));
         panel_CNKTR_Confirm.add(btnNewButton);
+
+        btnNewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                QuanLyKhoanThuController controller = new QuanLyKhoanThuController();
+                controller.updateKhoanThuHoKhau(maKhoanThuObject.toString(),maHoKhauObject.toString(), textField_CNKTR_Content_SoTien.getText(), textField_CNKTR_Content_NguoiDong.getText());
+            }
+        });
     }
 
+    public void themThongTinVaoPanel(Object maKhoanThu, Object maHoKhau, Object diaChi, Object soTienDaDong, Object nguoiDong, Object trangThai){
+        maKhoanThuObject = maKhoanThu;
+        maHoKhauObject = maHoKhau;
+        lbl_CNKTR_Content_MaKhoanThu_Info.setText(maKhoanThu.toString());
+        lbl_CNKTR_Content_MaHoKhau_Info.setText(maHoKhau.toString());
+        lbl_CNKTR_Content_DiaChi_Info.setText(diaChi.toString());
+        lbl_CNKTR_Content_TrangThai_Info.setText(trangThai.toString());
+        textField_CNKTR_Content_SoTien.setText(soTienDaDong.toString());
+        if (nguoiDong == null){
+            textField_CNKTR_Content_NguoiDong.setText("");
+        }else{ textField_CNKTR_Content_NguoiDong.setText(nguoiDong.toString());}
+    }
 }
