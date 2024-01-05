@@ -233,7 +233,7 @@ public class ThongKeTongThu extends JPanel {
 				String namKetThuc = comboBox_TKTT_Filter_Content_EndTime_Nam.getSelectedItem().toString();
 				List<KhoanThu> ketQuaKhoanThu = controller.timKhoanThuTheoThoiGian(ngayBatDau, thangBatDau, namBatDau, ngayKetThuc, thangKetThuc, namKetThuc);
 				addDataToTableKhoanThu(ketQuaKhoanThu);
-				List<String> ketQuaThongKe = controller.thongKeTheoThoiGian(ngayBatDau, thangBatDau, namBatDau, ngayKetThuc, thangKetThuc, namKetThuc);
+				double ketQuaThongKe = controller.thongKeTheoThoiGian(ngayBatDau, thangBatDau, namBatDau, ngayKetThuc, thangKetThuc, namKetThuc);
 				addDataToTableThongKe(ketQuaThongKe);
 			}
 		});
@@ -348,7 +348,6 @@ public class ThongKeTongThu extends JPanel {
 		if (thongKeTableModel == null) {
 			// Nếu tableModel chưa được khởi tạo, thực hiện khởi tạo mới
 			thongKeTableModel = new DefaultTableModel();
-			thongKeTableModel.addColumn("Tháng Thu");
 			thongKeTableModel.addColumn("Tổng Tiền");
 		} else {
 			// Nếu tableModel đã tồn tại, xóa tất cả các hàng
@@ -373,7 +372,7 @@ public class ThongKeTongThu extends JPanel {
 		});
 
 		// Cài đặt kích thước của các cột
-		int[] columnWidths = {200, 200};
+		int[] columnWidths = {200};
 		for (int i = 0; i < columnWidths.length; i++) {
 			thongKeTable.getColumnModel().getColumn(i).setPreferredWidth(columnWidths[i]);
 		}
@@ -399,31 +398,12 @@ public class ThongKeTongThu extends JPanel {
 		viewport.setBackground(Colors.khung_Chung);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Colors.khung_Chung));
 	}
-	private void addDataToTableThongKe(List<String> thongKeList) {
+	private void addDataToTableThongKe(double ketQuaTongThu) {
 		// Xóa dữ liệu hiện tại trong bảng
 		thongKeTableModel.setRowCount(0);
 
-		for (String thongKeItem : thongKeList) {
-			// Kiểm tra xem chuỗi có đúng định dạng "Tháng/Năm - Tổng tiền" hay không
-			if (thongKeItem.contains(" - ")) {
-				String[] parts = thongKeItem.split(" - ");
-				if (parts.length >= 2) { // Kiểm tra xem đã tách được đúng định dạng chưa
-					String thangNam = parts[0]; // Tháng/Năm
-					String tongTien = parts[1]; // Tổng tiền
-
-					// Thêm dòng mới vào bảng với dữ liệu từ đối tượng String
-					thongKeTableModel.addRow(new Object[]{
-							thangNam,
-							tongTien
-					});
-				}
-			} else {
-				// Nếu không đúng định dạng, có thể xử lý bằng cách bỏ qua hoặc thông báo lỗi tùy ý
-				// Ví dụ:
-				System.out.println("Dữ liệu không đúng định dạng: " + thongKeItem);
-				// Hoặc có thể bỏ qua và tiếp tục với các dòng dữ liệu tiếp theo:
-				continue;
-			}
-		}
+		// Thêm dòng mới vào bảng với dữ liệu từ đối tượng double
+		thongKeTableModel.addRow(new Object[]{ketQuaTongThu});
 	}
+
 }

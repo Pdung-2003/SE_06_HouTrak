@@ -51,20 +51,25 @@ public class QuanLyKhoanThuController {
                             "SET " +
                             "    SoTienDong = ?, " +
                             "    TenNguoiDong = ?, " +
-                            "    TrangThai = CASE WHEN ? = KTP.SoTien THEN 'Đã đóng' ELSE KTHK.TrangThai END " +
+                            "    TrangThai = CASE " +
+                            "                   WHEN ? = KhoanThuPhi.SoTien THEN N'Đã đóng' " +
+                            "                   WHEN ? < KhoanThuPhi.SoTien THEN N'Đóng thiếu' "+
+                            "                   ELSE KhoanThuHoKhau.TrangThai " +
+                            "                 END " +
                             "FROM " +
-                            "    KhoanThuHoKhau KTHK " +
+                            "    KhoanThuHoKhau " +
                             "JOIN " +
-                            "    KhoanThuPhi KTP ON KTHK.MaKhoanThu = KTP.MaKhoanThu " +
+                            "    KhoanThuPhi ON KhoanThuHoKhau.MaKhoanThu = KhoanThuPhi.MaKhoanThu " +
                             "WHERE " +
-                            "    KTHK.MaKhoanThu = ? AND KTHK.MaHoKhau = ?")) {
+                            "    KhoanThuHoKhau.MaKhoanThu = ? AND KhoanThuHoKhau.MaHoKhau = ?")) {
 
                 // Set parameters for the prepared statement
                 preparedStatement.setString(1, soTienDaDong);
                 preparedStatement.setString(2, nguoiDong);
                 preparedStatement.setString(3, soTienDaDong);
-                preparedStatement.setString(4, maKhoanThu);
-                preparedStatement.setString(5, maHoKhau);
+                preparedStatement.setString(4, soTienDaDong);
+                preparedStatement.setString(5, maKhoanThu);
+                preparedStatement.setString(6, maHoKhau);
 
                 // Execute the update statement
                 int rowsUpdated = preparedStatement.executeUpdate();

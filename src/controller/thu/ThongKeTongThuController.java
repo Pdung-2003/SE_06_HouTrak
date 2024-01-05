@@ -1,7 +1,7 @@
 package controller.thu;
 
-import server.DatabaseConnector;
 import model.KhoanThu;
+import server.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,17 +13,16 @@ import java.util.List;
 
 public class ThongKeTongThuController {
 
-    public List<String> thongKeTheoThoiGian(String ngayBatDau, String thangBatDau, String namBatDau,
+    public double thongKeTheoThoiGian(String ngayBatDau, String thangBatDau, String namBatDau,
                                             String ngayKetThuc, String thangKetThuc, String namKetThuc) {
-        List<String> ketQuaThongKe = new ArrayList<>();
+        double ketQuaThongKe = 0;
         Connection conn = DatabaseConnector.getConnection();
 
         if (conn != null) {
-            String query = "SELECT MONTH(ThoiGianThu) AS Thang, YEAR(ThoiGianThu) AS Nam, SUM(SoTien) AS TongThu " +
-                    "FROM KhoanThuPhi " +
-                    "WHERE ThoiGianThu BETWEEN ? AND ? " +
-                    "GROUP BY MONTH(ThoiGianThu), YEAR(ThoiGianThu) " +
-                    "ORDER BY YEAR(ThoiGianThu), MONTH(ThoiGianThu)";
+            String query = "SELECT SUM(KhoanThuHoKhau.SoTienDong) AS TongThu " +
+                    "FROM KhoanThuHoKhau JOIN KhoanThuPhi ON KhoanThuHoKhau.MaKhoanThu = KhoanThuPhi.MaKhoanThu " +
+                    "WHERE KhoanThuPhi.ThoiGianThu BETWEEN ? AND ? ";
+
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 String ngayThangNamBatDau = namBatDau + "-" + thangBatDau + "-" + ngayBatDau;
@@ -33,12 +32,8 @@ public class ThongKeTongThuController {
 
                 ResultSet rs = pstmt.executeQuery();
                 while (rs.next()) {
-                    int thang = rs.getInt("Thang");
-                    int nam = rs.getInt("Nam");
                     double tongThu = rs.getDouble("TongThu");
-                    String thangNam = String.format("%02d/%d", thang, nam); // Format tháng/năm
-                    String ketQua = thangNam + " - " + tongThu;
-                    ketQuaThongKe.add(ketQua);
+                    ketQuaThongKe = tongThu;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
